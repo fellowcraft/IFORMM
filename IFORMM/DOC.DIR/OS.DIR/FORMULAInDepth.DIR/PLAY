@@ -1,0 +1,250 @@
+
+\ ************************* P L A Y I N G   N O T E S *************************
+
+\ Commands can be played from Atari's MIDI output port using the follwing words:
+
+\ 	mku 	( velocity key-no channel --- ; key-up command )
+\ 	mkd 	( velocity key-no channel --- ; key-down command )
+\  	mpp	( pressure key-no channel --- ; polyphonic pressure )
+\ 	mcc	( value control-no channel --- ; controller change )
+\	mpc	( patch-no channel --- ; patch change )
+\	mat	( aftertouch channel --- ; aftertouch )
+\	mpb	( bendhi bendlo channel --- ; pitchband )
+\	mcl	( channel --- ; send MIDI clock )
+\	mstr	( channel --- ; system start )
+\	mstp	( channel --- ; system stop )
+\	mcnt	( channel --- ; system continue )
+\	mss	( n channel --- ; song select )
+\	mspp	( hi lo channel --- ; song position pointer )
+
+\ NOTE: The BEND argument to 'mpb' is in the range -8192 to 8191; 0 represents
+\ no bend.
+
+\ *****************************************************************************
+
+\ Type:
+
+\	127 60 0 mkd        
+
+\ to play on MIDI channel one a middle C (MIDI key number 60) with velocity of
+\ 127. To release key, type:
+
+\	127 60 0 mku
+
+\	    or
+
+\         0 60 0 mkd
+
+\ (a velocyty of zero means "release the key").
+
+\ *****************************************************************************
+
+\ Let's play a note that lasts exactly 1/2 second. The word:
+
+\ 	time-advance 		( deley --- ; )
+
+\ pauses for the specified delay. The word time-advance will be explained later
+\ so, just use it now and see what happenes. Type:
+
+\ 	127 60 0 mkd 500 time-advance 127 60 0 mku
+
+\			or
+
+\ 	127 60 0 mkd 500 time-advance 0 60 0 mkd
+
+\ When you hit carrige return, you'll hear a middle C sound for 500 miliseconds
+\ (1/2 second) or a quarter note.
+
+\ *****************************************************************************
+
+\ For the program change type:
+
+\	15 0 0 mpc 127 60 0 mkd 500 time-advance  0 60 0 mkd
+
+\ you'll hear a middle C sound for a quarter note and the synthesizer voice 
+\ will change to number 15 (whatever name that might be). 
+
+\ *****************************************************************************
+
+\ For the MIDI controller change type:
+
+\ 	127 60 0 mkd  500 time-advance 127 64 0 mcc 
+\   	  0 60 0 mkd 4000 time-advance   0 64 0 mcc  
+
+\ you'll hear a middle C sound for a quarter note with sustain pedal presses
+\ down for a 8 quarter notes and then released.
+
+\ For the control change numbers you have to look at your synthesizer manual 
+\ MIDI control chart. In this case, (Yamaha DX 7 II FD) uses contol # 64 for 
+\ the sustain pedal, 127 = on 0 = off.
+
+\ *****************************************************************************
+
+\ Examples:
+
+\ mkd and velocity
+
+:ap velocity1
+::ap
+3 0 do
+	100 30 do 
+		i 60 0 mkd 
+			100 time-advance 
+		0 60 0 mkd  
+	    2 +loop
+
+	30 100 do 
+		i 60 0 mkd 
+			100 time-advance 
+		0 60 0 mkd 
+	   -2 +loop
+     loop
+;;ap
+;ap
+
+
+:ap velocity2
+::ap
+100 0 do
+	80 irnd 40 + 60 0 mkd 
+				100 time-advance 
+	           0 60 0 mkd
+      loop
+;;ap
+;ap
+
+
+\ mpc - changing patches	
+
+:ap patches
+::ap
+30 0 do 
+	i 0 10 time-advance mpc 
+				127 60 0 mkd 
+					500 time-advance  
+				  0 60 0 mkd
+     loop
+;;ap
+;ap
+
+
+\ mcc - sustain pedal
+	
+:ap cont1
+::ap
+	127 60 0 mkd 
+			 500 time-advance 
+					127 64 0 mcc 
+	  0 60 0 mkd 
+			4000 time-advance 
+					  0 64 0 mcc  
+;;ap
+;ap
+	
+\ portamento
+
+:ap cont2 		\ (for Yamaha synths)
+::ap
+127 60 0 mkd	 
+	127 5 0 mcc	\ porta time
+	127 65 0 mcc 	\ porta switch on 
+					   10 time-advance 
+  0 60 0 mkd
+
+127 90 0 mkd
+		5000 time-advance  
+  0 90 0 mkd
+	0 65 0 mcc	\ porta switch off
+;;ap
+;ap
+
+
+:ap conta2
+::ap
+5 0 do
+	127 60 0 mkd	 
+		80 irnd 40 + 5 0 mcc	\ porta time
+		        127 65 0 mcc 	\ porta switch on 
+							1000 time-advance 
+	  0 60 0 mkd
+
+	127 90 0 mkd
+							1000 time-advance  
+	  0 90 0 mkd
+    loop
+			  0 65 0 mcc	\ porta switch off
+;;ap
+;ap
+
+
+\ modulation whell changes ( For Yamaha synths adjust the following:
+\ PM and AM and PEG sensityvity at 7 
+\ LFO - PMD and AMD at 7 ) 
+
+:ap cont3
+::ap
+	127 60 0 mkd 
+			5000 time-advance 
+		127 1 0 mcc 
+	  0 60 0 mkd 
+			4000 time-advance 
+		 0 64 0 mcc  
+;;ap
+;ap
+
+
+\ volume pedal (control 7)
+	
+:ap cont4 		\ use sustained voice e.g. STRINGS
+::ap
+127 60 0 mkd 	
+	5 0 do
+		120 20 do 
+			i 7 0 mcc 10 time-advance 
+		       loop	
+		20 120 do 
+			i 7 0 mcc 10 time-advance 
+		   -1 +loop	
+	    loop
+0 60 0 mkd
+;;ap	
+;ap
+
+	
+:ap cont5
+::ap
+	127 60 0 mkd 	
+			100 0 do
+				 30 grnd 70 + 7 0 mcc 100 time-advance 
+			      loop
+	  0 60 0 mkd
+;;ap	
+;ap
+
+	
+:ap pitchbnd		\ pitchbend changes
+::ap
+127 60 0 mkd
+	10 0 do
+		8192 irnd negate 0 0 mpb
+					1000 time-advance 
+		0 8191 irnd abs 0 mpb
+					1000 time-advance 
+             loop
+127 60 0 mku
+;;ap
+;ap
+
+
+:ap pitchbnda
+::ap
+127 60 0 mkd
+	10 0 do
+		-8192 8191 0 mpb
+				100 time-advance 
+		8191 -8192 0 mpb
+				100 time-advance 
+	     loop
+0 60 0 mkd
+;;ap
+;ap

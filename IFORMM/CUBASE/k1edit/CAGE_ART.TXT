@@ -1,0 +1,151 @@
+Caged Artist Series
+By Bob Melvin
+
+The Caged Artist Series of Synthisizer System Exclusive (or Patch)
+Editors/librarians were created by Bob Melvin and distibuted by
+DR T Software in the late 1980's.
+
+The first program in the series was "DX Heaven" which was for the first
+generation Yamaha DX7 /TX7 Synthesizers.It was as the title states for DX7
+programming.It was originally written in the mid 80's for the Apple II computer
+but was ported over to the ST with many additions.More Synthesizer editors
+followed, all following the same format.Toward the end of distibution, copy
+protection was removed. They could also be used as MPE modules in Dr T's Omega
+II KCS.
+
+Today, Bob Melvin has given permission for Free trading of these excellent
+editors. Thankyou Bob! Download them Below.Thanks also go to members of the
+Atari-Midi Mailing list for providing downloadable copies of the programs.
+
+Bob also created XOR for Atari which is now Mark Of The Unicorns'UNISYN for the
+Mac and PC platforms. (see link below for MOTU). Files that were created
+on Caged Artist products were interchangable with the Atari version of XOR, so
+ "upgrading" to XOR was not a "painful process.What this means for the Atari
+ Musician today is that you can still create custom sounds using Caged Artists,
+  and use the banks in XOR. XOR has it's own editing style, while Caged Artists have a "different" style,
+much like the difference between two Sequencers such as Cubase or KCS.Both can
+be used effectivly.
+
+____________________________________________________________________________________
+
+At the beginning of Bob's Caged Artist's rather "amusing" and very
+"entertaining" manuals are these words:
+
+"Welcome and thanks for buying Dr T./ Caged Artist software. My goal in
+creating this series of software products was to make the program intuitive
+enough such that the manual is barely necessary, without the usual trappings of
+user-friendliness (Are YOU sure?). To me this is important since my Muse gets
+P.O 'd and deserts me whenever I have to open a manual or think too strenously
+about the software. I hope you find this type of software as I do in the
+process of creating music. If you like it, there's plenty more ware (s.i.c.)
+this came from."
+
+-Bob Melvin
+a.k.a. Caged Artist
+
+Another example of Entertainment from the manual:
+
+"Importment notice #2. If you turn the ST's power OFF, leave it off for 10
+seconds. Give it's memory banks a full lobotomy. Otherwise , bizare anti-social
+behavior may ensue."
+
+_________________________________________________________________________
+
+He is right in that the programs are very intuitive and you may not need any
+type of instruction at all to use the program. However, here are a few things
+to get you started which apply to all the Caged Artist Series:
+
+First of all you want to make sure you have the MIDI OUT of the Atari to the
+ MIDI
+IN of your synth. Also the MIDI OUT of the synth to the MIDI IN of the Atari.
+
+
+After loading the program you are presented with the bank/librarian Screen.
+Along the side are commands to access the rest of the screens (or modes)You can
+use the Mouse to select them by simply clicking on the names, or using the
+appropriate Function keys(F1 to F15). Depending on which synth editor you are
+using the Function keys might change. However they are always listed.To load a
+bank, simply select LOAD FILE from the menu.You can load several banks at once.
+ To Save it is of course SAVE FILE.
+To save your sounds FROM the synth itself, select GET ALL, and the sounds will
+magically appear in the bank. You may want to do this initually with your synth
+so your sounds are "backed up".To send a bank select SEND ALL.You can also
+Print the bank list by selecting PRINT.That is if you have a printer
+hooked up! You can also format a disc from within the program by selecting
+FORMAT. Very handy if you ran out of space on a disc and need to format a new
+disc to save your precious creation!
+
+FUNCTION GLOBAL DECRIPTIONS
+
+VC Edit : takes you to the voice editing screen.Here is the main mode for
+editing patches showing most parameters on the screen at once which is the
+strength of these editors.Parameters may be changed by simply clicking on them
+so they are highlighted, then using the Plus (+) or Minus(-)keys on the Ten key
+pad, or Left clicking and dragging the mouse up and down, or using the side
+"slider" to change the parameters.Also direct entry using the Ten key or QWERT
+numbers on the ST keybrd is sopported.Renaming a patch is as easy as clicking
+on the patch name, and simply typing in the new name.Once a patch is edited, it
+can be saved by selecting STORE VC, which when you do, returns you to the Bank
+Screen and asks you to store the patch in a location. Click in a location, it
+stores the patch and you are brought back to the Editing screen.Other Options
+on the menu in the Editing screen are RANDOMIZE, which allows automatic Patch
+creation. You can set "masks" for this on the RAND MASK option.This is a very
+cool feature of these editors and very usable sounds may be generated in this
+way.Sounds may be auditioned by Right Clicking in the screen. Left clicking at
+the same time will produce Modulation (vibrato).You can also use your
+midi keyboard for auditioning if you have Midi Merge set to ON in the systems
+ screen (see
+below)
+
+Envelopes: In some editors it is a seperate screen. In others it is part of
+Voice Editing Page.Here you have graphic
+editing of envelopes simply by using the mouse to "drag and pull"the parameters
+while viewing the numerical numbers change. Very intuitive in creating Sounds
+and seeing the Envelopes displayed on the screen as you change them.You also
+have options to Copy Envelopes by simply selecting the COPY function.
+
+System: takes you to a screen where you can set options : [System Exclusive
+Channel] Make sure this is set to the recieving channel of your synth.[Merge]
+ (or midi thru) You will need this ON if you want to play your
+midi keyboard to audition the sounds.[Storage Drive] lets you select a default
+drive to store your sounds. Handy on a Hard drive system.[Mouse Glissando]Set
+this to ON if you want to use the mouse to audition sounds (by right clicking
+in the screen)[Randomization amount] lets you set a percentage for the Random
+Patch creation feature.[Colors] lets you set custom colors for the program: a
+very cool feature in my eyes. ( I love configuring colors!) While most Atari
+Musicians use ST Hi Res for most programs, these programs look very good in
+Medium Res once you configure the colors to your satisfaction.
+
+Comment from the manual:(Entertainment time)"You are free to customize the
+program to your whim, whether it be day-glo, earth tones, Miami Vice pastels or
+whatever! I find a background of "223" grey easier on my eyes sometimes, and a
+nice alternative for highlights is a hot "725" pink or "760" yellow."
+
+To save your settings simply select SAVE SYS.This screen also has System
+editing for the particular synth the editor represents.
+
+APPLICATIONS
+
+I use these editors in conjuction with XOR as they both share the same bank
+formats. I really like the simplicity and ease on which you can create sounds.
+Most parameters are shown on one screen which makes it easy to deal with at
+first glance. Graphic editing of the envelopes is also intuitive, while the
+Randomization feature makes it easy to create intresting sounds without too much
+effort. Also these editors can be loaded from within Dr T's KCS sequencer
+package. Each program has an INF file which is the key to loading it into KCS
+from the MPE menu. This is what makes these programs work on a TT030 or Falcon
+if they do not run from within thier own directories.A must for every Atari Musician.
+
+Tim Conrardy
+http://atari.atlantis-bbs.com
+Tim's Atari Midi World
+4-8-2000
+
+Mark Of The Unicorn: home of UNISYN
+
+http://www.motu.com
+
+
+
+
+

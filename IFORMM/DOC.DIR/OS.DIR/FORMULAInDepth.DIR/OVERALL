@@ -1,0 +1,71 @@
+
+\ **************************** O V E R A L L *********************************
+
+\ This is an example which demonstrates playing togerther tsg, td, sh, ash.
+\ The best listening results will be acheved with PIANO-like voices.
+
+\ ****************************************************************************
+ 
+:ap tune1
+ ::tsg /4 ;;sg
+\ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ ::td1 
+   50 100 8 1 r>i seg   \ between the tempi 100 and 50
+ ;;td                   \ during a 8 whole notes, slow down the sequence
+\ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ ::sh1
+ -100 100 8 1 r>i oseg	\ between dynamics -100 and 100 
+ ;;sh			\ during a 8 whole notes
+\ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ ::ash absolute
+  1  1 r>i              \ notes have whole note duration 
+  4  1 r>i ocon         \ that will be during a 4 whole notes
+		     
+  1 64 r>i 	        \ notes have 1/64 note duration 
+  4  1 r>i ocon         \ that will be during a 4 whole notes
+ ;;sh		        
+\ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  4 oct 16 0 do g $ loop
+;ap
+
+\ ****************************************************************************
+
+:ap tune2
+ ::tsg begin 4 10 r>i & again ;;sg
+\ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ ::td1 
+   100 10 8 1 r>i seg   \ between the tempi 100 and 10
+ ;;td                   \ during a 8 whole notes, accelerate the sequence
+\ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ ::sh1
+ 80 -50 4 1 r>i cseg	\ between dynamics 80 and -50 
+			\ during a 4 whole notes
+ -50 -10 4 1 r>i cseg	\ between dynamics -50 and -10
+ ;;sh			\ during a 4 whole notes
+\ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ ::ash relative
+  1 16 r>i negate       \ notes end a 1/16th early
+  4  1 r>i ocon         \ that will be during a 2 whole notes
+  	
+  1  2 r>i              \ notes end a 1/2nd late
+  4  1 r>i ocon         \ that will be during a 4 whole notes
+ ;;sh		   
+\ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+3 oct 10 0 do  c $ loop
+;ap
+
+\ ----------------------------------------------------------------------------
+
+:ap ally
+2 0 do
+   ::ap tune1 ;;ap
+        tune2      loop    
+;ap
+
+:ap all
+ ::ap ally ;;ap
+;ap
+
+\ ****************************************************************************
+
+

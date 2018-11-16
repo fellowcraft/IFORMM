@@ -1,0 +1,127 @@
+
+\ *********************** T E M P O   C O N T R O L ***************************
+
+\ Use MARIMBA-like voice for the best listening example.
+
+\ Most musical time intervals can be expressed as a "rational number" 
+\ (i.e., ratio of integers or fractions) of whole notes. For example, a quarter 
+\ note is 1/4 of a whole note, an eighth note is understood to be 1/8 of a 
+\ whole note, etc. FORMULA lets you specify time intervals as rational numbers.
+\ The word r>i converts from rational form to integer (SVT System Virtual Time)
+\ form. For example:
+
+	:ap quarter-c1
+	  127 60 0 mkd		\ key down
+	  1 4 r>i time-advance  \ wait a quarter note
+	    0 60 0 mkd		\ key up
+	;ap
+
+\ FORMULA converts expressions from A B r>i to A|B. Hence the abowe example
+\ could be written:
+
+	:ap quarter-c2
+	  127 60 0 mkd		\ key down
+	  1|4 time-advance      \ wait a quarter note
+	    0 60 0 mkd		\ key up
+	;ap
+ 
+
+\ So 1 4 r>i produces a quarter note duration, what it does is multiplies the 
+\ rational number by rscale,
+
+\ 	(num * rscale)/ denom
+
+\ where rscale is a pquan representing the SVT duration of a whole note. The 
+\ default value of rscale is 2000, giving a quarter note duration.
+
+\ rscale 1 * 4 /  ( i.e., rscale * 1/4 )
+
+\ With default SVT (System Virtual Time) unit of one milisecond, this would be 
+\ .5 second (i.e., 120 beats per minute).
+
+\ (1 * 2000)/4 = 500 SVT units.
+
+\ The lenght of an SVT unit can be changed using:
+
+\	usec-per-SVT  ( n --- set the lenght of an SVT unit to n microseconds )
+
+\ For example:		500 usec-per-SVT
+
+\ sets the SVT unit to 500 microseconds (1/2 milisecond), having all durations
+\ and doubling the tempo.
+
+\ Modifying rscale can be used for per-processes tempo control that use the 
+\ rational time specification. The larger you set rscale, the slower the tempo.
+ 
+\ **************************************************************************** 
+
+ 
+:ap tempos
+	::ap
+
+ 2000 to rscale		       \ 2000 gives a quarter note the tempo of 120 bpm
+  3 0 do 60 64 67 72  4 m$ loop
+
+ 4000 to rscale		       \ 4000 gives a quarter note the tempo of 60 bpm
+  3 0 do 60 64 67 72  4 m$ loop
+
+  125 to rscale		       \ 125 gives a quarter note the tempo of 1120 bpm
+  3 0 do 60 64 67 72  4 m$ loop
+
+	;;ap
+;ap
+
+\ *************************** BEATS-PER-MINUTE *******************************
+
+\ To set the tempo control in terms of beats per minute FORMULA uses the word:
+\ beats-per-minute, which sets RSCALE to the vlue that, at the default SVT unit
+\ of 1 milisecond, will produce n quarter note beats per minute.
+
+\ *****************************************************************************
+ 
+:ap time1
+ 60 beats-per-minute
+  -c $ -e $ -g $ -c $ -e $ -g $ -c $ -e $ -g $
+;ap
+
+:ap time2
+ 120 beats-per-minute
+   c $  e $  g $  c $  e $  g $  c $  e $  g $ 
+;ap
+
+:ap time3
+ 240 beats-per-minute
+  +c $ +e $ +g $ +c $ +e $ +g $ +c $ +e $ +g $ 
+;ap
+
+:ap timex
+  ::ap time1 time2 time3 ;;ap
+;ap
+
+\ ***************************************************************************
+
+:ap s-v-t
+       4000 to rscale
+            10 0 do +c $ +d $ loop
+;ap
+
+:ap b-p-m
+	 60 beats-per-minute
+	    10 0 do  c $  d $ loop
+;ap
+
+:ap svt+bpm
+	::gp	
+	    ::ap s-v-t ;;ap
+            b-p-m
+	;;gp
+;ap
+
+:ap go-go
+	::ap svt+bpm ;;ap
+;ap
+
+\ *****************************************************************************
+
+
+

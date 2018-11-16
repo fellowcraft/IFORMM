@@ -1,0 +1,84 @@
+
+\ *********************** T R A N S P O S I T I O N ***************************
+
+\ The $-words use several quans and pquans to obtain note parameters. The 
+\ pquans are all inherited on process creation.
+
+
+\ $gtranspose ( n --- ; ) quan which transposes all processes and its value is
+\ in 1/256 semitene units
+  
+\ $transpose  ( n --- ; ) pquan which transposes all naming words on a 
+\ 'per-process' basis, its value is in 1/256 semitone units
+
+\ You may either use    12 8<< to $transpose     or    12.0 to $transpose
+  
+\ Play and analize trans, trans-scale1, trans-scale2 and gtrans for the 
+\ transpositions of the words on a 'per-process' basis and transpositions 
+\ of all processes.
+
+:ap trans
+	::ap
+
+	  60 62 64 65 67 69 71 72  8 m$ 
+   9.0 to $transpose			\ transposition +  9 semitones
+	  60 62 64 65 67 69 71 72  8 m$ 
+ -18.0 to $transpose			\ transposition - 18 semitones
+	  60 62 64 65 67 69 71 72  8 m$ 
+   0 to $transpose			\ no transposition (default)
+	  60 62 64 65 67 69 71 72  8 m$
+
+	;;ap
+;ap
+
+\ ****************************************************************************
+
+:ap scaly
+	::gp
+	     [ 1 params ] to $transpose
+             60 62 64 65 67 69 71 72  8 m$
+	;;gp
+;ap
+
+:ap trans-scale1
+	::gp
+	 	1.0 scaly
+	 	5.0 scaly
+	 	7.0 scaly
+	       12.0 scaly
+	;;gp
+;ap
+
+:ap trans-scale2
+	::gp
+	   ::ap 1.0 scaly ;;ap
+	   ::ap 5.0 scaly ;;ap
+	   ::ap 7.0 scaly ;;ap
+	       12.0 scaly
+	;;gp
+;ap
+
+:ap gtrans
+	::ap
+              -18.0 to $gtranspose trans-scale1
+         	5.0 to $gtranspose trans-scale2
+               -7.0 to $gtranspose trans-scale1
+               21.0 to $gtranspose trans-scale2
+	;;ap
+;ap
+
+\ ****************************************************************************
+
+:ap trans-loop
+::ap
+
+12 0 do
+	i 8<< to $transpose
+/16
+     60 62 64 65 67 69 71 72  8 m$ 
+
+     loop
+;;ap
+;ap
+
+\ ****************************************************************************

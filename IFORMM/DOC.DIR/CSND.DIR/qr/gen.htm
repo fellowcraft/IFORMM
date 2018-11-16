@@ -1,0 +1,869 @@
+<!doctype html public "-//W3C//DTD HTML 3.2//EN">
+
+<!-- This  particular HTML Edition of the Csound Manual is maintained by David M. Boothe. Email: csound@lakewoodsound.com-->
+<!--This is Version 4.06.-->
+<html>
+<head>
+	<title>QuickRef: GEN Routines</title>
+</head>
+
+<body text="black" link="black" vlink="black" alink="black" bgcolor="white">
+<table align="right" cellpadding="1" cellspacing="1" border="0">
+  <tr>
+    <td width="45" align="right">
+      <a href="../manual2.htm#contents" target="_parent">
+      <img src="../toc.gif" width="38" height="18" alt="Use Non-Frames Version" border="0"></a>
+    </td>
+    <td width="10">
+    </td>
+    <td width="45" align="right">
+      <a href="score.htm">
+      <img src="../prev.gif" width="38" height="18" alt="Previous Page" border="0"></a>
+    </td>
+    <td width="45" align="right">
+      <a href="command.htm">
+      <img src="../next.gif" width="38" height="18" alt="Next Page" border="0"></a>
+    </td>
+  </tr>
+</table>
+<font size="-2" color="black" face="Verdana, Arial, Helvetica, Century Gothic">
+The Csound Quick Reference</font>
+
+<hr size="1" color="#A9A9A9" noshade>
+<a href="../gen/top.htm"><h1>GEN Routines</h1></a>
+
+<a name="sine"><hr size="2" color="#A9A9A9" noshade></a>
+<h2>GEN Routines: Sine/Cosine Generators</h2>
+<table cellspacing="0" border="0" cellpadding="7" width="649">
+  <tr>
+    <td nowrap width="4%" valign="TOP">
+      <font face="Courier New, Courier" size="-1"><strong>f</strong></font>
+    </td>
+    <td nowrap width="4%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">#</font>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">time</font>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">size</font>
+    </td>
+    <td nowrap width="5%" valign="TOP">
+      <a href="../gen/gen09.htm">
+      <font face="Courier New, Courier" size="-1"><strong> 9</strong></font></a>
+    </td>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">pna</font>
+    </td>
+    <td nowrap width="13%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">stra</font>
+    </td>
+    <td nowrap width="11%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">phsa</font>
+    </td>
+    <td nowrap width="8%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">pnb</font>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">strb</font>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">phsb</font>
+    </td>
+    <td nowrap width="15%" valign="TOP" colspan="2">
+      <font face="Courier New, Courier" size="-1">...</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="4%" valign="TOP">
+      <font face="Courier New, Courier" size="-1"><strong>f</strong></font>
+    </td>
+    <td nowrap width="4%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">#</font>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">time</font>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">size</font>
+    </td>
+    <td nowrap width="5%" valign="TOP">
+      <a href="../gen/gen09.htm">
+      <font face="Courier New, Courier" size="-1"><strong>10</strong></font></a>
+    </td>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">str1</font>
+    </td>
+    <td nowrap width="13%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">str2</font>
+    </td>
+    <td nowrap width="11%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">str3</font>
+    </td>
+    <td nowrap width="8%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">str4</font>
+    </td>
+    <td nowrap width="30%" valign="TOP" colspan="4">
+      <font face="Courier New, Courier" size="-1">...</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="4%" valign="TOP">
+      <font face="Courier New, Courier" size="-1"><strong>f</strong></font>
+    </td>
+    <td nowrap width="4%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">#</font>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">time</font>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">size</font>
+    </td>
+    <td nowrap width="5%" valign="TOP">
+      <a href="../gen/gen09.htm">
+      <font face="Courier New, Courier" size="-1"><strong>19</strong></font></a>
+    </td>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">pna</font>
+    </td>
+    <td nowrap width="13%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">stra</font>
+    </td>
+    <td nowrap width="11%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">phsa</font>
+    </td>
+    <td nowrap width="8%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">dcoa</font>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">pnb</font>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">strb</font>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">phsb</font>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">dcob</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="4%" valign="TOP">
+      <font face="Courier New, Courier" size="-1"><strong>f</strong></font>
+    </td>
+    <td nowrap width="4%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">#</font>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">time</font>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">size</font>
+    </td>
+    <td nowrap width="5%" valign="TOP">
+      <a href="../gen/gen11.htm">
+      <font face="Courier New, Courier" size="-1"><strong>11</strong></font></a>
+    </td>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">nh</font>
+    </td>
+    <td nowrap width="13%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">[lh</font>
+    </td>
+    <td nowrap width="48%" valign="TOP" colspan="6">
+      <font face="Courier New, Courier" size="-1">[r]]</font>
+    </td>
+  </tr>
+</table>
+
+<a name="line"><hr size="2" color="#A9A9A9" noshade></a>
+<h2>GEN Routines: Line/Exponential Segment Generators</h2>
+<table cellspacing="0" border="0" cellpadding="7" width="649">
+  <tr>
+    <td nowrap width="4%" valign="TOP">
+      <font face="Courier New, Courier" size="-1"><strong>f</strong></font>
+    </td>
+    <td nowrap width="4%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">#</font>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">time</font>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">size</font>
+    </td>
+    <td nowrap width="5%" valign="TOP">
+      <a href="../gen/gen05.htm">
+      <font face="Courier New, Courier" size="-1"><strong> 5</strong></font></a>
+    </td>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">a</font>
+    </td>
+    <td nowrap width="13%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">n1</font>
+    </td>
+    <td nowrap width="11%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">b</font>
+    </td>
+    <td nowrap width="8%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">n2</font>
+    </td>
+    <td nowrap width="7%" valign="TOP" colspan="2">
+      <font face="Courier New, Courier" size="-1">c</font>
+    </td>
+    <td nowrap width="22%" valign="TOP" colspan="4">
+      <font face="Courier New, Courier" size="-1">...</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="4%" valign="TOP">
+      <font face="Courier New, Courier" size="-1"><strong>f</strong></font>
+    </td>
+    <td nowrap width="4%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">#</font>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">time</font>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">size</font>
+    </td>
+    <td nowrap width="5%" valign="TOP">
+      <a href="../gen/gen06.htm">
+      <font face="Courier New, Courier" size="-1"><strong> 6</strong></font></a>
+    </td>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">a</font>
+    </td>
+    <td nowrap width="13%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">n1</font>
+    </td>
+    <td nowrap width="11%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">b</font>
+    </td>
+    <td nowrap width="8%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">n2</font>
+    </td>
+    <td nowrap width="7%" valign="TOP" colspan="2">
+      <font face="Courier New, Courier" size="-1">c</font>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">n3</font>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">d</font>
+    </td>
+    <td nowrap width="8%" valign="TOP" colspan="2">
+      <font face="Courier New, Courier" size="-1">...</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="4%" valign="TOP">
+      <font face="Courier New, Courier" size="-1"><strong>f</strong></font>
+    </td>
+    <td nowrap width="4%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">#</font>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">time</font>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">size</font>
+    </td>
+    <td nowrap width="5%" valign="TOP">
+      <a href="../gen/gen05.htm">
+      <font face="Courier New, Courier" size="-1"><strong> 7</strong></font></a>
+    </td>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">a</font>
+    </td>
+    <td nowrap width="13%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">n1</font>
+    </td>
+    <td nowrap width="11%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">b</font>
+    </td>
+    <td nowrap width="8%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">n2</font>
+    </td>
+    <td nowrap width="7%" valign="TOP" colspan="2">
+      <font face="Courier New, Courier" size="-1">c</font>
+    </td>
+    <td nowrap width="22%" valign="TOP" colspan="4">
+      <font face="Courier New, Courier" size="-1">...</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="4%" valign="TOP">
+      <font face="Courier New, Courier" size="-1"><strong>f</strong></font>
+    </td>
+    <td nowrap width="4%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">#</font>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">time</font>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">size</font>
+    </td>
+    <td nowrap width="5%" valign="TOP">
+      <a href="../gen/gen08.htm">
+      <font face="Courier New, Courier" size="-1"><strong> 8</strong></font></a>
+    </td>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">a</font>
+    </td>
+    <td nowrap width="13%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">n1</font>
+    </td>
+    <td nowrap width="11%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">b</font>
+    </td>
+    <td nowrap width="8%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">n2</font>
+    </td>
+    <td nowrap width="7%" valign="TOP" colspan="2">
+      <font face="Courier New, Courier" size="-1">c</font>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">n3</font>
+    </td>
+    <td nowrap width="7%" valign="TOP" colspan="2">
+      <font face="Courier New, Courier" size="-1">d</font>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">...</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="4%" valign="TOP">
+      <font face="Courier New, Courier" size="-1"><strong>f</strong></font>
+    </td>
+    <td nowrap width="4%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">#</font>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">time</font>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">size</font>
+    </td>
+    <td nowrap width="5%" valign="TOP">
+      <a href="../gen/gen25.htm">
+      <font face="Courier New, Courier" size="-1"><strong>25</strong></font></a>
+    </td>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">x1</font>
+    </td>
+    <td nowrap width="13%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">y1</font>
+    </td>
+    <td nowrap width="11%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">x2</font>
+    </td>
+    <td nowrap width="8%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">y2</font>
+    </td>
+    <td nowrap width="6%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">x3</font>
+    </td>
+    <td nowrap width="23%" valign="TOP" colspan="5">
+      <font face="Courier New, Courier" size="-1">...</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="4%" valign="TOP">
+      <font face="Courier New, Courier" size="-1"><strong>f</strong></font>
+    </td>
+    <td nowrap width="4%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">#</font>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">time</font>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">size</font>
+    </td>
+    <td nowrap width="5%" valign="TOP">
+      <a href="../gen/gen25.htm">
+      <font face="Courier New, Courier" size="-1"><strong>27</strong></font></a>
+    </td>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">x1</font>
+    </td>
+    <td nowrap width="13%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">y1</font>
+    </td>
+    <td nowrap width="11%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">x2</font>
+    </td>
+    <td nowrap width="8%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">y2</font>
+    </td>
+    <td nowrap width="6%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">x3</font>
+    </td>
+    <td nowrap width="23%" valign="TOP" colspan="5">
+      <font face="Courier New, Courier" size="-1">...</font>
+    </td>
+  </tr>
+</table>
+
+<a name="file"><hr size="2" color="#A9A9A9" noshade></a>
+<h2>GEN Routines: File Access</h2>
+<table cellspacing="0" border="0" cellpadding="7" width="649">
+  <tr>
+    <td nowrap width="4%" valign="TOP">
+      <font face="Courier New, Courier" size="-1"><strong>f</strong></font>
+    </td>
+    <td nowrap width="4%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">#</font>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">time</font>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">size</font>
+    </td>
+    <td nowrap width="5%" valign="TOP">
+      <a href="../gen/gen01.htm">
+      <font face="Courier New, Courier" size="-1"><strong> 1</strong></font></a>
+    </td>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">filcod</font>
+    </td>
+    <td nowrap width="13%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">skiptime</font>
+    </td>
+    <td nowrap width="11%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">format</font>
+    </td>
+    <td nowrap width="38%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">channel</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="4%" valign="TOP">
+      <font face="Courier New, Courier" size="-1"><strong>f</strong></font>
+    </td>
+    <td nowrap width="4%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">#</font>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">time</font>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">size</font>
+    </td>
+    <td nowrap width="5%" valign="TOP">
+      <a href="../gen/gen23.htm">
+      <font face="Courier New, Courier" size="-1"><strong>23</strong></font></a>
+    </td>
+    <td nowrap width="73%" valign="TOP" colspan="4">
+      <font face="Courier New, Courier" size="-1">&quot;filename.txt&quot;</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="4%" valign="TOP">
+      <font face="Courier New, Courier" size="-1"><strong>f</strong></font>
+    </td>
+    <td nowrap width="4%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">#</font>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">time</font>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">0</font>
+    </td>
+    <td nowrap width="5%" valign="TOP">
+      <a href="../gen/gen28.htm">
+      <font face="Courier New, Courier" size="-1"><strong>28</strong></font></a>
+    </td>
+    <td nowrap width="73%" valign="TOP" colspan="4">
+      <font face="Courier New, Courier" size="-1">filcod</font>
+    </td>
+  </tr>
+</table>
+
+<a name="numeric"><hr size="2" color="#A9A9A9" noshade></a>
+<h2>GEN Routines: Numeric Value Access</h2>
+<table cellspacing="0" border="0" cellpadding="7" width="649">
+  <tr>
+    <td nowrap width="4%" valign="TOP">
+      <font face="Courier New, Courier" size="-1"><strong>f</strong></font>
+    </td>
+    <td nowrap width="4%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">#</font>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">time</font>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">size</font>
+    </td>
+    <td nowrap width="5%" valign="TOP">
+      <a href="../gen/gen02.htm">
+      <font face="Courier New, Courier" size="-1"><strong> 2</strong></font></a>
+    </td>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">v1</font>
+    </td>
+    <td nowrap width="13%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">v2</font>
+    </td>
+    <td nowrap width="9%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">v3</font>
+    </td>
+    <td nowrap width="40%" valign="TOP" colspan="5">
+      <font face="Courier New, Courier" size="-1">...</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="4%" valign="TOP">
+      <font face="Courier New, Courier" size="-1"><strong>f</strong></font>
+    </td>
+    <td nowrap width="4%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">#</font>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">time</font>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">size</font>
+    </td>
+    <td nowrap width="5%" valign="TOP">
+      <a href="../gen/gen17.htm">
+      <font face="Courier New, Courier" size="-1"><strong>17</strong></font></a>
+    </td>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">x1</font>
+    </td>
+    <td nowrap width="13%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">a</font>
+    </td>
+    <td nowrap width="11%" valign="TOP" colspan="2">
+      <font face="Courier New, Courier" size="-1">x2</font>
+    </td>
+    <td nowrap width="8%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">b</font>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">x3</font>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">c</font>
+    </td>
+    <td nowrap width="15%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">...</font>
+    </td>
+  </tr>
+</table>
+
+<a name="windows"><hr size="2" color="#A9A9A9" noshade></a>
+<h2>GEN Routines: Window Functions</h2>
+<table cellspacing="0" border="0" cellpadding="7" width="649">
+  <tr>
+    <td nowrap width="4%" valign="TOP">
+      <font face="Courier New, Courier" size="-1"><strong>f</strong></font>
+    </td>
+    <td nowrap width="4%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">#</font>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">time</font>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">size</font>
+    </td>
+    <td nowrap width="5%" valign="TOP">
+      <a href="../gen/gen20.htm">
+      <font face="Courier New, Courier" size="-1"><strong>20</strong></font></a>
+    </td>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">window</font>
+    </td>
+    <td nowrap width="13%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">max</font>
+    </td>
+    <td nowrap width="48%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">[opt]</font>
+    </td>
+  </tr>
+</table>
+
+<a name="random"><hr size="2" color="#A9A9A9" noshade></a>
+<h2>GEN Routines: Random Functions</h2>
+<table cellspacing="0" border="0" cellpadding="7" width="649">
+  <tr>
+    <td nowrap width="4%" valign="TOP">
+      <font face="Courier New, Courier" size="-1"><strong>f</strong></font>
+    </td>
+    <td nowrap width="4%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">#</font>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">time</font>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">size</font>
+    </td>
+    <td nowrap width="5%" valign="TOP">
+      <a href="../gen/gen21.htm">
+      <font face="Courier New, Courier" size="-1"><strong>21</strong></font></a>
+    </td>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">type</font>
+    </td>
+    <td nowrap width="13%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">level</font>
+    </td>
+    <td nowrap width="11%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">[arg1</font>
+    </td>
+    <td nowrap width="38%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">[arg2]]</font>
+    </td>
+  </tr>
+</table>
+
+<a name="waveshaping"><hr size="2" color="#A9A9A9" noshade></a>
+<h2>GEN Routines: Waveshaping</h2>
+<table cellspacing="0" border="0" cellpadding="7" width="649">
+  <tr>
+    <td nowrap width="4%" valign="TOP">
+      <font face="Courier New, Courier" size="-1"><strong>f</strong></font>
+    </td>
+    <td nowrap width="4%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">#</font>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">time</font>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">size</font>
+    </td>
+    <td nowrap width="5%" valign="TOP">
+      <a href="../gen/gen03.htm">
+      <font face="Courier New, Courier" size="-1"><strong> 3</strong></font></a>
+    </td>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">xval1</font>
+    </td>
+    <td nowrap width="13%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">xval2</font>
+    </td>
+    <td nowrap width="11%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">c0</font>
+    </td>
+    <td nowrap width="8%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">c1</font>
+    </td>
+    <td nowrap width="6%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">c2</font>
+    </td>
+    <td nowrap width="8%" valign="TOP" colspan="2">
+      <font face="Courier New, Courier" size="-1">...</font>
+    </td>
+    <td nowrap width="16%" valign="TOP" colspan="3">
+      <font face="Courier New, Courier" size="-1">cn</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="4%" valign="TOP">
+      <font face="Courier New, Courier" size="-1"><strong>f</strong></font>
+    </td>
+    <td nowrap width="4%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">#</font>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">time</font>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">size</font>
+    </td>
+    <td nowrap width="5%" valign="TOP">
+      <a href="../gen/gen13.htm">
+      <font face="Courier New, Courier" size="-1"><strong>13</strong></font></a>
+    </td>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">xint</font>
+    </td>
+    <td nowrap width="13%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">xamp</font>
+    </td>
+    <td nowrap width="11%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">h0</font>
+    </td>
+    <td nowrap width="8%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">h1</font>
+    </td>
+    <td nowrap width="7%" valign="TOP" colspan="2">
+      <font face="Courier New, Courier" size="-1">h2</font>
+    </td>
+    <td nowrap width="6%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">...</font>
+    </td>
+    <td nowrap width="16%" valign="TOP" colspan="3">
+      <font face="Courier New, Courier" size="-1">hn</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="4%" valign="TOP">
+      <font face="Courier New, Courier" size="-1"><strong>f</strong></font>
+    </td>
+    <td nowrap width="4%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">#</font>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">time</font>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">size</font>
+    </td>
+    <td nowrap width="5%" valign="TOP">
+      <a href="../gen/gen13.htm">
+      <font face="Courier New, Courier" size="-1"><strong>14</strong></font></a>
+    </td>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">xint</font>
+    </td>
+    <td nowrap width="13%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">xamp</font>
+    </td>
+    <td nowrap width="11%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">h0</font>
+    </td>
+    <td nowrap width="8%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">h1</font>
+    </td>
+    <td nowrap width="7%" valign="TOP" colspan="2">
+      <font face="Courier New, Courier" size="-1">h2</font>
+    </td>
+    <td nowrap width="7%" valign="TOP" colspan="2">
+      <font face="Courier New, Courier" size="-1">...</font>
+    </td>
+    <td nowrap width="15%" valign="TOP" colspan="2">
+      <font face="Courier New, Courier" size="-1">hn</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="4%" valign="TOP">
+      <font face="Courier New, Courier" size="-1"><strong>f</strong></font>
+    </td>
+    <td nowrap width="4%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">#</font>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">time</font>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">size</font>
+    </td>
+    <td nowrap width="5%" valign="TOP">
+      <a href="../gen/gen15.htm">
+      <font face="Courier New, Courier" size="-1"><strong>15</strong></font></a>
+    </td>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">xint</font>
+    </td>
+    <td nowrap width="13%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">xamp</font>
+    </td>
+    <td nowrap width="11%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">h0</font>
+    </td>
+    <td nowrap width="8%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">phs0</font>
+    </td>
+    <td nowrap width="7%" valign="TOP" colspan="2">
+      <font face="Courier New, Courier" size="-1">h1</font>
+    </td>
+    <td nowrap width="7%" valign="TOP" colspan="2">
+      <font face="Courier New, Courier" size="-1">phs1</font>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">h2</font>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">phs2</font>
+    </td>
+  </tr>
+</table>
+
+<a name="amp"><hr size="2" color="#A9A9A9" noshade></a>
+<h2>GEN Routines: Amplitude Scaling</h2>
+<table cellspacing="0" border="0" cellpadding="7" width="649">
+  <tr>
+    <td nowrap width="4%" valign="TOP">
+      <font face="Courier New, Courier" size="-1"><strong>f</strong></font>
+    </td>
+    <td nowrap width="4%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">#</font>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">time</font>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">size</font>
+    </td>
+    <td nowrap width="5%" valign="TOP">
+      <a href="../gen/gen04.htm">
+      <font face="Courier New, Courier" size="-1"><strong> 4</strong></font></a>
+    </td>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">source#</font>
+    </td>
+    <td nowrap width="61%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">sourcemode</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="4%" valign="TOP">
+      <font face="Courier New, Courier" size="-1"><strong>f</strong></font>
+    </td>
+    <td nowrap width="4%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">#</font>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">time</font>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">size</font>
+    </td>
+    <td nowrap width="5%" valign="TOP">
+      <a href="../gen/gen12.htm">
+      <font face="Courier New, Courier" size="-1"><strong>12</strong></font></a>
+    </td>
+    <td nowrap width="73%" valign="TOP" colspan="2">
+      <font face="Courier New, Courier" size="-1">xint</font>
+    </td>
+  </tr>
+</table>
+
+<hr size="2" color="#A9A9A9" noshade>
+<table align="right" cellpadding="1" cellspacing="1" border="0">
+  <tr>
+    <td width="45" align="right">
+      <a href="../manual2.htm#contents" target="_parent">
+      <img src="../toc.gif" width="38" height="18" alt="Use Non-Frames Version" border="0"></a>
+    </td>
+    <td width="10">
+    </td>
+    <td width="45" align="right">
+      <a href="score.htm">
+      <img src="../prev.gif" width="38" height="18" alt="Previous Page" border="0"></a>
+    </td>
+    <td width="45" align="right">
+      <a href="command.htm">
+      <img src="../next.gif" width="38" height="18" alt="Next Page" border="0"></a>
+    </td>
+  </tr>
+</table>
+<font size="-2" color="black" face="Verdana, Arial, Helvetica, Century Gothic">
+The Csound Quick Reference</font>
+
+</body>
+</html>

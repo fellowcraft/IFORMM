@@ -1,0 +1,803 @@
+<!doctype html public "-//W3C//DTD HTML 3.2//EN">
+
+<!-- This  particular HTML Edition of the Csound Manual is maintained by David M. Boothe. Email: csound@lakewoodsound.com-->
+<!--This is Version 4.06.-->
+<html>
+<head>
+	<title>QuickRef: Instrument Control</title>
+</head>
+
+<body text="black" link="black" vlink="black" alink="black" bgcolor="white">
+<table align="right" cellpadding="1" cellspacing="1" border="0">
+  <tr>
+    <td width="45" align="right">
+      <a href="../manual2.htm#contents" target="_parent">
+      <img src="../toc.gif" width="38" height="18" alt="Use Non-Frames Version" border="0"></a>
+    </td>
+    <td width="10">
+    </td>
+    <td width="45" align="right">
+      <a href="orch.htm">
+      <img src="../prev.gif" width="38" height="18" alt="Previous Page" border="0"></a>
+    </td>
+    <td width="45" align="right">
+      <a href="math.htm">
+      <img src="../next.gif" width="38" height="18" alt="Next Page" border="0"></a>
+    </td>
+  </tr>
+</table>
+<font size="-2" color="black" face="Verdana, Arial, Helvetica, Century Gothic">
+The Csound Quick Reference</font>
+
+<hr size="1" color="#A9A9A9" noshade>
+
+<h1>Instrument Control</h1>
+
+<a name="invocation"><hr size="2" color="#A9A9A9" noshade></a>
+<h2>Instrument Control: Instrument Invocation</h2>
+<table cellspacing="0" border="0" cellpadding="7" width="637">
+  <tr>
+    <td nowrap width="50" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="17%" valign="TOP">
+      <a href="../control/schedule.htm">
+      <font face="Courier New, Courier" size="-1"><strong>schedule</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">insnum, iwhen, idur[, p4, p5, ...]</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="17%" valign="TOP">
+      <a href="../control/schedule.htm">
+      <font face="Courier New, Courier" size="-1"><strong>schedwhen</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">ktrigger, kinsnum, kwhen, kdur[, p4, p5, ...]</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="17%" valign="TOP">
+      <a href="../control/schdkwhn.htm">
+      <font face="Courier New, Courier" size="-1"><strong>schedkwhen</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">ktrigger, kmintim, kmaxnum, kinsnum, kwhen, kdur[,
+kp4, kp5, ...] </font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="17%" valign="TOP">
+      <a href="../durctl/turnon.htm">
+      <font face="Courier New, Courier" size="-1"><strong>turnon</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">insnum[, itime]</font>
+    </td>
+  </tr>
+</table>
+
+<a name="duration"><hr size="2" color="#A9A9A9" noshade></a>
+<h2>Instrument Control: Duration Control</h2>
+<table cellspacing="0" border="0" cellpadding="7" width="637">
+  <tr>
+    <td nowrap width="11%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="89%" valign="TOP">
+      <a href="../durctl/ihold.htm">
+      <font face="Courier New, Courier" size="-1"><strong>ihold</strong></font></a>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="11%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="89%" valign="TOP">
+      <a href="../durctl/ihold.htm">
+      <font face="Courier New, Courier" size="-1"><strong>turnoff</strong></font></a>
+    </td>
+  </tr>
+</table>
+
+
+<a name="realtime"><hr size="2" color="#A9A9A9" noshade></a>
+<h2>Instrument Control: Real-time Performance Control</h2>
+<table cellspacing="0" border="0" cellpadding="7" width="637">
+  <tr>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">ir</font>
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../control/active.htm">
+      <font face="Courier New, Courier" size="-1"><strong>active</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">insnum</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../control/cpuprc.htm">
+      <font face="Courier New, Courier" size="-1"><strong>cpuprc</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">insnum, ipercent</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../control/cpuprc.htm">
+      <font face="Courier New, Courier" size="-1"><strong>maxalloc</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">insnum, icount</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../control/cpuprc.htm">
+      <font face="Courier New, Courier" size="-1"><strong>prealloc</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">insnum, icount</font>
+    </td>
+  </tr>
+</table>
+
+<a name="timeread"><hr size="2" color="#A9A9A9" noshade></a>
+<h2>Instrument Control: Time Reading</h2>
+<table cellspacing="0" border="0" cellpadding="7" width="637">
+  <tr>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">i/kr </font>
+    </td>
+    <td nowrap width="88%" valign="TOP">
+      <a href="../control/timek.htm">
+      <font face="Courier New, Courier" size="-1"><strong>timek</strong></font></a>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">i/kr </font>
+    </td>
+    <td nowrap width="88%" valign="TOP">
+      <a href="../control/timek.htm">
+      <font face="Courier New, Courier" size="-1"><strong>times</strong></font></a>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">kr </font>
+    </td>
+    <td nowrap width="88%" valign="TOP">
+      <a href="../control/timek.htm">
+      <font face="Courier New, Courier" size="-1"><strong>timeinstk</strong></font></a>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">kr </font>
+    </td>
+    <td nowrap width="88%" valign="TOP">
+      <a href="../control/timek.htm">
+      <font face="Courier New, Courier" size="-1"><strong>timeinsts</strong></font></a>
+    </td>
+  </tr>
+</table>
+
+<a name="clock"><hr size="2" color="#A9A9A9" noshade></a>
+<h2>Instrument Control: Clock Control</h2>
+<table cellspacing="0" border="0" cellpadding="7" width="637">
+  <tr>
+    <td nowrap width="12%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../control/clockon.htm">
+      <font face="Courier New, Courier" size="-1"><strong>clockon</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">inum</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../control/clockon.htm">
+      <font face="Courier New, Courier" size="-1"><strong>clockoff</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">inum</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">ir</font>
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../control/clockon.htm">
+      <font face="Courier New, Courier" size="-1"><strong>readclock</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">inum</font>
+    </td>
+  </tr>
+</table>
+
+<a name="sensing"><hr size="2" color="#A9A9A9" noshade></a>
+<h2>Instrument Control: Sensing and Control</h2>
+<table cellspacing="0" border="0" cellpadding="7" width="638">
+  <tr>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">kpitch, kamp</font>
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../sigmod/pitch.htm">
+      <font face="Courier New, Courier" size="-1"><strong>pitch</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">asig, iupdte, ilo, ihi, idbthresh[, ifrqs, iconf, istrt, iocts, iq, inptls, irolloff, iskip]</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">kcps,
+krms</font>
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../sigmod/pchamdf.htm">
+      <font face="Courier New, Courier" size="-1"><strong>pitchamdf</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">asig, imincps, imaxcps[, icps[, imedi[, idowns
+[, iexcps]]]]</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">ktemp</font>
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../control/tempest.htm">
+      <font face="Courier New, Courier" size="-1"><strong>tempest</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">kin, iprd, imindur, imemdur, ihp, ithresh, ihtim, ixfdbak, istartempo, ifn[, idisprd, itweek]</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">kr</font>
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../sigmod/follow.htm">
+      <font face="Courier New, Courier" size="-1"><strong>follow</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">asig, idt</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">kout</font>
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../siggen/trigger.htm">
+      <font face="Courier New, Courier" size="-1"><strong>trigger</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">ksig, kthreshold, kmode</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">k/ar</font>
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../sigmod/peak.htm">
+      <font face="Courier New, Courier" size="-1"><strong>peak</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">k/asig</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../control/xyin.htm">
+      <font face="Courier New, Courier" size="-1"><strong>tempo</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">ktempo, istartempo</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">kx, ky</font>
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../control/xyin.htm">
+      <font face="Courier New, Courier" size="-1"><strong>xyin</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">iprd, ixmin, ixmax, iymin, iymax[, ixinit, iyinit]</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">ar</font>
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../control/follow2.htm">
+      <font face="Courier New, Courier" size="-1"><strong>follow2</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">asig, katt, krel</font>
+    </td>
+  </tr>
+</table>
+
+<a name="conditional"><hr size="2" color="#A9A9A9" noshade></a>
+<h2>Instrument Control: Conditional Values</h2>
+<table cellspacing="0" border="0" cellpadding="7" width="637">
+  <tr>
+    <td nowrap width="7%" valign="TOP">
+      <a href="../syntax/conditn.htm">
+      <font face="Courier New, Courier" size="-1">(a</font></a>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <a href="../syntax/conditn.htm">
+      <font face="Courier New, Courier" size="-1"><strong>&gt;</strong></font></a>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <a href="../syntax/conditn.htm">
+      <font face="Courier New, Courier" size="-1">b</font></a>
+    </td>
+    <td nowrap width="8%" valign="TOP">
+      <a href="../syntax/conditn.htm">
+      <font face="Courier New, Courier" size="-1"><strong>?</strong></font></a>
+    </td>
+    <td nowrap width="6%" valign="TOP">
+      <a href="../syntax/conditn.htm">
+      <font face="Courier New, Courier" size="-1">v1</font></a>
+    </td>
+    <td nowrap width="6%" valign="TOP">
+      <a href="../syntax/conditn.htm">
+      <font face="Courier New, Courier" size="-1"><strong>:</strong></font></a>
+    </td>
+    <td nowrap width="59%" valign="TOP">
+      <a href="../syntax/conditn.htm">
+      <font face="Courier New, Courier" size="-1">v2)</font></a>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="7%" valign="TOP">
+      <a href="../syntax/conditn.htm">
+      <font face="Courier New, Courier" size="-1">(a</font></a>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <a href="../syntax/conditn.htm">
+      <font face="Courier New, Courier" size="-1"><strong>&lt;</strong></font></a>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <a href="../syntax/conditn.htm">
+      <font face="Courier New, Courier" size="-1">b</font></a>
+    </td>
+    <td nowrap width="8%" valign="TOP">
+      <a href="../syntax/conditn.htm">
+      <font face="Courier New, Courier" size="-1"><strong>?</strong></font></a>
+    </td>
+    <td nowrap width="6%" valign="TOP">
+      <a href="../syntax/conditn.htm">
+      <font face="Courier New, Courier" size="-1">v1</font></a>
+    </td>
+    <td nowrap width="6%" valign="TOP">
+      <a href="../syntax/conditn.htm">
+      <font face="Courier New, Courier" size="-1"><strong>:</strong></font></a>
+    </td>
+    <td nowrap width="59%" valign="TOP">
+      <a href="../syntax/conditn.htm">
+      <font face="Courier New, Courier" size="-1">v2)</font></a>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="7%" valign="TOP">
+      <a href="../syntax/conditn.htm">
+      <font face="Courier New, Courier" size="-1">(a</font></a>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <a href="../syntax/conditn.htm">
+      <font face="Courier New, Courier" size="-1"><strong>&gt;=</strong></font></a>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <a href="../syntax/conditn.htm">
+      <font face="Courier New, Courier" size="-1">b</font></a>
+    </td>
+    <td nowrap width="8%" valign="TOP">
+      <a href="../syntax/conditn.htm">
+      <font face="Courier New, Courier" size="-1"><strong>?</strong></font></a>
+    </td>
+    <td nowrap width="6%" valign="TOP">
+      <a href="../syntax/conditn.htm">
+      <font face="Courier New, Courier" size="-1">v1</font></a>
+    </td>
+    <td nowrap width="6%" valign="TOP">
+      <a href="../syntax/conditn.htm">
+      <font face="Courier New, Courier" size="-1"><strong>:</strong></font></a>
+    </td>
+    <td nowrap width="59%" valign="TOP">
+      <a href="../syntax/conditn.htm">
+      <font face="Courier New, Courier" size="-1">v2)</font></a>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="7%" valign="TOP">
+      <a href="../syntax/conditn.htm">
+      <font face="Courier New, Courier" size="-1">(a</font></a>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <a href="../syntax/conditn.htm">
+      <font face="Courier New, Courier" size="-1"><strong>&lt;=</strong></font></a>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <a href="../syntax/conditn.htm">
+      <font face="Courier New, Courier" size="-1">b</font></a>
+    </td>
+    <td nowrap width="8%" valign="TOP">
+      <a href="../syntax/conditn.htm">
+      <font face="Courier New, Courier" size="-1"><strong>?</strong></font></a>
+    </td>
+    <td nowrap width="6%" valign="TOP">
+      <a href="../syntax/conditn.htm">
+      <font face="Courier New, Courier" size="-1">v1</font></a>
+    </td>
+    <td nowrap width="6%" valign="TOP">
+      <a href="../syntax/conditn.htm">
+      <font face="Courier New, Courier" size="-1"><strong>:</strong></font></a>
+    </td>
+    <td nowrap width="59%" valign="TOP">
+      <a href="../syntax/conditn.htm">
+      <font face="Courier New, Courier" size="-1">v2)</font></a>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="7%" valign="TOP">
+      <a href="../syntax/conditn.htm">
+      <font face="Courier New, Courier" size="-1">(a</font></a>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <a href="../syntax/conditn.htm">
+      <font face="Courier New, Courier" size="-1"><strong>==</strong></font></a>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <a href="../syntax/conditn.htm">
+      <font face="Courier New, Courier" size="-1">b</font></a>
+    </td>
+    <td nowrap width="8%" valign="TOP">
+      <a href="../syntax/conditn.htm">
+      <font face="Courier New, Courier" size="-1"><strong>?</strong></font></a>
+    </td>
+    <td nowrap width="6%" valign="TOP">
+      <a href="../syntax/conditn.htm">
+      <font face="Courier New, Courier" size="-1">v1</font></a>
+    </td>
+    <td nowrap width="6%" valign="TOP">
+      <a href="../syntax/conditn.htm">
+      <font face="Courier New, Courier" size="-1"><strong>:</strong></font></a>
+    </td>
+    <td nowrap width="59%" valign="TOP">
+      <a href="../syntax/conditn.htm">
+      <font face="Courier New, Courier" size="-1">v2)</font></a>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="7%" valign="TOP">
+      <a href="../syntax/conditn.htm">
+      <font face="Courier New, Courier" size="-1">(a</font></a>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <a href="../syntax/conditn.htm">
+      <font face="Courier New, Courier" size="-1"><strong>!=</strong></font></a>
+    </td>
+    <td nowrap width="7%" valign="TOP">
+      <a href="../syntax/conditn.htm">
+      <font face="Courier New, Courier" size="-1">b</font></a>
+    </td>
+    <td nowrap width="8%" valign="TOP">
+      <a href="../syntax/conditn.htm">
+      <font face="Courier New, Courier" size="-1"><strong>?</strong></font></a>
+    </td>
+    <td nowrap width="6%" valign="TOP">
+      <a href="../syntax/conditn.htm">
+      <font face="Courier New, Courier" size="-1">v1</font></a>
+    </td>
+    <td nowrap width="6%" valign="TOP">
+      <a href="../syntax/conditn.htm">
+      <font face="Courier New, Courier" size="-1"><strong>:</strong></font></a>
+    </td>
+    <td nowrap width="59%" valign="TOP">
+      <a href="../syntax/conditn.htm">
+      <font face="Courier New, Courier" size="-1">v2)</font></a>
+    </td>
+  </tr>
+</table>
+
+
+<a name="macros"><hr size="2" color="#A9A9A9" noshade></a>
+<h2>Instrument Control: Macros</h2>
+<table cellspacing="0" border="0" cellpadding="7" width="637">
+  <tr>
+    <td nowrap width="11%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../syntax/macros.htm">
+      <font face="Courier New, Courier" size="-1"><strong>#define</strong></font></a>
+    </td>
+    <td nowrap width="73%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">NAME # replacement text #</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="11%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../syntax/macros.htm">
+      <font face="Courier New, Courier" size="-1"><strong>#define</strong></font></a>
+    </td>
+    <td nowrap width="73%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">NAME(a'b'c') # replacement text # </font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="11%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="89%" valign="TOP" colspan="2">
+      <a href="../syntax/macros.htm">
+      <font face="Courier New, Courier" size="-1"><strong>$NAME.</strong></font></a>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="11%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../syntax/macros.htm">
+      <font face="Courier New, Courier" size="-1"><strong>#undef</strong></font></a>
+    </td>
+    <td nowrap width="73%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">NAME</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="11%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../syntax/mult.htm">
+      <font face="Courier New, Courier" size="-1"><strong>#include</strong></font></a>
+    </td>
+    <td nowrap width="73%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">&quot;filename&quot;</font>
+    </td>
+  </tr>
+</table>
+
+<a name="flow"><hr size="2" color="#A9A9A9" noshade></a>
+<h2>Instrument Control: Program Flow Control</h2>
+<table cellspacing="0" border="0" cellpadding="7" width="692">
+  <tr>
+    <td nowrap width="11%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="15%" valign="TOP">
+      <a href="../pgmctl/igoto.htm">
+      <font face="Courier New, Courier" size="-1"><strong>igoto</strong></font></a>
+    </td>
+    <td nowrap width="74%" valign="TOP" colspan="5">
+      <font face="Courier New, Courier" size="-1">label</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="11%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="15%" valign="TOP">
+      <a href="../pgmctl/igoto.htm">
+      <font face="Courier New, Courier" size="-1"><strong>tigoto</strong></font></a>
+    </td>
+    <td nowrap width="74%" valign="TOP" colspan="5">
+      <font face="Courier New, Courier" size="-1">label</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="11%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="15%" valign="TOP">
+      <a href="../pgmctl/igoto.htm">
+      <font face="Courier New, Courier" size="-1"><strong>kgoto</strong></font></a>
+    </td>
+    <td nowrap width="74%" valign="TOP" colspan="5">
+      <font face="Courier New, Courier" size="-1">label</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="11%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="15%" valign="TOP">
+      <a href="../pgmctl/igoto.htm">
+      <font face="Courier New, Courier" size="-1"><strong>goto</strong></font></a>
+    </td>
+    <td nowrap width="74%" valign="TOP" colspan="5">
+      <font face="Courier New, Courier" size="-1">label</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="11%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="15%" valign="TOP">
+      <a href="../pgmctl/igoto.htm">
+      <font face="Courier New, Courier" size="-1"><strong>if</strong></font></a>
+    </td>
+    <td nowrap width="9%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">ia</font>
+    </td>
+    <td nowrap width="8%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">R</font>
+    </td>
+    <td nowrap width="9%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">ib</font>
+    </td>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1"><strong>igoto</strong></font>
+    </td>
+    <td nowrap width="36%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">label</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="11%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="15%" valign="TOP">
+      <a href="../pgmctl/igoto.htm">
+      <font face="Courier New, Courier" size="-1"><strong>if</strong></font></a>
+    </td>
+    <td nowrap width="9%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">ka</font>
+    </td>
+    <td nowrap width="8%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">R</font>
+    </td>
+    <td nowrap width="9%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">kb</font>
+    </td>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1"><strong>kgoto</strong></font>
+    </td>
+    <td nowrap width="36%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">label</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="11%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="15%" valign="TOP">
+      <a href="../pgmctl/igoto.htm">
+      <font face="Courier New, Courier" size="-1"><strong>if</strong></font></a>
+    </td>
+    <td nowrap width="9%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">ia</font>
+    </td>
+    <td nowrap width="8%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">R</font>
+    </td>
+    <td nowrap width="9%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">ib</font>
+    </td>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1"><strong>goto</strong></font>
+    </td>
+    <td nowrap width="36%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">label</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="11%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="15%" valign="TOP">
+      <a href="../pgmctl/igoto.htm">
+      <font face="Courier New, Courier" size="-1"><strong>timout</strong></font></a>
+    </td>
+    <td nowrap width="9%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">istrt</font>
+    </td>
+    <td nowrap width="8%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">idur</font>
+    </td>
+    <td nowrap width="57%" valign="TOP" colspan="3">
+      <font face="Courier New, Courier" size="-1">label</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="11%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">label</font>
+    </td>
+    <td nowrap width="15%" valign="TOP">
+      <a href="../syntax/top.htm">
+      <font face="Courier New, Courier" size="-1"><strong>:</strong></font></a>
+    </td>
+    <td nowrap width="9%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="8%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="57%" valign="TOP" colspan="3">&nbsp;
+    </td>
+  </tr>
+</table>
+
+<a name="reinit"><hr size="2" color="#A9A9A9" noshade></a>
+<h2>Instrument Control: Reinitialization</h2>
+<table cellspacing="0" border="0" cellpadding="7" width="692">
+  <tr>
+    <td nowrap width="11%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="15%" valign="TOP">
+      <a href="../pgmctl/reinit.htm">
+      <font face="Courier New, Courier" size="-1"><strong>reinit</strong></font></a>
+    </td>
+    <td nowrap width="74%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">label</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="11%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="15%" valign="TOP">
+      <a href="../pgmctl/reinit.htm">
+      <font face="Courier New, Courier" size="-1"><strong>rigoto</strong></font></a>
+    </td>
+    <td nowrap width="74%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">label</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="11%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="89%" valign="TOP" colspan="2">
+      <a href="../pgmctl/reinit.htm">
+      <font face="Courier New, Courier" size="-1"><strong>rireturn</strong></font></a>
+    </td>
+  </tr>
+</table>
+
+<hr size="2" color="#A9A9A9" noshade>
+<table align="right" cellpadding="1" cellspacing="1" border="0">
+  <tr>
+    <td width="45" align="right">
+      <a href="../manual2.htm#contents" target="_parent">
+      <img src="../toc.gif" width="38" height="18" alt="Use Non-Frames Version" border="0"></a>
+    </td>
+    <td width="10">
+    </td>
+    <td width="45" align="right">
+      <a href="orch.htm">
+      <img src="../prev.gif" width="38" height="18" alt="Previous Page" border="0"></a>
+    </td>
+    <td width="45" align="right">
+      <a href="math.htm">
+      <img src="../next.gif" width="38" height="18" alt="Next Page" border="0"></a>
+    </td>
+  </tr>
+</table>
+<font size="-2" color="black" face="Verdana, Arial, Helvetica, Century Gothic">
+The Csound Quick Reference</font>
+</body>
+
+</html>

@@ -1,0 +1,206 @@
+		
+\ ****************************** R U B A T O *********************************
+
+\ ****************************************************************************
+
+\ ************ A C C E L E R A N D O    &    R I T A R D A N D O *************
+
+\ ****************************************************************************
+
+\ For the best listening example use MARIMBA-like voice, or any other short 
+\ decayed voice.
+
+\ Continious tempo fluctuations (e.g., for rubato) are done using TIME 
+\ DEFORMATIONS (TD's). A TD defines a 'tempo function" by procedural 
+\ concentration. A TD is applied to a time interval by integrating the tempo
+\ function over the interval, starting from its current time position. 
+
+\ TD definitions are delimited by :td and ;td, and can use params to declare
+\ the number of input parameters. The following TD primitives exist:
+
+\ seg	       ( r1 r2 dt --- ; linear tempo change from r1 to r2 over time dt )
+\ con	       ( r dt --- ; constant tempo over time dt )
+\ inf-con      ( r --- ; infinite constant segment )
+\ lpause       ( t --- ; pause of t before events )
+\ rpause       ( t --- ; pause of t after events )
+\ seg.outer    ( r1 r2 dt --- ; like seg, but dt is in deformed units )
+\ con.outer    ( r dt --- ; like con, but dt is in deformed units )
+
+\ seg and con represent linear and constant tempo functions. lpause and rpause
+\ insert a "pause" in the tempo function. Evants scheduled for this instant
+\ occur after the pause with lpause, before it with rpause.  
+
+\ FORMULA  represents tempi using fixed-point numbers with an 8-bit fractional
+\ part; 256 is unity tempo. So, 35.8 is represented as 35.8 * 256. This allows
+\ A.B notation to be used.
+
+\ *****************************************************************************
+
+	:td fast1 			
+	    2.0 1.0 1|1 seg             \ between the tempi
+        ;td				\ 2.0 * 256 = 512 and 1.0 * 256 = 256
+	
+	:td nothing1
+            1|2 rpause                  \ half note pause (after evants)
+	;td
+
+	:td fast2 			\ accelerating segment of whole note 
+	    512 256 1|1 seg             \ between the tempi
+	;td				\ 512 and 256
+
+	:ap fasty1 
+	/16
+	::td1 fast1 nothing1 fast2 ;;td
+	 60 62 64 65 67 69 71 72  8 2 m$*k
+	  0 $
+	 60 62 64 65 67 69 71 72  8 2 m$*k
+	;ap
+
+\ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	
+	:td nothing2
+            1|1 lpause                  \ whole note pause (before evants)
+	;td
+
+	:td fast3 			\ accelerating segment of whole note 
+	    2.7 1.3 1|1 seg             \ between the tempi
+	;td				\ 2.7 * 256 = 691 and 1.3 * 256 = 332
+
+	:td fast4 			\ accelerating segment of whole note 
+	    691 332 1|1 seg             \ between the tempi
+	;td				\ 691 and 332
+
+	:ap fasty2 
+	/16
+	::td1 nothing2 fast3 fast4 ;;td
+	  0 $
+	 60 62 64 65 67 69 71 72  8 4 m$*k
+	;ap
+
+\ *****************************************************************************
+
+:ap constantin
+/8
+ ::td1 200 inf-con ;;td			\ infinite constant tempo 200
+ 60 62 64 65 67 69 71 72  8 2 m$*k
+ ::td1 20 inf-con ;;td		        \ infinite constant tempo 20
+ 67 69 71 72 74 76 78 79  8 4 m$*k
+;ap
+
+\ *****************************************************************************
+
+:ap tempopo
+/8
+ ::td1 [ 1 params ] inf-con ;;td
+ 60 62 64 65 67 69 71 72  8 2 m$*k
+;ap
+
+:ap tempi
+::ap
+100 tempopo 200 tempopo
+;;ap
+;ap
+
+\ *****************************************************************************
+
+:ap accel1
+ /8   
+ ::td1 			\ accelerating segment of 4 whole notes 
+   100 5 4 1 r>i seg    \ between the tempi 100 and 5
+ ;;td                   
+ 60 62 64 65 67 69 71 72  8 6 m$*k     \ the sequence of 6 whole notes
+;ap
+
+\ Note that after the TD finishes the tempo goes to the unindentified value
+\ the remaining notes.
+
+\ ****************************************************************************
+
+:ap accel2
+ /8
+ ::td1 		    \ accelerating segment of 8 whole notes 
+   100 5 4|1 seg    \ between the tempi 100 and 5
+   500 5 4|1 seg    \ between the tempi 500 and 5
+ ;;td
+ 60 62 64 65 67 69 71 72  8 4 m$*k
+ 67 69 71 72 74 76 78 79  8 4 m$*k
+;ap
+
+\ ****************************************************************************
+
+:ap ritard1
+ /8   
+ ::td1 			\ slowing down segment of 4 whole notes 
+   5 100 4 1 r>i seg    \ between the tempi 5 and 100
+ ;;td                   
+ 72 71 69 67 65 64 62 60  8 6 m$*k      \ the sequence of 6 whole notes
+;ap
+
+\ Note that after the TD finishes the tempo goes to the unindentified value
+\ the remaining notes.
+
+\ ****************************************************************************
+
+:ap ritard2
+ /8
+ ::td1 			\ accelerating segment of 8 whole notes 
+   5 100 32 8 r>i seg   \ between the tempi 5 and 100
+   5 500 32 8 r>i seg   \ between the tempi 5 and 500  
+ ;;td 
+ 60 62 64 65 67 69 71 72  8 4 m$*k
+ 67 69 71 72 74 76 78 79  8 4 m$*k
+;ap
+
+\ ****************************************************************************
+
+:ap accel
+ /8   
+ ::td1 			  \ accelerating segment of 4 whole notes 
+   100 500 4 1 r>i seg    \ between the tempi 100 and 500
+ ;;td                   
+ 60 62 64 65 67 69 71 72  8 4 m$*k
+;ap
+
+:ap ritard
+ /8   
+ ::td1 			  \ slowing down segment of 4 whole notes 
+   500 100 4 1 r>i seg    \ between the tempi 500 and 100
+ ;;td                   
+ 72 74 76 77 79 81 83 84  8 4 m$*k
+;ap
+
+	:ap acc-rit
+	 ::ap accel ;;ap
+	      ritard
+	;ap
+
+	:ap both
+	  ::ap acc-rit ;;ap
+	;ap
+
+\ *****************************************************************************
+
+
+:ap accelo
+ /8   
+ ::td1 			  \ accelerating segment of 3 whole notes 
+   100 500 1 3 r>i seg    \ between the tempi 100 and 500
+ ;;td                   
+ 60 62 64 65 67 69 71 72  8 4 m$*k
+;ap
+
+:ap accela
+ /8   
+ ::td1 			  \ accelerating segment of 3 whole notes 
+   100 500 1 3 (r>i seg    \ between the tempi 100 and 500
+ ;;td                   
+ 72 74 76 77 79 81 83 84  8 4 m$*k
+;ap
+
+:ap twotwo
+::ap accelo ;;ap
+     accela
+;ap
+
+\ ***************************************************************************
+

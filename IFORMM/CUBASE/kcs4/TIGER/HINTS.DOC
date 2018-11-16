@@ -1,0 +1,40 @@
+More hints from Emile Tobenfeld, a.k.a. Dr. T.
+
+One of my favorite musical processes is improvisation. MIDI sequencing
+programs such as Tiger and KCS provide an ideal way to combine the processes
+of improvisation and composition. Simply record the improvisation as a
+sequencer file, and then use your software to edit and orchestrate it. I
+usually improvise with a software program such as Fingers, Tunesmith, or the
+(as-yet unpublished) MIDI-Ax, but the principle is the same when using a 
+MIDI keyboard, drum, guitar, or other controller, or even an ensemble 
+combined with a MIDI merger.
+
+An essential part of this process is the extraction of the sections that
+you want to work with from  a long improvisation. I have found  
+some of Tiger's features extremely helpful in this process, and have just
+added a couple of features to make it even easier. I use the ability of 
+Tiger to play a range that has been highlighted with the mouse, or to 
+highlight the region that is currently playing, and the 
+ability to use the All Tracks to Seq feature to merge the selected range
+into a single sequence for later editing within KCS. (KCS, of course, will
+allow me to de-channelize that range and put it in Track Mode for further
+overdubbing and/or Tiger editing.)
+
+To find the section(s) that I want, I may highlight different regions and 
+use the return key to play them. I may also just use the right mouse play
+feature to try to find a good starting point. The Tab key is useful to 
+go back to the beginning of the current play region, and the Shift/Tab to
+extend it.
+
+If I have found a good starting point, and want to try different endings, I
+will use the (newly implemented) Backspace key, to cause the program to
+loop at the very instant I press it. If I find that I looped too soon, I
+can Shift/Tab to extend the play range. If I like the end point of the
+current range, but want to try different starting points, I will try the
+new Alt/Shift right mouse click, which (provided play is the selected
+right mouse option) starts play at the click point and continues to the
+end of the current range. 
+
+Once I have the desired region playing, I can highlight it by pressing
+the / key on the numeric keypad, and then use All Tracks to Sequence as
+mentioned above.

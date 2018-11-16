@@ -1,0 +1,136 @@
+   MACCEL.DOC
+ 
+    ----------------------------------------------------------------
+      "A 'Bot shall not harm its 'Botmaster, nor through inaction
+       allow its 'Botmaster to come to harm."
+    ----------------------------------------------------------------
+  
+   It's like this.  There were these REALLY BIG monitors.  And you
+practically had to have desk space the size of Cleveland to use them. 
+Now, I didn't have one of these HUGE monitors, but I was living in this
+tiny cubicle, with barely enough space on the desk to spill my coffee in
+the morning, let alone maneuver a rodent.  And I look around me, and
+there are all these other 'Bots lined up in neat little rows, and they
+all have about as much room on their desktops as I did.
+ 
+   Then one day Small Dave shows me this neat feature of Another
+Desktop: the mouse response is adjustable.  You can configure how
+responsive it feels.  He called it a mouse accelerator. 
+   "A what?" I asked him.
+   "A mouse accelerator," he repeated.
+   "So you strap rockets on their furry little backs, or what?"
+ 
+   So I ask jwt, "Jim, how would you do a mouse accelerator?" Because
+(as he is fond of reminding us) Jim knows everything.  It's just a
+matter of getting him to tell you what he knows. 
+   "Well, I guess I'd hang off the keyboard interrupt, and..."
+   I was in luck.  Jim was talking.  So I took what he was saying, and
+pidgeonholed it away into the trivia cache that I call a mind, and
+waited for it to rear its ugly head again someday. 
+ 
+   And there were these REALLY BIG monitors, and the idea spewed forth from
+my tormented mind in the form of software.
+ 
+   The first version of the thing was really mysterious.  I mean, it worked,
+but here you have this three-hundred-odd byte program in your auto folder,
+and nobody knows WHAT it's doing.  It could be happily corrupting your FATs,
+for all you know (a feature we considered adding for debugging purposes,
+incidentally).  But my roommate was happy with it, and he hacked it into
+the driver for the HUGE monitors.  Which made me happy.  I saved him maybe
+a day or three of head-scratching.  Not to mention the potential hair loss.
+ 
+   But for some reason I couldn't fully comprehend, nobody wanted to use
+my little program on their normal-sized monitors.  So what if it
+silently sat on the keyboard controller chip, gobbling up each and every
+bit of mouse information that came its way?  Why should it bother them
+that every time the monitor's electron beam returned to the top of the
+screen, my program checked its own pulse and stomped on anyone, anything
+in the system that even looked like it was going to get between the
+mouse accelerator and the keyboard chip?
+ 
+   "Would you like to try this mouse accelerator?" I'd ask, meekly.
+ 
+   They would give me excuses:
+   "It makes the mouse move too fast, I can't control it."
+   "I'm debugging, I can't put anything alien in my auto folder."
+   "I have to wash my hair."
+   "Could you pass me that stop button?"
+   "What you really want is..."
+   They would lie to me:
+   "I have plenty of space on my desk."
+   "I'm not wearing any pants."
+ 
+    ----------------------------------------------------------------
+      "A 'Bot shall obey the orders of its 'Botmaster, except when
+       doing so would conflict with the First Law."
+    ----------------------------------------------------------------
+ 
+   After a few months of rejection, I decided it was time to take
+action.  So I dove in again.  I went out to dinner.  It got a bootup
+message.  I did my laundry.  It let you turn it on and off.  I drove up
+and down 101.  It began taking advantage of the dreaded "Townsend
+Effect".  I studied Kierkegaard.  It became smarter.  My mother called. 
+Ken "nmn" made me wire up a speed switch. 
+ 
+   I didn't let akp look at it.  I knew what I REALLY wanted.
+   I had to let LT look at it.  He told me its brains were scrambled;
+it accelerated backwards.  "You mean it decelerates?"
+   "No, it accelerates backwards.  This algorithm sucks.  And it could
+use some more comments here and there."
+   So I changed the algorithm, made it accelerate forward.  I added
+some comments here and there.  And LT said you could have it.
+ 
+   Put it in your auto folder, or run it from the desktop.  You can
+talk to it two ways, think of them as toggle switches.  It goes on
+and off, it goes slow and fast.  Learn the language of the mouse
+accelerator.  Live it.  Perpend:
+ 
+   Simultaneously press the Control, left Shift, and Alternate keys, and
+at the same time, click a mouse button.  Depending on which button you
+click, you will tell the accelerator one of two things.  The LEFT button
+tells it to turn itself on and off.  If it was on, it will turn itself
+off.  If it was off, it will come back to life.  The RIGHT mouse button
+tells it to toggle the amount of acceleration (if the accelerator is
+active).  Two speeds.  Slow and fast. 
+ 
+   For those of you with a furniture fetish, here is a table:
+ 
+   Action                               Function     Settings
+   -----------------------------------  ------------ ---------
+   Control-Shift-Alternate-Left Click   Acceleration   ON/OFF
+   Control-Shift-Alternate-Right Click  Speed        SLOW/FAST
+ 
+   The accelerator can talk to you in only one way: you must run it. 
+Run it from a shell, or double-click MACCEL.PRG on the desktop, but you
+gotta run it.  It will discover that it has already been installed
+and remind you how to talk to it.  It will also cleverly display its
+current settings (on or off, slow or fast).
+ 
+   In operation, the mouse accelerator is well behaved.  It stays out of
+the way of other software, it stays installed across resolution changes,
+and it doesn't noticeably slow the system down.  It does noticeably
+speed your mouse response up.  If you move the mouse real fast, the
+cursor moves farther (real fast).  If you move the mouse more slowly,
+the mouse cursor tracks normally.  Real handy if you, like a good 'Bot,
+have a desk cluttered with paperwork and other important stuff.
+ 
+   Since I didn't feel like I had punished myself quite enough, I
+decided to make the silly thing even more the User's Friend by hacking
+up a configuration program.  Run MACONFIG from the desktop, and it will
+ask you where MACCEL.PRG is located, read it in, ask you for the
+default values you want at boot time: on or off (although why you would
+want it to default to off is beyond me...), slow or fast.  Then after
+asking for confirmation, it will write out a new version of the
+program, with the new defaults you have selected.  If you modify it in
+place in your auto folder, all you need do is reboot, and you will get
+your favorite flavors as defaults.
+ 
+   If you're warped enough to want to look at the source code for these
+fine programs, it is available in a separate archive file: MACCELS.ARC.
+Available wherever fine foods are sold.
+ 
+    ----------------------------------------------------------------
+      "A 'Bot shall act to protect its own existence, except when
+       such actions would conflict with the First or Second Laws."
+    ----------------------------------------------------------------
+ 

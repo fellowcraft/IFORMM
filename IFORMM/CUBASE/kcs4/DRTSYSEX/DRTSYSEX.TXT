@@ -1,0 +1,66 @@
+              Dr. T Sysex - A MIDI Data Dump Utility 
+
+                            Version 2
+        For use with Dr. T's Keyboard Controlled Sequencer
+                          or MIDIEX.TTP 
+
+                          By Jim Johnson  
+
+As anyone who has read my work probably knows,  I have a very soft  
+spot in my heart for Dr. T's KCS, and since I started using the ST  
+version,  I've been almost completely happy with it.  The one weak  
+point,  I've  felt,  has been the lack of a good (or even  a  bad)  
+system exclusive dump feature.  While the KCS can send sysex  data  
+with the single byte event type,  sysex data cannot be recorded  -  
+it can only be typed in by hand.  Ugh.  (At least, that used to be 
+the case - after I wrote version 1 of this program,  Dr.  T  added 
+the  ability to record dumps of up to 5K bytes.  This  program  is 
+necessary for dumps that are larger than that limit.) 
+
+Enter  Dr.  T  Sysex.  This little program simply  records  system  
+exclusive dumps as they are sent to the Atari,  and then  converts  
+them to a .SEQ (single sequence) file for use by the KCS.  Version 
+2 of the program optionally saves files in MIDIEX format,  for use 
+either with MIDIEX.TTP on the ST (enclosed in this archive, author 
+unknown) or with similar programs on other computers. 
+
+The  program was written in Megamax C,  and conforms to  the  file  
+format  for .SEQ files as shown in the KCS Programmer's  Reference  
+Guide,  which  can be obtained direct from Dr.  T's for a  nominal  
+charge.  Normal MIDI data such as note messages,  clocks,  and the  
+like  are stripped out before the file is saved,  so the  sequence  
+contains  only valid sysex data.  If a message is made up of  more 
+than one sysex message, a short delay is inserted between messages 
+in the sequence file only.   
+
+To save a sysex dump,   you must be able to initiate  a sysex dump 
+from the front panel of your synthesizer.   This means  Casio  and 
+many  Roland  instruments which require handshaking   won't   work 
+with  this  program.  The other limitation is that dumps  must  be  
+less than 32K bytes long.  Most data dumps should fit within  this  
+limit;   I   may   increase  this and rerelease  the   program  at  
+some later date.  
+
+After  you  double  click on DRTSYSEX.PRG and  pay  homage  to  my  
+programming  skills by reading the title alert  box,  the  program  
+will indicate that it is ready to receive a MIDI data dump.  After  
+you start the dump and the synthesizer or drum machine has stopped  
+sending data,  click on OK if you're sure everything is that  way,  
+or REDO if you think you might have blown the dump. At this point, 
+you can select the output file type - either a .SEQ file,  for use 
+with the KCS, or a .MDX file, for use with MIDIEX.TTP. After this, 
+a file select  box will appear; name the file, and you're done.
+
+You might need to disable SEND MIDI CLOCK on the KCS when  sending 
+sysex  dumps.  Theoretically,  MIDI clocks shouldn't screw  up   a  
+sysex message, but they do on my ESQ1 - so why risk confusing  the 
+synth  needlessly,  hmm?  (This might also be tempo dependent -  I  
+haven't checked, though.)
+
+I have found no problems with this program,  but you might. Please  
+report any bugs to me on PAN,  GEnie, or Compuserve - I'm JAMOS on  
+the first two and 70461,10 on Compuserve.
+
+Happy Dumping! 
+
+Jim Johnson

@@ -1,0 +1,19 @@
+This disk contains the bitmap font files for laser printers
+with a resolution of 300 dpi or more. The list at the end of
+this file shows the font sizes in points.
+
+Auf dieser Diskette befinden sich die Bitmap Fontdateien
+fÅr Laserdrucker mit einer Auflîsung von 300 dpi oder mehr.
+Die Grîûeneinheit der Font in der folgenden Liste ist
+Punkt Pica.
+
+FONTS:
+ATSS10LS.FNT   ; Swiss 10
+ATSS12LS.FNT   ; Swiss 12
+ATSS18LS.FNT   ; Swiss 18
+ATSS24LS.FNT   ; Swiss 24
+ATTR10LS.FNT   ; Dutch 10
+ATTR12LS.FNT   ; Dutch 12
+ATTR18LS.FNT   ; Dutch 18
+ATTR24LS.FNT   ; Dutch 24
+CUBANTLS.FNT   ; Cubase Notation

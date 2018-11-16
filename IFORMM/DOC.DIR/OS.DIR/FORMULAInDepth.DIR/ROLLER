@@ -1,0 +1,53 @@
+
+\ ***************************** R O L L E R ***********************************
+
+\ Rolled chords can be played using FORMULA word:
+
+\  $nroll   ( pitch-group dt n --- ; play n notes spread over time dt )
+ 
+\ *************************** E X A M P L E S ********************************
+
+:ap rolly
+	::ap
+   60 65 67 72                4                                   1|16   $nroll
+
+ ( c major chord consisted of 4 notes, roll it at the duration of 1 16th note )
+
+   0 $ 0 $ pause
+
+   60 65 67 72                4                                   1|2   $nroll
+
+ ( c major chord consisted of 4 notes, roll it at the duration of 1 half note )
+
+	;;ap
+;ap
+
+\ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+:ap rolled-chords 	                \ c major chord rolled differently
+	::ap
+
+	60  65  67  72  4 1|64  $nroll
+ 0 $
+	60  65  67  72  4 1|32  $nroll
+ 0 $
+	60  65  67  72  4 1|2   $nroll
+ 0 $
+	60  65  67  72  4 1|4   $nroll
+ 0 $
+	60  65  67  72  4 1|8   $nroll
+ 0 $
+	60  65  67  72  4 1|16  $nroll
+ 0 $
+	60  65  67  72  4 4|16  $nroll
+ 0 $
+	60  65  67  72  4 8|16  $nroll
+ 0 $
+	60  65  67  72  4 4|32  $nroll
+
+	;;ap
+;ap
+
+\ ****************************************************************************
+
+

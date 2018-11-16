@@ -1,0 +1,40 @@
+
+\ **************** A U X I L I A R Y    P R O C E S S E S *********************
+
+\ As explained earlier , when a note-playing process uses a $-word to play a 
+\ note , it generally specifies only the pitch of the note. The other 
+\ parameters (such as volume and duration) are obtained from puans and 
+\ AUXILIARY PROCESSES. Auxiliary processes can also be used to change the tempo
+\ of note-playing process. An auxiliary process can be "attached" to either
+\ a process or a group. In the later case, it affects all processes and its 
+\ descendants. Auxiliary processes allow you to separate musical
+\ "interpretation" from the musical "score".  
+
+\ Each note-playing process (object) has a set of "slots" for auxiliary 
+\ processes. The slots are either "local" (the auxiliary process affects only
+\ that one note-playing process, or "global" (the auxiliary process affects all 
+\ note-playing processes, and is shared with other processes). Not all slots 
+\ need to be occupied; if the note-playing primitives find and empty slot they
+\ take a resonable default action. A slot is a pquan that is either zero or
+\ points to the CB of an auxiliary process. A note-playing word can contain
+\ "embedded auxiliary process definitions" that create new processes in its 
+\ slots or those or those of its local or global contexts.
+
+\ The constructs for embedded auxiliary process definitions are:
+
+\ SYNTAX             LOCATION         PURPOSE          PROCESS TYPE
+
+\ ::tsg ... ;;sg     self             note duration    sequence generator
+\ ::sh1 ... ;;sh     local context    volume control   shape
+\ ::sh2 ... ;;sh     local context    volume control   shape
+\ ::gsh1 ... ;;sh    global context   volume control   shape
+\ ::gsh2 ... ;;sh    global context   volume control   shape
+\ ::ash ... ;;sh     local context    articulation     shape
+\ ::td1 ... ;;td     local context    tempo control    time deformation
+\ ::td2 ... ;;td     local context    tempo control    time deformation
+\ ::gtd1 ... ;;td    global context   tempo control    time deformation
+\ ::gtd2 ... ;;td    global context   tempo control    time deformation
+
+\ If desired, parameters can be passed to the new process using [ n params ].
+
+\ *****************************************************************************

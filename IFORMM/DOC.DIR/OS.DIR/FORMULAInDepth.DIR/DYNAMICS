@@ -1,0 +1,295 @@
+
+\ *************************** D Y N A M I C S *********************************
+
+\ *************** C R E S C E N D O   &   D E C R E S C E N D O ***************
+
+\ For the best listening example use MARIMBA-like voice, or any other
+\ "key velocity sensitive" voice, if you don't use "key velocity sinsitive"
+\ voice, you will not be able to hear dynamic change at all.
+
+\ If you happened to deal with NON key velocity sensitive voices, then for the
+\ volume change you have to use LOUDNESS PEDAL CONTROLLER, which was explained
+\ in the PLAY file.
+
+\ Shapes are functions, defined by procedural concatenation, used to control
+\ volume and articulation. Their definitions are delimited by :sh and ;sh. The
+\ following primitives are currently available:
+
+\	oseg	( y1 y2 dt --- ; linear segment open on right )
+\  	cseg	( y1 y2 dt --- ; linear segment closed on right )
+\ 	ocon	( y dt --- ; constant segment open on right )
+\ 	ccon	( y dt --- ; constant segment closed on right )
+\ 	inf-con ( y --- ; infinite constant-valued segment )
+
+\ The closure is relevant for discontinious functions; it determines the 
+\ function value at the points of discontinuity. A primitive's closure on the 
+\ left is determined by the right closure of the preceding primitive.
+
+\ The volume of a note is represented by a number in the range -128 to 127. The
+\ volume of notes played using $-words is the sum of several components:
+
+
+\ Up to two LOCAL volume shapes.
+
+\ Up to two GLOBAL volume shapes.
+
+\ The contents of a per-process variable $volume.
+
+\ If the note is played with c$, the contents of a per-process variable $cvolume
+
+
+\ To avoid owerflow, it is useful to limit the contribution that each component
+\ can make. The convention is that the sum of all four shapes must lie between
+\ -96 and 95. $volume must lie between 0 and 32, and $cvolume must lie between
+\ -32 and 0.
+
+\ Shape definitions may use the words ppp, pp, p, mp, mf, f, ff, and fff.
+\ Because the corresponding values are synthesizer-dependent, these words are 
+\ defined in a synthesizer configuration file, and will be discussed later.
+
+\ *****************************************************************************
+
+:ap constant1
+ /8
+ ::sh1
+ -50 2 1 r>i ocon	\ constant open segment at the volume of -50,
+ ;;sh			\ during a period of 2 whole notes 
+
+ 60 62 64 65 67 69 71 72  8 2 m$*k
+
+;ap 
+
+\ *****************************************************************************
+
+:ap constant2a          \ example for the ocon, pay attention on
+ /8                     \ the first note ( 80 ) of the second sequence 
+ ::sh1
+ 50 2 1 r>i ccon	\ constant closed segment at the volume of 50,
+ ;;sh			\ during a period of 2 whole notes 
+
+ 60 62 64 65 67 69 71 72  8 2 m$*k
+
+ ::sh2
+ -50 2 1 r>i ocon	\ constant open segment at the volume of -50,
+ ;;sh			\ during a period of 2 whole notes 
+
+ 80 82 84 85 87 89 91 92  8 2 m$*k
+;ap 
+
+\ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+:ap constant2b          \ example for the ocon, pay attention on
+ /8                     \ the first note ( 80 ) of the second sequence 
+			\ and compare it with the previous example - constant2a
+ ::sh1
+ 50 2 1 r>i ocon	\ constant open segment at the volume of 50,
+ ;;sh			\ during a period of 2 whole notes 
+
+ 60 62 64 65 67 69 71 72  8 2 m$*k
+
+ ::sh2
+ -50 2 1 r>i ocon	\ constant open segment at the volume of -50,
+ ;;sh			\ during a period of 2 whole notes 
+
+ 80 82 84 85 87 89 91 92  8 2 m$*k
+;ap 
+
+\ ****************************************************************************
+
+:ap infinite1
+/8
+  ::sh1 -37 inf-con ;;sh \ infinite constant-valued segment at the volume -37
+ 60 62 64 65 67 69 71 72  8 2 m$*k
+;ap 
+ 
+:ap infinite2
+/8
+  ::sh1 56 inf-con ;;sh  \ infinite constant-valued segment at the volume 56
+ 60 62 64 65 67 69 71 72  8 2 m$*k
+;ap
+
+\ ****************************************************************************
+
+:ap cres1
+ /8
+ ::sh1
+ -127 80 2 1 r>i cseg   \ linear closed segment between the volumes -127 and 80
+			\ during a period of 2 whole notes
+ ;;sh
+
+ 60 62 64 65 67 69 71 72  8 2 m$*k
+
+;ap 
+
+\ ****************************************************************************
+
+:ap cres2a 	        \ example for the cseg, pay attention on
+ /8                     \ the first note ( 80 ) of the second sequence
+ ::sh1 
+ -100 80 2 1 r>i cseg   \ linear closed segment between the volumes -100 and 80
+			\ during a period of 2 whole notes
+
+ -100 2 1 r>i ocon	\ constant open segment at the volume of -100,
+			\ during a period of 2 whole notes 
+ ;;sh
+
+ 60 62 64 65 67 69 71 72  8 2 m$*k
+
+ 80 82 84 85 87 89 91 92  8 2 m$*k
+
+;ap 
+	
+\ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+:ap cres2b              \ example for the oseg, pay attention on
+ /8                     \ the first note ( 80 ) of the second sequence 
+			\ and compare it with the previous example - cresc2a
+ ::sh1
+ -100 80 2 1 r>i oseg   \ linear open segment between the volumes -100 and 80
+			\ during a period of 2 whole notes
+
+ -100 2 1 r>i ocon	\ constant open segment at the volume of -100,
+			\ during a period of 2 whole notes 
+ ;;sh
+
+ 60 62 64 65 67 69 71 72  8 2 m$*k
+
+ 80 82 84 85 87 89 91 92  8 2 m$*k
+
+;ap 
+
+\ ****************************************************************************
+
+:ap decres1
+ /8
+ ::sh1
+
+ 50 -127 2 1 r>i cseg   \ linear closed segment between the volumes 50 and -127
+	                \ during a period of 2 whole notes
+ ;;sh
+
+ 60 62 64 65 67 69 71 72  8 2 m$*k
+
+;ap 
+
+\ ****************************************************************************
+
+:ap decres2a            \ example for the oseg, pay attention on
+ /8                     \ the first note ( 80 ) of the second sequence 
+			\ and compare it with the previous example - cresc2a
+ ::sh1
+ 80 -127 2 1 r>i cseg   \ linear closed segment between the volumes 80 and -127
+	                \ during a period of 2 whole notes
+
+ 100 2 1 r>i ocon	\ constant open segment at the volume of 100,
+			\ during a period of 2 whole notes 
+ ;;sh
+
+ 60 62 64 65 67 69 71 72  8 2 m$*k
+
+ 80 82 84 85 87 89 91 92  8 2 m$*k
+
+;ap 
+	
+\ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+:ap decres2b            \ example for the oseg, pay attention on
+ /8                     \ the first note ( 80 ) of the second sequence 
+			\ and compare it with the previous example - cresc2a
+ ::sh1
+ 80 -127 2 1 r>i oseg   \ linear open segment between the volumes 80 and -127, 
+			\ during a period of 2 whole notes
+
+ 100 2 1 r>i ocon	\ constant open segment at the volume of 100,
+			\ during a period of 2 whole notes 
+ ;;sh
+
+ 60 62 64 65 67 69 71 72  8 2 m$*k
+
+ 80 82 84 85 87 89 91 92  8 2 m$*k
+
+;ap 
+
+\ ****************************************************************************
+
+:ap notice
+ /8
+ ::sh1
+ -80 80 2 1 r>i cseg    \ linear closed segment between the volumes -80 and 80
+ ;;sh			\ during a period of 2 whole notes
+
+ 60 62 64 65 67 69 71 72  8 4 m$*k  \ four whole notes long sequence
+
+;ap 
+
+\ What happens, when the shape sequence finishes the volume for the rest of the
+\ notes (not covered by the shape process), it will jump to the unknown volume.
+
+\ *****************************************************************************
+
+:sh food1 0 100 2 1 r>i oseg ;sh
+
+\ between the volumes 0 and 100 during a period of 2 whole notes
+
+:sh food2 100 0 2 1 r>i oseg ;sh
+
+\ between the volumes 100 and 0 during a period of 2 whole notes
+
+
+:ap cresc
+ /8
+ ::sh1 food1 ;;sh 			
+ 60 62 64 65 67 69 71 72  8 2 m$*k
+;ap 
+
+
+:ap decresc
+ /8
+ ::sh1 food2 ;;sh			
+ 92 91 89 87 85 84 82 80  8 2 m$*k
+;ap 
+
+
+:ap 2-gether
+::gp
+ ::gsh1 30 2|1 ocon ;;sh
+ ::ap decresc ;;ap
+      cresc
+ ::gsh2 -30 2|1 ocon ;;sh
+ ::ap decresc ;;ap
+      cresc
+;;gp
+;ap
+
+:ap together
+ ::ap 2-gether ;;ap
+;ap
+
+\ ****************************************************************************
+
+	:sh sawtooth      ( n --- ; sawtooth with n skewed teeth )
+	   0 do
+		-80 100 1|4 oseg
+		100 -80 1|4 oseg
+	     loop
+	;sh
+
+	:ap ramp
+	/8
+	::sh1 sawtooth ;;sh
+        60 62 64 65 67 69 71 72  8 4 m$*k
+	;ap
+
+\ *****************************************************************************
+
+	:ap square
+	/8
+	  ::sh1 [ 1 params ] 1|8 ocon ;;sh
+          60 $  
+	;ap
+
+	:ap squares
+	  ::ap 10 0 do 100 square -20 square loop ;;ap
+	;ap
+
+\ *****************************************************************************

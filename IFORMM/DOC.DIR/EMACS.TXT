@@ -1,0 +1,243 @@
+	
+\ ********************** FORTH EMASC FUNCTIONAL INDEX *************************
+
+\ FORTMACS is an implementation of the FORTH-83 standard with many enhancements,
+\ and includes a version of the Emacs text editor. Forthmacs has many features
+\ that set it apart from other Forth implementations:
+
+\ * File system interface
+
+\   Fortmacs uses named files instead of disk blocks, adn provides the 
+\   following file commands:
+
+\	fload	( file-name ; --- ; load (interpret) a file )
+\	ed	( --- ; invoke the Emacs text editor )
+\	more	( file-name ; --- ; view a file W/ pagination )
+\	cd	( directory-name ; --- ; enter a subdirectory )
+\	rm	( file-name ; --- ; delete a file )
+\	mv	( oldname newnwme ; --- ; rename a file )
+\ 	ls	( --- ; list directory contents )
+
+\ * Command completion
+
+\   If you type the strat of a word name, <control><space> will extend it to a
+\   complete name if possible. This saves typing when using long names. 
+\   <control>? prints the names that extend the current word fragment.
+
+\ * Command history
+
+\   <control>p and <control>n cycle back and forth trough a list of recent
+\   command lines; this can be used to avoid retyping long commands.
+
+\ * Command-line editing
+
+\   Command lines (including those resurrected by <control>p) may be edited 
+\   with intra-line Emacs commands: <return> causes the entire line to be 
+\   executed, regardless of cursor position.
+
+\ * Decompilation and On-Line Documentation
+
+\   The following words faciliate on-line source code browsing:
+
+\	see	( name ; --- ; decompile a word )
+\	.calls  ( CFA --- ; )
+\	whatis	( name ; --- ; print 1-line summary )
+
+\   See can, in most cases, completely reconstruct a word's definition from its
+\   compiled form. This allows you to conveniently persue the source code of
+\   Forthmacs and FORMULA. .call lists all words that call a given word. whatis
+\   prints 1-line summary of a word (this uses the files whatis.doc and 
+\   whatis.ind on the release disk; it doesn't work for FORMULA words.
+
+\ * Deferred Words
+
+\   Forthmacs allows a form of forward reference using deffered words. Such a
+\   word is declared by:
+
+\	defer foo
+
+\   It may then be used in other word definitions. It must later be bound to an
+\   actual definition (say blah) using:
+
+\	' blah is foo
+
+\ * Structured 68000 Assembler
+
+\   Forthmacs provides a 68000 assembler that uses Forth-like control structures
+\   for generating conditional branches. The assembler uses 8-bit branch 
+\   offsets. This is inadequate for control structures in large words, so 
+\   FORMULA provides a set of structures using 16-bit offsets; see the file in
+\   the Formula.dir lbranch.
+
+\ *****************************************************************************
+
+\ The rest of this file lists the EMACS editing commands grouped by the 
+\ functions they perform. EMACS commands generally involve the CONTROL key or 
+\ the ESC key (ESC stands for Escape). Rather than write out ESCAPE or CONTROL 
+\ each time we want you to prefix a characte, we'll use the following 
+\ abbreviations:
+
+\ 	^<chr>	    means hold the Control key while typing the character <chr>
+\ 		    Thus, ^F would be: hold the Control key and type F
+
+\    ESC-<chr>	    means type <Esc>, release it, then type the character <chr>
+
+\ Important note: if you must exit at some point, type ^X^A
+
+\ At the bottom of the screen is an area called the echo area or mini-buffer.
+\ The echo area contains the bottommost line of the screen. The line 
+\ immedeately above them is called the MODE LINE. The mode line says something
+\ like:
+
+\ * ForthEMACS -- 4thmacs -- File: 4thmacs ------------------------------------
+
+\ This is very useful "information" line.
+
+\ The star means that you have made changes to the text. Right after you visit
+\ or save a file, there is no star.
+
+\ ************************** C H A R A C T E R S ******************************
+
+\ forward-character		^f or right-arrow
+\ backward-character		^b or left-arrow
+\ delete-next-character		^d or Backspace
+\ delete-previous-character	^h or Delete
+\ insert-character		any printable character
+\ quote-character		^q
+\ transpose-charcters		^t
+
+\ ******************************* W O R D S ***********************************
+
+\ forward-word			ESC-f
+\ backward-word			ESC-b
+\ delete-next-word		ESC-d or ESC-Delete
+\ delete-previous-word		ESC-h or ESC-Beckspace or ESC-^h
+\ case-word-capitalize		ESC-c
+
+\ **************************** L I N E S **************************************
+
+\ beginning-of-line		^a
+\ end-of-line			^e
+\ next-line			^n or down-arrow
+\ previous-line			^p or up-arrow
+\ kill-to-end-of-line		^k
+\ delete-blank-lines		^x o
+\ line-to-top-of-window		ESC-!
+\ newline			^m or Return
+\ newline-and-backup		^o
+\ newline-and-indent		^j
+\ scroll-one-line-down		^x ^n
+\ scroll-one-line-up		^x ^p
+
+\ ***************************** P A G E S *************************************
+
+\ next-page			^v
+\ previous-page			ESC-v
+
+\ *************************** W I N D O W S ***********************************
+
+\ beginning-of-window		ESC-,
+\ end-of-window			ESC-.
+\ next-window			^x n
+\ previous-window		^x p
+\ split-current-window		^x 2
+\ delete-other-windows		^x 1
+\ enlerge-window		^x z
+\ shrink-window			^x ^z
+\ line-to-top-of-window		ESC-!
+
+\ **************************** B U F F E R S **********************************
+
+\ delete-buffer			^x k
+\ delete-to-killbuffer		^w
+\ list-buffers			^x ^b
+\ switch-to-buffer		^x b
+\ use-old-buffer		^x ^o
+\ yank-from-killbuffer		^y
+
+\ ****************************** F I L E **************************************
+
+\ visit-file			^x ^v
+\ read-file			^x ^r
+\ beginning-of-file		ESC-<
+\ end-of-file			ESC->
+\ change-filename		^x ^f
+\ write-current-file		^x ^s
+\ write-file-exit		^z
+\ write-named-file		^x ^w
+
+\ **************************** E X I T I N G **********************************
+ 
+\ exit-EMACS			^x ^a
+\ write-file-exit		^z
+
+\ ***************************** M O V I N G ***********************************
+
+\ forward-character		^f or right-arrow
+\ backward-character		^b or left-arrow
+\ forward-word			ESC-f
+\ backward-word			ESC-b
+\ beginning-of-line		^a
+\ end-of-line			^e
+\ next-line			^n or down-arrow
+\ previous-line			^p or up-arrow
+\ next-page			^v
+\ previous-page			ESC-v
+\ next-window			^x n
+\ previous-window		^x p
+\ line-to-top-of-window		ESC-!
+\ beginning-of-file		ESC-<
+\ end-of-file			ESC->
+
+\ **************************** D E L E T I N G ********************************
+
+\ delete-next-character		^d or Backspace
+\ delete-previous-character	^h or Delete
+\ delete-next-word		ESC-d or ESC-Delete
+\ delete-previous-word		ESC-h or ESC-Beckspace or ESC-^h
+\ delete-buffer			^x k
+\ delete-to-killbuffer		^w
+\ delete-blank-lines		^x o
+\ delete-other-windows		^x 1
+
+\ **************************** K I L L I N G **********************************
+
+\ delete-to-killbuffer		^w
+\ kill-to-end-of-line		^k
+\ kill-next-word		ESC-d or ESC-Delete
+\ kill-previous-word		ESC-h or ESC-Beckspace or ESC-^h
+\ yank-from-killbuffer		^y
+
+\ **************************** Y A N K I N G **********************************
+
+\ yank-from-killbuffer		^y
+
+\ **************************** R E G I O N ************************************
+
+\ set-mark			^@ or ^space
+\ exchange-dot-and-mark		^x ^x
+\ copy-region			ESC-w
+\ delete-to-killbuffer		^w
+\ case-region-lower		^x ^l
+\ case-region-uper		^x ^u
+
+\ ******************************* C A S E *************************************
+
+\ case-region-lower		^x ^l
+\ case-region-uper		^x ^u
+\ case-word-capitalize		ESC-c
+\ case-word-lower		ESC-l
+\ case-word-upper		ESC-u
+
+\ *************************** S C R O L L I N G *******************************
+
+\ scroll-one-line-down		^x ^n
+\ scroll-one-line-up		^x ^p
+
+\ ******************************** F I L L ************************************
+
+\ set-fill-column		^x f
+
+\ *****************************************************************************
+
+quit

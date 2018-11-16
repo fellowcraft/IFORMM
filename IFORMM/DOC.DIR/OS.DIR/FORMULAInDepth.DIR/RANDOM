@@ -1,0 +1,251 @@
+
+\ ***************************** R A N D O M **********************************
+
+\ EXAMPLES --- How to use various algorithmic compositional features...
+
+\ RANDOM NUMBER GENERATORS:
+
+\ rnd        ( --- n )		
+\ irnd	     ( m --- n ) 
+\ brnd       ( --- flag )
+\ grnd 	     ( m --- n )
+\ trnd       ( table-addr --- n )
+\ xtrnd      ( tabe-addr x --- n )
+\ rndinit    ( n --- )	
+\ frnd2	     ( m --- n )
+\ frnd2-init ( --- )
+\ frnd3      ( old m --- new )
+
+\ rnd   = returns a 32-bit random integer from the uniform distribution
+
+\ irnd  = returnd a random integer from the uniform distribution on [0 ... m-1]
+
+\ brnd  = returns a random 0 or 1 ( it's faster than '2 irnd' )
+
+\ grnd  = returns a random number from the Gaussian distriburtion with mean zero
+\         and standar deviation m, rounded to the nearest integer.
+
+\ trnd  = returns a random number from a distribution on [0 ... m-1] described 
+\         by a table whose first entry is the sum of weigths, and whose 
+\         remaining m entries are weights on each integer in [0 ... m-1].
+
+\ xtrnd = uses a table of the same form as 'trnd'. Its argument m must be less
+\         than the sum of probabilities in the table. It returns the smallest n
+\         for which the sum of the first n table entries is less then m (trnd
+\	  is computed as x irnd xtrnd, where x is the total probability). xtrnd
+\	  can be used with frnd2, for example, to generate weighted fractal 
+\	  sequences.
+
+\ rndinit = initializes, based on the seed n, the state used by rnd, irnd, brnd,
+\	    grnd and trnd
+
+\ frnd2 = returnd an element from an integer sequence on [0 ... m-1] with 
+\	  (roughly) 1/f frequency content. The underlying distribution is 
+\	  uniform. The sequence's state is per-process; frnd2-init must be 
+\         called to initialize this state by each process using frnd2.
+
+\ frnd3 = is another 1/f random number generator; its state consists simply of
+\	  its previous value, which is passed as old argument.
+ 
+\ TO MAKE A WEIGHT TABLE:
+ 
+	\ create weight_table 
+	\ total_weight , weight_of_0 ,weight_of_1 , .... weight_of_n ,
+	\ (n is the hightest value that weight_table will generate)
+
+only forth also definitions 
+
+\ **************************** RANDOM EXAMPLES ********************************
+
+\ ****** irnd *****************************************************************
+
+:ap demo.irnd
+ ::ap /16
+   begin 
+    128 irnd $ 		\ just play uniformly random notes 
+			\ between MIDI# 0 and MIDI# 127
+   again 
+ ;;ap
+;ap
+
+
+\ ****** frnd2 ****************************************************************
+
+:ap demo.frnd2
+ ::ap /16
+   frnd2-init		\ initialize per-process 1/f random table
+   begin
+
+    128 frnd2 10 0 mcc 
+    128 frnd2 $ 		\ play 1/f random notes
+
+   again 
+ ;;ap
+;ap
+
+\ ****** frnd3 ****************************************************************
+
+:ap demo.frnd3
+ ::ap /16 
+  60 60
+  begin 
+   128 frnd3 dup 10 0 mcc 
+   128 frnd3 dup $ 	\ frnd3 requires its previous value on the stack
+  again			\ to generate '1/f' values
+ ;;ap
+;ap
+
+\ ***** grnd ******************************************************************
+
+:ap demo.1grnd	        \ GRND stands for 'gaussian random' distribution 
+::ap 
+  /16			\ this generates random notes that display the
+  begin 		\ 'bell shaped curve' distribution 
+   12 grnd 
+   60 + $ 		\ +-12 notes around the MIDI# 60
+  again 
+ ;;ap
+;ap
+
+:ap demo.2grnd	        \ GRND stands for 'gaussian random' distribution 
+::ap [ 1 params ]       \ ( range --- ; )		
+  /16			\ this generates random notes that display the
+  begin 		\ 'bell shaped curve' distribution 
+   dup grnd 
+   60 + $ 		\ around the MIDI# 60
+  again 
+ ;;ap
+;ap
+
+\ ***** trnd *****************************************************************
+
+create timetable
+
+ 100 ,			\ total 'weight' of the table
+  0 , 			\ 0 entry has 'no weight', so it will never happen
+ 10 ,                   \ 1
+ 40 ,			\ 2 entry will happen 25% of the time (25/100)
+ 40 ,			\ 3 entry will happen 24% of the time (24/100)
+  0 ,			\ 4 entry will happen 1% of the time (1/100)
+  0 ,                   \ 5
+  0 ,                   \ 7
+  0 ,                   \ 8
+  10 ,                  \ 9
+\ -----------------------------------------------------------------------------
+
+:ap demo.trnd
+ ::ap 
+  ::tsg 
+    begin
+     timetable trnd  	\ pick random 1 2 3 or 4
+     dup 100 100 say. 16 r>i & 		\ make a rhythmic value of that many 16th notes
+    again
+  ;;sg
+
+  frnd2-init
+  begin
+          128 frnd2 10 0 mcc
+	  128 frnd2 $
+  again
+ ;;ap
+;ap
+abort
+
+\ *****************************************************************************
+
+:ap rand1
+::ap
+ /16	
+ 10 0 do
+         c $
+             1.0 grnd to $transpose \ 1 grnd = play random notes around C
+			          \ in the area of 1 note up and 1 note down
+      loop
+ 
+ /2 r $                           \ pause one half note
+ 
+\ ~~~~~~~~~~~~~~~~~~~~~~~~~ OR ON THE OTHER WAY ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+ /16
+ 10 0 do 
+	 4 irnd 59 + $	        \ 4 irnd = play random numbers between 0 and 3,
+			        \ 59 + $ = ( makes appropriate MIDI-number )
+      loop
+ 
+ /2 r $                           \ pause one half note
+
+\ ----------------------------------------------------------------------------
+
+ /16
+ 10 0 do
+         c $ 
+             2.0 grnd to $transpose \ 2 grnd = play random notes around C
+      loop                        \ in the area of 2 notes up and 2 notes down
+			          
+ /2 r $                           \ pause one half note
+
+\ ~~~~~~~~~~~~~~~~~~~~~~~~~ OR ON THE OTHER WAY ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+ /16
+ 10 0 do 
+	 5 irnd 58 + $       \ 5 irnd = play random numbers between 0 and 4,
+			     \ 58 + $ = ( makes appropriate MIDI-number )
+      loop
+
+ /2 r $                           \ pause one half note
+
+\ ----------------------------------------------------------------------------
+
+ /16
+ 10 0 do 
+	 c $
+             5.0 grnd to $transpose \ 5 grnd = play random notes around C
+      loop      	          \ in the area of 5 notes up and 5 notes down
+
+ /2 r $                           \ pause one half note
+
+\ ~~~~~~~~~~~~~~~~~~~~~~~~~ OR ON THE OTHER WAY ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+ /16
+ 10 0 do 
+	 11 irnd 55 + $      \ 11 irnd = play random numbers between 0 and 10,
+			     \ 55 + $ = ( makes appropriate MIDI-number )
+      loop
+
+ /2 r $                           \ pause one half note
+
+\ ----------------------------------------------------------------------------
+
+ /16
+ 10 0 do  
+	 c $
+             9.0 grnd to $transpose \ 2 grnd = play random notes around
+      loop   			  \ in the area of 9 notes up and 9 notes down
+                      
+ /2 r $
+
+\ ~~~~~~~~~~~~~~~~~~~~~~~~~ OR ON THE OTHER WAY ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+ /16
+ 10 0 do 
+	 19 irnd 51 + $	    \ 19 irnd = play random numbers between 0 and 18,
+			    \ 51 + $ = ( makes appropriate MIDI-number )
+ loop
+
+;;ap
+;ap
+
+
+\ ****************************************************************************
+
+:ap randomes
+ ::ap /16
+ 100 0 do 5 oct c $  2.0 irnd to $transpose loop
+ 100 0 do 5 oct c $ 10.0 irnd to $transpose loop
+ 100 0 do 5 oct c $ 15.0 irnd to $transpose loop
+ ;;ap
+;ap
+
+\ ****************************************************************************
+
+

@@ -1,0 +1,46 @@
+      *********************************************************
+      Tim's Atari Midi World : http://tamw.atari-users.net
+      *******************************************************
+      
+
+      KCS Omega Ver 4.0
+
+      This version originally appeared as an ST Format Cover Disc.
+
+NEW 2-20-03 DR T has now approved KCS version 4 with PVG amd the Master Editor.
+Example PVG files and txt are included.Other MPE modules include Tempo Master by Jeffery Reid Baker and ver 4 Song Editor, thus making this a complete KCS Omega II package.
+
+For floppy only systems you may need to put the folders in this archive on a seperate disc. For Hard Drive users, simply unzip to your hard drive with ST ZIP, or copy the files over from disc.
+
+
+      _________________________________________
+
+11-9-00
+
+Dr T (Emile Tobenfeld) has agreed to release KCS Omega Ver 4.0 as SHAREWARE.
+No registration required.
+No support provided.
+
+Shareware fee is $30, and (US only) comes with one of Dr Ts videos.
+
+Send US funds to:
+
+
+Alpha Channel Productions
+15 Frances Road
+Lexington MA 02421
+
+
+To upgrade to version 5.0 which includes many more MPE
+modules, please contact Emile Tobenfeld.Please read the DOCS supplied for more
+details on version 5.0
+
+Contact:
+
+
+Emile Tobenfeld, Ph. D.  emile@foryourhead.com
+Video Producer Image Processing Specialist
+Video for your HEAD! Boris FX
+http://www.foryourhead.com http://www.borisfx.com
+
+_______________________________________________________

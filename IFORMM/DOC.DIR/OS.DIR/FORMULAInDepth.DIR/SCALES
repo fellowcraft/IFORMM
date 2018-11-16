@@ -1,0 +1,71 @@
+
+\ **************************** S C A L E S ************************************
+
+\ There is a possibility to produce different scales using FORTH do-loop 
+\ operations. For those examples, play and analize scale7 trough scale12.  
+
+\ *****************************************************************************
+
+:ap scale7          \ ASCENDING CHROMATIC SCALE from 60 to 72 MIDI note. 
+	/4
+    73 60 do
+             i $ 
+          loop
+;ap
+
+
+\ ***************************************************************************
+
+:ap scale8          \ DESCENDING CHROMATIC SCALE from 72 to 60 MIDI note.
+	/4
+
+    59 72 do
+             i $
+      -1 +loop
+;ap
+
+\ ***************************************************************************
+
+:ap scale9         \ ASCENDING WHOLE-TONE SCALE from 60 to 72 MIDI note. 
+	/4
+
+   73 60 do
+	    i $
+      2 +loop
+;ap
+
+\ ***************************************************************************
+
+:ap scale10         \ DECREASING WHOLE-TONE SCALE from 72 to 60 MIDI note. 
+	/4
+
+   59 72 do
+	    i $
+     -2 +loop
+;ap
+         
+\ ***************************************************************************
+
+:ap scale11	  \ UP ROW OF THE MAJOR THIRDS from 40 to 90 MIDI note.
+	/4
+
+  90 40 do
+	   i $
+     4 +loop
+;ap
+
+\ ***************************************************************************
+
+:ap scale12	  \ DOWN ROW OF THE MINOR SEVENTHS from 100 to 40 MIDI note.
+	/4
+
+ 30 100 do
+	   i $
+   -10 +loop
+;ap
+
+\ ***************************************************************************
+
+
+
+

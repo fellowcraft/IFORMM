@@ -1,0 +1,272 @@
+OK
+CANCEL
+Error:
+Invalid format or value.
+Lower limit for last value is
+Upper limit for last value is~5
+Can't Undo
+Display configuration stored as 
+Paste Buffer is empty.
+Some notes were out of pitch range.
+COLORS~10
+Background
+Keys 2
+Bar Lines
+Notes
+Reds~15
+Blues
+Greens
+Conductor Track
+This operation cannot be Undone.
+No events in range.~20
+No room for requested operation.
+Operation would produce value out of range.
+Operation only valid for notes.
+Operation not valid for Conductor Track.
+An invalid value was entered.~25
+Operation not valid for mixed events.
+Operation not valid for split notes.
+Too much to select.
+TEMPO
+All possible note offs were sent!~30
+Record Buffer Full
+Step Time Recording. Press 1 or click above track window to exit.
+Backup done
+No backup exists!
+Backup retrieved~35
+Track restored.
+SAVING...
+LOADING...
+[2][|Replace existing file?][ Yes |No]
+Error reading ikon, startup, or text file.~40
+Disk is write-protected.
+Disk is full.
+File larger than available memory.
+This MIDI file could not be decoded.
+File is not a type 0 or type 1 MIDI file.~45
+An undefined event type was encountered.
+Write error, disk probably full.
+File not found.
+Path not found.
+Disk error.~50
+Space warning! Clean up or delete something!
+Too many notes to copy.
+Draw Attributes Set
+Velocity:
+Duration:~55
+This MIDI file contains time values as SMPTE
+or MIDI Time Code and cannot be decoded.
+This MIDI file uses a value of xxxx steps/beat (ppq).
+YES
+NO~60
+This MIDI file contains settings for steps/Metro of 
+and steps/MIDI clock of 
+. Your settings are 
+ and 
+Do you want to change your settings?~65
+[3][Not enough memory|for a Tiger.][OK]
+Version 1.21 as of 2/4/91
+
+
+
+
+
+}
+"Notes Duplicated."~0
+"Buffer size reduced."
+"Are you sure you want to quit?"
+Inserted bar line too close to show.
+"Yes;No"
+"Repeat Time"~5
+1;2;4;8;User
+Copy Selection
+"steps"
+"Copy Range"
+"Amount:       steps"~10
+"Straight;Dotted;N-tuplets"
+"N:"
+"That tuplet does not fit the beat!"
+"Desired controller must be on bottom!"
+"Store"~15
+"Get"
+"Display Configuration"
+"Config"
+"Tracks"
+"Edit"~20
+"Edit Selected"
+"Pitches"
+"Velocities"
+"Durations"
+"Events"~25
+"Controllers"
+"Pitch Bends"
+"in Range"
+"Amount:"
+"Center:"~30
+"Value:"
+"By:"
+"Min:"
+"Max:"
+"Increase;Decrease"~35
+"Invert;Set;Scale"
+"Clip;Delete Below Min"
+"Linear Set/Scale"
+"Set:"
+"Scale:"~40
+"Transpose Up;Transpose Down"
+"Invert;Set"
+"Move Selected Events"
+"Amount:     steps"
+"Ahead;Back"~45
+"Move/Stretch/Shrink Range"
+"Following Events:"
+"Erase;Push"
+"Move Ahead;Move Back;Move with Mouse"
+"Stretch/Shrink;Double;Halve;Stretch/Shrink with Mouse"~50
+"Insert Space;Insert with Mouse"
+"New Length:"
+"Old Length:"
+"KCS CUE POINTS"
+"to"~55
+"Can't add space past track end!"
+"COPY, ERASE, OR DELETE RANGE"
+"Times to Copy:"
+"Erase;Delete"
+"Copy;Copy/Push"~60
+"Fill to End"
+"Mouse Copy;Mouse Copy/Transpose"
+"All Tracks:"
+"Too many copies!"
+"Operation not valid for All Tracks."~65
+"Too much to move!"
+"Cannot copy to within range!"
+"PASTE AT SELECTED NOTES"
+"Time Offset:
+"Pitch Offset:"~70
+"Follow Selected Pitches:"
+"Follow Selected Velocities:"
+"Omit First Note:"
+"Destination track:"
+"Cannot move before start!"~75
+"NOTE DRAW ATTRIBUTES"
+"Left  Right"
+"Use Quantize Ikon:"
+"On;On"
+"Copy Selection:"~80
+"Yes;Yes
+"Controller Draw Density"
+"Separation:"
+"pixels"
+"Add/Drop Controller"~85
+"CC Number:"
+"Tempo Window Range"
+"Min:     BPM"
+"Max:     BPM"
+"Track Name~90
+"Track   :"
+ENVIRONMENT
+"Steps/beat:"
+"Steps/clock:"
+"Steps/metronome:"~95
+"Metronome
+"MIDI clock out"
+"Song pointer delay"
+"MIDI merge"
+"Rechannelize"~100
+"Time Reverse"
+"Range"
+"Selected Notes"
+"Limit to Legato"
+"All;Pitches;Vels & Durs"~105
+SPLIT OR COPY SELECTION
+"Split;Copy"
+"Destination track:"
+"Rechannelize:"
+QUANTIZE SELECTED NOTES~110
+"Quantize Value:"
+"Offset:"
+"Swing:"
+"Downbeat Vel:"
+"Upbeat Vel:"~115
+"Sequence:"
+"Reference Velocities:"
+"Use;Add;Ignore"
+"Nail First Note:"
+"Basic Quantize~120
+"Quantize with Swing"
+"Quantize to Sequence"
+"Invalid sequence!"
+"Cannot delete track in display!"
+"Track in use!"~125
+"Cannot copy a track to itself!"
+"Track in use. Erase?"
+"Sequence in use. Erase?"
+"Invalid copy!"
+"Track"~130
+"Unused"
+"MU GP"
+"Group Active"
+"Mutes/Group"
+"Add/Drop Track Window"~135
+"DONE"
+"Delete Track:"
+"Copy to Track:"
+"New Track:"
+"Set Channel:"~140
+"Track deleted"
+"Copy"
+"All Tracks"
+"to Sequence"
+"Range:"~145
+"Sequence:"
+"Name:"
+"Comments:"
+"Include Muted Tracks"
+TIME SIGNATURE AT MEASURE~150
+"Clear All Tracks"
+"New Length:       measures"
+"Time Signature"
+"User"
+"Bars"~155
+"Illegal time signature!"
+CHANGE LENGTH
+"Measures:"
+"Steps:"
+"Copy completed"~160
+"CANNOT BE UNDONE!"
+"Track 1 MIDI data copied to"
+"Track 1 "
+"Events left after cleanup."
+"Select Buffer:"~165
+"Paste Buffer:"
+"Not enough room for new buffers."
+"Right"
+"Left"
+Amount:       steps~170
+"steps/measure"
+Number of Ports:
+Port:
+Recording Canceled
+Recorded Track~175
+Output to Invalid Port!
+Port    Sequence:
+Control Sequence:
+"OUTPUT PORT MAP"
+"FOR RECORD & MERGE"~180
+"REAL TIME:"
+"SYS-EX:"
+Two ports can't share the same sequence.
+"Pantheria tigris, having a tawny-colored coat with vertical"
+black stripes; a person with fierce characteristics or"~185
+aggressive traits."
+Tiger (The Program) was written by Emile Tobenfeld, with "
+"additional code by Cobey Gatos, Tom Jeffries, and Jim Johnson."
+"CAUTION!!!  Tiger (The Animal) loves to eat those who"
+"illegally copy Tiger (The Program)!"~190
+"ABOUT TIGER..." 
+"Tiger, n. A large, carnivorous, Asiatic feline mammal,"
+
+
+
+
+

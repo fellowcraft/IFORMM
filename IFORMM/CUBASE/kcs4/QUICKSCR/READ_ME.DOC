@@ -1,0 +1,22 @@
+          QuickScore       V1.0       Jan 8, 1990
+
+
+
+We have included a KCS .ALL file as well as a .DIS (display) file 
+for QuickScore on this disk. Loading this file in KCS and then 
+looking at it in QuickScore will display the correct clef 
+automatically for each staff.
+
+When playing in full score display mode, only the first recorded 
+track will play.
+
+If the transcription of your music looks wrong (especially when a 
+track contains a lot of sixteenth notes syncopations, try 
+reducing the number of bars per lines. (2 does well with 
+sixteenth note, see demo file)
+
+QuickScore is only designed to be used in the MPE environment and 
+will not work as a stand alone program.
+
+QuickScore will only run in KCS or Level 2 V3.0 or later. 
+

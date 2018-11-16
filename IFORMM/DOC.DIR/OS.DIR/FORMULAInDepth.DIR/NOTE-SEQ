@@ -1,0 +1,75 @@
+
+\ *******************  N O T E    S E Q U E N C I N G  ************************
+
+\ Use MARIMBA-like voice for the best listening example.
+
+\ As mentioned in the file NOTES, there is in FORMULA a m$ word for playing
+\ the sequence of notes. Another word m$*k defines multiple playing. 
+
+\ #   m$    = # (number of) notes in the sequence
+\ # # m$*k  = # (number of) notes in the sequence # (number of) how many times
+\ the sequence will be played.
+ 
+\ Play and analize seq1 trough seq6 for the example.
+
+\ *****************************************************************************
+
+\ Words such as m$$ and m$$*k can be used for adding a lower octave. Play and
+\ analize double-scale1 and double-scale2 as the examples.
+
+\ *****************************************************************************
+
+:ap seq1
+	c d e f g                  5                     m$
+
+                  ( number of notes in the sequence      m$ )
+;ap
+
+\ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ OR ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+:ap seq2
+	c d e f g          5$
+;ap
+
+\ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ OR ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+:ap seq3
+	60 62 64 65 67     5 2 m$*k
+;ap
+
+\ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ OR ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+:ap seq4
+	60 62 64 65 67     5$
+;ap
+
+\ ***************************************************************************
+
+:ap seq5
+	c  d  e  f  g  a  b  +oct c  d  e  f  g  a  b  +oct c
+
+	-oct b  a  g  f  e  d  c  -oct b  a  g  f  e  d  c          29 m$
+;ap
+
+\ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ OR ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+:ap seq6
+	60  62  64  65  67  69  71  72  74  76  77  79  81  83  84 
+
+        83  81  79  77  76  74  72  71  69  67  65  64  62  60      29 m$
+;ap
+
+\ ***************************************************************************
+	
+:ap double-scale1
+	60  62  64  65  67  69  71  72   8 m$ 
+        72  71  69  67  65  64  62  60   8 m$$
+;ap
+
+	
+:ap double-scale2
+	60  62  64  65  67  69  71  72   8 3 m$*k 
+        72  71  69  67  65  64  62  60   8 3 m$$*k
+;ap
+
+\ ***************************************************************************

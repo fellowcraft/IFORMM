@@ -1,0 +1,52 @@
+
+\ ***************************** L O U D N E S S *******************************
+
+\ For the best listening example use MARIMBA-like voice, or any other
+\ "key velocity sensitive" voice, if you don't use "key velocity sinsitive"
+\ voice, you will not be able to hear dynamic change at all.
+
+\ For the compensation of the particular syntesizer voice (patch) being used,
+\ and to balance the volume of different processes, FORMULA provides pquan
+\ $volume. It is in the range -127 to 128.
+
+\ There is another note-playing word c$ and pquan $cvolume which affects the
+\ loudness. Those are for the chord-volume control and will be covered in the 
+\ file CHORDS.
+
+\ *****************************************************************************
+
+:ap loud1
+	  -127 to $volume 	\ min. loudness  [inaudible] (-127)
+ 60 62 64 65 67 69 71 72  8 m$
+;ap
+
+:ap loud2
+	    0 to $volume	\ moderate loudness
+ 60 62 64 65 67 69 71 72  8 m$
+;ap
+
+:ap loud3
+	   127 to $volume	\ max. loudness  (127)
+ 60 62 64 65 67 69 71 72  8 m$
+;ap
+
+:ap volumes1
+	::ap
+ 	loud1 loud2 loud3
+	;;ap
+;ap
+
+:ap volumex
+	::gp
+	    ::ap -12.0 to $transpose loud1 ;;ap
+	    ::ap loud2 ;;ap
+	    12.0 to $transpose loud3
+	;;gp
+;ap
+
+:ap volumes2
+	::ap volumex ;;ap
+;ap
+
+\ ****************************************************************************
+

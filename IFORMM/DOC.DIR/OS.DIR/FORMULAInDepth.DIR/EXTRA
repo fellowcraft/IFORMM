@@ -1,0 +1,392 @@
+
+\ mkd
+
+	:ap velocity1
+	::ap
+	10 0 do
+	100 30 do i 60 0 mkd 100 time-advance 0 60 0 mkd  2 +loop
+	30 100 do i 60 0 mkd 100 time-advance 0 60 0 mkd -2 +loop
+	loop
+	;;ap
+	;ap
+
+
+	:ap velocity2
+	::ap
+	500 0 do
+	80 irnd 40 + 60 0 mkd 100 time-advance 0 60 0 mkd
+	loop
+	;;ap
+	;ap
+
+
+\ mpc	
+	:ap program
+	30 0 do i 0 10 time-advance mpc 
+	127 60 0 mkd 500 time-advance  0 60 0 mkd
+	loop
+	;ap
+
+
+\ mcc - dx7 sustain
+	
+	:ap cont1
+	127 60 0 mkd 500 time-advance 127 64 0 mcc 0 60 0 mkd 
+	4000 time-advance 0 64 0 mcc  
+	;ap
+	
+\ portamento
+
+	:ap cont2
+	127 60 0 mkd	 
+	127 5 0 mcc	\ porta time
+	127 65 0 mcc 	\ porta switch on 
+	10 time-advance 
+	0 60 0 mkd
+	127 90 0 mkd
+	5000 time-advance  
+	0 90 0 mkd
+	0 65 0 mcc	\ porta switch off
+	;ap
+
+
+	:ap conta2
+	5 0 do
+	127 60 0 mkd	 
+	80 irnd 40 + 5 0 mcc	\ porta time
+	127 65 0 mcc 	\ porta switch on 
+	1000 time-advance 
+	0 60 0 mkd
+	127 90 0 mkd
+	1000 time-advance  
+	0 90 0 mkd
+	loop
+	0 65 0 mcc	\ porta switch off
+	;ap
+
+\ modulation whell pm am peg sens 7 and lfo pmd amd (voice edit) 
+
+	:ap cont3
+	127 60 0 mkd 5000 time-advance 127 1 0 mcc 0 60 0 mkd 
+	4000 time-advance 0 64 0 mcc  
+	;ap
+
+
+\ volume pedal
+	
+	:ap cont4
+	::ap
+	127 60 0 mkd 	
+	5 0 do
+	120 20 do i 7 0 mcc 10 time-advance loop	
+	20 120 do i 7 0 mcc 10 time-advance -1 +loop	
+	loop
+	0 60 0 mkd
+	;;ap	
+	;ap
+
+	
+	:ap cont5
+	::ap
+	127 60 0 mkd 	
+	500 0 do
+	30 grnd 70 + 7 0 mcc 50 time-advance 
+	loop
+	0 60 0 mkd
+	;;ap	
+	;ap
+
+	
+	:ap cont6
+	::ap
+	127 60 0 mkd 	
+	500 0 do
+	80 irnd 30 + 7 0 mcc 50 time-advance 
+	loop
+	0 60 0 mkd
+	;;ap	
+	;ap
+
+	:ap pitchbnd
+	::ap
+	127 60 0 mkd
+	10 0 do
+	100 irnd 20 + 0 0 mpb
+	1000 time-advance 
+	0 100 irnd 20 + 0 mpb
+	1000 time-advance 
+	loop
+	127 60 0 mku
+	;;ap
+	;ap
+
+
+	:ap pitchbnda
+	::ap
+	100 60 0 mkd
+	10 0 do
+	127 64 0 mpb
+	100 time-advance 
+	0 64 0 mpb
+	100 time-advance 
+	loop
+	127 60 0 mku
+	;;ap
+	;ap
+
+
+
+	:ap pitchbndo
+	::ap
+	100 60 0 mkd
+	80 64 0 mpb
+	2500 time-advance
+	127 60 0 mku
+	;;ap
+	;ap
+
+
+\ *******************************
+
+:ap mladen
+ ::td1
+ begin 100 10 1|1 seg again
+ ;;td
+/4  c $ c $ c $ c $
+;ap
+
+ : bpm                  \ n --- ; n is number of quarter note beats per minute 
+ 192000 swap / to rscale ;
+
+\ Use FLUTE-like voice for best listening example.
+
+\ 64 to tempo - this is a normal tempo 
+
+:ap normal
+ /4
+ 60 62 64 65 67 69 71 72 8 m$        \ C-major scale
+;ap
+
+\ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ OR ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+  
+:ap tempo64
+::ap
+\  64 to tempo
+ /4
+ 60 62 64 65 67 69 71 72 8 m$
+;;ap        \ C-major scale
+;ap
+
+
+\ ****************************************************************************
+
+:ap example
+ ::ap
+\  30 to tempo
+ 	60 62 64 65 67 69 71 72 8 m$	      \ C-major scale
+\  100 to tempo
+ 	60 62 64 65 67 69 71 72 8 m$	      \ C-major scale
+\  75 to tempo
+ 	60 62 64 65 67 69 71 72 8 m$	      \ C-major scale
+\  250 to tempo
+ 	60 62 64 65 67 69 71 72 8 m$	      \ C-major scale
+\  5 to tempo
+ 	60 62 64 65 67 69 71 72 8 m$	      \ C-major scale
+ ;;ap
+;ap
+
+\ ***************************************************************************
+
+:ap speeding1
+\  [ 1 params ] to tempo
+ /1                                  \ WHOLE NOTE BEATS
+ 60 62 64 65 67 69 71 72 8 m$        \ C-major scale
+;ap
+
+:ap exam1
+\  50 speeding1
+\  25 speeding1
+\  10 speeding1
+\   5 speeding1
+\   1 speeding1
+;ap
+
+\ ****************************************************************************
+
+:ap speeding2
+\  [ 1 params ] to tempo
+ /32                                  \ 32th NOTE BEATS
+ 60 62 64 65 67 69 71 72 8 m$	      \ C-major scale
+;ap
+
+:ap exam2
+\  500 speeding2
+\  250 speeding2
+\  100 speeding2
+\   50 speeding2
+\   10 speeding2
+\    5 speeding2
+\    1 speeding2
+;ap
+
+\ ***************************************************************************
+
+\ **************************************************************************
+
+\ Please analyze the following programs, first play "program1" then
+\ "program2" and then "both1".
+
+\ ***************************************************************************
+
+
+:ap program1
+	/4                          \ beat in 4ths
+
+60 62 64 65 67 69 71 72  8 m$       \ C-major scale
+
+	8 8 r>i  time-advance       \ in duration of 8 * 8th notes delay next:
+
+	/16			    \ beat in 16ths
+
+	    7 to $transpose         \ tanspose scale to fifth up
+
+60 62 64 65 67 69 71 72  8 m$       \ G-major scale
+
+;ap
+
+\ -----------------------------------------------------------------------------
+
+:ap program2
+       /4                           \ beat in 4ths
+
+       8 4 r>i  time-advance        \ in duration of 8 * 4th notes delay next:
+
+           5 to $transpose	    \ transpose scale to fourt up
+
+       /8                           \ beat in 8ths
+
+60 62 64 65 67 69 71 72  8  m$      \ F-major scale
+
+       /16                          \ beat in 16ths
+         
+       8 16 r>i  time-advance       \ in duration of 8 * 16th notes delay next:
+
+       /32                          \ beat in 32nds
+
+          12 to $transpose          \ transpose scale one octave up
+
+60 62 64 65 67 69 71 72  8 4 m$*k   \ C-major scale (one octave up) four times
+
+;ap
+
+\ -----------------------------------------------------------------------------
+
+:ap both1
+ ::ap program1 ;;ap
+      program2
+;ap
+
+
+\ ***************************************************************************
+
+\ Please analyze the following programs, first play "program3" then "program4"
+\ and then "both2". See the difference between "both1" and "both2".
+
+\ ***************************************************************************
+
+
+:td first            \ define time deformation - accellerando
+ 40 100 8 4 r>i seg  \ between tempi 40 and 100 accelerate eight quarter notes
+;td
+
+:td second	     \ define time deformation - ritardando	
+ 150 60 8 4 r>i seg  \ between tempi 150 and 60 slow down eight quarter notes
+;td
+
+
+:ap program3
+	/4            \ beat in 4ths
+
+	::td1         \ accellerando
+	  first
+	;;td
+
+	60 62 64 65 67 69 71 72  8  m$  \ play accellerated C-major scale
+ 		
+        ::td2         \ ritardando
+	  second
+	;;td
+
+ 	0 0 0 0 0 0 0 0  8  m$  \ play slowed down eight quarter note pauses
+
+	::td1        \ accellerando
+	  first
+	;;td
+	
+	7 to $transpose
+	60 62 64 65 67 69 71 72  8  m$  \ play accellerated G-major scale    
+;ap
+
+\ -----------------------------------------------------------------------------
+
+:ap program4
+	/4          \ beat in 4ths
+
+	::td1       \ accellerando
+	  first
+	;;td
+
+	0 0 0 0 0 0 0 0  8  m$  \ play accellerated eight quarter note pauses
+
+	::td1       \ ritardando
+	  second
+	;;td
+
+	5 to $transpose
+	60 62 64 65 67 69 71 72  8  m$   \ play slowed down F-major scale 
+
+	::td1      \ accellerando
+	  first
+	;;td
+
+	0 0 0 0 0 0 0 0  8  m$  \ play accellerated eight quarter note pauses
+
+	::td2
+	  second
+	;;td
+	
+	12 to $transpose
+        60 62 64 65 67 69 71 72  8  m$   \ play slowed down C-major scale   
+;ap
+
+\ -----------------------------------------------------------------------------
+
+:ap both2
+ ::ap program3 ;;ap
+      program4
+;ap
+
+
+\ ***************************************************************************
+
+
+:ap accelo
+ /8   
+ ::td1 			  \ accelerating segment of 4 whole notes 
+   100 500 1 3 r>i seg    \ between the tempi 100 and 500
+ ;;td                   
+ 60 62 64 65 67 69 71 72  8 4 m$*k
+;ap
+
+:ap accela
+ /8   
+ ::td1 			  \ accelerating segment of 4 whole notes 
+   100 500 1 3 (r>i seg    \ between the tempi 100 and 500
+ ;;td                   
+ 72 74 76 77 79 81 83 84  8 4 m$*k
+;ap
+
+:ap twotwo
+::ap accelo ;;ap
+     accela
+;ap

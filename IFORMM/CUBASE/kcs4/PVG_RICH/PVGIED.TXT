@@ -1,0 +1,118 @@
+                  ************************************
+                  *   PVG PRESETS By RICHARD VIARD   *
+                  *                                  *
+                  *             10/7/89              *
+                  ************************************
+
+
+
+Here are some presets that can be found in my DEFAULT.VRY file.
+I hope some of them might be useful to you or help you create your own
+presets based on these ideas.
+I use 240 steps per beat so make sure to convert any time related 
+parameter if you don't.
+
+I usually use the variations to create subtle changes in a pattern.
+I start with a 2 or 4 bar pattern. Copy/paste it as many time 
+as I need it, then check how many total events it takes.
+I then select a vary preset, and select overwrite original, and under
+changes, a percentage of the number of events, according to the desired
+effect. I noticed that this technique gives better results than using 
+Consecutive or Evolving Mults on the small pattern to get a long track 
+as the changes are not as subtle.
+
+   
+HUMANIZE:
+Randomly shifts times and velocities. You can experiment with various 
+values. I usualy select Overwrite Original, and a nb of variations 
+slightly below the number of notes.
+
+OUT SAVE CHORDS:
+Swaps notes but leaves chords intact.
+
+GOOD VARIATIONS:
+Changes Velocities, Times, Durations, and swaps notes.
+
+MINIMALIZATION:
+Random erase, keeps chords intact.
+
+ERASE DOUBLES:
+Erases doube notes (any note with a time of 0). Useful for editing.
+set changes to 0.
+
+REVERSE 3:
+Randomly time reverses 3 notes. Works well for repetitive motifs like
+percussions or bass patterns etc...
+
+PERC. VARY:
+Shifts, swaps and reverses notes. Great for percussions variations.
+
+PERC VARY RICH:
+Shifts times, swaps pitches & times, and reverses 3 consecutive notes.
+
+RANERASE:
+Random erase. Great for syncopating bass lines, or to create strange
+drum passages.
+
+VELOCITIES:
+Randomly changes velocities.
+
+ERASE DBL PITCH:
+Erases double notes with same pitch.
+
+INSERT OPEN HIHAT:
+Randomly adds an open hihat to a closed hihat part (mine is A#2)
+enter the number of occurences under changes.
+
+EXTEND DURATIONS
+I still don't understand why this preset works, but it extends the
+durations of the notes to the begining of the next note. Useful for 
+creating legato passages, or before transcribing using notation software
+like Copyist.
+  
+********************  ORNAMENTS  ***************************************
+
+PERC FILL 1A:
+32nd note fill. Usefull for percussions or drums.
+
+PERC FILL 2A:
+8th note triplet fill.
+
+STICK BOUNCE:
+Creates the effect of a bouncing stick.
+
+SIMPLE ECHO 32:
+1 Echo 32nd note.
+
+SIMPLE ECHO 16:
+same, 16th note.
+
+SIMPLE ECHO 8:
+same, 8th note.
+
+SIMPLE ECHO 4:
+Guess what? Quarter note.
+
+HIHAT FILL 32:
+32nd note hihat fill.(F#2)
+
+HIHAT FILL 16:
+16th note hihat fill.(F#2)
+
+SNARE FLAM:
+Self explanatory.(D 2)
+
+Here it is. There is not a huge amount of presets because I usually
+create an edit witout storing it as a preset since each situation
+calls for a different algorithm. I think the Global and Split pages
+are the most useful for editing, while Swap and Changes are good for
+varying. Set values is used for randomly inserting a precise type of 
+event, and Macros for cyclic editing. I really don't use the 2 controller
+pages as I do all my controller edits in TIGER.
+
+Happy variations...
+
+Richard Viard. 
+
+
+

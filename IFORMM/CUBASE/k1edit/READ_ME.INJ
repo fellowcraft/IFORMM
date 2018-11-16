@@ -1,0 +1,92 @@
+
+THE INJECTOR DESK ACCESSORY from the Caged Artist
+
+Users guide
+copyright (C) 1988 Caged Artist Productions
+Program by David A. Grunberg and Robert J. Melvin
+Users guide by  David A. Grunberg
+
+
+Introduction...
+
+The Injector desk accessory is a utility which allows you to read 
+Caged Artist Editor synth files and load them into synthesizers, all 
+from the GEM desktop. The Injector is always resident in memory, 
+and can be called up at any time without leaving the main program. 
+This is very handy if you are using a sequencer program, for 
+instance.
+
+Installing the Injector accessory...
+
+Copy the file 'injector.ac' to a disk you normally boot from. If 
+you use a hard disk, this is probably disk C (If you boot your hard
+disk from a floppy disk, copy the file to your floppy disk).  Then 
+rename the file to 'injector.acc' (add a 'c' on the end). You can 
+do this by single clicking on 'injector.ac', then selecting 'show 
+info...' from the file menu.
+
+Important: The file 'injector.fil' must be copied to the same boot 
+disk as 'injector.acc', and must not be in a subdirectory (folder).
+The file 'injector.set' should also be copied to the boot disk, 
+except if you have a hard disk which you are booting from a floppy 
+disk, in which case it should be copied to the hard disk (drive C).
+
+Re-booting the computer will now install the Injector accessory.
+
+Warning: This, or any other desk accessory, will only work with 
+GEM/menu based programs. Some non-GEM programs may not load or may 
+crash if the Injector accessory is loaded.
+
+Using Injector...
+
+To call up the Injector, select 'Injector' from the desk menu. The 
+main dialog box will appear. The left side contains a list of 
+instruments currently supported. Each instrument has a Midi 
+channel that you can set with the cursor and number keys to match 
+your own setup. You can select an instrument with the mouse. On 
+the right is a group of selector buttons. The functions are 
+described below:
+
+Load Instrument
+     Loads a synth midi file (Caged Artist format only) from disk 
+     and sends it to the selected instrument. A file selector box 
+     appears that lets you select the file to be loaded. The file 
+     name will appear next to the instrument under the 'File' 
+     heading.
+
+Load Config
+     Loads a previously saved configuration of files into all 
+     synthesizers in your setup (see Save Config). If you set a 
+     midi channel to 0 (zero), Load Config will ignore that 
+     particular instrument, even if a file for it exists in the 
+     configuration file. Use this feature if you want to make sure 
+     that a particular instrument is never changed. See note (*).
+
+Save Config
+     Saves the current configuration of files that were loaded 
+     with Load Instrument. A file selector box will appear that 
+     allows you to select or change the name of the configuration 
+     to be saved. 
+
+     * Note: All Synth midi files which are in a configuration must 
+     be on the same disk to which you save the configuration. It 
+     is recommended that you use one disk for all synth files and 
+     configurations, to avoid confusion. 
+
+Save Channels
+     Saves your current setting of all midi channels. If you don't 
+     use a hard disk, you must put your original boot disk 
+     (the one with injector.acc, injector.fil and injector.set on 
+     it) into drive A before saving. This will insure that your 
+     channel settings will be loaded in whenever you re-boot the 
+     computer.
+
+Exit
+     Closes Injector and returns you to the main program or 
+     GEM desktop. The 'Return' key does the same.
+
+
+COMING SOON from the CAGED ARTIST: A utility that allows you to 
+customize the Injector instrument display to your exact 
+synthesizer setup!
+

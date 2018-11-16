@@ -1,0 +1,161 @@
+
+\ ****************************** Q U A N S ************************************
+
+\ FORMULA provides a construct for declaring and using per-process named 
+\ variables, derived from (and integrated with) a FORTH construct known as 
+\ QUANS.
+
+\	quan	( name ; --- ;    	define a quan )
+\		( name ; --- n ;  	a quan returns its value )
+\   	to	( name ; n --- ;  	store to a quan
+\	addr	( name ; --- address ;	find address of quan )
+
+\ For example:
+
+	quan counter	\ declare a quan named "counter"
+	60 to counter   \ store a value in it
+\	counter .	\ get and print a curent value
+
+
+	:ap middle-c
+
+	    5 0 do counter $ loop
+
+	;ap
+
+	:ap middle-g
+
+	    5 0 do counter 7 + $ loop
+
+	;ap
+
+	:ap middles
+		::ap middle-c ;;ap
+		middle-g
+	;ap
+
+	:ap fifths
+	    ::ap begin middles again ;;ap
+	;ap
+
+\ Once you run "fifths" it will play continuosly, then you can type on the
+\ keyboard terminal (in real time) any value you want to assign for the quan 
+\ counter. If you type, for instance, 72 to counter; it will play "fifths"
+\ transposed an octave higher. To stop this you should type kill-all.
+
+quan trsp
+
+:ap playo
+220 beats-per-minute
+ /16
+ ::ap
+  begin
+    trsp 60 + $ 
+    trsp 64 + $ 
+    trsp 67 + $ 
+    0 $
+  again
+ ;;ap
+;ap
+
+:ap go-up
+ trsp 1 + to trsp
+ trsp . cr
+;ap
+
+:ap go-down
+ trsp 1 - to trsp
+ trsp . cr
+;ap
+
+9  FK-action: kill-all
+0 FK-action: playo
+1 FK-action: go-up
+2 FK-action: go-down
+
+\ ****************************** P Q U A N S **********************************
+
+\ In addition to QUANS, FORMULA has "per-process quans" PQUANS of which each
+\ process has its own copy (a quan has only one copy shared by all processes).
+
+\  pquan    ( name ; --- ; define a pquan )
+\  pallot   ( n name ; allocate n additional bytes to the last defined pquan )
+\  poffset  ( name ; --- n ; find CB offset of pquan )
+
+\ The "to" and "addr" operations for pquans are the same as those for quans.
+
+\   	to	( name ; n --- ;  	store to a pquan
+\	addr	( name ; --- address ;	find address of pquan )
+
+\ For example:
+
+	pquan guess 	\ declare a pquan
+	
+	:ap look
+	    ::gp
+		[ 1 params ] to guess
+		guess 0 do 60 $ loop
+	    ;;gp
+	;ap
+
+	pquan guesses 	\ declare a pquan
+
+	:ap pauser
+	    ::gp
+		[ 1 params ] to guesses
+		guesses 0 do 0 $ loop
+	    ;;gp
+ 	;ap
+
+	:ap hook
+	    ::ap
+		 1 look 
+		 2 pauser 
+	         8 look 
+	         2 pauser 
+		14 look 
+	    ;;ap
+	;ap
+
+\ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+	pquan wonder     \ declare a pquan
+
+	:ap look-at
+	    ::ap 
+		[ 2 params ] to guess to wonder
+		guess 0 do 60 wonder + $ loop
+	    ;;ap
+	;ap
+
+	:ap keep-it
+	    ::ap 2 3 look-at ;;ap
+	    ::ap 5 8 look-at ;;ap
+	    12 - 14 look-at
+	;ap
+
+	:ap keeping
+	    ::ap keep-it ;;ap
+	;ap
+
+\ In several processes which execute "keep-it" at once, each has a separate 
+\ copy of pquans (guess and wonder); guess determines: how many times do-loop 
+\ will be executed, wonder determines: which number will be added to 60 and 
+\ therefore affects the transposition.
+
+\ *****************************************************************************
+
+\ The fallowing words manipulate the quans of other processes:
+
+\ pget	    ( name ; CB --- n ; get the value of another process's pquan )
+\ ipget     ( name ; ID --- n ; get the value of another process's pquan )
+\ pto	    ( name ; n CB --- ; store into another process's pquan )
+\ ipto      ( name ; n ID --- ; store into another process's pquan )
+\ paddr	    ( name ; CB --- address ; find address of another process's pquan )
+\ ipaddr    ( name ; ID --- address ; find address of another process's pquan )
+
+\ The pquans used internally by FORMULA are initilized at process creation; in
+\ most cases they are inherited from the parent process. User-defined pquans,
+\ however, are not autometically initilized in new processes.
+
+\ *****************************************************************************

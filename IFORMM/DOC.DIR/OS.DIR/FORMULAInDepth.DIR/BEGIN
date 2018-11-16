@@ -1,0 +1,91 @@
+
+\ **************************** GETTING STARTED *******************************
+
+\ Once you have double clicked on the FORMULA.TOS you'll see on the screen: 
+
+\ Forthmacs version 1.1
+\ Copyright C 1986 by Bradley Forthware
+\ FORMULA Version 4.0
+\ Not using Synthesizer Manager. Default MIDI channel is 0.
+\ ok
+
+\ That means you're in the FORTH and FORMULA interactive language 
+\ seeing ok message on your screen. 
+
+\ Then you should load the editor (Emacs). Typing ed <RETURN>, 
+\ the screen will change and yoy'll see:
+
+\ ForthEMACS main
+
+\ <Control> c (^c) [ and <Control> z (^z) if you want to save a file you are
+\ working with ] will get you out the editor and ed will bring you back
+\ into the editor. Working with FORMULA you'll play this game a lot.
+ 
+\ ****************************************************************************
+
+\ Let us try some simple definition examples:
+ 
+\ FORTH encourages you to try things out and responds immediately to your 
+\ commands. To see how it works, strat by pressing thr <Return> key.
+
+\ FORTH says ok. You didn't ask it to do anything. You have to define some
+\ commands which are in FORTH (also FORMULA) called "words". Here is the word
+
+	: MUSIC ." Play some notes!" ;
+
+\ Certain components always appear in the definition of a word:
+ 
+\ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\ : 		The colon alerts FORTH that a definition is coming.
+
+\ MUSIC	        Every word must have a name. Names can be as long as 31 
+\		characters. Use dashes instead of blanks to break up a long
+\		name, for example, A-LONG-NAME.
+
+\ definition	In this case, the definition of MUSIC is the message that you
+\		want to be printed, bounded by the "message markers" that tell
+\		FORTH where the beginning and end of the message are---
+\		." (called "dot-quote") and " (caled "quote").
+\		The ." must be separeted from the message by a blank.
+
+\ ;		The semicolon tels FORTH that the definition is over.
+
+\ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\ Thus, when you type MUSIC, FORTH will print on the screen "Play some notes!"
+
+\ Once you have defined the word you can use it in other words. For example---
+
+ 	: SYMPHONY MUSIC cr MUSIC cr MUSIC ;
+
+\ Another word that is used in definition of "SYMPHONY" besides "MUSIC" is 
+\ "cr" (called "carrige return"), its function is simply to start a new line 
+\ whenever it appears in your definition.
+
+\ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\ Check these examples out.
+\ Type MUSIC and than SYMPHONY to see how they work.
+
+\ Before we go any further, remeber these simple rules:
+
+\	Every : needs a ;
+
+\ 	Every ." needs a "
+
+\ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\ The same way FORMULA uses "words" for its definitions. 
+\ You can define note-playing words in FORMULA using delimiters :ap and ;ap
+\ not : and ; becuse ap-words (ap stands for Active Process) give you an 
+\ additional "vocabulary" visible within a definition. This will be discussed 
+\ later. So, note-playing word should look something like this:
+
+\ :ap word-name
+\	definition
+\ ;ap
+
+\ Now, we are ready to go and examine the other TUTORIAL.DIR files. 
+
+\ ****************************************************************************

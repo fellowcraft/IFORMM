@@ -1,0 +1,29 @@
+
+:ap maxy
+::ap
+::tsg begin 1|4 & again ;;sg
+8|1 maxtime
+begin 60 $ again
+maxend
+;;ap
+;ap
+
+:ap miny
+::ap
+::tsg begin 1|4 & again ;;sg
+8|1 mintime
+begin 60 $ again
+minend
+;;ap
+;ap
+
+:ap minylo
+::ap
+::tsg begin 1|4 & again ;;sg
+8|1 mintime
+begin 60 $ again
+minloop
+;;ap
+;ap
+
+quit

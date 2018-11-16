@@ -1,0 +1,399 @@
+                                   
+                                             Gerry Scott-Moore
+                                             Dallas, Texas
+                                             1/22/89
+
+Intro and Excuses      
+-----------------------
+     I could continue hacking away at this forever, unfortunately people at
+     work have decided that 1989 is going to be Gerry's Year of Anguish so I
+     beter get this off to you and get back to being overworked.
+     
+     Please forgive any typos, syntax shifts into shrieking void, and an
+     inability to speak consistenly about transpositions in terms of single
+     programatic steps (C to C#) or what are called in music parlance
+     "half-steps" (also C to C#).
+     
+     I've been digging through various incarnations of my VRY files in
+     anticipation of telling you how I am using the KCS/PVG and am somewhat
+     disheartened and gladdened simultaneously.  In surveying the scope of
+     this package I am reminded of two things; how little I truly understand
+     and utilize it, and also how delightful the process of constant
+     exploration is.
+     
+     I am also reminded of an article read quite some while ago about
+     synthesizer service technicians.  Seems they found that 95% of the
+     synths that come in for repair have the factory presets in them.  Wonder
+     if this is the case, generally, for the PVG.  If so, they better start
+     shipping some extra VRY files on the program disk.
+     
+     The music I create is of a tonal, hopefully homogenous and usually
+     highly structured variety.  Some of the initial presets in the Default
+     VRY file were fun to play with, but are highly doubtful for regular
+     usage.  I still find this particularly true of the Add Controllers and
+     Vary Controllers screens.  I have modified most of them to affect the
+     breath control of my TX81Z for volume swells, and the breath control of
+     my Matrix-6, where it can function as almost anything depending on the
+     routing on the synth.  This is all very good and it took me quite a
+     while to implement, but in all candor I do not use them except once in a
+     great while.  But when I want them, I REALLY want them.
+     
+
+Edit Echo and Stuff    
+-----------------------
+     I didn't realise that this was was a hidden feature until I heard a user
+     mention his desire for it wistfully.  You CAN have merge/echo functional
+     while o the edit page.  Of course it will function while you are playing
+     the seq/track at hand but when you want the echo without the seq, just
+     hit pause.  Echo continues to operate.
+     
+     I always forget that clicking with both mouse buttons plays the current
+     cue from the edit page, I also always forget to shift-click a sequence
+     to stop it.  It will put the area that I was listening to when it
+     stopped at about 2/3's down the screen.  Hitting the Alt key will not
+     only bring back a range you slipped on, it will bring back the last two,
+     back and forth.
+     
+     I always forget to use "Calc", I just sort of take a wild guess at the
+     distances between 8 bars and 32 bars and then eyeball it back into
+     place.  It really is silly when "Calc" is lying there.  I guess that's
+     what you get when you have followed this package from the original 64
+     through the C128 version (the most underrated seq'r of all time).
+     
+     I consider myself a novice only because everytime I dig deeply into this
+     program, I'm discovering it all over again.  There are just SO MANY
+     options from which to choose.  The first time I loaded Fingers and
+     Tunesmith into the KCS w/PVG it was truly awe-inspiring just to flip the
+     pages! What an environment!
+     
+     
+PVG Notes              
+-----------------------
+     Probably my most used macro activity, is for harmonizations of one kind
+     or another.
+     
+     This is how I do it:
+     
+     I have one preset consisting of a transposition up one step, and another
+     to transpose down one step.  I place a "4" in the Ops column in the
+     macro area. This will transpose the affected sequence up a single step
+     four times: a major third.
+     
+     The second line in the macro fine tunes this as necessary for the key of
+     C.  This would mean all notes that have been transposed to a note not
+     modally appropriate to the key of C will be modified.  These would be
+     major thirds that need to be minor.  I set up my protection on the
+     "Global1" screen to represent the scale-tone steps of the key of C, and
+     place a weight next to Pitch set to -1;  transposing all unprotected
+     notes down one step.  Anything that makes it through the protection
+     template would be a violation of the key of C.  Viola!  An accurate
+     transposition of a third, true to one key, C.
+     
+     At first I decided to set up special macros that would let me do this
+     for thirds, fifths and sevenths for my most predominantly used keys.  In
+     the end it ate up to many of my precious preset slots. I decided it was
+     wiser just to add a transposition to the key of C at the beginning of
+     the procedure and to transpose back down to the original key at the end,
+     effectively doing all actual manipulation and fine-tuning in the key of
+     C.
+     
+     This is really much less difficult than it probably sounds.  Okay, an
+     example.  I'm in A and want a harmony build on the third step, or
+     "thirds":
+     
+            Preset                 OPS
+            ------                 ---
+            Tran Vari Up           1 (Transpose me up X steps to C)
+            Trans up 1             4 (Takes me up the major 3rd)
+            Tweak for Thirds       1 (Take any C#D#F#G#A#'s down 1/2 step)
+            Trans Vari Dn          1 (Transposes me down X steps to A again)
+     
+     When I am working in a key other than C I simple go to the two presets
+     (TranVariUp and TranVariDn) and modify the Global 2 screen to effect a
+     transposition relative to C.  If I'm in A TranVari Up should be a 3 step
+     transposition up, TranVariDn would be -3.  If I'm in Eb TranVariUp would
+     again UP, nine steps, TranVariDn would be -9.  I always transpose up to
+     get to the key of C, do what is called for, and then back down again.
+     If I actually want the parallel harmony to be, say a sixth below, I just
+     tack on another Trans Dn 1 and the end of the macro set Ops to 12.
+     After modifiying the 2 Vari's all macros that reference them, (harmonize
+     5th, 7th, 9th, etc.)  will work without any extra modification.
+     
+
+Splitting Blocks  
+-----------------------
+     The Dr.T products are amazingly open-ended, sometimes you can get lost
+     at the beginning.  Regarding the first screen,"Changes", I have labored
+     long and hard and have little to show for my experiences.  But I admit I
+     usually want a decisive mechanism to control things; "deterministic" as
+     Emile has typified it.  And sometimes it's important to me to know that
+     I'M the one with the reigns--by using them.
+     
+     Instead, my predominant method of "randomization" (a word that bugs me)
+     is from the "Swap" screen.  It keeps things so homogenous just to
+     reshuffle the same deck. The "Consecutive" aspects on the other side of
+     this screen and the also pattern screen are getting my renewed
+     attention.  To date, and I've had every update for the past year and a
+     half, I have yet to make consistent use of numerous aspects of the PVG.
+     
+     I find with all of these capabilities that you have to go through them
+     in a long slow cycle, investigating, cataloging.  I find this apprach
+     more fun that I can express.  But in the end the techniques that you
+     remember are the techniques that you use for something other than
+     vehicle for idle curiosity.
+     
+     Sometimes I create alot of raw material, either through improvisation,
+     or from output from Fingers, the PVG, or Tunesmith.  Perhaps 120 or so
+     bars.  Obviously this is too much material to make any cohesive use of
+     in a single block.
+     
+     I have been trying to find a way to copy off the first 16 bars, then the
+     2nd 16 bars and so on.  Then I can manipulate each 16 bar block until
+     it's usable, or to examine it long enough to realize it's useless.
+     After culling through this material, I might 2-3 ideas I can make use of
+     elsewhere.
+     
+     The following splits it off:
+     
+                    Macro   From    To      Loop    OPS
+                    -----   ----    --      ----    ---
+                    Erase    17     32       __      1
+                    Erase    1      16       __      1
+     
+     This is not exactly perfection, but if the range unit is set to measure,
+     and variations to 2, it will copy the original sequence, hack off the
+     last 16 bars, copy the original sequence and hack off the first 16 bars.
+
+     Obviously this could be done for 4, or 8 or 32 bars, and I could use
+     Delete instead of erase.  Unfortunately I am unsure how to go about
+     repeating this process, starting with a file of say 72 bars and hacking
+     it up into 9 8-bar phrases, each in a different seq or track slot.
+     
+
+Sysex Storage          
+-----------------------
+A few comments on how I handle sysex storage sequences. I enter 
+the following into a sequence:
+
+            MSR- ST EVNT  TIME CH TYP NOTE VEL DUR
+            ------- ----  ---- -- --- ---- --- ---
+              1-  1    1     0     SM   12
+              1-  1    2     0     TM  135  0
+     
+     The number of counts to a bar (SM = steps per measure) is now 12 instead
+     of 96.  The reason for this is that I store a block of sysex (one patch
+     or one set-up) per each 12 count.  After doing 8 of these I return to 96
+     clocks per bar.  The net effect of this is that my initial sysex
+     addressing of the system takes a 4 "beats" count.  Sometimes I merge it
+     with 4 rum-shots from my drum-machine and use it as a count off.
+     
+     When I need to edit it (not my favorite task)  I simply outline and play
+     the first 2-5 elements of my sysex sequence (effectively resetting time
+     to 12 clocks per bar) then I click on "Find" and request bar 5--bingo,
+     I'm staring at my FB01 sysex.  My format is consistent so I don't have
+     to bother thinking about it at creative moments:
+     
+               Bar 1:   1 Matrix-6 patch dump (output to patch #97)
+               Bar 2:   1 Matrix-6 patch dump (output to patch #98)
+               Bar 3:   Sysex telling Matrix-6 to go to split mode.
+               Bar 4:   TX81Z Patch command, and configuration dump
+               Bar 5:   FB01 configuration dump
+               Bar 6:   CZ1 configuration information.
+               Bar 7/8: A slot waiting for a brand new EPS, also other varied
+                        sysex.
+     
+     If I put them all of this in one sequence with no considerations then it
+     is a mess trying to find out where a specific sysex dump is located if I
+     need to change it.  I could do without the changing the steps per
+     measure to 12, I guess, but then I would be preceeding each tune with 4
+     bars of silence in order to output about 2 seconds or less of actual
+     sysex, or if it was 3/4 of a bar then my measure counter would be off
+     till forever.
+     
+     Then I go to the play screen.  I hit 0 to get to the options page, and
+     toggle the sysex record button on.  Returning puts me on the play screen
+     where I hit enter and undo.  This sets me up to record and resets me to
+     0 in anticipation for incoming sysex.
+     
+     For the FB01 I go to the system setup button (upper right on the front
+     panel) and click till I see option #1 DUMP.  Then I hit the +/YES button
+     till it says config (If it already says it, I have to hit it anyway and
+     then come back), then the System setup button again.  The LCD asks If I
+     am sure.  I am.  As soon as I enter +/YES to this query I notice that
+     the word "SYSEX" has popped up on my play screen.  If I can see it, it's
+     time to turn it off.  Sysex travels fast.
+     
+     I exit to the edit mode and set the last event to 12 and insure that the
+     first event is 0.  The whole length, then is 12.
+     
+     I repeat this with the TX81Z.  Here though, I must only go to another
+     patch, turn on the record mechanism, and then hit the button going back
+     to the patch that I actually want to store.  If it is a Config I am
+     going to, and not a single patch, then I must preceed the sysex with a
+     program change that puts me in my Config area.  In my case it is patch
+     50.
+     
+     The TX81Z doesn't respond as rapidly to sysex as some other machines.  For
+     this reason I have to do it like this:
+     
+            MSR- ST EVNT  TIME CH TYP NOTE VEL DUR
+            ------- ----  ---- -- --- ---- --- ---
+              4-  1   22     0  6  PG   50   0
+              4-  1   23     6      *  240
+                     More sysex goes here...
+              5-  1  423     6    DE
+     
+     Notice that instead of having a 12 at the end I must split it into two
+     increments of 6 each.  Yamaha is slow to pick up on instructions
+     sometimes, and has to be fed this info in two statemenst or goes into
+     "MIDI Data Error!" afterwhich it refuses to listen to ANY instruction.
+     So, I issue the patch request, wait for 6 clocks, send the sysex, and
+     then wait another 6 clocks.  Nevertheless the total is 12.
+     
+     The whole shebang looks like this...
+     
+            MSR- ST EVNT  TIME CH TYP NOTE VEL DUR
+            ------- ----  ---- -- --- ---- --- ---
+              1-  1    1     0     SM      12
+              1-  1    2     0     TM      130
+              1-  1    3     0      *      240
+                          ...
+                 I load a patch to slot 97 on my matrix 6 here.
+                          ...
+              2-  1  201    12     DE
+              2-  1  202     0      *      240
+                          ...
+                 I load a patch to slot 98 on my matrix 6 here.
+                          ...
+              3-  1  351    12     DE
+              3-  1  352     0     *       240
+                          ...
+                 I load MAT6 sysex that switches me to split mode.
+                 Almost all my splits refer to patches 97 and 98,
+                 so I select a split patch that juggles the two voices
+                 appropriately.
+                          ...
+              4-  1  554     6     PG       50
+              4-  1  555     6      *      240
+                          ...
+                 TX81Z Patch ("go to the splits area of memory"), wait
+                 6 clocks, then feed the sysex.
+                          ...
+              5-  1  638     6    DE
+              5-  1  639     0     *    240
+                          ...
+                   CZ1 sysex goes here.  Unfortunately, you can't initiate
+                   a single patch sysex dump from the CZ1 front panel.
+                   Most of mine was hand assembled with the manual to do
+                   split tasks and multi assignments.
+                          ...
+              6-  1  691    12    DE
+              6-  1  692     0 10 PG   10
+                          ...
+                   Various other patches that are from non-sysexing a variety
+                   of synths.
+              9-  1  702    24    SM   96
+                   Return to 96 beats per minute.
+     
+     This is more sysex than I do on every single tune, but I have tried to
+     be consistent in my format.  There is nothing worse that digging
+     up some old tune only to spend an hour tweaking patches till you get to
+     a rough approximation of the original piece.  When I call up a tune, new
+     or old, I want it to fire off instructions to take it back to the EXACT
+     moment of time I created it.  Now I'm asking the KCS to be a time
+     machine!  Hmmm....if I could access the clock with a macro....
+
+
+Other Macros           
+-----------------------
+     There are, of course, the more mundane tasks.
+     
+     I send a rim-shot to my drum-machine instead of the using the metronome
+     from the monitor.  It's not loud enough when the keyboards are playing
+     and too loud when they are.  I usually forget to mute when I mix down
+     (option ! from track mode) to open mode.  So, I have a macro that strips
+     out A#3 on channel 10 (my drum's rim-shot).
+     
+     One macro splits my two-handed sequence on channel 6 (initially input in
+     a split set-up from my TX81z).  It dispatches channel 6's low-end to
+     channel 8 for a bass patch on my Matrix6, and channel 6's high-end to a
+     guitar patch on my CZ1.  Obviously I tweak this preset as needed, not in
+     frequently by outputting only the bass end to double the bass line on
+     another instrument.
+     
+     Of course, I have a humanize preset that makes minor changes in time,
+     velocity and duration.  I am incapable of using the timing shift options
+     from the track screen (Shift-F1/F6).  Maybe others can use shift, but I
+     find it utterly useless.  On the other hand I sure could use a real-time
+     octave transposition or VARIABLE velocity or duration transposition. Ah
+     well, I guess the old C64 and C128 version have yet to be completely
+     blown away.
+     
+     I have one macro that does a controlled fade out with CC 7 (volume) over
+     4 bars, and another over 8.  I rarely use it though, when I actually do
+     taping I wind up forgetting it and fading out by hand.
+
+
+Environment            
+-----------------------
+     I keep tracks 31 through 34 set up with 4 rudimentary drum beats; rock,
+     all purpose latin, samba, and jazz. I have my first sequence prepared to
+     play 8 bars of rim-shot in place of metronome. I "double" it from the
+     edit screen if I want something longer.  Obviously I have chosen all
+     appropriate "start-up" settings and saved them in DEFAULT.ENV on the
+     program disk.  I know we're not suppose to write to the disk, and it
+     gives me the heebie-jeebies doing it.  I have my back-up, and with as
+     many options as the KCS and MPE-related software provides, I have to
+     eliminate as much of the repetitious decision-making as possible to get
+     anything done.
+     
+     I have a few sequences crammed full of sysex that I keep up in the 80's
+     in open mode.  They sets up all 4 synths in some very specific stock
+     set-ups;  ee-lectric rock, straight rock, jazz, orchestral 1, orchestral
+     2. I also have a few small blocks of sysex in the 70's for specific
+     instruments.  I use these to assemble larger blocks.  I find sysex work
+     a little tedious frankly but having these little tools around makes
+     mandatory storage a relatively brief process.  I also store the sysex
+     blocks in individual SEQ files, stashed away on a Midi Utility disk, so
+     I can always find them, and so they won't take up alot of my precious
+     RAM.
+     
+     I have an ALL file with my current configurations, I call it CLR1.  I
+     use it at start-up time or when I am CLRing one work session out of my
+     way in preparation for another.  If I feel compelled to change this
+     stock environment I call it CLR2, and decide later if it is fit to be
+     the one-and-only CLR1.  If so I stash the old CLR1, and rename CLR2 to
+     CLR1. This may seem obvious, but any techhead knows how rapidly safety
+     files can accumulate.  Safety first--archive last!
+     
+     I try to keep all my set-up files named CLR1; the VRY files from the
+     PVG, the TUN files from Tunesmith, the FGR files from Fingers, my Caged
+     Artist patch bank dumps for the TX81Z, FB01 and Matrix-6.  It's nice to
+     be able to load all the start-up files without excessive pointing,
+     clicking OR typing.  Just return on CLR1 and let the file extention do
+     your work.
+     
+     Also, I have used UIS for a couple of months now with KCS--from an auto
+     folder, not as an ACC file, and can see not bad signs.  Being able to
+     juggle files while in the KCS has been an unbelievable boon to my work.
+     ReSTart, a similar replacement for the GEM file selector is NOT usable.
+     It trashed a number of the seqs, some irreparably, that I was working on
+     during the month or so it was part of my system.  It scattered very high
+     timing values on DE's and PB's all over the place.
+
+
+Tunesmith              
+-----------------------
+     This is one incredible package.  Just got it friday and have either
+     been working my way through it's splendor or writing this missive all
+     weekend.  "Don't start me talking, I tell everything I know" (Junior
+     Wells/Buddy Guy).
+     
+     I have the Phantom due to arrive UPS monday or tuesday.  Hot-diggity.
+
+          Gerry Scott-Moore
+          Dallas, Texas
+          1/22/89
+
+          GEnie: GSCOTT-MOORE
+          CIS: 73250,2136

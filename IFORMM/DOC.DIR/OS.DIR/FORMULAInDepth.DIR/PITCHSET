@@ -1,0 +1,205 @@
+
+\ **************************** P I T C H S E T S *****************************	
+
+\ PITCHSETS --- a method of limiting note selections to predefined scales.
+\ Psets provided: majorscale minorscale wholetone blues dimscale invmajsc
+
+\ Ascending and descending scales may differ (i.e., melodic minor).
+
+\ set-ps ( base-pitch template-address --- ; install a process's pitchset )
+         \ For example: 60 major-scale set-ps or c major-scale set-ps
+
+\ +ps  		( --- note# ; one note up in the scale )
+\ -ps  		( --- note# ; one note down in the scale )
+\ +nps 		( n --- note# ; n degrees up in the scale )
+\ -nps 		( n --- note# ; n degrees down in the scale )
+\ aps  		( scale-degree -- note# ; ascending scale )
+\ dps  		( scale-degree -- note# ; descending scale )
+\ psind		( --- n ; a pquan that stores last PS index used )
+\ pslast	( --- pitch ; a pquan that stores last pitch returned )
+
+\ The "current PS" and "position within PS" are maintained separately of each
+\ process.
+
+\ DEFINING A PITCHSET:
+
+\ First, define a scale:  create major 0 , 2 , 4 , 5 , 7 , 9 , 11 ,
+
+\ Second, define the 'template' that characterizes the pitchset: 
+
+	\ create majorscale	( name of pitchset )
+	\ 7 ,		( # of notes in scale )
+	\ 12 ,		( 'modulus' of scale, its usually 12 )
+	   ( The modulus normally sets the number of note#'s between octaves;
+   	     however scales that are not 'octave invariant' can be defined. )
+	\ major ,	( the ascending scale )
+	\ major ,	( the descending scale )
+
+
+\ *****************************************************************************
+
+ create balkan 0 , 1 , 4 , 5 , 6 , 9 , 10 , 
+ create balkanscale
+ 7 ,	
+ 12 ,		 
+ balkan ,
+ balkan ,
+
+:ap balkans1
+::ap
+/16
+   60 balkanscale set-ps 
+	 22 0 do i nps $ loop
+	 0 21 do i nps $ -1 +loop
+;;ap
+;ap
+
+quan zero-pitch
+
+:ap balkans2
+::ap
+/16
+ 5 0 do 
+       40 irnd 50 + to zero-pitch
+					zero-pitch . cr cr
+					20 0 do 
+						zero-pitch balkanscale set-ps 
+	 					12 irnd nps $ 
+     					     loop
+     loop
+;;ap
+;ap
+
+\ ************** Here is an example that uses a funny modulus: ***************
+
+create timetable
+
+ 100 ,			\ total 'weight' of the table
+ 0 , 			\ 0 entry has 'no weight', so it will never happen
+ 25 ,			\ 1 entry will happen 25% of the time (25/100)
+ 24 ,			\ 2 entry will happen 24% of the time (24/100)
+ 1 ,			\ 3 entry will happen 1% of the time (1/100)
+ 50 ,			\ 4 entry will happen 50% of the time (1/100)
+
+\ -----------------------------------------------------------------------------
+
+create penty 0 , 2 , 5 , 7 , 9 , 	\ underlying scale 
+create stretch-penty
+5 ,					\ number of notes in the scale
+14 ,					\ modulus of 14 stretches scale by a 9th
+penty , penty ,				\ same ascending and descending scales
+
+
+:ap demo.ps1
+ ::ap
+  ::tsg 
+    begin 
+     timetable trnd  	\ pick random 1 2 3 or 4
+     8 r>i & 		\ make a rhythmic value of that many 1/8 notes
+    again
+  ;;sg
+  60 stretch-penty set-ps
+  begin
+  timetable trnd nps $
+  again
+ ;;ap
+;ap
+
+\ ****************************************************************************
+
+:ap demo.ps2
+ ::ap 
+  ::tsg 
+    begin 
+     timetable trnd  	\ pick random 1 2 3 or 4
+     8 r>i & 		\ make a rhythmic value of that many 1/8 notes
+    again
+  ;;sg
+  60 stretch-penty set-ps
+  begin
+   2 irnd if +ps else -ps then $
+   2 irnd if -ps else +ps then $
+  again
+ ;;ap
+;ap
+
+\ ****************************************************************************
+
+:ap demo.ps3		( base-ptich pitchset --- ; )
+ ::ap 
+  [ 2 params ]          \ for example 67 majorscale to get G-major scale played
+  set-ps
+  ::tsg 
+    begin 
+     timetable trnd  	\ pick random 1 2 3 or 4
+     5 over - 0 do
+      dup 8 r>i & 	\ make a rhythmic value of that many 1/8 notes
+     loop drop
+    again
+  ;;sg
+  begin
+   2 irnd if 8 irnd 1+ 0 do +ps $ loop else 8 irnd 1+ 0 do -ps $ loop then 
+   12 irnd nps drop
+  again
+ ;;ap
+;ap
+
+\ ****************************************************************************
+
+create beat1-prob
+100 ,
+0 , 0 , 0 , 100 ,
+
+create beat2-prob
+100 ,
+0 , 25 , 50 , 25 ,
+
+create beat3-prob
+100 ,
+0 , 80 , 10 , 10 ,
+
+create beat4-prob
+100 ,
+0 , 33 , 34 , 33 ,
+
+pquan meter
+
+:sg make-beats
+  trnd to meter		        \ meter is 1, 2, or 3
+  meter 0 			\ play 1 1/4, 2 1/4*2, and 3 1/4*3
+   do 1 4 meter * r>i & loop
+;sg
+
+:sg meter-man
+ begin
+  beat1-prob make-beats
+  beat2-prob make-beats
+  beat3-prob make-beats
+  beat4-prob make-beats
+ again
+;sg
+
+
+:ap demo.ps4		( base-ptich pitchset --- ; )
+ ::ap 
+  [ 2 params ]          \ for example 65 majorscale to get F-major scale played
+  set-ps
+  ::sh1
+   begin 
+    0 1|12 ocon 24 2|12 ocon
+    16 1|12 ocon 10 2|12 ocon
+    12 1|12 ocon 20 2|12 ocon
+    16 1|12 ocon 0 2|12 ocon
+   again
+  ;;sh
+  ::tsg 
+   meter-man
+  ;;sg
+  begin
+   2 irnd if 8 irnd 1+ 0 do +ps $ loop else 8 irnd 1+ 0 do -ps $ loop then 
+   12 irnd nps drop
+  again
+ ;;ap
+;ap
+
+\ ****************************************************************************

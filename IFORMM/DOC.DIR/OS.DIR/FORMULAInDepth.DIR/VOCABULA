@@ -1,0 +1,31 @@
+
+\ ************************ V O C A B U L A R I E S ****************************
+
+\ FORMULA uses multiple vocabularies to hide words that are of interest only in
+\ certain contexts. These vocabularies are:
+
+\	internals	( words not intendes for direct user access )
+\	loaded		( per-file compilation words -- used for recompile )
+\	ap-defs		( words relevant to note-playing process definitions )
+\	sh-defs		( words relevant to shape definitions )
+\	td-defs		( words relevant to time deformation definitions )
+\	sg-defs		( words relevant to sequence generator definitions )
+\	standard-MIDI-defs (instrument defs based on standard #s )
+
+\ Fortmacs maintaines a "search list" of vocabularies to be scaned during word 
+\ lookup. Words such as :ap add the relevant vocabulary to the search list.
+\ The following:
+
+\	only forth also definitions
+
+\ restores the search list to its default state (forth is Forthmac's main
+\ vocabulary). This is often done at the start of source files, and it's often
+\ necessary to do it manually after a compilation error.
+
+\ Beware of the following mistake: if you redefine a word in say, ap-defs, and
+\ mistakenly put the definition in the "forth" vocabulary, subsequently
+\ definitions using :ap see the old definition of the word since ap-defs 
+\ precedes "forth" in the search list.
+
+\ *****************************************************************************
+

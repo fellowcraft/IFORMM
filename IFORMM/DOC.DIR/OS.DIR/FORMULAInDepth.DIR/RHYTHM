@@ -1,0 +1,203 @@
+
+\ **************************** R H Y T H M **********************************
+
+\ Use FLUTE-like voice for the best listening example.
+
+\ ***************************************************************************
+
+\ Rhythmical values (the note durations) are specified in FORMULA using 
+\ the following words:
+
+\  /1  = whole            	   /1.  = 1+4
+\  /2  = half      	           /2.  = 2+4     /2,, = 2+8     /2,,, = 2+16
+\  /4  = quarter   /4.. = 4+8+16   /4.  = 4+8     /4,, = 4+16    /4,,, = 4+32
+\  /8  = eight                     /8.  = 8+16
+\  /16 = 16th			   /16. = 16+32
+\  /32 = 32nd			   /32. = 32+64
+\  /64 = 64th
+
+\ ****************************************************************************
+
+\  WORDS FOR TRIPLETS
+
+\  /1-3    = triplet under the whole note duration
+\  /2-3    = triplet under the half note duration
+\  /4-3    = triplet under the quarter note duration
+\  /8-3    = triplet under the eight note duration
+\  /16-3   = triplet under the 16th note duration
+\  /32-3   = triplet under the 32nd note duration
+
+\  WORDS FOR QUINTUPLETS
+
+\  /1-5    = quintuplet under the whole note duration
+\  /2-5    = quintuplet under the half note duration
+\  /4-5    = quintuplet under the quarter note duration
+\  /8-5    = quintuplet under the eight note duration
+
+\  WORDS FOR SEPTUPLETS
+
+\  /1-7    = septuplet under the whole note duration
+\  /2-7    = septuplet under the half note duration
+\  /4-7    = septuplet under the quarter note duration
+\  /8-7    = septuplet under the eight note duration
+
+\ ****************************************************************************
+
+\  NOTE DURATION GROUPS (METERS) DEFINED IN FORMULA:
+
+\        32/32   16/32    8/32    4/32    3/32   2/32
+
+\        32/16   16/16   12/16   11/16   10/16   9/16  
+\         8/16    7/16    6/16    4/16    3/16   2/16
+
+\        16/8     8/8     7/8     6/8     5/8    4/8    3/8    2/8
+
+\         8/4     4/4     3/4     2/4
+
+\         4/2     2/2
+
+\  	/8.16   = 8 + 16            /8+   = 8 + 16 + 16
+\  	/4.8    = 4 + 8             /4+   = 4 + 8 + 8
+\  	/2.4    = 2 + 4             /2+   = 2 + 4 + 4
+
+
+\ **************************************************************************
+
+\ ************************** E X A M P L E S *******************************
+
+\ **************************************************************************
+
+:ap regular-beats
+	::ap
+
+ /1      		\ ------------------------- WHOLE NOTE BEATS  
+ 	60 62 64 65 67 69 71 72  8 m$ 
+ /1     0 $ 				\ whole note rest
+
+
+ /2		        \ ------------------------- HALF NOTE BEATS
+ 	60 62 64 65 67 69 71 72  8 m$ 
+ /1     0 $ 				\ whole note rest
+
+
+ /4      		\ ------------------------- QUARTER NOTE BEATS
+ 	60 62 64 65 67 69 71 72  8 m$ 
+ /1     0 $ 				\ whole note rest
+
+
+ /8      		\ ------------------------- EIGHTH NOTE BEATS
+ 	60 62 64 65 67 69 71 72  8 m$ 
+ /1     0 $ 				\ whole note rest
+
+
+ /16     		\ ------------------------- 16th NOTE BEATS
+ 	60 62 64 65 67 69 71 72  8 m$ 
+ /1     0 $ 				\ whole note rest
+
+
+
+ /32     		\ ------------------------- 32nd NOTE BEATS
+  	60 62 64 65 67 69 71 72  8 m$ 
+ /1     0 $ 				\ whole note rest
+
+
+ /64     		\ ------------------------- 64th NOTE BEATS
+ 	60 62 64 65 67 69 71 72  8 m$ 
+
+	;;ap
+;ap
+
+\ ***************************************************************************
+
+:ap beats
+	::ap
+
+ /1 60 $  /2 62 $  /4 64 $  /8 65 $  /16 67 $  /32 68 $  /64 71 $  /1 72 $
+ /1 60 $  /2 62 $  /4 64 $  /8 65 $  /16 67 $  /32 68 $  /64 71 $  /1 72 $
+
+	;;ap
+;ap
+
+\ ***************************************************************************
+
+:ap combination  		\ 4 bars in 4/4 time signature
+	::ap
+
+	/2. 60 $ /4 62 $ 
+	/4. 64 $ /8. 65 $ /16 67 $
+	/2,, 69 $ /4,,, 71 $ /32 72 $
+	/16. 74 $ /32 76 $ /32. 77 $ /64 79 $ /4.. 81 $ /4,, 83 $ 
+
+	;;ap 
+;ap
+
+\ ***************************************************************************
+
+:ap groups
+	::ap
+
+ /8.16   		\ ------------------------- one 8th and one 16th
+ 	60 62 64 65 67 69 71 72     8 m$ /1 0 $
+
+ /8+     		\ ------------------------- one 8th and two 16th
+ 	60 62 64 65 67 69 71 72 74  9 m$ /1 0 $
+
+
+ /4.8    		\ ------------------------- one 4th and one 8th
+ 	60 62 64 65 67 69 71 72     8 m$ /1 0 $
+
+ /4+     		\ ------------------------- one 4th and two 8th
+ 	60 62 64 65 67 69 71 72 74  9 m$ /1 0 $
+
+
+ /2.4    		\ ------------------------- one 2nd and one 4th
+ 	60 62 64 65 67 69 71 72     8 m$ /1 0 $
+
+ /2+     		\ ------------------------- one 2nd and two 4th
+ 	60 62 64 65 67 69 71 72 74  9 m$
+
+	;;ap 
+;ap
+
+\ **************************************************************************
+	
+
+:ap meter-groups
+	::ap
+
+  16/32              \ play 16 32nd notes 
+
+       60 62 64 65 67 69 71 72 71 69 67 65 64 62 60 72    16 m$ 
+       
+    /4  0 $          \ play a quarter note rest
+     
+   8/4               \ play 8 quarter notes
+
+       60 62 64 65 67 69 71 72   8 m$  
+       
+    /4  0 $          \ play a quarter note rest
+
+  12/16              \ play 12 sixteen notes
+ 
+       60 65 67  65 67 72  67 72 76  72 76 79  12 m$ 
+
+	;;ap
+;ap
+
+\ ***************************************************************************
+
+:ap xplets
+	::ap
+
+    /1-3 60 62 64 3 m$ /1 0 $               \ triplet under the whole note
+    /2-3 60 64 67 3 m$ /1 0 $	            \ triplet under the half note
+    /4-3 60 65 69 3 m$ /1 0 $               \ triplet under the quarter note
+    /4-5 60 62 64 65 67 5 m$ /1 0 $	    \ quintuplet under the quarter note
+    /8-7 60 62 64 65 67 69 71 7 m$  /1 0 $  \ septuplet under the eight note
+
+	;;ap
+;ap
+
+
+\ ****************************************************************************
+

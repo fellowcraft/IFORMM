@@ -1,0 +1,188 @@
+OK
+CANCEL
+Error:
+Invalid format or value.
+Lower limit for last value is
+Upper limit for last value is~5
+Can't Undo
+Display configuration stored as 
+ ~
+ ~
+COLORS~10
+Background
+Keys 2
+Bar Lines
+Notes
+Reds~15
+Blues
+Greens
+Conductor Track
+ ~
+ ~20
+No room for requested operation.
+Operation would produce value out of range.
+ ~
+ ~
+An invalid value was entered.~25
+ ~
+ ~
+Too much to select.
+TEMPO
+All possible note offs were sent!~30
+Record Buffer Full
+ ~
+ ~
+ ~
+ ~35
+ ~
+SAVING...
+LOADING...
+[2][|Replace existing file?][ Yes |No]
+Error reading ikon, startup, or text file.~40
+Disk is write-protected.
+Disk is full.
+File larger than available memory.
+ ~
+ ~45
+ ~
+Write error, disk probably full.
+File not found.
+Path not found.
+Disk error.~50
+ ~
+ ~
+ ~
+ ~
+ ~55
+DONE
+COMPARE
+UNDO
+YES
+NO~60
+HOLD
+ ~
+ ~
+ ~
+ ~65
+[3][Not enough memory|for Program.][OK]
+Version 1.0, as of 10/15/90
+
+
+
+
+
+
+}
+Draw Sequence   Parms~0
+SELECT DRAW SEQUENCE
+"Are you sure you want to quit?"
+Inserted bar line too close to show.
+"Yes;No"
+"Repeat Time"~5
+1;2;4;8;User
+EDIT DRAW PARAMETERS
+Sequence Length:
+Section Length:
+Times:~10
+Pitch Transpose:"
+Velocity Shift:"
+"That tuplet does not fit the beat!"
+Skip Percentage:"
+Measures:~15
+Beats:        Steps:
+Steps:
+CHANGE SEQUENCE
+EDIT SELECTED SECTION(S)
+Start Time:~20
+Untitled
+Name:
+SELECT A SONG
+NEXT PAGE
+LAST PAGE~25
+Copy complete.
+Copy within range complete.
+Click on the section you wish to draw with.
+Start Song playing. What you play will be recorded. 
+Click on the section that you wish to split up.~30
+SELECT SONG TO EDIT
+SELECT SONG TO DELETE
+Are you sure that you want to delete this song?
+Are you sure that you want to delete the selected line?
+Selected Line Copied~35
+SELECT SONG TO MERGE. NO UNDO!
+SELECT SONG TO INSERT. NO UNDO!
+Merge At:
+Insert At:
+Cannot insert or merge song with itself!~40
+COPY SONG TO
+COPY LINE TO
+SEQUENCE
+CONTROL SEQUENCE
+to~45
+* COPY *~
+"Sequence:"
+"Name:"
+"Comments:"
+Reuse Sequence~50
+Automatic Update
+"Invalid sequence!"
+"Sequence in use. Erase?"
+RANGE
+"to"~55
+This may take a while! Press any key to interrupt Copy.
+Copy interrupted by user.
+INSERT SPACE ... NO UNDO!
+Reset Length
+DELETE RANGE ... NO UNDO!~60
+ERASE RANGE ... NO UNDO!
+MAKE A COPY FIRST
+Location:
+Amount:
+MAKE CONDUCTOR TRACK~65
+This will replace the conductor track with sequence data.
+Tempo Changes and Time Signatures
+Tempo Changes Only
+Time Signatures Only
+TIME SIGNATURE AT MEASURE:~70
+User
+steps/measure
+Cannot sync to SMPTE with conductor track off.
+Would have to draw before start to avoid overlap!
+"Cannot move before start!"~75
+Output to invalid port!
+Port
+Port:
+Invalid Port
+Song file cannot contain events of types A-Z or 1-9!~80
+Do you wish to adjust the song for changes in sequence lengths?
+MARKER    at  
+SELECT SEQUENCE FOR SECTION(S)
+SELECT SEQUENCE TO CONVERT
+This is not a vaild Control Sequence for conversion.~85
+Converting KCS songs.
+EDIT SELECTED SECTION
+EDIT SELECTED SECTION(S)
+Max:     BPM"
+PG/VO   ~90
+SET SONG SELECT AND REMOTE CONTROL
+"ABOUT THE SONG EDITOR..." 
+TEMPO WINDOW RANGE
+Min:     BPM 
+The Song Editor was written by Emile Tobenfeld, with~95
+"additional code and design by James Cox and Richard Viard."
+Song Select Out:
+Remote Control Number:
+Remote Control Number is already in use!
+Off;Set Song;Set then Play;Play Song~100
+REMOTE CONTROL OPTIONS
+Remote while Playing
+Remote Control Mode     Message
+Program Change on Channel;Program Change Omni;Song Select Message 
+Your printer is not responding. Abort?~105
+Sort by Name;Sort by Number
+Output to Screen;Output to Printer
+PRINT SET LIST
+Set List for 
+Remote   Title                                                   XOR~110
+Press any key to interrupt printing.
+The Backup Copy is now being used.

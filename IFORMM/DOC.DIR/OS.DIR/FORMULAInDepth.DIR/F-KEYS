@@ -1,0 +1,45 @@
+
+\ ************************** FUNCTION KEY HANDELING **************************
+
+\ The Atari's function keys and shifted function keys can be assigned
+\ FORMULA words to be executed when the key is pressed. Indices from 0 to 9
+\ select function keys 1 to 10 while indiced from 10 to 19 select shifted
+\ function keys.
+
+\ FK-table	( name ; --- ; create a function key action table )
+\ FK-action: 	( name ; --- ; insert enty in a function key action table )
+\ default-FK-table	( predefined default function key action table )
+
+\ FK-table defines a function key action table (initially all entries are 
+\ noop). Invoking name activates the table. FK-action: makes 'name' the nth
+\ entry of the currently active table.
+
+\ For example:
+
+	:ap wordy ." type " cr ;ap
+	
+	default-FK-table
+
+	11 FK-action: wordy
+
+\ will activate the default function key table and cause 'word' to be executed
+\ whenever you press the shift and the function key 2 simultaneously.
+
+	:ap musica
+		/16 c $ e $ g $
+	;ap
+
+	:ap musicas 
+		::ap musica ;;ap
+	;ap
+
+	0 FK-action: musicas
+
+\ Now, if you press function key 1 you'll get some music as many times as you
+\ press the key.
+
+\ *****************************************************************************
+
+	9 FK-action: kill-all
+
+\ Pressing the function key number 10 will kill all the processes.

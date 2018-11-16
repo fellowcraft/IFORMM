@@ -1,0 +1,136 @@
+		
+
+\ *******************  N O T E    S E Q U E N C I N G  ************************
+
+\ Use MARIMBA YAMAHA DX 7 voice for the best listening example.
+
+\ As mentioned in the file NOTES, there is in FORMULA a m$ word for playing
+\ the sequence of notes. Play and analize scale1 trough scale6 for the example.
+
+\ *****************************************************************************
+ 
+\ There are posibilities to produce different scales using FORT loop operstions.
+\ For those examples, play and analize scale7 trough scale12.  
+
+\ *****************************************************************************
+
+:ap scale1
+	/4
+	c d e f g                  5                     m$
+
+                  ( number of tones in the sequence      m$ )
+;ap
+
+\ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ OR ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+:ap scale2
+	/4
+	c d e f g          5$
+;ap
+
+\ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ OR ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+:ap scale3
+	/4
+	60 62 64 65 67     5 m$
+;ap
+
+\ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ OR ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+:ap scale4
+	/4
+	60 62 64 65 67     5$
+;ap
+
+
+\ ***************************************************************************
+
+
+:ap scale5
+	/4
+	c  d  e  f  g  a  b  +oct c  d  e  f  g  a  b  +oct c
+
+	-oct b  a  g  f  e  d  c  -oct b  a  g  f  e  d  c          29 m$
+;ap
+
+\ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ OR ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+:ap scale6
+	/4
+	60  62  64  65  67  69  71  72  74  76  77  79  81  83  84 
+
+        83  81  79  77  76  74  72  71  69  67  65  64  62  60      29 m$
+;ap
+
+\ ***************************************************************************
+
+
+:ap scale7          \ ASCENDING CHROMATIC SCALE from 60 to 72 MIDI note. 
+	/4
+    73 60 do
+             i $ 
+          loop
+;ap
+
+
+\ ***************************************************************************
+
+
+:ap scale8          \ DESCENDING CHROMATIC SCALE from 72 to 60 MIDI note.
+	/4
+
+    59 72 do
+             i $
+      -1 +loop
+;ap
+
+
+\ ***************************************************************************
+
+
+:ap scale9         \ ASCENDING WHOLE-TONE SCALE from 60 to 72 MIDI note. 
+	/4
+
+   73 60 do
+	    i $
+      2 +loop
+;ap
+         
+
+\ ***************************************************************************
+
+
+:ap scale10         \ DECREASING WHOLE-TONE SCALE from 72 to 60 MIDI note. 
+	/4
+
+   59 72 do
+	    i $
+     -2 +loop
+;ap
+         
+
+\ ***************************************************************************
+
+
+:ap scale11	  \ UP ROW OF THE MAJOR THIRDS from 40 to 90 MIDI note.
+	/4
+
+  90 40 do
+	   i $
+     4 +loop
+;ap
+
+
+\ ***************************************************************************
+
+
+:ap scale12	  \ DOWN ROW OF THE MINOR SEVENTHS from 100 to 40 MIDI note.
+	/4
+
+ 30 100 do
+	   i $
+   -10 +loop
+;ap
+
+
+\ ***************************************************************************

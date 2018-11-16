@@ -1,0 +1,312 @@
+This text is repeated in English below.
+
+énderungen im Sync Dialog
+=========================
+- Locktime
+  Legt fest wielange der Timecode auf GÅltigkeit geprÅft werden soll,
+  bevor MROS startet.
+- Dropouttime
+  Legt fest wielange bei Ausbleiben des Timecodes wietergespielt
+  werden soll. Diesen Wert bitte erhîhen falls lÑngere Dropouts
+  im Timecode vorhanden sind
+- Recognize Frame Change
+  Wenn diese Option eingeschaltet wird bei Synchronisation mit
+  MIDI Timecode automatisch erkannt, welche Framerate der Timecode 
+  hat. 
+
+énderungen im "Printer Setup"/"Printer Configuration"
+=====================================================
+
+Der Titel des Dialogs ist "Printer Setup" und nicht wie im Handbuch
+abgebildet "Printer Configuration".
+
+"Test"
+Ein Klick auf dieses Feld started einen Testausdruck. Der Testdruck zeigt
+eine einfache Grafik, sie besteht aus zwei ineinanderliegenden Rahmen. Diese
+Rahmen symbolisieren die druckbaren Bereiche der Seite. Der schwarze Ñuûere
+Rahmen zeigt den Bereich der Seite an, welchen Cubase als bedruckbar
+annimmt. Der gepunktete innere Rahmen zeigt die Randeinstellung, die vom
+Score Editor benutzt wird.
+Sobald der Ausdruck nicht auf einer Seite erscheint oder auf der rechten
+Seite abgeschnitten wird, kann man mit "Edit Printer Settings" Cubase
+mitteilen, wo der Ñuûere Rahmen auf der Seite erscheint. Wird auf mehr als
+einer Seite gedruckt, kann Åber die "Top" und "Bottom" Margins das Problem
+behoben werden. Das Abschneiden am rechten Rand wird mit den "Left" und
+"Right" Margins korrigiert.
+
+"Edit Printer Settings"
+Dieser Schalter legt fest welche Margins (RÑnder) verÑndert werden sollen.
+Ist er ausgeschaltet haben die Margins die im Handbuch beschriebene
+Bedeutung.
+Durch das Aktivieren des Schalters, werden neue Margins angezeigt. Die Werte
+dieser Margins teilen Cubase mit, welchen Bereich der Seite der Drucker
+Åberhaupt bedrucken kann. Viele Drucker benîtigen links und rechts auf der
+Seite RÑnder, um das Papier zu transportieren. Die vertikalen RÑnder sind
+durch den "Perforationssprung" oder automatischen Seitenvorschub festgelegt.
+Beim Einstellen dieser "Drucker" RÑnder muû ein wenig experimentiert werden.
+Im Normalfall ist das VerÑndern der voreingestellten RÑnder nicht notwendig,
+da Cubase von bewÑhrten Werten ausgeht. Jedoch kann man hiermit die oben
+beschriebenen Probleme beheben.
+
+NachtrÑge zum Score Editor:
+===========================
+
+- Im Handbuch ist von Zoomfaktoren 50% und 25% die Rede -
+  richtig ist 75% und 50%.
+- AnwÑhlen eines Systems (Klick links NEBEN das System) setzt den Loop auf
+  linke /rechte Grenze dieses Systems.
+- Wenn man den vertikalen Abstand zwischen zwei Systemen durch Ziehen mit
+  der Maus verÑndert und dabei die ALT Taste gedrÅckt hÑlt, gilt dieser neu
+  gesetzte Abstand ab hier fÅr den Rest der Partitur.
+  Bsp.: Klaviersystem, 2. (Ba -)System mit ALT verschieben:
+  der Abstand zwischen 1. und 2. System ist ab hier Åberall derselbe.
+- Die Einstellungen unter "staff settings" werden im TRACK
+  gespeichert, nicht im Part. Wenn man einen Part in eine andere Spur
+  verschiebt, darf man sich also nicht wundern, wenn plîtzlich kein
+  Splitpunkt mehr erscheint oder polyphone Stimmen nicht mehr gesetzt
+  sind.
+- SHIFT - Doppelclick selektiert alle Elemente eines Typs (gilt nur fÅr
+  Text und Chordsymbole).
+- Drum Notation: die Namen der Instrumente sind nur verfÅgbar, wenn man
+  einen Drumtrack editiert!
+- Drum Notation: "Init Displaynotes" stellt die Displaynoten auf die In-Note
+  der Drummap (Drumtrack) bzw. setzt MIDI-Pitch und Displaynote gleich
+  (MIDItrack).
+- EinfÅgen von Symbolen mit dem Bleistift: wenn man mit dem Bleistift direkt
+  in eine Note klickt, erscheint das Symbol an einer sinnvollen Position
+  (z.B. Staccatopunkt zentriert unter der Note etc.), sonst dort, wo man
+  hinklickt.
+- Lyric Input mit TAB: die Lyrics werden stets auf die Hîhe gesetzt,
+  wo mit dem Bleistift Tool geklickt wurde; d.h., alle folgenden Lyrics
+  kommen auf die gleiche Hîhe. Alle "in einem Rutsch" eingegebenen Lyrics
+  sind selektiert und kînnen  bequem positioniert werden.
+- Text Input Dialog: Wenn man Fontgrî e und / oder -typ mit gedrÅckter ALT
+  Taste verÑndert, wirkt sich dies fÅr alle selektierten Texte im Score aus
+  (au er Title).
+- Lyric Input: Es lassen sich jetzt problemlos mehrere Strophen unteinein-
+  ander darstellen !
+- Alle Fonts im CUBASE.DAT Ordner werden bei Programmstart automatisch
+  geladen und sind verfÅgbar. Das Programm lÑdt bei Bedarf wÑhrend des
+  Druckens weitere Fonts ein. Der durch diese Fonts zeitweise belegte
+  Speicherplatz wird nach dem Drucken wieder freigegeben.
+  Innerhalb von Cubase gibt es keine explizite Unterscheidung zwischen
+  Bildschirm-  und Drucker-Fonts (d.h.: Sie kînnten auch mit den im
+  CUBASE.DAT Ordner vorhandenen Bildschirm-Fonts allein drucken.)
+  Wenn Cubase Sie beim ersten Ausdruck auffordert, die FONTS Ordner zu
+  finden, versucht das Programm nur, das Ausdruck-Resultat zu optimieren.
+  Probieren Sie bitte aus,  welcher der beiden FONTS-Ordner im
+  Zusammenhang mit Ihrer speziellen Konfiguration beim Ausdruck die bessere
+  DruckqualitÑt liefert.
+- Der "Cubase" - Font, den man im Textinput-Dialog auswÑhlen kann, ist der
+  Notationsfont. Man kann hier also alle Symbole (Notenkîpfe, Vorzeichen,
+  SchlÅssel ..) als Text eingeben.
+- Etwas fÅr Spezialisten: Alle Fonts (inklusive des Notationsfonts!) sind
+  GEM Fonts, die mit einem entsprechenden Programm editiert werden kînnen.
+  Dabei ist allerdings zu bedenken, da  metrische Informationen Åber die
+  Fonts direkt im Programmcode enthalten sind, die nicht verÑndert werden
+  kînnen (nie die Fonts auf der Originaldiskette bearbeiten!!!).
+- In der Konfiguration TOS 1.2 (Copyright 1986,1987) und Atari Laserdrucker
+ SLM 804 oder SLM 605 kann es beim Ausdruck zu Problemen kommen.
+
+KEYSLOT - Accessory
+===================
+Das KEYSLOT.ACC kann zum Weiterschalten der MIDEX Slots verwendet werden.
+Slots werden weitergeschaltet, wenn man unter dem MenÅ "DESK" einfach 
+"NEXT SLOT" anklickt. 
+
+Welchen Printer- Treiber (im Ordner PRINTERS auf der "ADDITIONALS 1"
+Diskette) benutze ich fÅr meinen Drucker?   
+========================================================================
+Im Folgenden eine Aufstellung verschiedener Drucker mit den entsprechenden
+Printer- Treibern: (Treiber mit einem "s" am Ende, z.B. SL-80IPS, sind fÅr 
+Einzelblatt-Einzug).
+
+Atari Laser  ... im ATARI Ordner ( SLM 804 )
+C. Itoh      ... im IBM Ordner
+Canon        ... im IBM Ordner oder im EPSON Ordner ( EPSON LQ )
+Centronics   ... im IBM Ordner
+Citizen      ... im EPSON Ordner ( EPSON FX/LQ )
+Dataproducts ... im IBM Ordner
+Epson        ... im EPSON Ordner ( EPSON FX/LQ )
+HP Desk/ Laserjet  ... im HP Ordner
+IBM          ... im IBM Ordner
+Kyocera      ... im HP Ordner
+NEC          ... im NEC Ordner ( NEC P6 )
+Panasonic    ... im EPSON Ordner
+Schneider    ... im IBM Ordner
+Seikosha     ... im SEIKOSHA Ordner ( SL80IP, SL92 )
+Star         ... im EPSON Ordner
+Taxan        ... im IBM Ordner
+(Alle Angaben ohne GewÑhr)
+GrundsÑtzlich ist darauf zu achten, daû die Papiergrîûe (RÑnder/Margins)
+richtig eingestellt ist um zufriedenstellende Ergebnisse zu erzielen.
+Tip: durch die Verwendung von Drucker-Spoolern kann die Ausdruckgeschwindig-
+keit um das Doppelte gesteigert werden. Das Accessory "SPOOLER.ACC" auf der
+"ADDITIONALS 1" Diskette ist so ein Drucker-Spooler.
+Einige Epson LQ kompatible Drucker (auch einige Drucker von Epson selbst)
+kînnen nur dann drucken, wenn beim Drucken der "FAST" Schalter eingeschaltet
+ist. Der "FAST"-Ausdruck ist bei diesen Druckern schon die maximale
+DruckqualitÑt.
+
+Copyright Notiz fÅr benutzte Fonts
+==================================
+Anteiliges Copyright (c) 1986, Digital Research Inc. Alle Rechte vorbehalten.
+Digital Typefonts von Xiphias, Copyright 1986.
+Anteiliges Copyright (c) 1987 Atari Corporation.
+Diese Kopie genehmigt durch Atari Corporation.
+
+Viel Spaû mit dem Programm!
+
+--------------------------------------------------------------------
+
+Changes to the Sync Dialog
+==========================
+- Locktime
+  Defines how long timecode is checked before MROS starts playback
+- Dropouttime
+  Defines how long MROS keeps playing, if the timecode is interupted.
+  Increase this, if you have long dropouts on tape.
+- Recognize Frame Change
+  If this switch is checked, the framerate of incoming timecode
+  is recognized, when synced to MIDI Timecode.
+
+Changes In The "Printer Setup"/"Printer Configuration"
+======================================================
+
+The title of the dialog is "Printer Setup" and not "Printer Configuration"
+as shown in the manual.
+
+"Test"
+Selecting this field starts a printout. The printout is a simple graphic on
+the page. This graphic shows two frames which represent the printable areas
+of the printer setting.
+The solid outer frame is the area which is expected to be printable. The
+light inner frame shows the margin settings used by the score printout.
+If the graphics will not fit on one page or the graphic will be cutted on
+the right side of the paper. The "Edit Printer Settings" switch can be used
+to apply Cubase with new information for the solid outer frame. If the
+printout will cover more then one page the adjusting of the "Top" and
+"Bottom" margins will solve the problem. The "Left" and "Right" margins have
+to be adjusted if the printout will get problems on the right side of the
+page.
+
+"Edit Printer Settings"
+This switch turns the editing of the printer margins on or off.
+If this field is not ticked, the "Margins" shows the values as explained in
+the manual.
+If this field is ticked, the values of the margins will change. Cubase uses
+this values to determine the printable area of the paper. A lot of printers
+are not able print on the whole page, they need left and right margins to
+transport the page through the printing device. Also some printer need top
+and bottom margins.
+The adjustment of this "printer" margins is a "trial and error" operation.
+But normally it is unnecessary to change the default values, because Cubase
+uses some reasonable margins for most printers. If the print out problems
+(see above) occur, the adjustment of this margins probably fixes them.
+
+Additional Information on Score Edit:
+=====================================
+- The operation manual erroneously mentions zoom factors of 50% and 25%.
+  It should correctly read 75% and 50%.
+- Selecting a staff (by clicking next to its left margin) defines staff
+  start and end as loop start and end points .
+- By pressing the ALT key on the ST while moving a staff vertically you can
+  achieve that the new distance setting is valid throughout the score
+  starting from the point of editing.
+  Example: In a piano system you move the Bass staff while pressing ALT.
+           Result: starting from here, the distance between the two staves
+           will be the same til the end of the score.
+- Contrary to the description in Cubase's Operation Manual, the settings
+  you can make under "staff settings" are stored in the Track data instead
+  of in the Part data.
+  Please keep this in mind when moving a Part onto another Track in Score
+  Edit; the splitpoint set for the source Track might not be set for the
+  Target Track, or the polyphony settings for both Tracks might differ.
+- Press Shift while double clicking on an element to select all elements of
+  its type (true only for text and chord symbols).
+- Drum notation: Instrument names from the Drum Map are only available if
+  you edit a Drum Track.
+- Drum notation: "Init Display notes" sets the display notes onto the In-note
+  value set in the Drum map (in case you use a Drum Track), or MIDI pitch
+  equal to display note (in case you use a MIDI Track).
+- If - while entering symbols with the pencil tool - you click directly onto
+  the note, the symbol will appear in a useful position (a staccato point
+  will eg appear centered below its note). Otherwise, the symbol will appear
+  at the exact position you click on.
+- Input of Lyrics with TAB: Lyrics are always positioned starting from the
+  point you clicked on with the Pencil tool. All following Lyrics are
+  positioned at the same height. All Lyrics input "in one go" are
+  automatically selected and may easily be positioned.
+- Text Input Dialog box: Changing font size or type while pressing the ALT
+  key will take effect on all selected text parts in the Score (except for
+  the Title).
+- Lyrics input: Displaying several verses below each other no longer
+  represents a problem !
+- All fonts present in the CUBASE.DAT folder during program bootup will
+  automatically be loaded and can be used. If necessary the program loads
+  additional fonts for printing. Memory space temporarily occupied by the
+  these fonts is automatically freed after printing.
+  Within Cubase there is no such thing as explicit screen and printer fonts
+  (ie, you could also just have the screen fonts in the CUBASE.DAT folder
+  and would still be able to print out something). When Cubase asks you to
+  locate the FONTS folders upon first print-out, it just tries to optimize
+  the results.
+  Please experiment to find out which of the two FONTS folders on the Cubase
+  disks offers the best results when printing.
+- The "Cubase" font that you can select in the Text Input Dialog box is the
+  notation font. You can use it to input all symbols (note heads,
+  accidentals, clef symbols.. ) as text.
+- Something for specialists: All fonts (including the notation font!) are
+  GEM fonts, that can be edited using an appropriate program. Should you
+  wish to do so, please keep in mind that the metric font information is
+  part of Cubase's program code and can not be changed. So: NEVER edit
+  fonts on the original disk !!!
+- If you use TOS 1.2 together with an Atari Laserprinter, you might face
+  problems when printing.
+
+KEYSLOT - Accessory    
+===================
+The KEYSLOT.ACC can be used to switch between MIDEX / MIDEX+ key slots.
+Clicking on "NEXT SLOT" ( "DESK" Menu ) switches to the next slot.
+
+     
+Which driver (from the PRINTERS folder on the "ADDITIONALS 1" disk)
+should I use for my printer ?
+=======================================================================
+Here is a list of different printers and their corresponding printer drivers:
+(Drivers ending with an "s", e.g. SL- 80 IPS, are used for Cut Sheets)
+
+Atari Laser  ... ATARI folder (SLM 804)
+C. Itoh      ... IBM folder
+Canon        ... IBM folder or EPSON folder (EPSON LQ)
+Centronics   ... IBM folder
+Citizen      ... EPSON folder (EPSON FX/LQ)
+Dataproducts ... IBM folder
+Epson        ... EPSON folder (EPSON FX/LQ)
+HP Desk/ Laserjet  ... HP folder
+IBM          ... IBM folder
+Kyocera      ... HP folder
+NEC          ... NEC folder (NEC P6)
+Panasonic    ... EPSON folder (EPSON FX/LQ)
+Schneider    ... IBM folder
+Seikosha     ... SEIKOSHA folder (SL 80IP, SL 92)
+Star         ... EPSON folder (EPSON FX/LQ)
+Taxan        ... IBM folder
+Please note that it is very important to set the paperwidth (margins)
+correctly to get the best printout.
+Hint: a Printer Spooler lets you increase the printout speed by a factor of
+two. The accessory "SPOOLER.ACC" on the "ADDITIONALS 1" disk is such a
+Printer Spooler.
+Some Epson LQ compatible printers (also some printers by Epson itself) will
+only print, if the "FAST" switch in the Printbox is turned on. The "FAST"
+printout is allready the best print quality of that printers.
+
+COPYRIGHT NOTICE FOR FONTS USED
+===============================
+Anteiliges Copyright (c) 1986, digital Research Inc. Alle Rechte vorbehalten. 
+Digital Typefonts von Xiphias, Copyright 1986.
+Anteiliges Copyright (c) 1987 Atari Corporation.
+Diese Kopie genehmigt durch Atari Corporation.
+
+Have fun using the program !
+

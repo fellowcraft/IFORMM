@@ -1,0 +1,182 @@
+<!doctype html public "-//W3C//DTD HTML 3.2//EN">
+
+<!-- This  particular HTML Edition of the Csound Manual is maintained by David M. Boothe. Email: csound@lakewoodsound.com-->
+<!--This is Version 4.06.-->
+<html>
+<head>
+	<title>QuickRef: Function Table Control</title>
+</head>
+
+<body text="black" link="black" vlink="black" alink="black" bgcolor="white">
+<table align="right" cellpadding="1" cellspacing="1" border="0">
+	<tr>
+		<td width="45" align="right">
+			<a href="../manual2.htm#contents" target="_parent"><img src="../toc.gif" width="38" height="18" alt="Use Non-Frames Version" border="0"></a>
+		</td>
+		<td width="10"></td>
+		<td width="45" align="right">
+			<a href="siggen.htm"><img src="../prev.gif" width="38" height="18" alt="Previous Page" border="0"></a>
+		</td>
+		<td width="45" align="right">
+			<a href="sigmod.htm"><img src="../next.gif" width="38" height="18" alt="Next Page" border="0"></a>
+		</td>
+	</tr>
+</table>
+<font size="-2" color="black" face="Verdana, Arial, Helvetica, Century Gothic">
+The Csound Quick Reference</font>
+
+<hr size="1" color="#A9A9A9" noshade>
+
+<h1>Function Table Control</h1>
+
+<a name="queries"><hr size="2" color="#A9A9A9" noshade></a>
+<h2>Function Table Control: Table Queries</h2>
+<table cellspacing="0" border="0" cellpadding="7" width="643">
+<tr><td nowrap width="12%" valign="TOP">&nbsp;</td>
+<td nowrap width="17%" valign="TOP">
+<a href="../valcnv/ftlen.htm"><font face="Courier New, Courier" size="-1"><strong>nsamp</strong>(x)</font></a></td>
+<td nowrap width="71%" valign="TOP">
+<font face="Courier New, Courier" size="-1">(init-rate args only)</font></td>
+</tr>
+<tr><td nowrap width="12%" valign="TOP">&nbsp;</td>
+<td nowrap width="17%" valign="TOP">
+<a href="../valcnv/ftlen.htm"><font face="Courier New, Courier" size="-1"><strong>ftlen</strong>(x)</font></a></td>
+<td nowrap width="71%" valign="TOP">
+<font face="Courier New, Courier" size="-1">(init-rate args only)</font></td>
+</tr>
+<tr><td nowrap width="12%" valign="TOP">&nbsp;</td>
+<td nowrap width="17%" valign="TOP">
+<a href="../valcnv/ftlen.htm"><font face="Courier New, Courier" size="-1"><strong>ftlptim</strong>(x)</font></a></td>
+<td nowrap width="71%" valign="TOP">
+<font face="Courier New, Courier" size="-1">(init-rate args only)</font></td>
+</tr>
+<tr><td nowrap width="12%" valign="TOP">&nbsp;</td>
+<td nowrap width="17%" valign="TOP">
+<a href="../valcnv/ftlen.htm"><font face="Courier New, Courier" size="-1"><strong>ftsr</strong>(x)</font></a></td>
+<td nowrap width="71%" valign="TOP">
+<font face="Courier New, Courier" size="-1">(init-rate args only)</font></td>
+</tr>
+<tr><td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">i/kr</font></td>
+<td nowrap width="17%" valign="TOP">
+<a href="../siggen/tableng.htm"><font face="Courier New, Courier" size="-1"><strong>tableng</strong></font></a></td>
+<td nowrap width="71%" valign="TOP">
+<font face="Courier New, Courier" size="-1">i/kfn</font></td>
+</tr>
+</table>
+
+
+<a name="selection"><hr size="2" color="#A9A9A9" noshade></a>
+<h2>Function Table Control: Table Selection</h2>
+<table cellspacing="0" border="0" cellpadding="7" width="643">
+<tr><td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">k/ar</font></td>
+<td nowrap width="17%" valign="TOP">
+<a href="../siggen/tablekt.htm"><font face="Courier New, Courier" size="-1"><strong>tablekt</strong></font></a></td>
+<td nowrap width="71%" valign="TOP">
+<font face="Courier New, Courier" size="-1">k/xndx, i/kfn[, ixmode[, ixoff[, iwrap]]]</font></td>
+</tr>
+<tr><td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">k/ar</font></td>
+<td nowrap width="17%" valign="TOP">
+<a href="../siggen/tablekt.htm"><font face="Courier New, Courier" size="-1"><strong>tableikt</strong></font></a></td>
+<td nowrap width="71%" valign="TOP">
+<font face="Courier New, Courier" size="-1">k/xndx, kfn[, ixmode[, ixoff[, iwrap]]]</font></td>
+</tr>
+</table>
+
+<a name="readwrite"><hr size="2" color="#A9A9A9" noshade></a>
+<h2>Function Table Control: Read/Write Operations</h2>
+<table cellspacing="0" border="0" cellpadding="7" width="643">
+<tr><td nowrap width="12%" valign="TOP">&nbsp;</td>
+<td nowrap width="17%" valign="TOP">
+<a href="../siggen/tableiw.htm"><font face="Courier New, Courier" size="-1"><strong>tablew</strong></font></a></td>
+<td nowrap width="71%" valign="TOP">
+<font face="Courier New, Courier" size="-1">i/k/asig, i/k/andx, ifn[, ixmode[, ixoff[, iwgmode]]]</font></td>
+</tr>
+<tr><td nowrap width="12%" valign="TOP">&nbsp;</td>
+<td nowrap width="17%" valign="TOP">
+<a href="../siggen/tableiw.htm"><font face="Courier New, Courier" size="-1"><strong>tablewkt</strong></font></a></td>
+<td nowrap width="71%" valign="TOP">
+<font face="Courier New, Courier" size="-1">k/asig, k/andx, kfn[, ixmode[, ixoff[, iwgmode]]]</font></td>
+</tr>
+<tr><td nowrap width="12%" valign="TOP">&nbsp;</td>
+<td nowrap width="17%" valign="TOP">
+<a href="../siggen/tableiw.htm"><font face="Courier New, Courier" size="-1"><strong>tableiw</strong></font></a></td>
+<td nowrap width="71%" valign="TOP">
+<font face="Courier New, Courier" size="-1">isig, indx, ifn[, ixmode[, ixoff[, iwrap]]]</font></td>
+</tr>
+<tr><td nowrap width="12%" valign="TOP">&nbsp;</td>
+<td nowrap width="17%" valign="TOP">
+<a href="../siggen/tablegpw.htm"><font face="Courier New, Courier" size="-1"><strong>tableigpw</strong></font></a></td>
+<td nowrap width="71%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ifn</font></td>
+</tr>
+<tr><td nowrap width="12%" valign="TOP">&nbsp;</td>
+<td nowrap width="17%" valign="TOP">
+<a href="../siggen/tablegpw.htm"><font face="Courier New, Courier" size="-1"><strong>tablegpw</strong></font></a></td>
+<td nowrap width="71%" valign="TOP">
+<font face="Courier New, Courier" size="-1">kfn</font></td>
+</tr>
+<tr><td nowrap width="12%" valign="TOP">&nbsp;</td>
+<td nowrap width="17%" valign="TOP">
+<a href="../siggen/tablegpw.htm"><font face="Courier New, Courier" size="-1"><strong>tableimix</strong></font></a></td>
+<td nowrap width="71%" valign="TOP">
+<font face="Courier New, Courier" size="-1">idft, idoff, ilen, is1ft, is1off, is1g, is2ft, is2off, is2g</font></td>
+</tr>
+<tr><td nowrap width="12%" valign="TOP">&nbsp;</td>
+<td nowrap width="17%" valign="TOP">
+<a href="../siggen/tablegpw.htm"><font face="Courier New, Courier" size="-1"><strong>tablemix</strong></font></a></td>
+<td nowrap width="71%" valign="TOP">
+<font face="Courier New, Courier" size="-1">kdft, kdoff, klen, ks1ft, ks1off, ks1g, ks2ft, ks2off, ks2g</font></td>
+</tr>
+<tr><td nowrap width="12%" valign="TOP">&nbsp;</td>
+<td nowrap width="17%" valign="TOP">
+<a href="../siggen/tablegpw.htm"><font face="Courier New, Courier" size="-1"><strong>tableicopy</strong></font></a></td>
+<td nowrap width="71%" valign="TOP">
+<font face="Courier New, Courier" size="-1">idft, isft</font></td>
+</tr>
+<tr><td nowrap width="12%" valign="TOP">&nbsp;</td>
+<td nowrap width="17%" valign="TOP">
+<a href="../siggen/tablegpw.htm"><font face="Courier New, Courier" size="-1"><strong>tablecopy</strong></font></a></td>
+<td nowrap width="71%" valign="TOP">
+<font face="Courier New, Courier" size="-1">kdft, ksft</font></td>
+</tr>
+<tr><td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar</font></td>
+<td nowrap width="17%" valign="TOP">
+<a href="../siggen/tablera.htm"><font face="Courier New, Courier" size="-1"><strong>tablera</strong></font></a></td>
+<td nowrap width="71%" valign="TOP">
+<font face="Courier New, Courier" size="-1">kfn, kstart, koff</font></td>
+</tr>
+<tr><td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">kstart</font></td>
+<td nowrap width="17%" valign="TOP">
+<a href="../siggen/tablera.htm"><font face="Courier New, Courier" size="-1"><strong>tablewa</strong></font></a></td>
+<td nowrap width="71%" valign="TOP">
+<font face="Courier New, Courier" size="-1">kfn, asig, koff</font></td>
+</tr>
+<tr><td nowrap valign="TOP" colspan="3">&nbsp;</td>
+</tr>
+</table>
+
+<hr size="2" color="#A9A9A9" noshade>
+<table align="right" cellpadding="1" cellspacing="1" border="0">
+	<tr>
+		<td width="45" align="right">
+			<a href="../manual2.htm#contents" target="_parent"><img src="../toc.gif" width="38" height="18" alt="Use Non-Frames Version" border="0"></a>
+		</td>
+		<td width="10"></td>
+		<td width="45" align="right">
+			<a href="siggen.htm"><img src="../prev.gif" width="38" height="18" alt="Previous Page" border="0"></a>
+		</td>
+		<td width="45" align="right">
+			<a href="sigmod.htm"><img src="../next.gif" width="38" height="18" alt="Next Page" border="0"></a>
+		</td>
+	</tr>
+</table>
+<font size="-2" color="black" face="Verdana, Arial, Helvetica, Century Gothic">
+The Csound Quick Reference</font>
+
+</body>
+</html>

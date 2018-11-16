@@ -1,0 +1,292 @@
+                                OMEGA II
+            Release notes by Chas Stoddard, Avalon Music Developments
+
+This document notes the major changes from Omega I to Omega II.  
+Substantial additions have been made to Omega in this new release as well 
+as several bug fixes.  The main features are discussed below
+
+                             KCS - Version 5.03
+
+Some twenty minor enhancements, such as control-click on a track to go 
+directly to that track, cut or copy a range by measure doing a true 'tape 
+copy' automatically and an increase in the allowable range of certain PVG 
+variables have been implemented.  You can now directly to Open Mode Play 
+from Track Edit.  KCS and the three main MPE modules now have GEM menu 
+entries which permit access to the MPE from any module - no longer do you 
+need to return to KCS to switch to a different MPE module.  Access to 
+sequences above 16 has been improved; clicking on ** in the bottom-right 
+corner now brings up a Edit Select box from which the required sequence 
+can be chosen.  The "(" and ")" keys can be used to skip to the next 
+higher or lower sequence.  Clicking on a sequence in the Open Mode Play 
+screen now takes you to the relevant sequence edit page.
+
+NEW EVENT TYPES     
+          
+MSR-BT: ST EVNT  TIME CH TYP NOTE VEL DUR
+___ __ ___ ____  ____ __ ___ ____ ___ ___
+  1- 1:  1    1     0    LA  14              Label event, range 0 to 99
+  
+  1- 1:  1    2     0    GO  14              Goto Label number
+
+  1- 1:  1    3     0    RS     5  25        Random Skip NOTE notes VEL %
+                                             of the time
+  1- 1:  1    4     0    RC  20              Choose 1st or 2nd event 
+                                             following NOTE % of the time  
+  1- 1:  1    5     0    SW     3  1         Set Switch NOTE number VEL on 
+                                             (1) or off (0).  Used to 
+                                             control SK and SC events
+  1- 1:  1    6     0    SK     8   3        Skip VEL events if switch 
+                                             number NOTE is on
+  1- 1:  1    7     0    SC  3               Choose between 1st or 2nd 
+                                             event following if switch 
+                                             number NOTE is on
+  1- 1:  1    8     0    RB  25              Sets the global randomness 
+                                             value used by RS, RC, SK and 
+                                             SC events.  The user can 
+                                             adjust this parameter in 
+                                             real-time via Rand Bias.
+
+These new event types are primarily designed for algorithmic composition 
+allowing the user to randomly skip the following x notes y percentage of 
+the time, randomly choose from the next two events which one to play or 
+set up one of twenty different Switches which can toggled in real-time 
+from the Open Mode play screen; an extra line showing the twenty Switches 
+and their status, on or off, can be displayed on this page if desired.  
+These new event types can be used in either track or open mode but an All 
+Tracks To Seq or vice versa using such events will lead to 'unpredictable 
+results', which is a polite way of saying if you do this, you will be up 
+to the neck in the brown stuff!  There are also some profound implications 
+for interactive composition and performance with these new features.
+
+SCRUNCH   
+
+This new item is said to be easier to use than explain precisely.  Scrunch 
+treats the sequence, event range or measure range as a piece of tape and 
+moves the events forwards or backwards in the 'tape' without changing the 
+overall length.  This can be done either in a linear fashion or in an 
+interpolated one which can be used to create progressive accellerandos or 
+decellerandos.
+
+INTERACTIVE PLAY
+
+The Switch display is toggled from here.  If desired, the F-keys can be 
+set as control keys for them as well.  Arrow Keys permits the user to 
+change the way the cursor keypad works in Open Mode: Cueing uses the keys, 
+as in all previous versions, to change the cue point and/or sequence; 
+Transpose allows any active sequence to be transposed up or down an octave 
+or by half steps; Rand Bias alters the current RB value by 10 or 1 over a 
+range -100 to 100, used for controlling the global randomness of the new 
+event-skipping functions.  Both Rand Bias and tempo can now be controlled 
+in real-time via a specified MIDI controller number; the low and high 
+tempo range can also be set.  Tempo and Rand Bias values can now be 
+recorded in real-time using the mod wheel or similar controller in Open 
+Mode.
+
+KCS 5.0 FEATURES
+
+This menu item contains a MIDI metronome which, if on, replaces the 
+monitor beep; a separate note and velocity can be specified for upbeat and 
+downbeat.  Full Quantisation allows the recording process to use the 
+intelligent quantisation used when editing off-line.  Controllers keep 
+their original relationship to notes and Note Offs are not quantised 
+unless Full Quant with Duration is also on.  The spacebar can now be 
+toggled to function as a stop play key and Load/Save .VRY loads or saves a 
+.VRY file with the same name as the .ALL file, useful since PVG/Master 
+Edit data is the only thing not saved with an .ALL file.  Finally, Record 
+Open Mode Keystrokes allows the recording of console keystrokes as ST 
+events in a spare sequence.
+
+CHASE CONTROLLERS
+
+The user can select up to 64 controllers to chase during playback - this 
+enables the the user to select the most appropriate ones to use, for 
+example, 91 and 93 for GM Reverb and Chorus; 98, 99, 100 and 101 for NRPN 
+and RPN functions and so on; previously, the program would only chase 
+the first 32 controllers.  In addition, the user can also chase program 
+changes, pitchbend and aftertouch.  Default settings for The Mixer, 
+Interactive Play, KCS 5.0 Features and Chase Controllers are stored in the 
+DEFAULT.ENV file.  Changes made to these settings are embedded in the .ENV 
+section of the .ALL file as normal.
+
+                          The Mixer - Version 1.04
+
+This new module enables the user to control any two controllers across 16 
+channels or any 16 controllers on two channels.  It provides a virtual 
+fader automation display for all controllers with provision for sixty 
+Snapshots, four-way fader grouping and cross-fade, linear/proportional 
+fader tracking and full MIDI TimeCode and MIDI Machine Control support 
+which is available from any module (traditional SMPTE support is still 
+handled by The Phantom).  Six different Display Configurations enable any 
+layout of fader desired - unused faders can be disabled to improve visual 
+clarity.  MMC provides for full transport slaving of the multi-track to 
+Omega II in any mode as well as punch in/punch out and record 
+enable/inhibit on any tapedeck track.  Two additional modes of operation 
+are supported: a Single Channel mode enables all 32 faders to be employed 
+to control mixer automations systems such as Niche Audio Control console - 
+many automation systems employ consecutive CC numbers on a single channel 
+to control fader VCAs.
+
+The other mode is Otto Mode, which is specifically oriented towards the 
+Otto automation system of Mackie mixers.  Controller data created by The 
+Mixer can either directly replace data present in the original tracks or 
+can be sent to separate Mix tracks.  A two-stage Undo buffer either undoes 
+the last edit or undoes all changes since The Mixer was initiated.  All 
+Mixer settings are stored in the .ALL file.
+
+                            TIGER - Version 2.06
+
+A considerable number of enhancements have been made to TIGER and many new 
+features added.  All editing functions now support the interactive editing 
+style of SongEdit.  When playing, the user can perform edits in real-time 
+and Compare the last two or Undo back to the original.  Several changes 
+have been made to Quantise Selected and Repeats functions.  In Quantise, a 
+'capture strength' window can be set for quantising notes with values for 
+the range inside and outside the window expressed as a percentage.  This 
+allows a more progressive and intelligent type of quantising where notes 
+outside the window can be quantised to a greater or lesser extent than 
+those inside.  Several different types of quantising are available and 
+Edit Presets are supported (see below).  
+
+In Repeats, the Strength function can be used to capture notes within a 
+certain range around the selected repeat time.  Previously, using a repeat 
+time and selecting notes with Control-clicking would only capture exact 
+multiples of the repeat time.  In addition, the selection of notes can be 
+restricted to the source pitch.  The Mouse Tools can now be selected via 
+Control F-keys.
+
+SELECT BY...
+
+Found under the Widgets menu, this item selects notes for editing 
+according to several different criteria.  Notes can be selected within 
+pitch, velocity or duration ranges, a range of steps within a measure, 
+several different pitch classes simultaneously or at random.  Several 
+tests can be combined and the edit box can be set to allow whether notes 
+must meet all of the selected criteria or any one test to be selected.  
+All select options can be logically reversed.  This edit box will also 
+appear as a sub-option when certain edit functions, such as Pitches or 
+Quantise, are selected when TIGER is running in interactive edit mode.  
+Supports Edit Presets (see below).
+
+FILL
+
+This very complex feature is designed to create rhythmic fills or 
+melodic patterns from existing data.  Describing all the parameters would 
+take several pages but many interesting effects can be achieved 
+comparatively simply and quickly.  This page functions rather like a 
+simplified version of Tunesmith but with completely predictable results.  
+Supports Edit Presets (see below).
+
+CYCLIC REPLACE
+
+This allows the user to replace attributes of a note, such as velocity, 
+duration, even pitch with others in cyclic order.  This can be used to 
+create regularly-articulated phrases or dynamics or for re-mapping motifs 
+- an extremely powerful composition feature with many uses and very much a 
+personal favourite.  STOP PRESS: Cyclic Replace now permits the user to 
+copy any attribute of selected notes directly to its edit fields.  
+Supports Edit Presets (see below).
+
+SCALE MAP
+
+Can be used to provide modal or scale-based transpositions of data.  The 
+old value will be replaced by the new.  Use this for remapping notes by 
+pitch class.  Supports Edit Presets (see below).
+
+PITCH MAP/DOUBLE
+
+Up to 24 pitches can be remapped to new values.  Notes can also be 
+doubled and offset to new time values, very useful for drum note 
+remapping.  Supports Edit Presets (see below).
+
+RANDOMISE
+
+Fairly obvious this: is used to randomise or set to absolute values pitch, 
+velocity, duration and location of selected notes.  This makes certain 
+humanising-type editing operations possible without resorting to program-
+ming the PVG.  Randomise can also function deterministically.  Supports 
+Edit Presets (see below).
+
+INSTRUMENTS
+
+This contains a list of voice names linked to PG numbers.  If Show Program 
+Names is on, the PG edit window will display the name as well as the 
+number.  A separate program is provided which can extract the voice names 
+from any Caged Artist bank file automatically - this should also work on 
+bank files created by other non Dr T programs as the program analyses the 
+data file for certain characteristics.  Voices in the Instruments page can 
+be auditioned and selected interactively via a sub-menu.  Six banks of 127 
+voices are supported.
+
+DRUMKITS
+
+Similar to Instruments, a drum name can be associated with a MIDI note 
+number.  When editing a track which contains data on the drum channel, 
+TIGER's display alters.  The semitones of the piano keyboard are replaced 
+with the drum voice number, or name if entered in the drummap, shown on a 
+completely separate line, the vertical resolution being doubled to 
+accomplish this.  Six separate drumkit definitions are supported.
+
+Other Features
+
+A major new function is the addition of so-called Edit Presets.  Many edit 
+functions, such as Quantise, Fill, Scale Map and so on can each store up 
+to six different Edit Presets which contain all the settings entered in 
+the window.  These are stored along with the .ALL file, .TRK file or 
+separately to .EDT files.  This allows the user to develop a library of 
+useful editing setups - loading an .EDT file that only contains Presets 
+for Quantise, for example, will NOT erase Presets present in other 
+functions, thus favourite setups for individual functions can be created 
+and then merged to create new files readily.  Quantise, Scale Map, and 
+Randomise Edit Presets can be invoked "on the fly" directly from the 
+console in real-time without using an edit window.
+
+Certain parameters which previously have required the use of the right 
+mouse button to scroll through values have been replaced by Text Fields.  
+These refer to fields whose values are purely text-based, such as note 
+limits or drum names, and are recognised by the entire field appearing in 
+inverted video.  Clicking a second time on the value brings up a box which 
+displays a pallette of the entire set of values from which the required 
+one can be selected.
+
+A most significant improvement is the implementation of sequence editing.  
+Now any sequence can be edited in virtually the same way as tracks can.  
+The user can select from one to three channels from the sequence to 
+display, each one being shown in its own window, or show all channels.  
+Playback can be linked to up to three other sequences - this is 
+particularly useful if the user has sequences on other output ports which 
+need to be heard in conjunction with the sequence being edited.  The 
+current Song can now be played from TIGER.
+
+                          SongEdit - Version 2.04
+
+This new release is more the result of a serious bug hunt than major 
+across-the-board changes.  Fixes have been made to two bugs that would 
+very occasionally crash the computer when working with large amounts of 
+song data or when undoing an erase.  Several new keyboard shortcuts have 
+been added including selection of Mouse Tools.
+
+FUTURE DEVELOPMENTS
+
+An "unofficial" enhanced version of KCS 5.0 is planned for release to 
+selected users.  This will contain several additional event types which 
+will allow for full conditional and unconditional branching within a 
+sequence or track, incremental and decremental loop counters and variables 
+which can modify the behaviour of other data.  This version will only be 
+produced if a sufficient number of users request it.
+
+A quarterly disk magazine for Omega II users is currently in production 
+along with an interactive Composers' Guide.  There is also a video 
+training manual in pre-production - contact Avalon Music Developments for 
+further details.
+
+                         Avalon Music Developments
+                             28 Rosemount Point
+                                Dacres Road
+                                Forest Hill
+                                   LONDON
+                                  SE23 2BW
+                          Tel & Fax: 081-699 7004 
+
+
+                      опопопопопопопопопопопопопопоп
+

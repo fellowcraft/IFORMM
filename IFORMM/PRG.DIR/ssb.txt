@@ -1,0 +1,12 @@
+d , d , d , f+ , a , +d , +f+ , +e , +d , f+ , g , a , 
+a , +f , +e , +d , +c , b , +c , b , +c , +d , a , g , f+, d , d , d ,
+f+ , a , +d , +d , +f+ , +d , f+ , g , a , a , a ,
++f+ , +e , +d , +c , b , +c , +d , +d , a , f+ , d , +f+
++f+ , +g , +a , +a , +g , +f+ , +e , +f+ , +g , +g , +f+ , +e , +f+
++e , +d , +c , b , +c , +d , f+ , g , a , a , +d , 
++d , +d , b , b , b , +e , +g ,+f+ , +e , +d , +c , a , +d , +e , +f+ , g ,
++a , +f+ , +d , +d , +e , +f+ ,  +e , +d , +d , a , a , +d , +d ,
++d , b , b , b , +e , +f+ , e , +c , a , +d , +e , +f+ , +g , +a , +f+ ,
++d , +d , +f , +e , +d , 
+
+  

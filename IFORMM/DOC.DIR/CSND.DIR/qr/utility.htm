@@ -1,0 +1,471 @@
+<!doctype html public "-//W3C//DTD HTML 3.2//EN">
+
+<!-- This  particular HTML Edition of the Csound Manual is maintained by David M. Boothe. Email: csound@lakewoodsound.com-->
+<!--This is Version 4.06.-->
+<html>
+<head>
+	<title>QuickRef: Utilities</title>
+</head>
+
+<body text="black" link="black" vlink="black" alink="black" bgcolor="white">
+<table align="right" cellpadding="1" cellspacing="1" border="0">
+	<tr>
+		<td width="45" align="right">
+			<a href="../manual2.htm#contents" target="_parent"><img src="../toc.gif" width="38" height="18" alt="Use Non-Frames Version" border="0"></a>
+		</td>
+		<td width="10"></td>
+		<td width="45" align="right">
+			<a href="command.htm"><img src="../prev.gif" width="38" height="18" alt="Previous Page" border="0"></a>
+		</td>
+		<td width="45" align="right">
+			<img src="../nonext.gif" width="38" height="18" alt="Next Page" border="0">
+		</td>
+	</tr>
+</table>
+<font size="-2" color="black" face="Verdana, Arial, Helvetica, Century Gothic">
+The Csound Quick Reference</font>
+
+<hr size="1" color="#A9A9A9" noshade>
+<a href="../utility/top.htm"><h1>Utilities</h1></a>
+
+<a name="hetro"><hr size="2" color="#A9A9A9" noshade></a>
+<h2>Utilities: Analysis File Generation</h2>
+<table cellspacing="0" border="0" cellpadding="7" width="649">
+<tr><td nowrap width="11%" valign="TOP">
+<a href="../utility/hetro.htm"><font face="Courier New, Courier" size="-1"><strong>hetro</strong></font></a></td>
+<td nowrap width="9%" valign="TOP">
+<font face="Courier New, Courier" size="-1">-sr <em>n</em></font></td>
+<td nowrap width="15%" valign="TOP">
+<font face="Courier New, Courier" size="-1">infilename</font></td>
+<td nowrap width="17%" valign="TOP">
+<font face="Courier New, Courier" size="-1">outfilename</font></td>
+<td nowrap width="48%" valign="TOP">
+<font face="Courier New, Courier" size="-1">Hetrodyne analysis <em>sample rate</em></font></td>
+</tr>
+<tr><td nowrap width="11%" valign="TOP">&nbsp;</td>
+<td nowrap width="9%" valign="TOP">
+<font face="Courier New, Courier" size="-1">-c <em>n</em></font></td>
+<td nowrap width="15%" valign="TOP">
+<font face="Courier New, Courier" size="-1">infilename</font></td>
+<td nowrap width="17%" valign="TOP">
+<font face="Courier New, Courier" size="-1">outfilename</font></td>
+<td nowrap width="48%" valign="TOP">
+<font face="Courier New, Courier" size="-1">Hetrodyne analysis <em>channel number</em></font></td>
+</tr>
+<tr><td nowrap width="11%" valign="TOP">&nbsp;</td>
+<td nowrap width="9%" valign="TOP">
+<font face="Courier New, Courier" size="-1">-b <em>n</em></font></td>
+<td nowrap width="15%" valign="TOP">
+<font face="Courier New, Courier" size="-1">infilename</font></td>
+<td nowrap width="17%" valign="TOP">
+<font face="Courier New, Courier" size="-1">outfilename</font></td>
+<td nowrap width="48%" valign="TOP">
+<font face="Courier New, Courier" size="-1">Hetrodyne analysis <em>segment</em> <em>begin time</em></font></td>
+</tr>
+<tr><td nowrap width="11%" valign="TOP">&nbsp;</td>
+<td nowrap width="9%" valign="TOP">
+<font face="Courier New, Courier" size="-1">-d <em>n</em></font></td>
+<td nowrap width="15%" valign="TOP">
+<font face="Courier New, Courier" size="-1">infilename</font></td>
+<td nowrap width="17%" valign="TOP">
+<font face="Courier New, Courier" size="-1">outfilename</font></td>
+<td nowrap width="48%" valign="TOP">
+<font face="Courier New, Courier" size="-1">Hetrodyne analysis<em> segment duration</em></font></td>
+</tr>
+<tr><td nowrap width="11%" valign="TOP">&nbsp;</td>
+<td nowrap width="9%" valign="TOP">
+<font face="Courier New, Courier" size="-1">-f <em>n</em></font></td>
+<td nowrap width="15%" valign="TOP">
+<font face="Courier New, Courier" size="-1">infilename</font></td>
+<td nowrap width="17%" valign="TOP">
+<font face="Courier New, Courier" size="-1">outfilename</font></td>
+<td nowrap width="48%" valign="TOP">
+<font face="Courier New, Courier" size="-1">Hetrodyne analysis <em>beginning frequency</em></font></td>
+</tr>
+<tr><td nowrap width="11%" valign="TOP">&nbsp;</td>
+<td nowrap width="9%" valign="TOP">
+<font face="Courier New, Courier" size="-1">-h <em>n</em></font></td>
+<td nowrap width="15%" valign="TOP">
+<font face="Courier New, Courier" size="-1">infilename</font></td>
+<td nowrap width="17%" valign="TOP">
+<font face="Courier New, Courier" size="-1">outfilename</font></td>
+<td nowrap width="48%" valign="TOP">
+<font face="Courier New, Courier" size="-1">Hetrodyne analysis <em>number of partials</em></font></td>
+</tr>
+<tr><td nowrap width="11%" valign="TOP">&nbsp;</td>
+<td nowrap width="9%" valign="TOP">
+<font face="Courier New, Courier" size="-1">-M <em>n</em></font></td>
+<td nowrap width="15%" valign="TOP">
+<font face="Courier New, Courier" size="-1">infilename</font></td>
+<td nowrap width="17%" valign="TOP">
+<font face="Courier New, Courier" size="-1">outfilename</font></td>
+<td nowrap width="48%" valign="TOP">
+<font face="Courier New, Courier" size="-1">Hetrodyne analysis <em>maximum amplitude</em></font></td>
+</tr>
+<tr><td nowrap width="11%" valign="TOP">&nbsp;</td>
+<td nowrap width="9%" valign="TOP">
+<font face="Courier New, Courier" size="-1">-m <em>n</em></font></td>
+<td nowrap width="15%" valign="TOP">
+<font face="Courier New, Courier" size="-1">infilename</font></td>
+<td nowrap width="17%" valign="TOP">
+<font face="Courier New, Courier" size="-1">outfilename</font></td>
+<td nowrap width="48%" valign="TOP">
+<font face="Courier New, Courier" size="-1">Hetrodyne analysis <em>minimum amplitude</em></font></td>
+</tr>
+<tr><td nowrap width="11%" valign="TOP">&nbsp;</td>
+<td nowrap width="9%" valign="TOP">
+<font face="Courier New, Courier" size="-1">-n <em>n</em></font></td>
+<td nowrap width="15%" valign="TOP">
+<font face="Courier New, Courier" size="-1">infilename</font></td>
+<td nowrap width="17%" valign="TOP">
+<font face="Courier New, Courier" size="-1">outfilename</font></td>
+<td nowrap width="48%" valign="TOP">
+<font face="Courier New, Courier" size="-1">Hetrodyne analysis <em>number of breakpoints</em></font></td>
+</tr>
+<tr><td nowrap width="11%" valign="TOP">&nbsp;</td>
+<td nowrap width="9%" valign="TOP">
+<font face="Courier New, Courier" size="-1">-l <em>n</em></font></td>
+<td nowrap width="15%" valign="TOP">
+<font face="Courier New, Courier" size="-1">infilename</font></td>
+<td nowrap width="17%" valign="TOP">
+<font face="Courier New, Courier" size="-1">outfilename</font></td>
+<td nowrap width="48%" valign="TOP">
+<font face="Courier New, Courier" size="-1">Hetrodyne analysis use third order low-pass filter with f<sub>c </sub>of <em>n</em></font></td>
+</tr>
+</table>
+<a name="lpanal">&nbsp;</a>
+<table cellspacing="0" border="0" cellpadding="7" width="649">
+<tr><td nowrap width="11%" valign="TOP">
+<a href="../utility/lpanal.htm"><font face="Courier New, Courier" size="-1"><strong>lpanal</strong></font></a></td>
+<td nowrap width="9%" valign="TOP">
+<font face="Courier New, Courier" size="-1">-a</font></td>
+<td nowrap width="15%" valign="TOP">
+<font face="Courier New, Courier" size="-1">infilename</font></td>
+<td nowrap width="17%" valign="TOP">
+<font face="Courier New, Courier" size="-1">outfilename</font></td>
+<td nowrap width="48%" valign="TOP">
+<font face="Courier New, Courier" size="-1">LPC analysis write filter pole instead of coeffecients</font></td>
+</tr>
+<tr><td nowrap width="11%" valign="TOP">&nbsp;</td>
+<td nowrap width="9%" valign="TOP">
+<font face="Courier New, Courier" size="-1">-s <em>n</em></font></td>
+<td nowrap width="15%" valign="TOP">
+<font face="Courier New, Courier" size="-1">infilename</font></td>
+<td nowrap width="17%" valign="TOP">
+<font face="Courier New, Courier" size="-1">outfilename</font></td>
+<td nowrap width="48%" valign="TOP">
+<font face="Courier New, Courier" size="-1">LPC analysis <em>sample rate</em></font></td>
+</tr>
+<tr><td nowrap width="11%" valign="TOP">&nbsp;</td>
+<td nowrap width="9%" valign="TOP">
+<font face="Courier New, Courier" size="-1">-c <em>n</em></font></td>
+<td nowrap width="15%" valign="TOP">
+<font face="Courier New, Courier" size="-1">infilename</font></td>
+<td nowrap width="17%" valign="TOP">
+<font face="Courier New, Courier" size="-1">outfilename</font></td>
+<td nowrap width="48%" valign="TOP">
+<font face="Courier New, Courier" size="-1">LPC analysis <em>channel number</em></font></td>
+</tr>
+<tr><td nowrap width="11%" valign="TOP">&nbsp;</td>
+<td nowrap width="9%" valign="TOP">
+<font face="Courier New, Courier" size="-1">-b <em>n</em></font></td>
+<td nowrap width="15%" valign="TOP">
+<font face="Courier New, Courier" size="-1">infilename</font></td>
+<td nowrap width="17%" valign="TOP">
+<font face="Courier New, Courier" size="-1">outfilename</font></td>
+<td nowrap width="48%" valign="TOP">
+<font face="Courier New, Courier" size="-1">LPC analysis <em>segment</em> <em>begin time</em></font></td>
+</tr>
+<tr><td nowrap width="11%" valign="TOP">&nbsp;</td>
+<td nowrap width="9%" valign="TOP">
+<font face="Courier New, Courier" size="-1">-d <em>n</em></font></td>
+<td nowrap width="15%" valign="TOP">
+<font face="Courier New, Courier" size="-1">infilename</font></td>
+<td nowrap width="17%" valign="TOP">
+<font face="Courier New, Courier" size="-1">outfilename</font></td>
+<td nowrap width="48%" valign="TOP">
+<font face="Courier New, Courier" size="-1">LPC analysis <em>segment duration</em></font></td>
+</tr>
+<tr><td nowrap width="11%" valign="TOP">&nbsp;</td>
+<td nowrap width="9%" valign="TOP">
+<font face="Courier New, Courier" size="-1">-p <em>n</em></font></td>
+<td nowrap width="15%" valign="TOP">
+<font face="Courier New, Courier" size="-1">infilename</font></td>
+<td nowrap width="17%" valign="TOP">
+<font face="Courier New, Courier" size="-1">outfilename</font></td>
+<td nowrap width="48%" valign="TOP">
+<font face="Courier New, Courier" size="-1">LPC analysis <em>number of poles</em></font></td>
+</tr>
+<tr><td nowrap width="11%" valign="TOP">&nbsp;</td>
+<td nowrap width="9%" valign="TOP">
+<font face="Courier New, Courier" size="-1">-h <em>n</em></font></td>
+<td nowrap width="15%" valign="TOP">
+<font face="Courier New, Courier" size="-1">infilename</font></td>
+<td nowrap width="17%" valign="TOP">
+<font face="Courier New, Courier" size="-1">outfilename</font></td>
+<td nowrap width="48%" valign="TOP">
+<font face="Courier New, Courier" size="-1">LPC analysis <em>hop size </em>in samples</font></td>
+</tr>
+<tr><td nowrap width="11%" valign="TOP">&nbsp;</td>
+<td nowrap width="9%" valign="TOP">
+<font face="Courier New, Courier" size="-1">-C <em>s</em></font></td>
+<td nowrap width="15%" valign="TOP">
+<font face="Courier New, Courier" size="-1">infilename</font></td>
+<td nowrap width="17%" valign="TOP">
+<font face="Courier New, Courier" size="-1">outfilename</font></td>
+<td nowrap width="48%" valign="TOP">
+<font face="Courier New, Courier" size="-1">LPC analysis <em>text string</em> for comments</font></td>
+</tr>
+<tr><td nowrap width="11%" valign="TOP">&nbsp;</td>
+<td nowrap width="9%" valign="TOP">
+<font face="Courier New, Courier" size="-1">-P <em>n</em></font></td>
+<td nowrap width="15%" valign="TOP">
+<font face="Courier New, Courier" size="-1">infilename</font></td>
+<td nowrap width="17%" valign="TOP">
+<font face="Courier New, Courier" size="-1">outfilename</font></td>
+<td nowrap width="48%" valign="TOP">
+<font face="Courier New, Courier" size="-1">LPC analysis <em>lowest frequency</em></font></td>
+</tr>
+<tr><td nowrap width="11%" valign="TOP">&nbsp;</td>
+<td nowrap width="9%" valign="TOP">
+<font face="Courier New, Courier" size="-1">-Q <em>n</em></font></td>
+<td nowrap width="15%" valign="TOP">
+<font face="Courier New, Courier" size="-1">infilename</font></td>
+<td nowrap width="17%" valign="TOP">
+<font face="Courier New, Courier" size="-1">outfilename</font></td>
+<td nowrap width="48%" valign="TOP">
+<font face="Courier New, Courier" size="-1">LPC analysis <em>highest frequency</em></font></td>
+</tr>
+<tr><td nowrap width="11%" valign="TOP">&nbsp;</td>
+<td nowrap width="9%" valign="TOP">
+<font face="Courier New, Courier" size="-1">-v <em>n</em></font></td>
+<td nowrap width="15%" valign="TOP">
+<font face="Courier New, Courier" size="-1">infilename</font></td>
+<td nowrap width="17%" valign="TOP">
+<font face="Courier New, Courier" size="-1">outfilename</font></td>
+<td nowrap width="48%" valign="TOP">
+<font face="Courier New, Courier" size="-1">LPC analysis <em>verbosity level </em>of terminal messages</font></td>
+</tr>
+<tr><td nowrap width="11%" valign="TOP">&nbsp;</td>
+<td nowrap width="9%" valign="TOP">&nbsp;</td>
+<td nowrap width="15%" valign="TOP">&nbsp;</td>
+<td nowrap width="17%" valign="TOP">&nbsp;</td>
+<td nowrap width="48%" valign="TOP">&nbsp;</td>
+</tr>
+</table>
+
+<a name="pvanal">&nbsp;</a>
+<table cellspacing="0" border="0" cellpadding="7" width="649">
+<tr><td nowrap width="11%" valign="TOP">
+<a href="../utility/pvanal.htm"><font face="Courier New, Courier" size="-1"><strong>pvanal</strong></font></a></td>
+<td nowrap width="9%" valign="TOP">
+<font face="Courier New, Courier" size="-1">-s <em>n</em></font></td>
+<td nowrap width="15%" valign="TOP">
+<font face="Courier New, Courier" size="-1">infilename</font></td>
+<td nowrap width="17%" valign="TOP">
+<font face="Courier New, Courier" size="-1">outfilename</font></td>
+<td nowrap width="48%" valign="TOP">
+<font face="Courier New, Courier" size="-1">STFT analysis <em>sample rate</em></font></td>
+</tr>
+<tr><td nowrap width="11%" valign="TOP">&nbsp;</td>
+<td nowrap width="9%" valign="TOP">
+<font face="Courier New, Courier" size="-1">-c <em>n</em></font></td>
+<td nowrap width="15%" valign="TOP">
+<font face="Courier New, Courier" size="-1">infilename</font></td>
+<td nowrap width="17%" valign="TOP">
+<font face="Courier New, Courier" size="-1">outfilename</font></td>
+<td nowrap width="48%" valign="TOP">
+<font face="Courier New, Courier" size="-1">STFT analysis <em>channel number</em></font></td>
+</tr>
+<tr><td nowrap width="11%" valign="TOP">&nbsp;</td>
+<td nowrap width="9%" valign="TOP">
+<font face="Courier New, Courier" size="-1">-b <em>n</em></font></td>
+<td nowrap width="15%" valign="TOP">
+<font face="Courier New, Courier" size="-1">infilename</font></td>
+<td nowrap width="17%" valign="TOP">
+<font face="Courier New, Courier" size="-1">outfilename</font></td>
+<td nowrap width="48%" valign="TOP">
+<font face="Courier New, Courier" size="-1">STFT analysis <em>segment</em> <em>begin time</em></font></td>
+</tr>
+<tr><td nowrap width="11%" valign="TOP">&nbsp;</td>
+<td nowrap width="9%" valign="TOP">
+<font face="Courier New, Courier" size="-1">-d <em>n</em></font></td>
+<td nowrap width="15%" valign="TOP">
+<font face="Courier New, Courier" size="-1">infilename</font></td>
+<td nowrap width="17%" valign="TOP">
+<font face="Courier New, Courier" size="-1">outfilename</font></td>
+<td nowrap width="48%" valign="TOP">
+<font face="Courier New, Courier" size="-1">STFT analysis <em>segment duration</em></font></td>
+</tr>
+<tr><td nowrap width="11%" valign="TOP">&nbsp;</td>
+<td nowrap width="9%" valign="TOP">
+<font face="Courier New, Courier" size="-1">-n <em>n</em></font></td>
+<td nowrap width="15%" valign="TOP">
+<font face="Courier New, Courier" size="-1">infilename</font></td>
+<td nowrap width="17%" valign="TOP">
+<font face="Courier New, Courier" size="-1">outfilename</font></td>
+<td nowrap width="48%" valign="TOP">
+<font face="Courier New, Courier" size="-1">STFT analysis <em>frame size</em></font></td>
+</tr>
+<tr><td nowrap width="11%" valign="TOP">&nbsp;</td>
+<td nowrap width="9%" valign="TOP">
+<font face="Courier New, Courier" size="-1">-w <em>n</em></font></td>
+<td nowrap width="15%" valign="TOP">
+<font face="Courier New, Courier" size="-1">infilename</font></td>
+<td nowrap width="17%" valign="TOP">
+<font face="Courier New, Courier" size="-1">outfilename</font></td>
+<td nowrap width="48%" valign="TOP">
+<font face="Courier New, Courier" size="-1">STFT analysis <em>window overlap factor</em></font></td>
+</tr>
+<tr><td nowrap width="11%" valign="TOP">&nbsp;</td>
+<td nowrap width="9%" valign="TOP">
+<font face="Courier New, Courier" size="-1">-h <em>n</em></font></td>
+<td nowrap width="15%" valign="TOP">
+<font face="Courier New, Courier" size="-1">infilename</font></td>
+<td nowrap width="17%" valign="TOP">
+<font face="Courier New, Courier" size="-1">outfilename</font></td>
+<td nowrap width="48%" valign="TOP">
+<font face="Courier New, Courier" size="-1">STFT analysis <em>hop size </em>in samples</font></td>
+</tr>
+<tr><td nowrap width="11%" valign="TOP">&nbsp;</td>
+<td nowrap width="9%" valign="TOP">&nbsp;</td>
+<td nowrap width="15%" valign="TOP">&nbsp;</td>
+<td nowrap width="17%" valign="TOP">&nbsp;</td>
+<td nowrap width="48%" valign="TOP">&nbsp;</td>
+</tr>
+</table>
+
+<a name="cvanal">&nbsp;</a>
+<table cellspacing="0" border="0" cellpadding="7" width="649">
+<tr><td nowrap width="11%" valign="TOP">
+<a href="../utility/cvanal.htm"><font face="Courier New, Courier" size="-1"><strong>cvanal</strong></font></a></td>
+<td nowrap width="9%" valign="TOP">
+<font face="Courier New, Courier" size="-1"><p>-s <em>n</em></font></td>
+<td nowrap width="15%" valign="TOP">
+<font face="Courier New, Courier" size="-1"><p>infilename</font></td>
+<td nowrap width="17%" valign="TOP">
+<font face="Courier New, Courier" size="-1"><p>outfilename</font></td>
+<td nowrap width="48%" valign="TOP">
+<font face="Courier New, Courier" size="-1"><p>FFT analysis <em>sample rate</em></font></td>
+</tr>
+<tr><td nowrap width="11%" valign="TOP">&nbsp;</td>
+<td nowrap width="9%" valign="TOP">
+<font face="Courier New, Courier" size="-1"><p>-c <em>n</em></font></td>
+<td nowrap width="15%" valign="TOP">
+<font face="Courier New, Courier" size="-1"><p>infilename</font></td>
+<td nowrap width="17%" valign="TOP">
+<font face="Courier New, Courier" size="-1"><p>outfilename</font></td>
+<td nowrap width="48%" valign="TOP">
+<font face="Courier New, Courier" size="-1"><p>FFT analysis <em>channel number</em></font></td>
+</tr>
+<tr><td nowrap width="11%" valign="TOP">&nbsp;</td>
+<td nowrap width="9%" valign="TOP">
+<font face="Courier New, Courier" size="-1"><p>-b <em>n</em></font></td>
+<td nowrap width="15%" valign="TOP">
+<font face="Courier New, Courier" size="-1"><p>infilename</font></td>
+<td nowrap width="17%" valign="TOP">
+<font face="Courier New, Courier" size="-1"><p>outfilename</font></td>
+<td nowrap width="48%" valign="TOP">
+<font face="Courier New, Courier" size="-1"><p>FFT analysis <em>segment</em> <em>begin time</em></font></td>
+</tr>
+<tr><td nowrap width="11%" valign="TOP">&nbsp;</td>
+<td nowrap width="9%" valign="TOP">
+<font face="Courier New, Courier" size="-1"><p>-d <em>n</em></font></td>
+<td nowrap width="15%" valign="TOP">
+<font face="Courier New, Courier" size="-1"><p>infilename</font></td>
+<td nowrap width="17%" valign="TOP">
+<font face="Courier New, Courier" size="-1"><p>outfilename</font></td>
+<td nowrap width="48%" valign="TOP">
+<font face="Courier New, Courier" size="-1"><p>FFT analysis <em>segment duration</em></font></td>
+</tr>
+</table>
+
+
+<a name="sndinfo"><hr size="2" color="#A9A9A9" noshade></a>
+<h2>Utilities: File Queries</h2>
+<table cellspacing="0" border="0" cellpadding="7" width="649">
+<tr><td nowrap width="11%" valign="TOP">
+<a href="../utility/sndinfo.htm"><font face="Courier New, Courier" size="-1"><strong>sndinfo</strong></font></a></td>
+<td nowrap width="9%" valign="TOP">&nbsp;</td>
+<td nowrap width="31%" valign="TOP" colspan="2">
+<font face="Courier New, Courier" size="-1">soundfilename</font></td>
+<td nowrap width="48%" valign="TOP">
+<font face="Courier New, Courier" size="-1">get info about one or more sound files <em>soundfilename</em></font></td>
+</tr>
+</table>
+
+<a name="pvlook">&nbsp;</a>
+<table cellspacing="0" border="0" cellpadding="7" width="649">
+<tr><td nowrap width="11%" valign="TOP">
+<a href="../utility/pvlook.htm"><font face="Courier New, Courier" size="-1"><strong>pvlook</strong></font></a></td>
+<td nowrap width="9%" valign="TOP">
+<font face="Courier New, Courier" size="-1">-bb <em>n</em></font></td>
+<td nowrap width="15%" valign="TOP">
+<font face="Courier New, Courier" size="-1">infilename</font></td>
+<td nowrap width="17%" valign="TOP">&nbsp;</td>
+<td nowrap width="48%" valign="TOP">
+<font face="Courier New, Courier" size="-1">STFT analysis file formatted text
+output <em>beginning bin number</em></font></td>
+</tr>
+<tr><td nowrap width="11%" valign="TOP">&nbsp;</td>
+<td nowrap width="9%" valign="TOP">
+<font face="Courier New, Courier" size="-1">-eb <em>n</em></font></td>
+<td nowrap width="15%" valign="TOP">
+<font face="Courier New, Courier" size="-1">infilename</font></td>
+<td nowrap width="17%" valign="TOP">&nbsp;</td>
+<td nowrap width="48%" valign="TOP">
+<font face="Courier New, Courier" size="-1">STFT analysis file formatted text
+output <em>ending bin number</em></font></td>
+</tr>
+<tr><td nowrap width="11%" valign="TOP">&nbsp;</td>
+<td nowrap width="9%" valign="TOP">
+<font face="Courier New, Courier" size="-1">-bf <em>n</em></font></td>
+<td nowrap width="15%" valign="TOP">
+<font face="Courier New, Courier" size="-1">infilename</font></td>
+<td nowrap width="17%" valign="TOP">&nbsp;</td>
+<td nowrap width="48%" valign="TOP">
+<font face="Courier New, Courier" size="-1">STFT analysis file formatted text
+output <em>beginning frame number</em></font></td>
+</tr>
+<tr><td nowrap width="11%" valign="TOP">&nbsp;</td>
+<td nowrap width="9%" valign="TOP">
+<font face="Courier New, Courier" size="-1">-ef <em>n</em></font></td>
+<td nowrap width="15%" valign="TOP">
+<font face="Courier New, Courier" size="-1">infilename</font></td>
+<td nowrap width="17%" valign="TOP">&nbsp;</td>
+<td nowrap width="48%" valign="TOP">
+<font face="Courier New, Courier" size="-1">STFT analysis file formatted text
+output <em>ending frame number</em></font></td>
+</tr>
+<tr><td nowrap width="11%" valign="TOP">&nbsp;</td>
+<td nowrap width="9%" valign="TOP">
+<font face="Courier New, Courier" size="-1">-i  </font></td>
+<td nowrap width="15%" valign="TOP">
+<font face="Courier New, Courier" size="-1">infilename</font></td>
+<td nowrap width="17%" valign="TOP">&nbsp;</td>
+<td nowrap width="48%" valign="TOP">
+<font face="Courier New, Courier" size="-1">STFT analysis file formatted text
+output as integers</font></td>
+</tr>
+</table>
+
+<hr size="2" color="#A9A9A9" noshade>
+<table align="right" cellpadding="1" cellspacing="1" border="0">
+	<tr>
+		<td width="45" align="right">
+			<a href="../manual2.htm#contents" target="_parent"><img src="../toc.gif" width="38" height="18" alt="Use Non-Frames Version" border="0"></a>
+		</td>
+		<td width="10"></td>
+		<td width="45" align="right">
+			<a href="command.htm"><img src="../prev.gif" width="38" height="18" alt="Previous Page" border="0"></a>
+		</td>
+		<td width="45" align="right">
+			<img src="../nonext.gif" width="38" height="18" alt="Next Page" border="0">
+		</td>
+	</tr>
+</table>
+<font size="-2" color="black" face="Verdana, Arial, Helvetica, Century Gothic">
+The Csound Quick Reference</font>
+
+</body>
+</html>

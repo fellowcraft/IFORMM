@@ -1,0 +1,188 @@
+**********  MPE utilities for Dr T's KCS (Atari ST) ***************
+
+ANY_PROG.INF and ANY_PROG.MPE 
+MAKE_INF.PRG  
+
+
+ Run any program from within KCS? Yes, it's possible. 
+ Run it as an MPE module? No, that's not what these utilities do.
+
+While you are running KCS, these utilities allow you to run any
+program as a normal GEMDOS application, using GEMDOS free memory, NOT
+KCS sequence memory, as a real MPE program would do. 
+
+~~~~~~~ THE GOOD:
+ - You can run any program, not just those written for the MPE.
+ - You don't have to quit KCS first. You can load any external
+      programs as many times as you like, in the same way that you
+      would load an MPE program, and return to what you were doing in
+      KCS with all KCS's data intact.
+ - If you use a hard disk, the re-loading process is almost as fast as 
+      re-entering a real MPE program.
+
+~~~~~~~ THE BAD:
+ - You must divide up your available memory between KCS and external
+      programs BEFORE you run KCS.  This requires that you create a
+      disk file called KCS.INF (see below.) 
+ - When you exit an external program and return to KCS, you really
+      exit. The external program and its data are gone, and you can't
+      "re-enter" it until you reload the program from disk, and
+      reload its data files too.  So save to disk first!
+
+~~~~~~~ THE UGLY:
+ - Some 'external' programs may do things that cause problems when
+      you return to KCS.  (I forget exactly which ones.)
+      If the external program crashes, you will almost certainly
+      lose what you were doing in KCS.
+
+
+****************    MEMORY  AND THE KCS.INF FILE  ****************
+
+Any program requires a certain minimum amount of memory (RAM) to load
+itself into, and to store its data in.  Normally, when you boot KCS,
+KCS claims almost all of the memory in the ST, and there is not enough
+left over for other programs. A real MPE program such as Tiger can get
+the memory it needs out of memory that KCS already "owns."  Of course,
+KCS must give up some of its sequence storage ("Events Left") when you
+load Tiger into the MPE.
+
+But if you want to run other programs (not MPE-compatible programs
+from Dr.T's), those programs need to find sufficient free RAM
+(unclaimed by KCS) to load themselves into.
+
+Fortunately, you can create and use a KCS.INF file to force KCS to
+leave memory free, which you can use for other programs.  Of course, the
+more you leave free, the fewer notes you will be able to record in KCS. 
+
+
+
+********  IMPORTANT:  ********
+KCS reads the KCS.INF file only once, when you boot KCS. If you need to
+change the amount a memory used by KCS, you must quit KCS, create a new
+KCS.INF file, put it in the same directory with KCS, and reboot KCS.  
+
+The KCS.INF file is a simple ascii file that you can create or edit
+using any text editor or word processor.
+
+KCS.INF contains a (decimal) ascii number (and the names of .INF files
+for MPE modules that you want KCS to load for you when you boot KCS.)
+You can easily see what it contains by double-clicking on it from the
+desktop, and choosing Show.
+
+When KCS boots, it looks for KCS.INF in its own directory (disk and
+folder), and uses the number in KCS.INF as the number of kilobytes
+(Kb) to leave free. (Actually KCS adds a few Kb first.)  The KCS.IN
+file that came with my KCS contains the number 60.   When I rename it
+to KCS.INF, it causes KCS to leave about 72 K free. This is a good
+minimum.   To run big external programs, increase this number, save the
+new KCS.INF file on the same disk and in the same folder with your KCS,
+and re-boot KCS.
+
+If you get a message such as "There isn't enough memory in your
+computer for the application you just tried to run", then try a larger
+number in your KCS.INF file.  This will leave you less memory for
+sequences, and more for external programs.  
+
+When you need as much memory as possible for your music, you should
+boot KCS with no KCS.INF file present.   The easiest way to do this is
+to rename KCS.INF -- KCS.ING would do it -- because that way you can
+recover your KCS.INF file without bothering to run a text editor.
+
+(Should all else fail, read the KCS manual.)  
+ 
+If "Events Left" is too small after you reserve enough space for
+external programs, buy more RAM for your ST. Memory upgrades are
+getting cheap now.
+
+
+
+****************   HOW TO USE THESE UTILITIES  *************
+
+You can use either of these 2 methods to run external programs : 
+
+ [1]  ANY_PROG.INF and ANY_PROG.MPE allow you to run (guess what) any
+program anytime from KCS.  These 2 files may be on any disk in any
+folder, but they must be together.
+ In KCS, click on NEW or Load as tho you were going to run a normal
+MPE program.   When the File Selector appears, choose ANY_PROG.INF. 
+You will then see another file selector, and you can choose whatever
+program you want to run.  If you want to choose a .TOS or .APP program,
+you may, but you will have to change the mask at the end of the file
+selector's path line in order to see these programs on the selector; 
+i.e., use the backspace key, and change "*.PRG" to "*.TOS" or "*.APP".
+ 
+The program you choose will then load from disk and execute.
+ 
+After you return to KCS, you can click on ANY whenever you like, and
+run various programs. Each time you quit an external program and return
+to KCS, the memory that was used by the external program is recovered,
+so you may use ANY as many times as you like.
+ 
+ 
+ [2] For programs that you use a lot, you may want to skip the second
+file selector, and go directly from KCS to your favorite program. To do
+this, you need an .INF file and .MPX file for your external program,
+which you can create by running MAKE_INF.PRG from the Desktop.
+
+ For example, if you use GFABASIC.PRG a lot, run MAKE_INF.PRG, and
+choose GFABASIC.PRG in the file selector.  MAKE_INF.PRG will then
+create GFABASIC.INF and GFABASIC.MPX in the same disk & folder that
+GFABASIC.PRG is in.  You may move them anywhere, but keep the 3
+files together.   Then you can run GFABASIC directly from KCS anytime
+by just clicking on NEW or Load, and then GFABASIC.INF.
+(In case you are curious, the .MPX files you create are true MPE
+modules, which simply execute the named program as a normal GEMDOS
+appliction.)
+
+If your external program is on a floppy disk, be sure that you have
+that disk in the drive when you try to run it!
+
+You may put the names of these .INF files in your KCS.INF file,
+so that KCS will try to load them automatically when you first boot
+KCS.
+
+CAUTION: If you own TIGER, or other MPE modules such as DXHEAVEN,
+X-oR, etc, do NOT attempt to use MAKE_INF.PRG with them, because those
+programs already have an .INF file which they need in order to run in
+the MPE.  If you run MAKE_INF.PRG, and select TIGER, you could
+overwrite the TIGER.INF file that came with TIGER.  To be safe, always
+leave the write-protect tab open on your factory disks.
+
+MORE CAUTION : Some programs (not Dr.T MPE programs) have .INF files
+which they use to set their configuration at boot time. For example,
+KCS uses KCS.INF. These are very different from the .INF files that KCS
+looks for when you try to load an MPE module.  Be careful!
+
+MAKE_INF.PRG will warn you if you are about to replace an existing
+.INF file.   You have the choice.
+
+Note that .TTP programs will not run correctly, since you will not
+get a chance to enter a command line.  You may, however, load a command
+shell such as COMMAND.TOS, and execute .TTP programs in that way.  When
+you run .TOS programs, the mouse cursor remains visible, which can
+cause harmless "mouse droppings" on the screen.  I left it visible
+because there are some .TOS programs that use the mouse.
+
+
+*******************  MAKING KCS.INF FILES  **********************
+
+Any text editor will do the job.
+
+MAKE_INF.PRG shows you an estimate of the number of K-bytes required
+by the program you choose.  This is a minimum, since MAKE_INF.PRG has
+no way of knowing what additional memory your program may need.  If you
+have problems, try a larger number.
+
+Experiment. Of course, the new KCS.INF will not take effect until you
+copy it to your KCS disk (NOT the key disk if possible), and reboot
+KCS. 
+
+
+
+
+
+These files were created with HiSoft's DevpacST version 2, a very
+nice package which I recommend to anyone interested in assembly
+language programming.
+
+These utilities are copyright 1990 by Doug Livingston.

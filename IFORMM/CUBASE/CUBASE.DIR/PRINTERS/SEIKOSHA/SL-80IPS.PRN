@@ -1,0 +1,36 @@
+T.4
+SL-80 IP, Cut Sheet,180 * 180 dpi,360 * 360 dpi,15 npi
+
++ BEST
+1001, 4
+1002, 360
+1003, 360
+1004, 27, '*', 40
+1007, 28, '3'
+1010, 27, 64
+1021, 12
+1022, 27, 64
+1024, 10, 13
+1025, 24
+1026, 2
+
++ FAST
+2001, 2
+2002, 180
+2003, 180
+2004, 27, '*', 39
+2007, 27, '3'
+2026, 1
+
++ Paper Size
+1011, 27, 'C'   + Set paper length
+1012, 127       + max. paper length
+1013, 0         +  1: length in inches
+                +  0: length in text lines
+
+1028, 14        + Left-Margin (1/100 Inch)
+1029, 100       + Top-Margin
+1030, 14        + Right-Margin
+1031, 100       + Bottom-Margin
+
+END

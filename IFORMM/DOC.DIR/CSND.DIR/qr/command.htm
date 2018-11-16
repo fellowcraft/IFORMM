@@ -1,0 +1,726 @@
+<!doctype html public "-//W3C//DTD HTML 3.2//EN">
+
+<!-- This  particular HTML Edition of the Csound Manual is maintained by David M. Boothe. Email: csound@lakewoodsound.com-->
+<!--This is Version 4.06.-->
+<html>
+<head>
+	<title>QuickRef: Command Line Flags</title>
+</head>
+
+<body text="black" link="black" vlink="black" alink="black" bgcolor="white">
+<table align="right" cellpadding="1" cellspacing="1" border="0">
+  <tr>
+    <td width="45" align="right">
+      <a href="../manual2.htm#contents" target="_parent">
+      <img src="../toc.gif" width="38" height="18" alt="Use Non-Frames Version" border="0"></a>
+    </td>
+    <td width="10">
+    </td>
+    <td width="45" align="right">
+      <a href="gen.htm">
+      <img src="../prev.gif" width="38" height="18" alt="Previous Page" border="0"></a>
+    </td>
+    <td width="45" align="right">
+      <a href="utility.htm">
+      <img src="../next.gif" width="38" height="18" alt="Next Page" border="0"></a>
+    </td>
+  </tr>
+</table>
+<font size="-2" color="black" face="Verdana, Arial, Helvetica, Century Gothic">
+The Csound Quick Reference</font>
+
+<hr size="1" color="#A9A9A9" noshade>
+<a href="../command/top.htm"><h1>Command Line Flags</h1></a>
+
+<a name="generic"><hr size="2" color="#A9A9A9" noshade></a>
+<h2>Command Line Flags: Generic</h2>
+<table cellspacing="0" border="0" cellpadding="7" width="637">
+  <tr>
+    <td nowrap width="19%" valign="TOP">
+      <a href="../command/desc.htm">
+      <font face="Courier New, Courier" size="-1"><strong>-I</strong></font></a>
+    </td>
+    <td nowrap width="81%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">i-time only orch run</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="19%" valign="TOP">
+      <a href="../command/desc.htm">
+      <font face="Courier New, Courier" size="-1"><strong>-n</strong></font></a>
+    </td>
+    <td nowrap width="81%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">no sound onto disk</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="19%" valign="TOP">
+      <a href="../command/desc.htm">
+      <font face="Courier New, Courier" size="-1"><strong>-i <em>fnam</em></strong></font></a>
+    </td>
+    <td nowrap width="81%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">sound input filename <em>fnam</em></font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="19%" valign="TOP">
+      <a href="../command/desc.htm">
+      <font face="Courier New, Courier" size="-1"><strong>-o <em>fnam</em></strong></font></a>
+    </td>
+    <td nowrap width="81%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">sound output filename <em>fnam</em></font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="19%" valign="TOP">
+      <a href="../command/desc.htm">
+      <font face="Courier New, Courier" size="-1"><strong>-b <em>N</em></strong></font></a>
+    </td>
+    <td nowrap width="81%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">sample frames (or -kprds) per software sound I/O buffer</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="19%" valign="TOP">
+      <a href="../command/desc.htm">
+      <font face="Courier New, Courier" size="-1"><strong>-B <em>N</em></strong></font></a>
+    </td>
+    <td nowrap width="81%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">samples per hardware sound I/O buffer</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="19%" valign="TOP">
+      <a href="../command/desc.htm">
+      <font face="Courier New, Courier" size="-1"><strong>-A</strong></font></a>
+    </td>
+    <td nowrap width="81%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">create an AIFF format output soundfile</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="19%" valign="TOP">
+      <a href="../command/desc.htm">
+      <font face="Courier New, Courier" size="-1"><strong>-W</strong></font></a>
+    </td>
+    <td nowrap width="81%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">create a WAV format output soundfile</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="19%" valign="TOP">
+      <a href="../command/desc.htm">
+      <font face="Courier New, Courier" size="-1"><strong>-J</strong></font></a>
+    </td>
+    <td nowrap width="81%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">create an IRCAM format output soundfile</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="19%" valign="TOP">
+      <a href="../command/desc.htm">
+      <font face="Courier New, Courier" size="-1"><strong>-h</strong></font></a>
+    </td>
+    <td nowrap width="81%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">no header on output soundfile</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="19%" valign="TOP">
+      <a href="../command/desc.htm">
+      <font face="Courier New, Courier" size="-1"><strong>-c</strong></font></a>
+    </td>
+    <td nowrap width="81%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">8-bit signed_char sound samples</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="19%" valign="TOP">
+      <a href="../command/desc.htm">
+      <font face="Courier New, Courier" size="-1"><strong>-a</strong></font></a>
+    </td>
+    <td nowrap width="81%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">alaw sound samples</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="19%" valign="TOP">
+      <a href="../command/desc.htm">
+      <font face="Courier New, Courier" size="-1"><strong>-8</strong></font></a>
+    </td>
+    <td nowrap width="81%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">8-bit unsigned_char sound samples</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="19%" valign="TOP">
+      <a href="../command/desc.htm">
+      <font face="Courier New, Courier" size="-1"><strong>-u</strong></font></a>
+    </td>
+    <td nowrap width="81%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">ulaw sound samples</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="19%" valign="TOP">
+      <a href="../command/desc.htm">
+      <font face="Courier New, Courier" size="-1"><strong>-s</strong></font></a>
+    </td>
+    <td nowrap width="81%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">short_int sound samples</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="19%" valign="TOP">
+      <a href="../command/desc.htm">
+      <font face="Courier New, Courier" size="-1"><strong>-l</strong></font></a>
+    </td>
+    <td nowrap width="81%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">long_int sound samples</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="19%" valign="TOP">
+      <a href="../command/desc.htm">
+      <font face="Courier New, Courier" size="-1"><strong>-f</strong></font></a>
+    </td>
+    <td nowrap width="81%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">float sound samples</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="19%" valign="TOP">
+      <a href="../command/desc.htm">
+      <font face="Courier New, Courier" size="-1"><strong>-r <em>N</em></strong></font></a>
+    </td>
+    <td nowrap width="81%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">orchestra srate override</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="19%" valign="TOP">
+      <a href="../command/desc.htm">
+      <font face="Courier New, Courier" size="-1"><strong>-k <em>N</em></strong></font></a>
+    </td>
+    <td nowrap width="81%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">orchestra krate override</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="19%" valign="TOP">
+      <a href="../command/desc.htm">
+      <font face="Courier New, Courier" size="-1"><strong>-v</strong></font></a>
+    </td>
+    <td nowrap width="81%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">verbose orch translation</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="19%" valign="TOP">
+      <a href="../command/desc.htm">
+      <font face="Courier New, Courier" size="-1"><strong>-m <em>N</em></strong></font></a>
+    </td>
+    <td nowrap width="81%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">tty message level. <em>N = </em>Sum of: 1 = note amps, 2 = out-of-range msg, 4 = warnings</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="19%" valign="TOP">
+      <a href="../command/desc.htm">
+      <font face="Courier New, Courier" size="-1"><strong>-d</strong></font></a>
+    </td>
+    <td nowrap width="81%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">suppress all displays</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="19%" valign="TOP">
+      <a href="../command/desc.htm">
+      <font face="Courier New, Courier" size="-1"><strong>-g</strong></font></a>
+    </td>
+    <td nowrap width="81%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">suppress graphics, use ASCII displays</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="19%" valign="TOP">
+      <a href="../command/desc.htm">
+      <font face="Courier New, Courier" size="-1"><strong>-G</strong></font></a>
+    </td>
+    <td nowrap width="81%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">create Postscript displays of any display</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="19%" valign="TOP">
+      <a href="../command/desc.htm">
+      <font face="Courier New, Courier" size="-1"><strong>-S</strong></font></a>
+    </td>
+    <td nowrap width="81%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">score is in Scot format</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="19%" valign="TOP">
+      <a href="../command/desc.htm">
+      <font face="Courier New, Courier" size="-1"><strong>-x <em>fnam</em></strong></font></a>
+    </td>
+    <td nowrap width="81%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">extract from score.srt using extract file <em>fnam</em></font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="19%" valign="TOP">
+      <a href="../command/desc.htm">
+      <font face="Courier New, Courier" size="-1"><strong>-t <em>N</em></strong></font></a>
+    </td>
+    <td nowrap width="81%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">use uninterpreted beats of the score, initially at tempo <em>N</em></font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="19%" valign="TOP">
+      <a href="../command/desc.htm">
+      <font face="Courier New, Courier" size="-1"><strong>-L <em>dnam</em></strong></font></a>
+    </td>
+    <td nowrap width="81%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">read Line-oriented real-time score events from device <em>dnam</em></font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="19%" valign="TOP">
+      <a href="../command/desc.htm">
+      <font face="Courier New, Courier" size="-1"><strong>-M <em>dnam</em></strong></font></a>
+    </td>
+    <td nowrap width="81%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">read MIDI real-time events from device <em>dnam</em></font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="19%" valign="TOP">
+      <a href="../command/desc.htm">
+      <font face="Courier New, Courier" size="-1"><strong>-F <em>fnam</em></strong></font></a>
+    </td>
+    <td nowrap width="81%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">read MIDI file event stream from file <em>fnam</em></font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="19%" valign="TOP">
+      <a href="../command/desc.htm">
+      <font face="Courier New, Courier" size="-1"><strong>-P <em>N</em></strong></font></a>
+    </td>
+    <td nowrap width="81%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">MIDI sustain pedal threshold (<em>N = </em>0 - 128)</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="19%" valign="TOP">
+      <a href="../command/desc.htm">
+      <font face="Courier New, Courier" size="-1"><strong>-R</strong></font></a>
+    </td>
+    <td nowrap width="81%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">continually rewrite header while writing soundfile (WAV/AIFF)</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="19%" valign="TOP">
+      <a href="../command/desc.htm">
+      <font face="Courier New, Courier" size="-1"><strong>-H/H1</strong></font></a>
+    </td>
+    <td nowrap width="81%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">generates a rotating line progress report</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="19%" valign="TOP">
+      <a href="../command/desc.htm">
+      <font face="Courier New, Courier" size="-1"><strong>-H2</strong></font></a>
+    </td>
+    <td nowrap width="81%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">generates a &quot;.&quot; every time a buffer is written.</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="19%" valign="TOP">
+      <a href="../command/desc.htm">
+      <font face="Courier New, Courier" size="-1"><strong>-H3</strong></font></a>
+    </td>
+    <td nowrap width="81%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">reports the size in seconds of the output.<br>In Windows, writes information to window title bar.</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="19%" valign="TOP">
+      <a href="../command/desc.htm">
+      <font face="Courier New, Courier" size="-1"><strong>-H4</strong></font></a>
+    </td>
+    <td nowrap width="81%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">sounds a bell for every buffer of the output written.</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="19%" valign="TOP">
+      <a href="../command/desc.htm">
+      <font face="Courier New, Courier" size="-1"><strong>-N</strong></font></a>
+    </td>
+    <td nowrap width="81%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">notify (ring the bell) when score or MIDI file is done</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="19%" valign="TOP">
+      <a href="../command/desc.htm">
+      <font face="Courier New, Courier" size="-1"><strong>-T</strong></font></a>
+    </td>
+    <td nowrap width="81%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">terminate the performance when MIDI file is done</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="19%" valign="TOP">
+      <a href="../command/desc.htm">
+      <font face="Courier New, Courier" size="-1"><strong>-D</strong></font></a>
+    </td>
+    <td nowrap width="81%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">defer GEN01 soundfile loads until performance time</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="19%" valign="TOP">
+      <a href="../command/desc.htm">
+      <font face="Courier New, Courier" size="-1"><strong>-z</strong></font></a>
+    </td>
+    <td nowrap width="81%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">List opcodes in this version</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="19%" valign="TOP">
+      <a href="../command/desc.htm">
+      <font face="Courier New, Courier" size="-1"><strong>-z1</strong></font></a>
+    </td>
+    <td nowrap width="81%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">List opcodes and arguments in this version</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="19%" valign="TOP">
+      <a href="../command/desc.htm">
+      <font face="Courier New, Courier" size="-1"><strong>-- <em>lognam</em></strong></font></a>
+    </td>
+    <td nowrap width="81%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">Log all text output to <em>lognam</em></font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="19%" valign="TOP">
+      <a href="../command/desc.htm">
+      <font face="Courier New, Courier" size="-1"><strong>-j fnam</strong></font></a>
+    </td>
+    <td nowrap width="81%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">Derive console messages from database <em>fnam</em></font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="19%" valign="TOP">
+      <a href="../command/desc.htm">
+      <font face="Courier New, Courier" size="-1"><strong>-Z</strong></font></a>
+    </td>
+    <td nowrap width="81%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">Switch on dithering of audio conversion from internal floating point to 32, 16 and 8 bit formats. (New in Csound version 4.05)</font>
+    </td>
+  </tr>  
+</table>
+
+
+<a name="utility"><hr size="2" color="#A9A9A9" noshade></a>
+<h2>Command Line Flags: Utility Invocation</h2>
+<table cellspacing="0" border="0" cellpadding="7" width="637">
+  <tr>
+    <td nowrap width="19%" valign="TOP">
+      <a href="../command/desc.htm#utils">
+      <font face="Courier New, Courier" size="-1"><strong>-U sndinfo</strong></font></a>
+    </td>
+    <td nowrap width="81%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">run utility program <strong>sndinfo</strong></font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="19%" valign="TOP">
+      <a href="../command/desc.htm#utils">
+      <font face="Courier New, Courier" size="-1"><strong>-U hetro</strong></font></a>
+    </td>
+    <td nowrap width="81%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">run utility program <strong>hetro</strong></font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="19%" valign="TOP">
+      <a href="../command/desc.htm#utils">
+      <font face="Courier New, Courier" size="-1"><strong>-U lpanal</strong></font></a>
+    </td>
+    <td nowrap width="81%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">run utility program <strong>lpanal</strong></font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="19%" valign="TOP">
+      <a href="../command/desc.htm#utils">
+      <font face="Courier New, Courier" size="-1"><strong>-U pvanal</strong></font></a>
+    </td>
+    <td nowrap width="81%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">run utility program <strong>pvanal</strong></font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="19%" valign="TOP">
+      <a href="../command/desc.htm#utils">
+      <font face="Courier New, Courier" size="-1"><strong>-U cvanal</strong></font></a>
+    </td>
+    <td nowrap width="81%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">run utility program <strong>cvanal</strong></font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="19%" valign="TOP">
+      <a href="../command/desc.htm#utils">
+      <font face="Courier New, Courier" size="-1"><strong>-U pvlook</strong></font></a>
+    </td>
+    <td nowrap width="81%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">run utility program <strong>pvlook</strong></font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="19%" valign="TOP">
+      <a href="../command/desc.htm">
+      <font face="Courier New, Courier" size="-1"><strong>-C</strong></font></a>
+    </td>
+    <td nowrap width="81%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">use Cscore processing of scorefile</font>
+    </td>
+  </tr>
+</table>
+
+<a name="pc"><hr size="2" color="#A9A9A9" noshade></a>
+<h2>Command Line Flags: PC and Windows-Specific</h2>
+<table cellspacing="0" border="0" cellpadding="7" width="637">
+  <tr>
+    <td nowrap width="14%" valign="TOP">
+      <a href="../command/pc.htm">
+      <font face="Courier New, Courier" size="-1"><strong>-j <em>num</em></strong></font></a>
+    </td>
+    <td nowrap width="86%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">set the number of console text rows (default 25)</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="14%" valign="TOP">
+      <a href="../command/pc.htm">
+      <font face="Courier New, Courier" size="-1"><strong>-J <em>num</em></strong></font></a>
+    </td>
+    <td nowrap width="86%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">set the number of console text columns (default 80)</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="14%" valign="TOP">
+      <a href="../command/pc.htm">
+      <font face="Courier New, Courier" size="-1"><strong>-K <em>num</em></strong></font></a>
+    </td>
+    <td nowrap width="86%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">enables MIDI IN. <em>num</em> (optional) = MIDI IN port device id number</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="14%" valign="TOP">
+      <a href="../command/pc.htm">
+      <font face="Courier New, Courier" size="-1"><strong>-q <em>num</em></strong></font></a>
+    </td>
+    <td nowrap width="86%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">WAVE OUT device id number (use only if more WAVE devices are installed)</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="14%" valign="TOP">
+      <a href="../command/pc.htm">
+      <font face="Courier New, Courier" size="-1"><strong>-p <em>num</em></strong></font></a>
+    </td>
+    <td nowrap width="86%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">number of WAVE OUT buffers (default 4; max. 40)</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="14%" valign="TOP">
+      <a href="../command/pc.htm">
+      <font face="Courier New, Courier" size="-1"><strong>-O</strong></font></a>
+    </td>
+    <td nowrap width="86%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">suppresses all console text output for better real-time performance</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="14%" valign="TOP">
+      <a href="../command/pc.htm">
+      <font face="Courier New, Courier" size="-1"><strong>-e</strong></font></a>
+    </td>
+    <td nowrap width="86%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">allows any sample rate (to use only with WAVE cards supporting this feature)</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="14%" valign="TOP">
+      <a href="../command/pc.htm">
+      <font face="Courier New, Courier" size="-1"><strong>-y</strong></font></a>
+    </td>
+    <td nowrap width="86%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">doesn't wait for keypress on exit</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="14%" valign="TOP">
+      <a href="../command/pc.htm">
+      <font face="Courier New, Courier" size="-1"><strong>-E</strong></font></a>
+    </td>
+    <td nowrap width="86%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">allows graphic display for WCSHELL by Riccardo Bianchini</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="14%" valign="TOP">
+      <a href="../command/pc.htm">
+      <font face="Courier New, Courier" size="-1"><strong>-Q <em>num</em></strong></font></a>
+    </td>
+    <td nowrap width="86%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">enable MIDI OUT. <em>num</em> (optional) = MIDI OUT port device id number</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="14%" valign="TOP">
+      <a href="../command/pc.htm">
+      <font face="Courier New, Courier" size="-1"><strong>-Y</strong></font></a>
+    </td>
+    <td nowrap width="86%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">suppresses real-time WAVE OUT for better MIDI OUT timing performance</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="14%" valign="TOP">
+      <a href="../command/pc.htm">
+      <font face="Courier New, Courier" size="-1"><strong>-*</strong></font></a>
+    </td>
+    <td nowrap width="86%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">yields control to the system until audio output buffer is full</font>
+    </td>
+  </tr>
+</table>
+
+<a name="mac"><hr size="2" color="#A9A9A9" noshade></a>
+<h2>Command Line Flags: Macintosh-Specific</h2>
+<table cellspacing="0" border="0" cellpadding="7" width="637">
+  <tr>
+    <td nowrap width="19%" valign="TOP">
+      <font face="Courier New, Courier" size="-1"><strong>-q <em>sampdir</em></strong></font>
+    </td>
+    <td nowrap width="81%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">set the directory for finding samples</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="19%" valign="TOP">
+      <font face="Courier New, Courier" size="-1"><strong>-Q <em>analdir</em></strong></font>
+    </td>
+    <td nowrap width="81%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">set the directory for finding analyses</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="19%" valign="TOP">
+      <font face="Courier New, Courier" size="-1"><strong>-X <em>snddir</em></strong></font>
+    </td>
+    <td nowrap width="81%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">set the directory for saving sound files</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="19%" valign="TOP">
+      <font face="Courier New, Courier" size="-1"><strong>-V <em>num</em></strong></font>
+    </td>
+    <td nowrap width="81%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">set screen buffer size</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="19%" valign="TOP">
+      <font face="Courier New, Courier" size="-1"><strong>-E <em>num</em></strong></font>
+    </td>
+    <td nowrap width="81%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">set number of graphs saved</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="19%" valign="TOP">
+      <font face="Courier New, Courier" size="-1"><strong>-p</strong></font>
+    </td>
+    <td nowrap width="81%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">play on finishing</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="19%" valign="TOP">
+      <font face="Courier New, Courier" size="-1"><strong>-e <em>num</em></strong></font>
+    </td>
+    <td nowrap width="81%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">set rescaling factor</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="19%" valign="TOP">
+      <font face="Courier New, Courier" size="-1"><strong>-w</strong></font>
+    </td>
+    <td nowrap width="81%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">set recording of MIDI data</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="19%" valign="TOP">
+      <font face="Courier New, Courier" size="-1"><strong>-y <em>num</em></strong></font>
+    </td>
+    <td nowrap width="81%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">set rate for progress display</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="19%" valign="TOP">
+      <font face="Courier New, Courier" size="-1"><strong>-Y <em>num</em></strong></font>
+    </td>
+    <td nowrap width="81%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">set rate for profile display</font>
+    </td>
+  </tr>
+</table>
+
+<hr size="2" color="#A9A9A9" noshade>
+<table align="right" cellpadding="1" cellspacing="1" border="0">
+  <tr>
+    <td width="45" align="right">
+      <a href="../manual2.htm#contents" target="_parent">
+      <img src="../toc.gif" width="38" height="18" alt="Use Non-Frames Version" border="0"></a>
+    </td>
+    <td width="10">
+    </td>
+    <td width="45" align="right">
+      <a href="gen.htm">
+      <img src="../prev.gif" width="38" height="18" alt="Previous Page" border="0"></a>
+    </td>
+    <td width="45" align="right">
+      <a href="utility.htm">
+      <img src="../next.gif" width="38" height="18" alt="Next Page" border="0"></a>
+    </td>
+  </tr>
+</table>
+<font size="-2" color="black" face="Verdana, Arial, Helvetica, Century Gothic">
+The Csound Quick Reference</font>
+
+</body>
+</html>

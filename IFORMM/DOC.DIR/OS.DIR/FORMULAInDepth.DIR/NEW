@@ -1,0 +1,37 @@
+
+\ ***** trnd *****************************************************************
+
+create timetable
+
+ 100 ,			\ total 'weight' of the table
+  0 , 			\ 0 entry has 'no weight', so it will never happen
+ 20 ,                   \ 1
+ 10 ,			\ 2 entry will happen 25% of the time (25/100)
+ 10 ,			\ 3 entry will happen 24% of the time (24/100)
+  0 ,			\ 4 entry will happen 1% of the time (1/100)
+  0 ,                   \ 5
+  0 ,                   \ 7
+  0 ,                   \ 8
+ 40 ,                  \ 9
+\ -----------------------------------------------------------------------------
+
+pquan dnote
+
+:ap drums
+ ::ap [ 1 params ] 
+   to dnote
+  ::tsg 
+    begin
+     timetable trnd  	\ pick random 1 2 3 or 4
+     dup 100 100 say. 8 r>i & 		\ make a rhythmic value of that many 16th notes
+    again
+  ;;sg
+
+\  frnd2-init
+
+  begin
+       \   128 frnd2 10 0 mcc
+	  dnote $
+  again
+ ;;ap
+;ap

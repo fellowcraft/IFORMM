@@ -1,0 +1,166 @@
+
+\ **************************** P R O C E S S E S *****************************
+
+\ Playing the examples in the preceding files, you might noticed that there 
+\ is no response to terminal keyboard input while music is playing. To remove
+\ this limitation, FORMULA lets you execute multiple processes at the same 
+\ time. This is done using a software technique called multiprogramming in 
+\ which CPU switches rapidly between processes to provide the illusion of
+\ simultaneous execution.
+
+\ A process is a sequential "thread of control". Don't confuse processes and 
+\ the words; many different processes can be executing within a single word 
+\ at the same time.
+
+\ * NOTE-PLAYING (or active) processes generate streems of notes. You can have
+\   several running at once, and you can type Forth commands or edit files with
+\   Emacs, while they run.
+
+\ Note-playing processes use $-words to play a notes, they generally specify
+\ only the pitch of the note.
+
+	:ap scale 			\ active process
+	    60 62 64 65 67 69 71 72  8 m$
+	;ap
+
+	:ap scales			\ active process
+		scale scale
+	;ap
+
+	:ap solo-scale			\ active separate process
+	    ::ap scales ;;ap
+	;ap
+
+\ ::ap and ;;ap bracket the code (definition) to be executed by the new process.
+\ In this case the process will execute solo-scale, then exit. 
+
+\ Type solo-scale and press <Return>. Now you'll get OK response on the 
+\ terminal keyboard and can type solo-scale a few times, getting several copies
+\ of the solo-scale to run simultaneosely. Use ^p or the "up-arrow" cursor to
+\ do this with minimal typing.
+
+\ The PARENT PROCESS (:ap ;ap) executes a new process called the CHILD PROCESS 
+\ (::ap ;;ap). The child process begins executing the code after ::ap , when it
+\ reaches ;;ap , it exits and goes away.
+
+\ Every process has its own DATA STACK for parametar passing and RETURN STACK
+\ for return addresses. Since a parent process and its child have separate
+\ stacks, parametears cannot be passed between them in the same way that 
+\ parametars are passed between words. Instead, the number of parametars to 
+\ be transfered to a new process must be declared within the child process
+\ using:
+\		[ n params ]
+
+\ where n is the number of parametars needed. This instructs ::ap to copy n
+\ words from the parent's stack to the child's stack. For example, the word:
+
+	:ap delayed-scale
+		::ap
+			[ 1 params ] time-advance
+			solo-scale
+		;;ap
+	;ap
+
+\ will create a process that waits a while before playing. In order to hear 
+\ that you are required to type n (the number which represents the value of 
+\ desired time-advance). That will look someting like this 1000 delayed-scale,
+\ which will delay executing of delayed-scale for one second. If you forget to
+\ type n, and type only delayed-scale - you'll get the message Stack Underflow
+\ (which states for the empty stack) and there will not be any time delay.
+
+\ Note playing processes can be collected into GROUPS. A group can be 
+\ controlled (suspended, resumed, or killed) as a single unit. You can also
+\ control the tempo or volume of the notes played by the processes within a
+\ group. Groups may also contain other groups as elements.
+
+\ A group is createt using the following construct:
+
+
+\ 	::gp
+\		... code for the group's initial process
+\	;;gp
+\		... the original process resumes here when group processes exit
+
+
+\ This can be used only within an active process definition. For example:
+
+	:ap scale1
+	    60 62 64 65 67 69 71 72  8 m$
+	;ap
+
+	:ap scale2
+	    72 74 76 77 79 81 83 84  8 m$
+	;ap
+
+	:ap scale3
+	    84 86 88 89 91 93 95 96  8 m$
+	;ap
+
+
+	:ap tri-scale
+	   ::gp		  	    \ create a group
+               ::ap scale1 ;;ap     \ create more processes within the group
+	       ::ap scale2 ;;ap
+	       scale3
+	   ;;gp
+	;ap
+
+	:ap trio	            \ non-blocking version of tri-scale
+		::ap tri-scale ;;ap
+	;ap
+
+\ ****************************************************************************
+
+	:ap scale4
+	    60 62 64 65 67 69 71 72  8 m$
+	;ap
+
+	:ap scale5
+	   ::ap [ 1 params ] time-advance 
+	    72 74 76 77 79 81 83 84  8 m$
+	   ;;ap
+	;ap
+
+	:ap scale6
+	   ::ap [ 1 params ] time-advance 
+	    84 86 88 89 91 93 95 96  8 m$
+	   ;;ap
+	;ap
+
+
+	:ap tri-scale1
+	   ::gp		  	    \ create a group
+               ::ap scale4 ;;ap     \ create more processes within the group
+	       ::ap 300 scale5 ;;ap
+	       600 scale6
+	   ;;gp
+	;ap
+
+	:ap trio1	            \ non-blocking version of tri-scale
+		::ap tri-scale1 ;;ap
+	;ap
+
+\ ****************************************************************************
+
+\ The word tri-scale makes the calling process into a group containing three 
+\ processes. The calling process resumes only when all three processes have 
+\ finished. Therefore if you call tri-scale from the Forth interpreter, 
+\ keyboard input will be ignored until the piece is over. Non-blocking version
+\ of tri-scale is called trio. If called from the interpreter, it creates a new
+\ top-level process in which tri-scale is executed. Thus you can call trio as
+\ many times you want and it will create as many versions of it you called and 
+\ run them simultaneously.
+
+\ The ::gp construct also provides a convenient way to wait for a process to
+\ finish. Namely, the process that calls ::gp waits for the processes created
+\ within a group to finish.
+
+	:ap trio2
+	   ::gp tri-scale1 tri-scale1 tri-scale1 ;;gp
+	;ap
+
+	:ap trios
+	   ::ap trio2 ;;ap
+	;ap
+
+\ *****************************************************************************

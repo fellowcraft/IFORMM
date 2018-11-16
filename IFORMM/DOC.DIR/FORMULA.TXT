@@ -1,0 +1,4258 @@
+Forth Music Language
+(FORMULA)
+
+Version 4.0
+Reference Manual
+
+January 1, 1993
+
+David P. Anderson
+1627 Blake St.
+Berkeley, CA  94703
+
+Ron Kuivila
+Music Department
+Wesleyan University
+Middletown, CT  06457
+
+Rob Vaterlaus
+1908 Delaware St.
+Berkeley, CA  94709
+
+Edited for IFORMM by Frank H. Rothkamm
+
+INTRODUCTION
+
+FORMULA (Forth Music Language) is a programming language for computer music.
+FORMULA programs control MIDI synthesizers and can respond to input from devices
+such as the computer keyboard, the mouse, and MIDI controllers.  Using FORMULA
+you can write programs that:
+
+-  compose and play music using deterministic or random rules;
+-  represent and perform interpretations of musical scores;
+-  interact with a human performer.
+
+You can do any combination of these activities concurrently.
+
+Distribution and Copying
+
+FORMULA is based on a Forth system called Forthmacs.  FORMULA and Forthmacs are
+copyrighted.  The software may be freely used, copied, and given away, but may
+not be sold.  Forthmacs documentation can be purchased from
+
+Bradley Forthware
+P.O. Box 4444
+Mountain View, CA  94040.
+
+Getting Started
+
+Read the System Setup section in Appendix F (Atari) or G (Macintosh).  Run
+FORMULA by double-clicking on its icon.  Set your MIDI synthesizer to receive on
+MIDI channel zero.  Play a note by typing
+
+50 $
+
+If this doesn't work, something is wrong.  Check your equipment and try again.
+
+The directory pieces contains various FORMULA programs.  Type
+
+cd pieces
+fload demo
+rnd-notes
+
+and you will hear a stream of random notes.  Type
+
+kill-all
+
+to stop it.  Try compiling and running some other files in pieces (for fun, try
+running several at once).  To hear a lengthy FORMULA sampler, type
+
+standard-MIDI-defs also
+fload concert
+concert
+
+Type kill-all to stop.  If notes continue to sound, type peds-off to release
+sustain pedals.  If notes still sound, type notes-off to send "all-notes-off"
+commands to all synthesizers.  When you're done , type
+
+bye
+
+to exit (or, on the Macintosh, choose the Quit item in the File menu).
+
+Learning about FORMULA
+
+-  First-time users should begin with the following Tutorial Overview.
+Subsequent sections, describing FORMULA in detail, need not be read in order or
+in their entirety.
+-  If you've used earlier versions of FORMULA, read Appendix E, which describes
+the differences between versions 3.4 and 4.0.
+-  Forth is briefly describdd in Appendix A.  A good book on Forth is Mastering
+FORTH by Anita Anderson and Martin Tracy (Prentice Hall).
+-  Read the programs in the pieces directory.
+-  The ultimate documentation is the source code itself.  One way to peruse this
+is to decompile words using see.  For example,
+
+see formula
+
+show the source code for the word formula.  Be aware that some words are in
+vocabularies that are not normally in the search list (they can be added to the
+list by typing, e.g., internals also).
+
+TUTORIAL OVERVIEW
+
+FORMULA lets you define Forth words that play music.  For example, you might
+define a word row-tune that plays "Row, Row, Row Your Boat":
+
+:ap row-tune
+  c c c d e 5$
+  e d e f g r 6$
+  +c g e c 4$
+  g f e d c r 6$
+;ap
+
+You can type this directly to the Forth interpreter, or store it in a file and
+use eload or fload to compile it (see Appendix A).  In either case, typing row-
+tune plays the tune.
+
+The words c, d, etc. push numbers representing the corresponding pitches.  r
+pushes a zero, representing "no pitch" (rest).  4$, 5$ and 6$ take pitch numbers
+from the stack and play the notes in sequence.  Each note is played by sending a
+MIDI key-down command, pausing for a certain amount of time, then sending a MIDI
+key-up command.  :ap and ;ap are like Forth's : and ; except they add a
+vocabulary containing c, 4$, etc. to the search list.
+
+Notes are .5 seconds long by default.  The following plays the tune with the
+correct rhythm:
+
+:ap row
+  ::tsg
+    2/4 /8.16 /4
+    /8.16 /8.16 2/4
+    4/4
+    /8.16 /8.16 2/4
+  ;;sg
+  row-tune
+;ap
+
+The code between ::tsg and ;;sg generates a sequence of rhythmic durations (2/4
+is two quarter notes, /8.16 is a dotted eighth and sixteenth, etc.).  The ::tsg
+... ;;sg construct creates a new "timing sequence generator" process that
+executes this code.  The main process continues and executes row-tune.
+
+Now suppose we want to play the tune as a four-voice round, using a different
+synthesizer sound per MIDI channel for each voice:
+
+:ap row-round
+ /1
+ ::ap 0 to $channel row ;;ap
+ rest
+ ::ap 1 to $channel row ;;ap 
+ rest
+ ::ap 2 to $channel row ;;ap
+ rest
+ ::ap 3 to $channel row ;;ap
+;ap
+
+The ::ap ... ;;ap construct creates a new process executing the enclosed code.
+The main process creates four of these, pausing for one measure between them.
+
+
+In the above examples, response to keyboard input is delayed while music is
+playing, because the main process (the Forth interpreter) is tied up.  This can
+be changed by creating a separate process to play the music:
+
+:ap async-row
+  ::ap" Row Your Boat"
+    ::gp
+      row-round
+    ;;gp
+  ;;ap
+;ap
+
+After you type async-row, the keyboard immediately responds to further input.
+If you type async-row several times quickly, you can get multiple copies of the
+round going at once.  You can do anything you want while processes are playing
+music: edit files, or (on the Macintosh) run other applications.  Type
+
+.all
+
+to get a list of processes, showing their names and ID numbers.  ::ap" is a
+variant of ::ap that assigns a name to the process it creates.  Type
+
+kill-all
+
+to get rid of all processes.
+
+The ::gp construct creates a "group" to contain processes and/or other groups,
+allowing them to be manipulated as a unit.  Suppose, for example, that the ID
+number of a group (as shown by .all) is 5.  You can type
+
+5 .gp
+5 suspend
+5 resume
+5 kill
+
+to examine, stop, start and get rid of the processes in the group.
+
+Finally, here's a program that, when you hit a key on your MIDI keyboard, plays
+"Row, Row, Row Your Boat" transposed to that key.  This lets you start rounds by
+hitting the same key every 4 beats.
+
+:ap shifted-row        ( key-number velocity --- )
+swap
+  if                   \ ignore key-ups
+    c -                \ get offset to middle C
+    ::ap
+      [ 1 params ]
+      8<< to $transpose    \ and transpose by that amount
+      row
+    ;;ap
+  else
+    drop
+  then
+;ap
+
+
+The last line arranges for shifted-row to be called every time a MIDI key is
+pressed or released; the key number and velocity are passed on the stack.
+shifted-row ignores key-ups.  For key-downs, it creates a process that plays the
+tune transposed to that key.  The line
+
+[ 1 params ]
+
+causes 1 item (the offset, in this case) to be copied to the stack of the new
+process.  The process stores this number in per-process variable called
+$transpose (1/256-semitone units, hence the 8<<) which is added to the pitches
+of all notes played by the process.
+
+FORMULA BASICS
+
+Processes
+
+FORMULA uses "concurrent processes".  Each process is a thread of control with
+its own stack, register set, and per-process variables.  There are two varieties
+of processes in FORMULA:
+
+-  Active processes act autonomously: playing notes, responding to input, etc.
+
+-  Auxiliary processes are "attached" to one or more active processes, and
+execute only in response to them.  The auxiliary process modifies note
+parameters (volume, duration) and tempo for the active processes to which it is
+attached.
+
+FORMULA handles scheduling (switching between processes).  To remain in
+Forthmacs but disable scheduling, type
+
+restore
+
+You can re-enable scheduling by typing formula.
+
+Per-Process Storage
+
+FORMULA provides a quan construct for defining named variables:
+
+quan     ( name ; --- ; define a quan )
+         ( name ; --- n ; a quan returns its value )
+to       ( name ; n --- ; store to a quan )
+addr     ( name ; --- address ; find address of quan )
+
+For example:
+
+quan counter       \ declare a quan named "counter"
+11 to counter      \ store a value in it
+counter .          \ get and print the current value
+
+
+	:ap middle-c
+
+	    5 0 do counter $ loop
+
+	;ap
+
+	:ap middle-g
+
+	    5 0 do counter 7 + $ loop
+
+	;ap
+
+	:ap middles
+		::ap middle-c ;;ap
+		middle-g
+	;ap
+
+	:ap fifths
+	    ::ap begin middles again ;;ap
+	;ap
+
+Once you run "fifths" it will play continuosly, then you can type on the
+keyboard terminal (in real time) any value you want to assign for the quan 
+counter. If you type, for instance,  72 to counter  ; it will play "fifths"
+transposed an octave higher. To stop this you should type kill-all.
+
+Storage is called "per-process" if there is a copy for each process (a quan has
+only one copy, shared by all processes).  Since each process has its own stack,
+data stored on the stack is automatically per-process.  However, it is often
+inconvenient to access stack locations, especially when they belong to other
+processes.  FORMULA therefore provides "per-process quans", or pquans.
+
+pquan    ( name ; --- ; define a pquan )
+pallot   ( n --- ; allocate n additional bytes to the last defined pquan )
+poffset  ( name ; --- n ; find CB offset of pquan )
+
+
+For example:
+
+pquan guess 	\ declare a pquan
+	
+	:ap look
+	    ::gp
+		[ 1 params ] to guess
+		guess 0 do 60 $ loop
+	    ;;gp
+	;ap
+
+pquan guesses 	\ declare a pquan
+
+	:ap pauser
+	    ::gp
+		[ 1 params ] to guesses
+		guesses 0 do 0 $ loop
+	    ;;gp
+ 	;ap
+
+	:ap hook
+	    ::ap
+		 1 look 
+		 2 pauser 
+	         8 look 
+	         3 pauser 
+		14 look 
+	    ;;ap
+	;ap
+
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+pquan wonder     \ declare a pquan
+
+	:ap look-at
+	    ::ap 
+		[ 2 params ] to guess to wonder
+		guess 0 do 60 wonder + $ loop
+	    ;;ap
+	;ap
+
+	:ap keep-it
+	    ::ap 2 3 look-at ;;ap
+	    ::ap 5 8 look-at ;;ap
+	    12 - 14 look-at
+	;ap
+
+	:ap keeping
+	    ::ap keep-it ;;ap
+	;ap
+
+In several processes which execute "keep-it" at once, each has a separate 
+copy of pquans (guess and wonder); guess determines: how many times do-loop 
+will be executed, wonder determines: which number will be added to 60 and 
+therefore affects the transposition.
+
+A pquan name by itself returns the value of the calling process's copy of the
+pquan, and the to and addr operations refer to the caller's copy.  The following
+words manipulate the pquans of other processes:
+
+ipget    ( name ; ID --- n ; get the value of another process's pquan )
+ipto     ( name ; n ID --- ; store into another process's pquan )
+ipaddr   ( name ; ID --- address ; locate another process's pquan )
+
+For example, the command
+
+7.5 3 ipto $transpose
+
+assigns the value 7.5 to the $transpose pquan of process 3.
+
+The pquans defined by FORMULA are initialized at process creation; in most cases
+their values are inherited from the parent process.  User-defined pquans are not
+initialized.
+
+Vocabularies
+
+FORMULA uses vocabularies to hide words that are of interest only in certain
+contexts.  These vocabularies are:
+
+ap-defs         ( words relevant to note-playing process definitions )
+sh-defs         ( words relevant to shape definitions )
+td-defs         ( words relevant to time deformation definitions )
+sg-defs         ( words relevant to sequence generator definitions )
+internals       ( words not intended for direct user access )
+standard-MIDI-defs  ( instrument defs based on standard patch #s )
+
+Forthmacs maintains a "search list" of vocabularies to scan during word lookup.
+Words such as :ap add the relevant vocabulary to the search list.  The following
+
+only forth also definitions
+
+restores the search list to its default state (forth is Forthmac's main
+vocabulary).
+
+Fractional Number Syntax
+
+FORMULA provides two notations for fractional quantities:
+
+-  Expressions of the form n.m are converted to a 32-bit fixed-point number with
+8 fractional bits  For example, 1.0 becomes 256 and 0.5 becomes 128.  This
+notation is used to specify fractional pitch values and tempos.
+
+-  Expressions of the form n|m and n(m represent the fraction n/m.  This
+notation is used to specify time intervals (see Rational Time Intervals) .
+
+NOTE-PLAYING PROCESSES AND GROUPS
+
+Processes
+
+FORMULA lets you execute multiple processes at the same 
+time. This is done using a software technique called multiprogramming in 
+which CPU switches rapidly between processes to provide the illusion of
+simultaneous execution.
+
+A process is a sequential "thread of control". Don't confuse processes and 
+the words; many different processes can be executing within a single word 
+at the same time.
+
+NOTE-PLAYING (or active) processes generate streems of notes. You can have
+several running at once, and you can type Forth commands or edit files with
+Emacs, while they run.
+
+Note-playing processes use $-words to play a notes, they generally specify
+only the pitch of the note.
+
+	:ap scale 			\ active process
+	    60 $ 62 $ 64 $ 65 $ 67 $ 69 $ 71 $ 72 $
+	;ap
+
+	:ap scales			\ active process
+		scale scale
+	;ap
+
+	:ap solo-scale			\ active separate process
+	    ::ap scales ;;ap
+	;ap
+
+::ap and ;;ap bracket the code (definition) to be executed by the new process.
+In this case the process will execute solo-scale, then exit. 
+
+Type solo-scale and press <Return>. Now you'll get OK response on the 
+terminal keyboard and can type solo-scale a few times, getting several copies
+of the solo-scale to run simultaneosely. Use ^p or the "up-arrow" cursor to
+do this with minimal typing.
+
+The PARENT PROCESS (:ap ;ap) executes a new process called the CHILD PROCESS 
+(::ap ;;ap). The child process begins executing the code after ::ap , when it
+reaches ;;ap , it exits and goes away.
+
+Every process has its own DATA STACK for parametar passing and RETURN STACK
+for return addresses. Since a parent process and its child have separate
+stacks, parametears cannot be passed between them in the same way that 
+parametars are passed between words. Instead, the number of parametars to 
+be transfered to a new process must be declared within the child process
+using:
+		[ n params ]
+
+where n is the number of parametars needed. This instructs ::ap to copy n
+words from the parent's stack to the child's stack. For example, the word:
+
+	:ap delayed-scale
+		::ap
+			[ 1 params ] time-advance
+			solo-scale
+		;;ap
+	;ap
+
+will create a process that waits a while before playing. In order to hear 
+that you are required to type n (the number which represents the value of 
+desired time-advance). That will look someting like this 1000 delayed-scale,
+which will delay executing of delayed-scale for one second. If you forget to
+type n, and type only delayed-scale - you'll get the message Stack Underflow
+(which states for the empty stack) and there will not be any time delay.
+
+For example:
+
+	:ap scaly1
+	    60 $ 62 $ 64 $ 65 $ 67 $ 69 $ 71 $ 72 $
+	;ap
+
+	:ap scaly2
+	   ::ap [ 1 params ] time-advance 
+	    72 $ 74 $ 76 $ 77 $ 79 $ 81 $ 83 $ 84 $
+	   ;;ap
+	;ap
+
+	:ap scaly3
+	   ::ap [ 1 params ] time-advance 
+	    84 $ 86 $ 88 $ 89 $ 91 $ 93 $ 95 $ 96 $ 
+	   ;;ap
+	;ap
+
+	:ap saclies)
+	   ::gp		  	    \ create a group
+               ::ap scaly1 ;;ap     \ create more processes within the group
+	       ::ap 300 scaly2 ;;ap
+	       600 scaly3
+	   ;;gp
+	;ap
+
+	:ap scalies	            \ non-blocking version of scalies)
+		::ap scalies) ;;ap
+	;ap
+
+Groups
+
+Active processes can be collected into groups,  which can be controlled
+(suspended, resumed, killed, or modified by an auxiliary process) as a unit.
+Groups may contain other groups as elements.  A group is created using
+
+::gp
+  \ ... code for the group's initial process
+;;gp
+\ original process resumes here when all group processes exit
+
+This construct can be used only in an active process definition.  It works as
+follows: when a process P executes ::gp, it becomes a group.  A new process Q is
+created, executing the code following the ::gp, and becomes the sole member of
+the group.  Q may create additional processes in the group using ::ap.  When all
+the processes in the group have exited, P becomes a process again and resumes
+execution after the ;;gp.
+
+For example:
+
+	:ap scale1
+	    60 $ 62 $ 64 $ 65 $ 67 $ 69 $ 71 $ 72 $
+	;ap
+
+	:ap scale2
+	    72 $ 74 $ 76 $ 77 $ 79 $ 81 $ 83 $ 84 $
+	;ap
+
+	:ap scale3
+	    84 $ 86 $ 88 $ 89 $ 91 $ 93 $ 95 $ 96 $
+	;ap
+
+	:ap tri-scale
+	   ::gp		  	    \ create a group
+               ::ap scale1 ;;ap     \ create more processes within the group
+	       ::ap scale2 ;;ap
+	       scale3
+	   ;;gp
+	;ap
+
+	:ap trio	            \ non-blocking version of tri-scale
+		::ap tri-scale ;;ap
+	;ap
+
+The word tri-scale makes the calling process into a group containing three 
+processes (two of these are created by ::ap to run scale1 and scale2; the 
+third, created by ::gp, runs scale3).  The calling process resumes only when 
+all three processes have finished. Therefore if you call tri-scale from the 
+Forth interpreter, keyboard input will be ignored until the piece is over. 
+Non-blocking version of tri-scale is called trio. If called from the 
+interpreter, it creates a new top-level process in which tri-scale is executed.
+Thus you can call trio as many times you want and it will create as many 
+versions of it you called and run them simultaneously.
+
+The ::gp construct also provides a way to wait for processes to finish.  In
+concert, for example, this is used to play a sequence of pieces.
+
+	:ap 3scale
+	   ::gp tri-scale tri-scale tri-scale ;;gp
+	;ap
+
+	:ap trios
+	   ::ap 3scale ;;ap
+	;ap
+
+
+Naming and Controlling Processes
+
+ To give a process a name, you must create it using ::ap":
+
+::ap" name"
+   ...
+;;ap
+
+For example:
+
+	:ap c-major 
+	   ::ap" c-major"       \ make a new process and give it a name
+	       ::gp		\ make it into a group
+		10 0 do
+	        60 $ 62 $ 64 $ 65 $ 67 $ 69 $ 71 $ 72 $
+		loop		\ create more processes, play music, etc.
+	       ;;gp
+	    ;;ap
+	;ap
+
+	:ap c-minor
+	   ::ap" c-minor"       \ make a new process and give it a name
+	       ::gp		\ make it into a group
+		10 0 do
+	        60 $ 62 $ 63 $ 65 $ 67 $ 68 $ 71 $ 72 $	
+		loop 		\ create more processes, play music, etc.
+	       ;;gp
+	    ;;ap
+	;ap
+
+By making itself into a separete group, the program is "insulated" from other
+concurent activities.
+
+The word
+
+.all     ( --- ; list all processes with names )
+
+shows a summary of the named processes, including their numeric IDs.  For
+example:
+
+.all
+ID: 1  name: main-process  type: process
+ID: 2  name: MIDI input handler  type: process
+ID: 3  name: c-major  type: group
+ID: 4  name: c-minor  type: group
+
+FORMULA's output (in italics) shows four processes: the main process (Forth
+interepreter), the MIDI input-handling process, and a user-created process.  
+The following words can be used to obtain more information about a particular
+process:
+
+.gp      ( ID --- ; list all descendants of a process group )
+.cb      ( ID --- ; print the contents of a process's context block )
+.aux     ( ID --- ; list a process' auxiliary processes)
+
+The following words manipulate note-playing processes and groups.  They can be
+applied only to top-level objects, not to elements of groups.
+
+suspend  ( ID --- ; suspend a process or group )
+resume   ( ID --- ; resume a suspended process or group )
+kill-all ( --- ; kill all processes and groups )
+kill     ( ID --- ; kill a process or group )
+immortal ( --- ; make the calling process immune to kill-all )
+
+For example:
+
+	:ap god
+	   	::ap" FOREVER "	       \ make a new process and give it a name
+		     immortal 	       \ this will make god immune to kill-all 
+	     	      5 0 do 
+		             60 $ 62 $ 64 $ 65 $ 67 $ 69 $ 71 $ 72 $    
+			  loop 
+		;;ap
+	;ap
+
+A top-level process (not a group member) can call
+
+suspend-me   ( --- ;  suspend caller )
+
+to suspend itself.
+
+TIMING
+
+Time Coordinate Systems
+
+Time intervals are expressed in several ways in FORMULA:
+
+-  Rational numbers (numbers of the form n/m, where n and m are integers).
+These are converted by a per-process scaling factor to:
+
+-  Per-process virtual time (PPVT).  These integer units are converted by time
+deformation processes (see Auxiliary Processes) to:
+
+-  System virtual time (SVT).  These integer units are converted by a global
+scaling factor to real time units (see below).
+
+The default length of one SVT unit is one millisecond; this can be changed using
+
+usecs-per-SVT    ( n --- set the length of an SVT unit to n microseconds ).
+
+For example,
+
+500 usecs-per-SVT
+
+sets the SVT unit to 500 microseconds (0.5 millisecond), halving all durations
+and doubling the tempo.  Warning: system efficiency will degrade if the SVT unit
+varies from one millisecond by more than a factor of ten or so.
+
+Advancing in Time
+
+Each note-playing (active) process has a "time position".  As it plays notes
+using $, its time position automatically advances according to note durations.
+A process can also explicitly advance its time position using
+
+time-advance   ( delay --- )
+
+This advances by the specified amount, expressed in PPVT units.  For example,
+the following plays a middle C for 0.5 seconds (assuming the default SVT value
+and no time deformations):
+
+	time-advance 2000 = /1   ( whole note )
+	time-advance 1000 = /2   ( half note )
+	time-advance  500 = /4   ( quarter note )
+	time-advance  250 = /8   ( eight note )
+	time-advance  125 = /16  ( sixteenth note )
+	time-advance 62.5 = /32  ( thirtysecond note )
+
+127 60 0 mkd
+500 time-advance
+0 60 0 mkd
+
+mkd generates MIDI output; see Sending MIDI Commands.
+
+So, any parametar, word or process can be controlled by time-advance.
+
+For example:
+
+:ap first
+   8 0 do 60 $ loop
+;ap
+
+:ap second
+  12 0 do 72 $ loop
+;ap
+
+:ap pair1
+                   first 
+ 1789 time-advance second
+;ap
+
+:ap doubler1
+	::ap pair1 ;;ap
+;ap
+
+Another example:
+
+:ap third
+  13 0 do 52 $ loop
+;ap
+
+:ap fourth
+   6 0 do 90 $ loop
+;ap
+
+:ap pair2
+   1049 time-advance third 
+   2312 time-advance fourth 
+;ap
+
+:ap double
+   ::ap pair1 ;;ap
+        pair2
+;ap
+
+:ap doubler2
+	::ap double ;;ap
+;ap
+
+You can even use it to achieve some kind of chorusing efects:
+
+:ap song
+ /16
+ 5 0 do 
+	60 $ 64 $ 67 $ 72 $ 76 $ 79 $ 84 $ 79 $ 76 $ 72 $ 67 $ 64 $ 
+ loop
+ 60 $
+;ap
+
+:ap chorus-song
+ ::ap song ;;ap
+ ::ap  5 time-advance song ;;ap
+ ::ap 10 time-advance song ;;ap
+ ::ap 15 time-advance song ;;ap
+ ::ap 20 time-advance song ;;ap
+      25 time-advance song
+;ap
+
+:ap chorus
+	::ap multi-song1 ;;ap
+;ap
+
+Or perhaps a digital delay effect:
+
+:ap delay-song
+   ::ap song ;;ap
+   ::ap 278 time-advance song ;;ap
+        612 time-advance song
+;ap
+
+:ap d-delay
+	::ap chorus-song ;;ap
+;ap
+
+Time Control Structures
+
+Active processes can control the duration of code segments using the following
+"time control structures":
+
+maxtime ( n --- )
+ ...
+maxend
+
+mintime ( n --- )
+ ...
+minend
+
+mintime ( n --- )
+ ...
+minloop
+
+maxtime ... maxend causes the enclosed code to consume at most n  PPVT units.
+If this limit is reached, control is transferred to the statement following
+maxend and the stacks are restored to their initial levels.  For example,
+
+:ap foo
+  ::tsg begin 1|4 irnd & again
+  8|1 maxtime
+    begin c $ again
+  maxend
+;ap
+
+plays a sequence of random-length notes lasting exactly 8 measures.
+
+mintime ... minend causes the code block to be followed by a time-advance, if
+necessary, so that it consumes at least n  PPVT units.  mintime ... minloop
+causes the code block to be iterated, if necessary, so that it consumes at least
+n  PPVT units.
+
+These structures can be nested; outermost structures have priority.  Actions
+scheduled within a maxtime construct are performed even if they lie outside the
+bound.  In the example given above, this means the end times of notes generated
+by foo may lie beyond the 8-beat limit.
+
+Rational Time Intervals
+
+It is often convenient to express time intervals as a rational number (ratio of
+integers) of whole notes: a quarter note is 1/4 of a whole note, a half note
+triplet is 1/3, etc.  FORMULA lets you specify time intervals as rational
+numbers.  The word r>i converts a rational number (two integers) to PPVT form
+(one integer).  For example:
+
+:ap quarter-C
+  127 60 0 mkd            \ key down
+  1 4 r>i time-advance    \ wait a quarter note
+  0 60 0 mkd              \ key up
+;ap
+
+FORMULA converts expressions of the form n|m to n m r>i, so 1|4 could replace 1
+4 r>i in the above example.
+
+The conversion performed by r>i involves an integer computation of the form
+
+:ap quarter-C#
+  127 61 0 mkd		\ key down
+  1|4 time-advance      \ wait a quarter note
+    0 61 0 mkd		\ key up
+;ap
+ 
+(num*rscale)/denom
+
+where rscale is a pquan giving the PPVT duration of a whole note.  The default
+value of rscale is 2000, giving a quarter note the duration of 500 PPVT units.
+With no time deformations and the default SVT scaling, this is 0.5 second (i.e.,
+120 beats per minute).
+
+Modifying rscale can be used for per-processes tempo control that use the 
+rational time specification. The larger you set rscale, the slower the tempo.
+
+:ap tempos
+	::ap
+ 2000 to rscale		       \ 2000 gives a quarter note the tempo of 120 bpm
+
+  3 0 do 
+	60 $ 64 $ 67 $ 72 $ 
+      loop
+
+ 4000 to rscale		       \ 4000 gives a quarter note the tempo of 60 bpm
+
+  3 0 do 
+	60 $ 64 $ 67 $ 72 $ 
+      loop
+
+  125 to rscale		       \ 125 gives a quarter note the tempo of 1120 bpm
+  3 0 do 
+	60 $ 64 $ 67 $ 72 $ 
+      loop
+	;;ap
+;ap
+
+To set the tempo control in terms of beats per minute FORMULA uses the word:
+
+beats-per-minute    ( n --- )
+
+sets rscale to the value that, at the default SVT unit of 1 millisecond, will
+produce n quarter-note beats per minute.  Since rscale (like most pquans) is
+inherited on process creation, this affects all processes subsequently created
+by the caller.
+ 
+For example:
+
+:ap time1
+ 60 beats-per-minute
+  -c $ -e $ -g $ -c $ -e $ -g $ -c $ -e $ -g $
+;ap
+
+:ap time2
+ 120 beats-per-minute
+   c $  e $  g $  c $  e $  g $  c $  e $  g $ 
+;ap
+
+:ap time3
+ 240 beats-per-minute
+  +c $ +e $ +g $ +c $ +e $ +g $ +c $ +e $ +g $ 
+;ap
+
+:ap timex
+  ::ap time1 time2 time3 ;;ap
+;ap
+
+Consider these:
+
+:ap s-v-t
+       4000 to rscale
+            10 0 do +c $ +d $ loop
+;ap
+
+:ap b-p-m
+	 60 beats-per-minute
+	    10 0 do  c $  d $ loop
+;ap
+
+:ap svt+bpm
+	::gp	
+	    ::ap s-v-t ;;ap
+                 b-p-m
+	;;gp
+;ap
+
+:ap beats
+	::ap svt+bpm ;;ap
+;ap
+
+Round-off Accumulation 
+
+The division shown above may have a nonzero remainder which, if ignored, could
+yield timing errors.  For example, a sequence of three 1/3-note triplets would
+be converted to
+
+(2000*1)/3 = 666
+(2000*1)/3 = 666
+(2000*1)/3 = 666
+
+yielding a total time advance of 1998 instead of 2000.  With round-off
+accumulation, each division produces a fractional remainder of 2/3, yielding the
+sequence (666, 667, 667).  r>i does this round-off accumulation, storing the
+remainder of each operation in a pquan.
+
+Round-off accumulation is appropriate when the rational numbers represent a
+sequence of concatenated time intervals (e.g., time advances).  In some cases, a
+process may compute time intervals that do not represent time advances, and
+whose round-off should not be accumulated.  In such cases, the following should
+be used:
+
+(r>i   ( n d --- i ; rational conversion with no error accumulation )
+n(m    ( --- ; equivalent to n m (r>i )
+
+FORMULA thinks of time as chopped up into little 1/500th second segments.
+Some durations you might want, such as 1/3 of a second, do not fit into
+this segmentation.  
+
+	 r>i keeps track of this error and prevents it from accumulating. 
+	(r>i doesn't keep track.
+
+Both words may be handy in different situations.
+
+MIDI Clock
+
+Normally, FORMULA's timing is derived from the computer's internal clock.
+FORMULA can also be synchronized with other devices (e.g., sequencers) using
+MIDI clock messages.  FORMULA can act as either the master (timing source) or
+slave.
+
+To have FORMULA act as the master, define a process as follows:
+
+:ap clocker
+  ::ap
+    begin
+      mcl 1|96 time-advance
+    again
+  ;;ap
+;ap
+
+Run this process simultaneously with your FORMULA program.  You can use the
+mstr, mss and mspp MIDI primitives to cue and start your sequencer.
+
+To have FORMULA act as a slave, type
+
++synch-to-MIDI
+
+This tells FORMULA to use MIDI clock messages as its timing source.  If you then
+run FORMULA programs, no output is produced until the master begins sending
+clock messages; the programs then generates output in synchrony with the master.
+To return to internal clocking, type
+
+-synch-to-MIDI
+
+Each MIDI clock message advances SVT by 500/24 units, so that the default rscale
+value of 2000 gives the correct tempo.
+
+PLAYING NOTES
+
+Notes can be played using MIDI primitives and time-advance (see Basic MIDI
+Output and Timing), or using the $-words.  The latter is a more compact
+notation: a single $-word arranges for the note-start command, the time-advance,
+and the note-end command.  In addition, the $-words factor the specification of
+volume, tempo and articulation out of the note-playing process.  Note parameters
+are obtained from a combination of pquans and auxiliary processes.
+
+$-Words
+
+These words play notes:
+
+$      ( pitch --- ; play a note )
+r      ( --- ; play a rest )
+z$     ( pitch --- ; play a note but don't time-advance )
+c$     ( pitch --- ; play an attenuated note, no time-advance )
+$$     ( pitch --- ; play a note and its lower octave )
+fe$    ( pitch delay --- ; play a note in the future )
+fa$    ( pitch delay --- ; play a note in the future )
+
+z$ is like $, but without the time-advance.  Thus a process can
+play a chord by calling z$ several times, followed by $.  
+
+For example:
+
+:ap 3notes
+ c z$ 500 time-advance
+ d z$ 500 time-advance
+ c z$ 500 time-advance
+;ap
+
+:ap 4chord  	\ play a 4-note chord
+	60 z$  64 z$  67 z$  72 $
+;ap
+
+c$ is like z$, but the volume is attenuated.
+
+:ap chord-loudness1      \ play a sequence of 8 3-note chords
+   ::ap
+60 z$  64 z$  67 $ 	( first chord )
+0 $			( pause )
+60 c$  64 z$  67 $ 	( first chord but first note attenuated )
+0 $			( pause )
+60 c$  64 c$  67 $ 	( first chord but first and second notes attenuated )
+0 $			( pause )
+60 c$  64 c$  67 c$ 0 $	( first chord attenuated )
+
+0 $ 0 $			( pause )
+
+65 z$  69 z$  72 $	( second chord )
+0 $			( pause )
+65 c$  69 c$  72 c$ 0 $	( second chord attenuated )
+0 $			( pause )
+67 z$  71 z$  74 $	( third chord )
+0 $			( pause )
+67 c$  71 c$  74 c$ 0 $	( third chord attenuated )
+0 $			( pause )
+60 z$  64 z$  67 $	( fourth chord )
+0 $			( pause )
+60 c$  64 c$  67 c$ 0 $	( fourth chord attenuated )
+	;;ap
+;ap
+
+:ap chord-loudness2      \ play a sequence of 8 3-note chords
+   ::ap
+60 z$  64 z$  67 $ 	( first chord )
+0 $			( pause )
+60 c$  64 z$  67 $ 	( first chord but first note attenuated )
+0 $			( pause )
+60 c$  64 c$  67 $ 	( first chord but first and second notes attenuated )
+0 $			( pause )
+60 c$  64 c$  67 c$ 0 $	( first chord attenuated )
+
+0 $ 0 $			( pause )
+
+65 z$  69 z$  72 $	( second chord )
+0 $			( pause )
+65 c$  69 c$  72 c$ 0 $	( second chord attenuated )
+0 $			( pause )
+67 z$  71 z$  74 $	( third chord )
+0 $			( pause )
+67 c$  71 c$  74 c$ 0 $	( third chord attenuated )
+0 $			( pause )
+60 z$  64 z$  67 $	( fourth chord )
+0 $			( pause )
+60 c$  64 c$  67 c$ 0 $	( fourth chord attenuated )
+	;;ap
+;ap
+
+fe$ arranges for a note to be played delay time in the future, using the
+parameters (volume, etc.) in effect now.  fa$ arranges for a note to be played
+delay time in the future, using the parameters in effect then.
+
+For example:
+
+These might look the same, but they are not; fe$ arranges for a note to be
+played delay time in the future, using the parametars (volume, transposition,
+etc.) in effect NOW. fa$ arranges for a note to be played delay time in the
+furure, using the parameters in effect THEN.
+
+:ap late1
+     12.0 to $transpose  \ parametars that happen before fe$ will be ignored  
+     c 4000 fe$
+    -12.0 to $transpose  \ parametars that happen after fe$ will be accepted
+     g $                 \ fe$ happenes actually here  
+     5000 time-advance
+;ap
+
+:ap late2
+     12.0 to $transpose  \ parametars that happen before fa$ will be accepted
+     c 4000 fa$
+     g $  	         \ fa$ happenes actually here 
+     5000 time-advance
+;ap
+
+:ap late3
+     /4
+     12.0 to $transpose  \ parametars that happen before fa$ will be accepted
+     c 4000 fa$
+    -12.0 to $transpose  \ but parametars that happen after fa$ will also 
+			 \ be accepted
+     g $                 \ fa$ happenes actually here  
+     5000 time-advance
+;ap
+
+Quans and Pquans Used by the $-Words
+
+The $-words add the quan $gtranspose to all pitches.  Its value is in 1/256-
+semitone units.  For example, to transpose all processes up by an octave, type:
+
+12.0 to $gtranspose
+
+The $-words use the following pquans; all are inherited on process creation.
+
+-  $transpose is a per-process transposition, in 1/256-semitone units.
+
+You may either use    12 8<< to $transpose     or    12.0 to $transpose
+  
+For example: trans, trans-scale1, trans-scale2 and gtrans for the 
+transpositions of the words on a 'per-process' basis and transpositions 
+of all processes.
+
+:ap trans
+	::ap
+		scale
+   9.0 to $transpose			\ transposition +  9 semitones
+		scale
+ -18.0 to $transpose			\ transposition - 18 semitones
+		scale
+   0 to $transpose			\ no transposition (default)
+		scale
+	;;ap
+;ap
+
+:ap transy
+	::gp
+	     [ 1 params ] to $transpose
+		scale
+	;;gp
+;ap
+
+:ap trans-scale1
+	::gp
+	 	1.0 transy
+	 	5.0 transy
+	 	7.0 transy
+	       12.0 transy
+	;;gp
+;ap
+
+:ap trans-scale2
+	::gp
+	   ::ap 1.0 transy ;;ap
+	   ::ap 5.0 transy ;;ap
+	   ::ap 7.0 transy;;ap
+	       12.0 transy 
+	;;gp
+;ap
+
+:ap gtrans
+	::ap
+              -18.0 to $gtranspose trans-scale1
+         	5.0 to $gtranspose trans-scale2
+               -7.0 to $gtranspose trans-scale1
+               21.0 to $gtranspose trans-scale2
+	;;ap
+;ap
+
+:ap trans-loop
+ ::ap
+     12 0 do
+	i 8<< to $transpose
+		scale
+     loop
+;;ap
+;ap
+
+-  $volume is added to the volume (key-velocity) of notes played by this 
+process (volumes are in the range -127 to 128).
+
+:ap loud
+	  -127 to $volume 	\ min. loudness  [inaudible] (-127)
+	scale
+	    0 to $volume	\ moderate loudness
+	scale
+	   127 to $volume	\ max. loudness  (127)
+	scale
+;ap
+
+-  $cvolume is added to the volume of "chord notes" played by this process; the
+default is -10.
+
+:ap chord-loud      \ play a sequence of 8 3-note chords
+ ::ap
+	-70 to $cvolume
+ 60 z$  64 z$  67 $ 	 ( first chord )
+ 0 $			 ( pause )
+ 60 c$  64 z$  67 $ 	 ( first chord but first note attenuated )
+ 0 $			 ( pause )
+ 60 c$  64 c$  67 $ 	 ( first chord but first and second notes attenuated )
+ 0 $			 ( pause )
+ 60 c$  64 c$  67 c$ 0 $ ( first chord attenuated ) 
+ ;;ap
+;ap
+
+-  $channel is the MIDI channel number (0-15) for notes generated by this
+process.
+
+:ap chans)
+ ::gp
+	0 to $channel	\ use MIDI-channel # 1
+	10 0 do 60 $ loop
+ ;;gp
+ ::gp
+	5 to $channel	\ use MIDI-channel # 6
+	10 0 do 80 $ loop
+ ;;gp
+;ap
+
+:ap chans
+ ::ap chans) ;;ap
+;ap
+
+:ap rand-chan
+ ::ap
+	20 0 do
+	15 irnd to $channel			\ randomize 0-15 MIDI-channel
+				    60 $
+            loop
+ ;;ap
+;ap
+
+Patch Changes and Sustain Pedal
+
+You can change synthesizer patch on the current channel using
+
+$change-patch    ( patch --- )
+
+For example:
+
+:ap patchy
+	6 $change-patch c $
+       17 $change-patch g $
+;ap
+
+Notes can be controlled by a "sustain pedal".  If a note is released while its
+sustain pedal is down, it continues to sound until the pedal is released.  The
+following words manipulate sustain pedals:
+
+pedon   ( --- ; lower sustain pedal )
+pedoff  ( --- ; raise sustain pedal )
+ped     ( --- ; instantaneously raise and lower sustain pedal )
+pedon$  ( --- ; lower sustain pedal and time-advance )
+pedoff$ ( --- ; raise sustain pedal and time-advance )
+ped$    ( --- ; raise and lower sustain pedal, then time-advance )
+
+:ap sustain1
+ 10 0 do 
+           60 $ pedon 
+      loop
+0 $ 0 $ 0 $ 0 $ pedoff
+;ap
+
+:ap sustain2
+ 3 0 do 
+			    pedon 
+	60 $ 62 $ 64 $ 65 $ ped 
+	67 $ 69 $ 71 $ 72 $ pedoff 
+     loop
+;ap
+
+:ap sustain3
+ /4
+ pedon$	 \ waits a quarter note
+       scale   
+ ped$	 \ waits a quarter note
+       scale
+ pedoff$ \ waits a quarter note
+;ap
+
+Differential Functions and Continuous Controllers
+
+Differential Functions are functions of time that are sampled at a sequence of
+points. Consecutive samples differ by at least dy in value and dt in time. dy
+and dt are parameters that you set; at least one of them must be positive. By
+adjusting them, you can control the tradeoff between function smoothnes and the
+amount of MIDI bandwidth consumed. Differential functions are defined using the
+primitive
+
+  df-seg   ( y1 y2 length --- ; define a segment of a defferential function ) 
+
+length, the time-span of the segment, must be greater that zero. For example,
+
+  : ramp
+	0 30 1|1 df-seg
+        30 0 1|1 df-seg
+  ;
+
+defines a function that ramps linearly from 0 to 30 and back over 2 whole notes.
+To use a differential function, first call
+
+  df-setup   ( CFA dt dy --- ; )
+
+then call the differential function (e.g. ramp above). df-setup arranges for
+"callbacks" to the word specified by CFA at each sample points. The callback
+word can access the curent t and y in pquans df-t and df-y. The differential
+function can acess the total elapsed time in the pquan t2.
+
+Differential functions can be used to control pitch bend, aftertouch, or any
+parameter that should be modified pseude-continuously. As an example, FORMULA
+provides the following words to control pitch bend:
+
+  :ap pb-func   ( --- ; callback word for sending pitch-bends )
+	df-y $channel df-t fmpb
+  ;ap
+
+  : df-pb   ( --- ; setup for pitch-bends )
+	['] pb-func 1|64 10 df-setup
+  ;
+
+pb-func uses fmpb, which sends a pitch bend command after a specified delay; 
+(see Basic MIDI Output.) df-pb registers pb-func as the callback word, and 
+specifies a spacing of 1?64 note in time and 10 in value (pitch-bend values
+range from -8192 to 8191). You can then define words like:
+
+   : bender   ( dt --- ; ful-range random pitch bend over time dt )
+	df-pb
+	5(8 -
+	begin
+	 t2 over <=	\ stop if elepsed time exceeds dt-5/8
+	while
+	 16384 irnd 8192 -
+	 0 over 1(4 irnd 1(16 + df-seg
+ 	repeat
+	drop
+	0 $channel mpb	\ make sure we end up exactly at zero
+   ;
+
+bender generates a pitch-bend function with peaks of random height and width.
+If we then execute
+
+   :ap pb-test
+      ::ap
+        /1
+	8 0 do
+	      1(1 bender 50 12 irnd + $
+	    loop
+      ;;ap
+   ;ap
+
+we hear random notes subjected to this pitch bend.
+ 
+Playing Groups of Notes
+
+To simplify notation, FORMULA allows sequences and groups of pitches to be
+played with single words:
+
+m$     ( pitch-list x --- ; play a sequence of x notes )
+$n     ( pitch-group x --- ; play a chord with x notes )
+m$n    ( pitch-group-list x y --- ; play a sequence of x y-note chords )
+m$$    ( pitch-list n --- ; play n notes with lower octaves added )
+
+In each chord, the volumes of all notes except the last are are attenuated by
+$cvolume.  In each case, the process does a time-advance by the TSG amount after
+each chord or note is played.  For example,
+
+:ap exam
+ c e g +c  4 m$     ( plays a C major arpeggio )
+ c e g +c  4 $n     ( plays a C major chord )
+ c e g +c  f a +c +f  c e g +c 3 4 m$n    ( plays a C-F-C chord sequence )
+;ap
+
+The $-words $, m$, $n and m$n have "iterator" versions formed by appending *k to
+the word, and supplying the iteration count as the final argument.  For example,
+
+:ap test
+ c e g +c  f a +c +f  c e g +c 3 4 5 m$n*k
+;ap
+
+plays the C-F-C sequence 5 times.  This is equivalent to enclosing the whole
+thing in a do loop, except that pitches are computed just once.
+
+It is convenient to define special versions of the compound $-words with built-
+in constants.  $4 is defined as 4 $n, 8$ as 8 m$, and 4$3*6 as 4 3 6 m$n*k.
+4$3*6, for example plays a sequence of 4 3-note chords 6 times.  Many commonly-
+occurring abbreviations of this sort are available (see the files notation and
+notate2), and others can be defined as needed.
+
+Rolled chords can be played using
+
+$nroll      ( pitch-group dt n --- ; play n notes spread over time dt )
+
+The calling process advances in time by the amount given by the TSG, not by dt.
+Hence the notes in the rolled chord can overlap subsequent notes generated by
+the process.
+
+:ap rolly
+	::ap
+   60 65 67 72                4                                   1|16   $nroll
+
+ ( c major chord consisted of 4 notes, roll it at the duration of 1 16th note )
+
+   0 $ 0 $ pause
+
+   60 65 67 72                4                                   1|2   $nroll
+
+ ( c major chord consisted of 4 notes, roll it at the duration of 1 half note )
+
+	;;ap
+;ap
+
+:ap rolled-chords 	                \ c major chord rolled differently
+	::ap
+
+	60  65  67  72  4 1|64  $nroll
+ 0 $
+	60  65  67  72  4 1|32  $nroll
+ 0 $
+	60  65  67  72  4 1|2   $nroll
+ 0 $
+	60  65  67  72  4 1|4   $nroll
+ 0 $
+	60  65  67  72  4 1|8   $nroll
+ 0 $
+	60  65  67  72  4 1|16  $nroll
+ 0 $
+	60  65  67  72  4 4|16  $nroll
+ 0 $
+	60  65  67  72  4 8|16  $nroll
+ 0 $
+	60  65  67  72  4 4|32  $nroll
+
+	;;ap
+;ap
+
+There is a possibility to produce different scales using FORTH do-loop 
+operations. For example:
+
+:ap scalex
+	/4
+    73 60 do         \ ASCENDING CHROMATIC SCALE from 60 to 72 MIDI note. 
+             i $ 
+          loop
+    59 72 do        \ DESCENDING CHROMATIC SCALE from 72 to 60 MIDI note.
+             i $
+      -1 +loop
+    73 60 do        \ ASCENDING WHOLE-TONE SCALE from 60 to 72 MIDI note. 
+	    i $
+       2 +loop
+    59 72 do        \ DECREASING WHOLE-TONE SCALE from 72 to 60 MIDI note. 
+	    i $
+      -2 +loop
+    90 40 do        \ UP ROW OF THE MAJOR THIRDS from 40 to 90 MIDI note.
+	   i $
+       4 +loop      \ DOWN ROW OF THE MINOR SEVENTHS from 100 to 40 MIDI note.
+   30 100 do
+	   i $
+     -10 +loop
+;ap
+
+Drums
+
+A process can play drum beats using
+
+%       ( --- ; play a drumbeat and time-advance )
+z%      ( --- ; play a drumbeat, no time-advance )
+n%      ( n --- ; play n drumbeats )
+
+Drum beats are subject to all auxiliary processes except articulation shapes.
+The pquan $drum-patch is the key number (which, on typical synths, selects the
+drum patch).  The quan $drum-channel stores the MIDI channel number for drum
+beats.
+
+Pitch Names
+
+Pitches are named using
+
+c c+ c- +c +c+ +c- -c -c+ -c-     ( --- n ; push pitch index )
+...
+g g+ g- +g +g+ +g- -g -g+ -g-     ( --- n )
+r                                 ( --- 0 ; pitch index for "rest" )
+oct     ( n --- ; set current octave to n )
++oct    ( --- ; increment current octave )
+-oct    ( --- ; decrement current octave )
+
+The octave is not explicitly given.  Instead, each process has a current octave;
+a, b, ..., g refer to the note instance in this octave.  Octaves range from C
+flat up to B sharp.  Middle C is in octave 3, which is the initial octave of all
+processes.  The current octave can be changed using oct, +oct and -oct.
+Prepending a + or - selects a pitch one octave above or below normal.  Sharps
+and flats are denoted by appending a + or - (f+, b- etc.).
+
+For example:
+
+:ap notes
+               c       $         e-     $        g+      $
+
+        (    note      $     flat note  $    sharp note  $ )
+;ap
+
+:ap numbers1  \ notes as MIDI key numbers
+
+              60       $        63      $        68      $
+
+	( MIDI key #   $   MIDI key #   $   MIDI key #   $ )
+;ap
+
+:ap octaves
+              -c       $      +e-     $        g+      $
+
+	(    note      $   flat note  $    sharp note  $   )
+;ap
+
+:ap numbers2  \ octaves as MIDI key numbers
+
+              48       $      75      $        68      $
+
+	 ( MIDI key #  $   MIDI key #  $   MIDI key #  $ )
+;ap
+
+:ap notes&rests
+ c $ d $ e $
+ r $ c $ r $ d $ r $ e $
+;ap
+
+:ap numbers&zeros
+ 60 $ 62 $ 64 $
+ 0 $ 60 $ 0 $ 62 $ 0 $ 64 $
+;ap
+
+Microtonality
+
+By default, the pitch arguments to the $-words are MIDI note numbers.  When you
+are using FORMULA's Synthesizer Manager (see below) with a microtonal
+synthesizer such as the Yamaha FB-01, you may wish to specify fractional
+pitches.  To do this, switch to "cents mode" using
+
+cents-scale
+
+In cents mode, pitches are specified as fixed-point number with 8 fractional
+bits, representing a number of semitones.  57.0 (represented as 57*256) is 440
+Hertz.  You can return to the default "equal-temperament mode" using
+
+equaltemp-scale
+
+For example:
+
+cents-scale
+60.5 $         \ quartertone above middle C
+60.0 $         \ middle C
+
+equaltemp-scale
+60 $           \ middle C
+
+The choice of mode is per-process; different processes can use different modes.
+
+FORMULA includes a facility for defining and using "tuning systems" (just-
+intoned scales, stretched tunings, etc.).  Like cents modes, this can be used
+only with the Synthesizer Manager and microtonal synthesizers.  An example of a
+tuning system definition:
+
+\ make an array of pitch value offsets
+
+create (just 70 p, 182 p, 275 p, 386 p, 498 p, 569 p,
+             702 p, 773 p, 884 p, 996 p, 1088 p,
+
+\ declare a scale named "just" using these offsets
+
+scale: just
+  12 , 1206 p, (just ,
+
+The first part creates a list named (just of fractional pitch offsets.  The word
+p, converts an offset expressed in cents (1/100 of a semitone) into an offset in
+1/256 of a semitone.  (Note: the pitch offset in cents corresponding to a
+frequence ratio of n/m is 1200*log(n/m)/log(2).)  The second part defines a
+tuning system named just.  It repeats every 12 pitches, and it ascends an octave
+plus 6 cents every period.
+
+The word just is called with a pitch index n as an argument.  This causes the
+scale to be used in the calling process.  The "origin" of the scale is n: the
+pitch index n is mapped to its equal-tempered pitch value, and other pitch
+indices are mapped according to the tuning system.  For example,
+
+c just
+
+causes the calling process to play in a just-intoned scale starting at C.  Other
+processes can use different tuning systems.
+
+Several tuning systems (stretched, pentatonic, just-intoned, Javanese Gamelan)
+are defined in scales.  The manual for the "Tune Up" program (written by Tim
+Perkis, published by Antelope Engineering, 1048 Neilson St., Albany, CA 94706)
+is an excellent source of data for nonstandard scales.
+
+Pitch Sets
+
+FORMULA provides a pitch set  facility for defining scales, chords, and other
+arbitrary ordered groups of pitch indices.  This facility maps a pitch set index
+(i.e., scale degree) into a pitch index (which may then be mapped to a pitch
+value by the tuning-system mechanism described earlier).
+
+A pitch set may consist of separate ascending and descending sets of pitch
+indices.  Each of these has an associated pitch offset table, a list of pitch-
+index offsets of the elements of the set.  Each set is invariant under
+translation by a pitch set period (usually 12).  A pitch set is described by a
+pitch set template and an origin.  A pitch set template has four items:
+
+- The number of entries in each pitch offset table.
+- The pitch set period.
+- A pointer to the pitch offset table for the ascending group.
+- A pointer to the pitch offset table for the descending group.
+
+Elements of the (ascending) pitch set consist of the origin, plus an element of
+the (ascending) pitch offset table, plus an integral multiple of the pitch set
+period.
+
+
+The file psets contains definitions of several popular chords and scales.  For
+example, here is the definition and use of a melodic minor scale:
+
+First define pitch offset tables
+  
+		create ascmin 0 , 2 , 3 , 5 , 7 , 9 , 11 ,
+		create descmin 0 , 2 , 3 , 5 , 7 , 8 , 10 ,
+
+Second, define the 'template' that characterizes the pitchset: 
+
+	 create minorscale	( name of pitchset )
+
+	 7 ,		        ( # of notes in scale )
+
+	 12 ,		        ( 'modulus' of scale, its usually 12 )
+
+	   ( The modulus normally sets the number of note#'s between octaves;
+   	     however scales that are not 'octave invariant' can be defined. )
+
+	ascmin ,		( the ascending scale )
+
+	decsmin ,		( the descending scale )
+
+
+:ap fool	        \ play ascending and descending minor scales
+   g minorscale set-ps
+   20 0 do +ps $ loop
+   20 0 do -ps $ loop
+;ap
+
+For each process, the "current PS" and "position within PS" are maintained.  The
+following words initialize pitch set use and convert pitch set indices to pitch
+indices.
+
+set-ps   ( origin template-addr --- ; switch to new PS with the given )
+         ( origin and template )
++ps      ( --- pitch ; next note up in ascending PS )
+-ps      ( --- pitch ; next note down in descending PS )
++nps     ( n --- pitch ; n steps up in ascending PS )
+-nps     ( n --- pitch ; n steps down in descending PS )
+aps      ( n --- pitch ; nth element of ascending PS relative to origin )
+dps      ( n --- pitch ; nth element of descending PS relative to origin )
+psind    ( --- n ; a pquan that stores last PS index used )
+pslast   ( --- pitch ; a pquan that stores last pitch returned )
+
+Several pitch-set examples:
+
+ create balkan 0 , 1 , 4 , 5 , 6 , 9 , 10 , 
+ create balkanscale
+ 7 ,	
+ 12 ,		 
+ balkan ,
+ balkan ,
+
+:ap balkans1
+ ::ap
+  /16
+   60 balkanscale set-ps 
+	 22 0 do i nps $ loop
+	 0 21 do i nps $ -1 +loop
+ ;;ap
+;ap
+
+quan zero-pitch
+
+:ap balkans2
+ ::ap
+  /16
+ 5 0 do 
+       40 irnd 50 + to zero-pitch
+					zero-pitch . cr cr
+					20 0 do 
+						zero-pitch balkanscale set-ps 
+	 					12 irnd nps $ 
+     					     loop
+     loop
+;;ap
+;ap
+
+  ************** Here is an example that uses a funny modulus: ***************
+
+create timetable
+
+ 100 ,			\ total 'weight' of the table
+ 0 , 			\ 0 entry has 'no weight', so it will never happen
+ 25 ,			\ 1 entry will happen 25% of the time (25/100)
+ 24 ,			\ 2 entry will happen 24% of the time (24/100)
+ 1 ,			\ 3 entry will happen 1% of the time (1/100)
+ 50 ,			\ 4 entry will happen 50% of the time (1/100)
+
+  -----------------------------------------------------------------------------
+
+create penty 0 , 2 , 5 , 7 , 9 , 	\ underlying scale 
+create stretch-penty
+5 ,					\ number of notes in the scale
+14 ,					\ modulus of 14 stretches scale by a 9th
+penty , penty ,				\ same ascending and descending scales
+
+
+:ap demo.ps1
+ ::ap
+  ::tsg 
+    begin 
+     timetable trnd  	\ pick random 1 2 3 or 4
+     8 r>i & 		\ make a rhythmic value of that many 1/8 notes
+    again
+  ;;sg
+  60 stretch-penty set-ps
+  begin
+  timetable trnd nps $
+  again
+ ;;ap
+;ap
+
+ ****************************************************************************
+
+:ap demo.ps2
+ ::ap 
+  ::tsg 
+    begin 
+     timetable trnd  	\ pick random 1 2 3 or 4
+     8 r>i & 		\ make a rhythmic value of that many 1/8 notes
+    again
+  ;;sg
+  60 stretch-penty set-ps
+  begin
+   2 irnd if +ps else -ps then $
+   2 irnd if -ps else +ps then $
+  again
+ ;;ap
+;ap
+
+ ****************************************************************************
+
+:ap demo.ps3		( base-ptich pitchset --- ; )
+ ::ap 
+  [ 2 params ]          \ for example 67 majorscale to get G-major scale played
+  set-ps
+  ::tsg 
+    begin 
+     timetable trnd  	\ pick random 1 2 3 or 4
+     5 over - 0 do
+      dup 8 r>i & 	\ make a rhythmic value of that many 1/8 notes
+     loop drop
+    again
+  ;;sg
+  begin
+   2 irnd if 8 irnd 1+ 0 do +ps $ loop else 8 irnd 1+ 0 do -ps $ loop then 
+   12 irnd nps drop
+  again
+ ;;ap
+;ap
+
+ ****************************************************************************
+
+create beat1-prob
+100 ,
+0 , 0 , 0 , 100 ,
+
+create beat2-prob
+100 ,
+0 , 25 , 50 , 25 ,
+
+create beat3-prob
+100 ,
+0 , 80 , 10 , 10 ,
+
+create beat4-prob
+100 ,
+0 , 33 , 34 , 33 ,
+
+pquan meter
+
+:sg make-beats
+  trnd to meter		        \ meter is 1, 2, or 3
+  meter 0 			\ play 1 1/4, 2 1/4*2, and 3 1/4*3
+   do 1 4 meter * r>i & loop
+;sg
+
+:sg meter-man
+ begin
+  beat1-prob make-beats
+  beat2-prob make-beats
+  beat3-prob make-beats
+  beat4-prob make-beats
+ again
+;sg
+
+
+:ap demo.ps4		( base-ptich pitchset --- ; )
+ ::ap 
+  [ 2 params ]          \ for example 65 majorscale to get F-major scale played
+  set-ps
+  ::sh1
+   begin 
+    0 1|12 ocon 24 2|12 ocon
+    16 1|12 ocon 10 2|12 ocon
+    12 1|12 ocon 20 2|12 ocon
+    16 1|12 ocon 0 2|12 ocon
+   again
+  ;;sh
+  ::tsg 
+   meter-man
+  ;;sg
+  begin
+   2 irnd if 8 irnd 1+ 0 do +ps $ loop else 8 irnd 1+ 0 do -ps $ loop then 
+   12 irnd nps drop
+  again
+ ;;ap
+;ap
+
+Synthesizer Description Files
+
+If you use more than one synthesizer, it's handy to collect definitions of patch
+numbers etc. into a "synthesizer description file".  It's also useful to use a
+separate vocabulary for each synthesizer type.  This allows, for example, having
+multiple definitions of piano, one for each type.  Here's an excerpt from d110,
+a description file for the Roland D-110:
+
+vocabulary d110-defs immediate  \ vocabulary for D-110 definitions
+d110-defs definitions
+
+: chorale    66   0   0   inst ;
+: ice-rains  73   0   0   inst ;
+...
+
+The word inst, defined as
+
+: inst          ( patch vol-off transpose --- ; define an instrument)
+  8<< to $transpose
+  to $volume
+  $change-patch ;
+
+is useful for defining instruments.
+
+AUXILIARY PROCESSES
+
+The $-words take only pitch arguments.  Other parameters (such as volume and
+duration) are obtained from per-process variables and from auxiliary processes.
+Auxiliary processes can also be used to change the tempo of note-playing
+process.  An auxiliary process can be attached to either a process or a group.
+In the latter case, it affects all processes in the group and its descendants.
+Auxiliary processes can also be created from the interpreter and attached to
+existing note-playing processes or groups.
+
+Embedded Definitions
+
+A note-playing process has "local" and "global" contexts, each of which is
+either the process itself or a group that contains it.  By default, a process's
+local context is itself, and its global context is the top-level group
+containing it (or, if the process is top-level, the process itself).  The
+following words can be used to change the contexts:
+
+raise-local-context     ( --- ; move local context up one level )
+lower-global-context    ( --- ; move global context down one level )
+
+Each object (process or group) contains "slots" for auxiliary processes.  A slot
+is a pquan that point to an auxiliary process.  A note-playing word can contain
+"embedded auxiliary process definitions" that create new processes in its slots
+or those of its local or global contexts.  For example:
+
+:ap foos
+  ::sh1                \ install new volume shape in local context
+    p f d/1 oseg       \ code of volume shape process
+  ;;sh
+  c e d f 4$           \ play some notes
+;ap
+
+The semantics are as follows: when a note-playing process reaches the start of
+the definition (::sh1 in this case) the auxiliary process currently in the sh1
+slot of its local context is killed.  A new process is created executing the
+embedded code, and is installed in the sh1 slot of its local context.  If
+desired, parameters can be passed to the new process using [ n params ].
+
+The constructs for embedded auxiliary process definitions are:
+
+syntax           location        purpose          process type
+
+::tsg ... ;;sg   self            note duration    sequence generator
+::sh1 ... ;;sh   local context   volume control   shape
+::sh2 ... ;;sh   local context   volume control   shape
+::gsh1 ... ;;sh  global context  volume control   shape
+::gsh2 ... ;;sh  global context  volume control   shape
+::ash ... ;;sh   local context   articulation     shape
+::td1 ... ;;td   local context   tempo control    time deformation
+::td2 ... ;;td   local context   tempo control    time deformation
+::gtd1 ... ;;td  global context  tempo control    time deformation
+::gtd2 ... ;;td  global context  tempo control    time deformation
+
+
+External Creation and Deletion
+
+An auxiliary process can be attached to an already-running object using
+
+ish1    ( name ; ID --- ; )
+ish2    ( name ; ID --- ; )
+itd1    ( name ; ID --- ; )
+itd2    ( name ; ID --- ; )
+itsg    ( name ; ID --- ; )
+iash    ( name ; ID --- ; )
+
+For example:
+
+3 ish1 foo
+
+creates a volume shape executing foo and installs it in the sh1 slot of the
+object with ID 3 (it is attached to the object itself, not to its local or
+global context).  If name is noop then the slot is cleared.
+
+The auxiliary processes attached to a process can be removed using
+
+clear-aux      ( ID --- )
+
+Another example:
+
+:td fooler
+ begin 500 50 1|1 seg again
+;td
+
+:ap fooly
+ ::ap" fooly "
+   		begin
+			/16  60 $ 
+		again 
+ ;;ap
+;ap
+
+Run process 'fooly' and type .all to see the ID number that belonges to 'fooly'
+Suppose, you find out the ID number of 'fooly' is 17. Then type:
+ 
+ 		17 itd1 fooler
+
+this will attach auxiliary process 'foller' to the running object 'fooly'
+
+In order to remove 'fooler' from the 'fooly' type:
+
+		17 clear-aux
+
+this will remove the 'fooler' and 'fooly' will be running as it is.
+
+Procedura Concentration
+
+Shapes and time deformations generate functions of time using a process.  The
+process invokes a series of "primitives" (procedures representing a function
+defined on an interval) and defines a function that is the concatenation of the
+primitives.  The process may execute arbitrary code between invocations of
+primitives.
+
+As an example of procedural concatenation, suppose
+
+oseg      ( y1 y2 dt --- ; )
+
+is a primitive representing a linear function varying from y1 to y2 over a time
+span of dt.  The following function could then be defined:
+
+: sawtooth      ( n --- ; sawtooth with n skewed teeth )
+   0 do
+      0 3 10 oseg
+      3 0 5 oseg
+   loop
+;
+
+Volume Control
+
+Shapes are functions, defined by processes as above, used to control volume and
+articulation.  Their definitions are delimited by :sh and ;sh.  The following
+primitives are available:
+
+	oseg    ( y1 y2 dt --- ; linear segment open on right )
+	cseg    ( y1 y2 dt --- ; linear segment closed on right )
+	ocon    ( y dt --- ; constant segment open on right )
+	ccon    ( y dt --- ; constant segment closed on right )
+	inf-con ( y --- ; infinite constant-valued segment )
+
+The closure is relevant for discontinuous functions; it determines the function
+value at the points of discontinuity.  A primitive's closure on the left is
+determined by the right closure of the preceding primitive.
+
+The volume of a note is represented by a number in the range -128 to 127.  The
+volume of notes played using $-words is the sum of several components:
+
+-  Up to two "local" volume shapes.
+-  Up to two "global" volume shapes.
+-  A pquan $volume.
+-  If the note is played with c$, a pquan $cvolume.
+
+There is no checking for overflow; the volume will wrap around to the opposite
+extreme.  You can avoid overflow by limiting the contribution that each
+component can make: for example, you might adopt the convention that the sum of
+all four shapes must lie between -96 and 95, $volume must lie between 0 and 32,
+and $cvolume must lie between -32 and 0.  The words pppp, ppp, pp, p, mp, mf, f,
+ff, fff, and ffff define a set of values ranging from -128 to 127, for use in
+volume shape definitions.
+
+As an example, a shape definition such as:
+
+:sh rampy             ( 1-measure crescendo )
+  p f 1|1 oseg
+;sh
+
+could be used in another shape definition:
+
+:sh 10ramps
+  10 0 do rampy loop
+;sh
+
+or attached to a running note-playing process (process 2 in this example):
+
+2 ish1 rampy
+
+or invoked from a note-playing process
+
+:ap foofoo               ( n --- ; play 100 notes with n crescendi )
+  ::sh1
+    [ 1 params ]
+    0 do rampy loop
+  ;;sh
+  100 0 do c $ loop
+;ap
+
+More examples:
+
+:ap constant1           \ example for ocon, pay attention on
+ /8                     \ the first note ( 80 ) in the second sequence 
+ ::sh1
+ 50 2 1 r>i ccon	\ constant closed segment at the volume of 50,
+ ;;sh			\ during a period of 2 whole notes 
+ 60 62 64 65 67 69 71 72  8 2 m$*k
+ ::sh2
+ -50 2 1 r>i ocon	\ constant open segment at the volume of -50,
+ ;;sh			\ during a period of 2 whole notes 
+ 80 82 84 85 87 89 91 92  8 2 m$*k
+;ap 
+
+\ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+:ap constant2           \ example for ocon, pay attention on
+ /8                     \ the first note ( 80 ) in the second sequence 
+			\ and compare it with the previous example - constant1
+ ::sh1
+ 50 2 1 r>i ocon	\ constant open segment at the volume of 50,
+ ;;sh			\ during a period of 2 whole notes 
+ 60 62 64 65 67 69 71 72  8 2 m$*k
+ ::sh2
+ -50 2 1 r>i ocon	\ constant open segment at the volume of -50,
+ ;;sh			\ during a period of 2 whole notes 
+ 80 82 84 85 87 89 91 92  8 2 m$*k
+;ap 
+
+ ****************************************************************************
+
+:ap infinite
+/8
+  ::sh1 -37 inf-con ;;sh \ infinite constant-valued segment at the volume -37
+ 60 62 64 65 67 69 71 72  8 2 m$*k
+;ap 
+
+ ****************************************************************************
+
+:ap cres1 	        \ example for cseg, pay attention on
+ /8                     \ the first note ( 80 ) in the second sequence
+ ::sh1 
+ -100 80 2 1 r>i cseg   \ linear closed segment between the volumes -100 and 80
+			\ during a period of 2 whole notes
+ -100 2 1 r>i ocon	\ constant open segment at the volume of -100,
+			\ during a period of 2 whole notes 
+ ;;sh
+ 60 62 64 65 67 69 71 72  8 2 m$*k
+ 80 82 84 85 87 89 91 92  8 2 m$*k
+;ap 
+	
+\ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+:ap cres2               \ example for oseg, pay attention on
+ /8                     \ the first note ( 80 ) in the second sequence 
+			\ and compare it with the previous example - cresc1
+ ::sh1
+ -100 80 2 1 r>i oseg   \ linear open segment between the volumes -100 and 80
+			\ during a period of 2 whole notes
+ -100 2 1 r>i ocon	\ constant open segment at the volume of -100,
+			\ during a period of 2 whole notes 
+ ;;sh
+ 60 62 64 65 67 69 71 72  8 2 m$*k
+ 80 82 84 85 87 89 91 92  8 2 m$*k
+;ap 
+
+ ****************************************************************************
+
+:ap decres1             \ example for oseg, pay attention on
+ /8                     \ the first note ( 80 ) in the second sequence 
+ ::sh1
+ 80 -127 2 1 r>i cseg   \ linear closed segment between the volumes 80 and -127
+	                \ during a period of 2 whole notes
+
+ 100 2 1 r>i ocon	\ constant open segment at the volume of 100,
+			\ during a period of 2 whole notes 
+ ;;sh
+ 60 62 64 65 67 69 71 72  8 2 m$*k
+ 80 82 84 85 87 89 91 92  8 2 m$*k
+;ap 
+	
+\ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+:ap decres2             \ example for oseg, pay attention on
+ /8                     \ the first note ( 80 ) in the second sequence 
+			\ and compare it with the previous example - decres1
+ ::sh1
+ 80 -127 2 1 r>i oseg   \ linear open segment between the volumes 80 and -127, 
+			\ during a period of 2 whole notes
+ 100 2 1 r>i ocon	\ constant open segment at the volume of 100,
+			\ during a period of 2 whole notes 
+ ;;sh
+ 60 62 64 65 67 69 71 72  8 2 m$*k
+ 80 82 84 85 87 89 91 92  8 2 m$*k
+;ap 
+
+\ ****************************************************************************
+
+:ap notice
+ /8
+ ::sh1
+ -80 80 2 1 r>i cseg    \ linear closed segment between the volumes -80 and 80
+ ;;sh			\ during a period of 2 whole notes
+ 60 62 64 65 67 69 71 72  8 4 m$*k  \ four whole notes long sequence
+;ap 
+
+When the shape sequence finishes its duration, the volume for the rest of the
+notes (not covered by the shape process), will jump to the unknown volume.
+
+\ *****************************************************************************
+
+:sh food1  \ between the volumes 0 and 100 during a period of 2 whole notes
+ 0 100 2 1 r>i oseg 
+;sh
+
+:sh food2  \ between the volumes 100 and 0 during a period of 2 whole notes
+ 100 0 2 1 r>i oseg 
+;sh
+
+:ap cresc
+ /8
+ ::sh1 food1 ;;sh 			
+ 60 62 64 65 67 69 71 72  8 2 m$*k
+;ap 
+
+:ap decresc
+ /8
+ ::sh1 food2 ;;sh			
+ 92 91 89 87 85 84 82 80  8 2 m$*k
+;ap 
+
+:ap 2-gether
+::gp
+ ::gsh1 30 2|1 ocon ;;sh
+ ::ap decresc ;;ap
+      cresc
+ ::gsh2 -30 2|1 ocon ;;sh
+ ::ap decresc ;;ap
+      cresc
+;;gp
+;ap
+
+:ap together
+ ::ap 2-gether ;;ap
+;ap
+
+ ****************************************************************************
+
+	:sh sawtooth      ( n --- ; sawtooth with n skewed teeth )
+	   0 do
+		-80 100 1|4 oseg
+		100 -80 1|4 oseg
+	     loop
+	;sh
+
+	:ap rampsy
+	/8
+	::sh1 sawtooth ;;sh
+        60 62 64 65 67 69 71 72  8 4 m$*k
+	;ap
+
+ *****************************************************************************
+
+	:ap square
+	/8
+	  ::sh1 [ 1 params ] 1|8 ocon ;;sh
+          60 $  
+	;ap
+
+	:ap squares
+	  ::ap 10 0 do 100 square -20 square loop ;;ap
+	;ap
+
+Tempo and Rubato Control
+
+Continuous tempo fluctuations (e.g., for rubato) are made using time
+deformations  (TDs).  A TD defines a tempo function using a process as above.
+("Inverse tempo function" might be a better term, since a larger value means a
+slower tempo.) A TD is applied to a time interval by integrating the tempo
+function over the interval, starting from its current time position.  For
+example, if the tempo varies linearly from 1 to 2 over an interval of duration
+1, the interval is mapped by the TD to a duration of 1.5.
+
+The following TD primitives exist:
+
+seg       ( r1 r2 dt --- ; linear tempo change from r1 to r2 over time dt )
+con       ( r dt --- ; constant tempo of r over time dt)
+inf-con   ( r --- ; infinite constant segment )
+lpause    ( t --- ; pause of t before events )
+rpause    ( t --- ; pause of t after events )
+con.outer ( r dt --- ; like con, but dt is in deformed units )
+seg.outer ( r1 r2 dt --- ; like seg, but dt is in deformed units )
+
+seg and con represent linear and constant tempo functions.  lpause and rpause
+insert a pause in the tempo function.  Events scheduled for this instant occur
+after the pause with lpause, before it with rpause.  FORMULA represents tempi
+using fixed-point numbers with an 8-bit fractional part; 256 is unity tempo.
+This allows n.m notation to be used.
+
+For example, the following TD does an accelerando over each 4-beat measure, and
+inserts a slight pause before the start of the next measure:
+
+:td foof
+  begin
+    1.3 .9 1|1 seg
+    1|32 lpause
+  again
+;td
+
+It can then be attached to the note-playing process with ID 2:
+
+2 itd1 foof
+
+or written as an embedded definition:
+
+:ap blah
+  ::td1
+    begin
+      1.3 .9 1|1 seg
+      1|32 lpause
+    again
+  ;;td
+  100 0 do c $ loop
+;ap
+
+If two TDs are attached to the same object, their effects are multiplied.  If
+TDs are attached to an object and its parent, they are combined in series: the
+output of one becomes the input of the other.
+
+More examples:
+
+	:td fast1 			
+	    2.0 1.0 1|1 seg             \ between the tempi
+        ;td				\ 2.0 * 256 = 512 and 1.0 * 256 = 256
+	
+	:td pausing1
+            1|2 rpause                  \ half note pause (after evants)
+	;td
+
+	:td fast2 			\ accelerating segment of whole note 
+	    512 256 1|1 seg             \ between the tempi
+	;td				\ 512 and 256
+
+	:ap fasty1 
+	/16
+	::td1 fast1 pausing1 fast2 ;;td
+	 60 62 64 65 67 69 71 72  8 2 m$*k
+	  0 $
+	 60 62 64 65 67 69 71 72  8 2 m$*k
+	;ap
+
+\ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	
+	:td pausing2
+            1|1 lpause                  \ whole note pause (before evants)
+	;td
+
+	:td fast3 			\ accelerating segment of whole note 
+	    2.7 1.3 1|1 seg             \ between the tempi
+	;td				\ 2.7 * 256 = 691 and 1.3 * 256 = 332
+
+	:td fast4 			\ accelerating segment of whole note 
+	    691 332 1|1 seg             \ between the tempi
+	;td				\ 691 and 332
+
+	:ap fasty2 
+	/16
+	::td1 pausing2 fast3 fast4 ;;td
+	  0 $
+	 60 62 64 65 67 69 71 72  8 4 m$*k
+	;ap
+
+\ *****************************************************************************
+
+:ap constantin
+/8
+ ::td1 200 inf-con ;;td			\ infinite constant tempo 200
+ 60 62 64 65 67 69 71 72  8 2 m$*k
+ ::td1 20 inf-con ;;td		        \ infinite constant tempo 20
+ 67 69 71 72 74 76 78 79  8 4 m$*k
+;ap
+
+\ *****************************************************************************
+
+:ap tempopo
+/8
+ ::td1 [ 1 params ] inf-con ;;td
+ 60 62 64 65 67 69 71 72  8 2 m$*k
+;ap
+
+:ap tempi
+ ::ap
+      100 tempopo 200 tempopo
+ ;;ap
+;ap
+
+\ *****************************************************************************
+
+:ap accel1
+ /8   
+ ::td1 			\ accelerating segment of 4 whole notes 
+   100 5 4 1 r>i seg    \ between the tempi 100 and 5
+ ;;td                   
+ 60 62 64 65 67 69 71 72  8 6 m$*k     \ the sequence of 6 whole notes
+;ap
+
+Note that after the TD finishes, the tempo goes to the unindentified value
+for the remaining notes.
+
+\ ****************************************************************************
+
+:ap accel2
+ /8
+ ::td1 		    \ accelerating segment of 8 whole notes 
+   100 5 4|1 seg    \ between the tempi 100 and 5
+   500 5 4|1 seg    \ between the tempi 500 and 5
+ ;;td
+ 60 62 64 65 67 69 71 72  8 4 m$*k
+ 67 69 71 72 74 76 78 79  8 4 m$*k
+;ap
+
+\ ****************************************************************************
+
+:ap ritard1
+ /8   
+ ::td1 			\ slowing down segment of 4 whole notes 
+   5 100 4 1 r>i seg    \ between the tempi 5 and 100
+ ;;td                   
+ 72 71 69 67 65 64 62 60  8 6 m$*k      \ the sequence of 6 whole notes
+;ap
+
+Note that after the TD finishes, the tempo goes to the unindentified value
+for the remaining notes.
+
+\ ****************************************************************************
+
+:ap ritard2
+ /8
+ ::td1 			\ accelerating segment of 8 whole notes 
+   5 100 32 8 r>i seg   \ between the tempi 5 and 100
+   5 500 32 8 r>i seg   \ between the tempi 5 and 500  
+ ;;td 
+ 60 62 64 65 67 69 71 72  8 4 m$*k
+ 67 69 71 72 74 76 78 79  8 4 m$*k
+;ap
+
+\ ****************************************************************************
+
+:ap accel
+ /8   
+ ::td1 			  \ accelerating segment of 4 whole notes 
+   100 500 4 1 r>i seg    \ between the tempi 100 and 500
+ ;;td                   
+ 60 62 64 65 67 69 71 72  8 4 m$*k
+;ap
+
+:ap ritard
+ /8   
+ ::td1 			  \ slowing down segment of 4 whole notes 
+   500 100 4 1 r>i seg    \ between the tempi 500 and 100
+ ;;td                   
+ 72 74 76 77 79 81 83 84  8 4 m$*k
+;ap
+
+	:ap acc-rit
+	 ::ap accel ;;ap
+	      ritard
+	;ap
+
+	:ap both
+	  ::ap acc-rit ;;ap
+	;ap
+
+\ *****************************************************************************
+
+:ap accelo
+ /8   
+ ::td1 			  \ accelerating segment of 3 whole notes 
+   100 500 1 3 r>i seg    \ between the tempi 100 and 500
+ ;;td                   
+ 60 62 64 65 67 69 71 72  8 4 m$*k
+;ap
+
+:ap accela
+ /8   
+ ::td1 			  \ accelerating segment of 3 whole notes 
+   100 500 1 3 (r>i seg    \ between the tempi 100 and 500
+ ;;td                   
+ 72 74 76 77 79 81 83 84  8 4 m$*k
+;ap
+
+:ap twotwo
+ ::ap accelo ;;ap
+      accela
+;ap
+
+Articulation Control
+
+The delay until the release of a note (denoted D(r)) can differ from the delay
+until the start of the next note (denoted D(n)).  D(r) may be longer (causing
+note overlap or legato) or shorter (portamento or staccato) than D(n).  We call
+this timing relationship articulation.  In FORMULA, the articulation for each
+note-playing process is controlled by an articulation shape that determines D(r)
+as a function of D(n).
+
+Articulation shapes define both a numeric value and a mode: absolute, relative,
+or ratio.  The mode and the value X determine D(r) as a function of D(n), as
+follows:
+
+absolute:       D(r) = X
+relative:       D(r) = max(0, D(n) + X)
+ratio:          D(r) = (D(n) * X)/256
+
+In other words, the value of an articulation gives either the release time of
+notes, the release time relative to the start of the next note, or the release
+time as a multiple (with 8-bit fractional part) of the time until the next note,
+depending on the mode.
+
+Articulation shapes use the shape primitives to define their numeric value, and
+the words absolute, relative and ratio to set their mode.  For example, the
+following articulation shape varies continuously from staccato to legato every 4
+beats:
+
+:sh art-shape
+  ratio
+  begin
+    .1 1.2 1|1 oseg
+  again
+;sh
+
+It can be attached to a running process:
+
+2 art-shape iash
+
+or written as an embedded process:
+
+:ap blash
+  ::ash
+    ratio
+    begin
+      .1 1.2 1|1 oseg
+    again
+  ;;sh
+  100 0 do c $ loop
+;ap
+
+More examples:
+
+ **************************** A B S O L U T E ********************************
+
+:ap vodka1 	      \ ( absolute )
+ ::ap
+ ::tsg begin /1 /2 /4 /8  /1 /2 /4 /8  again ;;sg 
+
+ 2 0 do
+ ::ash absolute
+  1 64 r>i 	      \ notes have 1/64 duration for a measure
+ 30  8 r>i ocon       \ that will occur during the lenght of 30 eight notes
+   1 1 r>i            \ notes have whole note duration 
+ 30  8 r>i ocon       \ that will occur during the lenght of 30 eight notes
+ ;;sh
+ 60 $ 62 $ 64 $ 65 $ 67 $ 69 $ 71 $ 72 $
+ 60 $ 62 $ 64 $ 65 $ 67 $ 69 $ 71 $ 72 $
+ loop
+	/1 0 $        \ pause (to be able to hear what's going on)
+ ;;ap
+;ap
+
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+:ap vodka2
+ ::ap
+ ::ash absolute
+  1  8 r>i            \ notes have eight note duration 
+  8 16 r>i ocon       \ that will occur during the lenght of 8 tones sequence 
+                      \ in sixteenth notes
+  1  1 r>i
+  2  1 r>i ocon       \ pause of 2 whole notes 
+
+  1  4 r>i            \ notes have quarter note duration 
+  8 16 r>i ocon       \ that will occur during the lenght of 8 tones sequence 
+		      \ in sixteenth notes
+  1  1 r>i
+  2  1 r>i ocon       \ pause of 2 whole notes 
+
+  1  2 r>i            \ notes have half note duration 
+  8 16 r>i ocon       \ that will occur during the lenght of 8 tones sequence 
+		      \ in sixteenth notes
+  1  1 r>i
+  2  1 r>i ocon       \ pause of 2 whole notes 
+
+  1  1 r>i            \ notes have whole note duration 
+  8 16 r>i ocon       \ that will occur during the lenght of 8 tones sequence 
+		      \ in sixteenth notes
+  1  1 r>i
+  2  1 r>i ocon       \ pause of 2 whole notes 
+ ;;sh
+/16	   60 $ 62 $ 64 $ 65 $ 67 $ 69 $ 71 $ 72 $  /1 0 $  0 $
+/16	   60 $ 62 $ 64 $ 65 $ 67 $ 69 $ 71 $ 72 $  /1 0 $  0 $
+/16	   60 $ 62 $ 64 $ 65 $ 67 $ 69 $ 71 $ 72 $  /1 0 $  0 $
+/16	   60 $ 62 $ 64 $ 65 $ 67 $ 69 $ 71 $ 72 $  /1 0 $  0 $
+ ;;ap
+;ap
+
+ **************************** R E L A T I V E *******************************
+
+:ap einstein
+ ::ap
+ 2 0 do
+ ::ash relative
+  1  3 r>i negate  \ notes end a 1/3 EARLY
+  8  4 r>i ocon    \ that will occur during the lenght of 8 tones sequence 
+		   \ in quarter notes  *** NO SOUND WILL BE HEARD HERE ***
+
+  1  5 r>i negate  \ notes end a 1/5 EARLY
+  8  4 r>i ocon    \ that will occur during the lenght of 8 tones sequence 
+		   \ in quarter notes 
+  	
+  1  4 r>i         \ notes end a 1/4th LATE
+  8  4 r>i ocon    \ that will occur during the lenght of 8 tones sequence 
+		   \ in quarter notes 
+  0
+  1  1 r>i ocon    \ pause of whole note 
+
+  0          	   \ note ends at beginning of next note
+  2  1 r>i ocon    \ notes last their notated duration
+ ;;sh
+	/4     60 $ 62 $ 64 $ 65 $ 67 $ 69 $ 71 $ 72 $
+	/4     60 $ 62 $ 64 $ 65 $ 67 $ 69 $ 71 $ 72 $
+	/4     60 $ 62 $ 64 $ 65 $ 67 $ 69 $ 71 $ 72 $
+	/1     0 $
+	/4     60 $ 62 $ 64 $ 65 $ 67 $ 69 $ 71 $ 72 $
+    loop
+ ;;ap
+;ap
+
+ ****************************** R A T I O ***********************************
+
+In ratio mode the shape's value determines the "ratio" between the notated
+and performed duration.  The value is the numerator of the ratio, the 
+denominator is 256.
+
+An example: ::ash ratio 128 2000 ocon ;;sh
+
+the 2000 is the duration of the segment (probably 1 measure); the 128
+indicates a ratio of 128/256, i.e. 1/2.  With this shape a note will last
+half its notated duration.
+
+:ap rat1
+ ::ap
+ 2 0 do 
+ ::ash ratio
+  128	             \ notes last HALF their duration
+  8  8 r>i ocon      \ that will occur during the lenght of 8 tones sequence 
+		     \ in eight notes
+
+  512                \ notes last TWICE their duration
+  16  8 r>i ocon     \ that will occur during the lenght of 8 tones sequence 
+		     \ in eight notes 
+ ;;sh
+ 	/8    60 $ 62 $ 64 $ 65 $ 67 $ 69 $ 71 $ 72 $
+	/8    60 $ 62 $ 64 $ 65 $ 67 $ 69 $ 71 $ 72 $
+ loop
+	/1 0 $
+ ;;ap
+;ap
+
+\ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+:ap rat2
+ ::ap
+ /4
+ 2 0 do 
+ ::ash ratio
+  128	              \ notes last HALF their duration
+  16 4 r>i ocon       \ that will occur during the lenght of 8 tones sequence 
+		      \ in the quarter notes, in between each note
+		      \ is a pause for better listening of the examples
+
+  512                 \ notes last TWICE their duration
+  16 4 r>i ocon       \ that will occur during the lenght of 8 tones sequence 
+		      \ in the quarter notes, in between each note
+		      \ is a pause for better listening of the examples
+ ;;sh
+  60 $ 0 $ 62 $ 0 $ 64 $ 0 $ 65 $ 0 $ 67 $ 0 $ 69 $ 0 $ 71 $ 0 $ 72 $ 0 $
+ 60 $ 0 $ 62 $ 0 $ 64 $ 0 $ 65 $ 0 $ 67 $ 0 $ 69 $ 0 $ 71 $ 0 $ 72 $ 0 $
+    loop
+	/1 0 $
+ ;;ap
+;ap
+
+Timing Sequence Generators
+
+A timing sequence generator (TSG) is a process that generates rhythm for a
+note-playing process.  The $-words get note durations from TSGs.
+
+TSG word definitions are delimited by :sg and ;sg.  Embedded definitions are
+delimited by ::sg and ;;sg.  A TSG generates a sequence element using
+
+&    ( n --- ; return a sequence element )
+
+The argument to & is in per-process virtual time.  Often it is conveniently
+expressed as a rational number.  Commonly occurring rhythmic patterns are
+defined using the following naming conventions:
+Rhythmical values (the note durations) are specified in FORMULA using 
+the following words:
+
+  /1  = whole            	   /1.  = 1+4
+  /2  = half      	           /2.  = 2+4     /2,, = 2+8     /2,,, = 2+16
+  /4  = quarter   /4.. = 4+8+16    /4.  = 4+8     /4,, = 4+16    /4,,, = 4+32
+  /8  = eight                      /8.  = 8+16
+  /16 = 16th			   /16. = 16+32
+  /32 = 32nd			   /32. = 32+64
+  /64 = 64th
+
+ ****************************************************************************
+
+  WORDS FOR TRIPLETS
+
+  /1-3    = triplet under the whole note duration
+  /2-3    = triplet under the half note duration
+  /4-3    = triplet under the quarter note duration
+  /8-3    = triplet under the eight note duration
+  /16-3   = triplet under the 16th note duration
+  /32-3   = triplet under the 32nd note duration
+
+  WORDS FOR QUINTUPLETS
+
+  /1-5    = quintuplet under the whole note duration
+  /2-5    = quintuplet under the half note duration
+  /4-5    = quintuplet under the quarter note duration
+  /8-5    = quintuplet under the eight note duration
+
+  WORDS FOR SEPTUPLETS
+
+  /1-7    = septuplet under the whole note duration
+  /2-7    = septuplet under the half note duration
+  /4-7    = septuplet under the quarter note duration
+  /8-7    = septuplet under the eight note duration
+
+\ ****************************************************************************
+
+  NOTE DURATION GROUPS (METERS) DEFINED IN FORMULA:
+
+        32/32   16/32    8/32    4/32    3/32   2/32
+
+        32/16   16/16   12/16   11/16   10/16   9/16  
+         8/16    7/16    6/16    4/16    3/16   2/16
+
+        16/8     8/8     7/8     6/8     5/8    4/8    3/8    2/8
+
+         8/4     4/4     3/4     2/4
+
+         4/2     2/2
+
+  	/8.16   = 8 + 16            /8+   = 8 + 16 + 16
+  	/4.8    = 4 + 8             /4+   = 4 + 8 + 8
+  	/2.4    = 2 + 4             /2+   = 2 + 4 + 4
+
+Rhyithmical valuse definitions:
+
+name    definition      meaning
+
+/1      1|1 &   whole note
+/4.     3|8 &   dotted quarter
+/4..    7|16 &  double dotted quarter
+/4,,    5|16 &  quarter plus a 16th
+/4,,,   9|32 &  quarter plus a 32nd
+/8.     etc.
+2/8     /8 /8   two eighths
+16/32   etc.
+/4.8    /4. /8  dotted quarter and eighth
+/2.4    etc.
+/2-3    /2/3 /2/3 /2/3  triplet half
+/4-3    etc.
+/8+     /8 /16 /16      eighth and two 16ths
+/4+     etc.
+
+The above words are in the sg-defs vocabulary since they are called only from
+TSG definitions.  The names /1, /2, /4, /8, /16, /32, /4.8, /2.4, /2+, /4+, /8+,
+/4-3, and /8-3 are also used in the ap-defs vocabulary for words that install a
+TSG that generates an infinite sequence of the given durations.  This allows the
+following convenient notation in note-playing processes:
+
+:ap foo
+  /4 c d e 3$     \ play some quarter notes
+  /8 f g a 3$     \ now play some eighth notes
+;ap
+
+An example of a TSG definition:
+
+:sg funky
+  2/4 /4+                  \ three quarters and two eighths
+  5 0 do 8/8 /2-3 loop     \ eight eighths and a triplet half,
+                           \ repeated five times
+;sg
+
+funky could be used in another TSG definition:
+
+:sg blah
+  funky 4/8 funky
+;sg
+
+This defines a sequence composed of 2 copies of the funky sequence with 4
+eighths interposed.  funky could be used in a note-playing process:
+
+:ap player
+  ::tsg funky ;;sg          \ start out in funky rhythm
+  8 0 do c $ d $ loop       \ play some notes
+  /16
+  8 0 do c $ loop           \ switch to sixteenths and play more notes
+;ap
+
+ ************************** E X A M P L E S *******************************
+
+:ap regular-beats
+	::ap
+ /1      		\ ------------------------- WHOLE NOTE BEATS  
+ 	60 62 64 65 67 69 71 72  8 m$ 
+ /1     0 $ 				\ whole note rest
+ /2		        \ ------------------------- HALF NOTE BEATS
+ 	60 62 64 65 67 69 71 72  8 m$ 
+ /1     0 $ 				\ whole note rest
+ /4      		\ ------------------------- QUARTER NOTE BEATS
+ 	60 62 64 65 67 69 71 72  8 m$ 
+ /1     0 $ 				\ whole note rest
+ /8      		\ ------------------------- EIGHTH NOTE BEATS
+ 	60 62 64 65 67 69 71 72  8 m$ 
+ /1     0 $ 				\ whole note rest
+ /16     		\ ------------------------- 16th NOTE BEATS
+ 	60 62 64 65 67 69 71 72  8 m$ 
+ /1     0 $ 				\ whole note rest
+
+ /32     		\ ------------------------- 32nd NOTE BEATS
+  	60 62 64 65 67 69 71 72  8 m$ 
+ /1     0 $ 				\ whole note rest
+ /64     		\ ------------------------- 64th NOTE BEATS
+ 	60 62 64 65 67 69 71 72  8 m$ 
+	;;ap
+;ap
+
+ ***************************************************************************
+
+:ap beats
+	::ap
+ /1 60 $  /2 62 $  /4 64 $  /8 65 $  /16 67 $  /32 68 $  /64 71 $  /1 72 $
+ /1 60 $  /2 62 $  /4 64 $  /8 65 $  /16 67 $  /32 68 $  /64 71 $  /1 72 $
+	;;ap
+;ap
+
+ ***************************************************************************
+
+:ap combination  		\ 4 bars in 4/4 time signature
+	::ap
+	/2. 60 $ /4 62 $ 
+	/4. 64 $ /8. 65 $ /16 67 $
+	/2,, 69 $ /4,,, 71 $ /32 72 $
+	/16. 74 $ /32 76 $ /32. 77 $ /64 79 $ /4.. 81 $ /4,, 83 $ 
+	;;ap 
+;ap
+
+ ***************************************************************************
+
+:ap groups
+	::ap
+ /8.16   		\ ------------------------- one 8th and one 16th
+ 	60 62 64 65 67 69 71 72     8 m$ /1 0 $
+ /8+     		\ ------------------------- one 8th and two 16th
+ 	60 62 64 65 67 69 71 72 74  9 m$ /1 0 $
+ /4.8    		\ ------------------------- one 4th and one 8th
+ 	60 62 64 65 67 69 71 72     8 m$ /1 0 $
+ /4+     		\ ------------------------- one 4th and two 8th
+ 	60 62 64 65 67 69 71 72 74  9 m$ /1 0 $
+ /2.4    		\ ------------------------- one 2nd and one 4th
+ 	60 62 64 65 67 69 71 72     8 m$ /1 0 $
+ /2+     		\ ------------------------- one 2nd and two 4th
+ 	60 62 64 65 67 69 71 72 74  9 m$
+	;;ap 
+;ap
+
+ **************************************************************************
+	
+:ap meter-groups
+	::ap
+  16/32              \ play 16 32nd notes 
+       60 62 64 65 67 69 71 72 71 69 67 65 64 62 60 72    16 m$ 
+    /4  0 $          \ play a quarter note rest
+   8/4               \ play 8 quarter notes
+       60 62 64 65 67 69 71 72   8 m$  
+    /4  0 $          \ play a quarter note rest
+  12/16              \ play 12 sixteen notes
+       60 65 67  65 67 72  67 72 76  72 76 79  12 m$ 
+	;;ap
+;ap
+
+ ***************************************************************************
+
+:ap xplets
+	::ap
+    /1-3 60 62 64 3 m$ /1 0 $               \ triplet under the whole note
+    /2-3 60 64 67 3 m$ /1 0 $	            \ triplet under the half note
+    /4-3 60 65 69 3 m$ /1 0 $               \ triplet under the quarter note
+    /4-5 60 62 64 65 67 5 m$ /1 0 $	    \ quintuplet under the quarter note
+    /8-7 60 62 64 65 67 69 71 7 m$  /1 0 $  \ septuplet under the eight note
+	;;ap
+;ap
+
+ ****************************************************************************
+
+More examples:
+
+	:sg rhythm		\ define word rhythm
+		/4 /8 /16 /32         
+	;sg
+
+
+	:sg rhythms		\ define word rhythms using rhythm in it
+	      rhythm /2. /4. /8. /16. rhythm 4/8
+	;sg
+
+Embadded definitions are delimited by ::tsg and ;;sg.
+
+	:ap player1
+	 ::tsg 2 0 do rhythms loop ;;sg   \ start playing rhythms two times
+	 4 0 do 60  62  64  65  67  69  71  72  8 m$ loop  \ play notes
+         /16				  \ switch to sixteenths
+	 8 0 do c+ $ loop 				   \ play more notes	
+	;ap
+
+This example can be rewriten as an embadded TSG definition:
+
+	:ap player2
+	 ::tsg 2 0 do	/4 /8 /16 /32 
+			/2. /4. /8. /16. 
+			/4 /8 /16 /32  
+			4/8  loop 
+	 ;;sg
+	 4 0 do 60  62  64  65  67  69  71  72  8 m$ loop
+         /16
+	 8 0 do c+ $ loop 
+	;ap
+
+ *****************************************************************************
+
+:ap a/b
+  ::tsg begin  
+       [ 2 params ]           \ sequence generator definition
+         2dup r>i & 
+	again
+  ;;sg
+;ap
+
+ ---   ---   ---   ---   ---   ---   ---   ---   ---   ---   ---   ---   ---
+
+:ap reich1 
+ 21 199 a/b        \ during a 21 whole notes take 199 tones from the sequence
+           begin
+           e f+ b c+ d -f+ e +c+ b f+ +d c+ 12 m$
+	   again
+;ap
+
+:ap reich2 
+ 21 200 a/b       \ during a 21 whole notes take 200 tones from the sequence
+  	   begin
+           +oct e f+ b c+ d -f+ e +c+ b f+ +d c+ -oct 12 m$
+	   again
+;ap
+
+:ap piano-phase   \ piece by Steve Reich 
+::ap
+ ::ap reich1 ;;ap
+      reich2
+;;ap
+;ap
+
+ *****************************************************************************
+
+This is an example which demonstrates embedded auxiliary processes tsg, td, 
+sh, ash. The best listening results will be acheved with PIANO-like voices.
+ 
+:ap tune1
+ ::tsg 1|4 & ;;sg
+\ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ ::td1 
+   50 100 8 1 r>i seg   \ between the tempi 100 and 50
+ ;;td                   \ during a 8 whole notes, slow down the sequence
+\ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ ::sh1
+ -100 100 8 1 r>i oseg	\ between dynamics -100 and 100 
+ ;;sh			\ during a 8 whole notes
+\ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ ::ash absolute
+  1  1 r>i              \ notes have whole note duration 
+  4  1 r>i ocon         \ that will occur during the 4 whole notes
+		     
+  1 64 r>i 	        \ notes have 1/64 note duration 
+  4  1 r>i ocon         \ that will occur during a 4 whole notes
+ ;;sh		        
+\ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  4 oct 16 0 do g $ loop
+;ap
+
+ ****************************************************************************
+
+:ap tune2
+ ::tsg begin 4 10 r>i & again ;;sg
+\ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ ::td1 
+   100 10 8 1 r>i seg   \ between the tempi 100 and 10
+ ;;td                   \ during a 8 whole notes, accelerate the sequence
+\ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ ::sh1
+ 80 -50 4 1 r>i cseg	\ between dynamics 80 and -50 
+			\ during a 4 whole notes
+ -50 -10 4 1 r>i cseg	\ between dynamics -50 and -10
+ ;;sh			\ during a 4 whole notes
+\ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ ::ash relative
+  1 16 r>i negate       \ notes end a 1/16th early
+  4  1 r>i ocon         \ that will occur during a 2 whole notes
+  	
+  1  2 r>i              \ notes end a 1/2nd late
+  4  1 r>i ocon         \ that will occur during a 4 whole notes
+ ;;sh		   
+\ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+3 oct 10 0 do  c $ loop
+;ap
+
+ ----------------------------------------------------------------------------
+
+:ap ally
+2 0 do
+   ::ap tune1 ;;ap
+        tune2      loop    
+;ap
+
+:ap all
+ ::ap ally ;;ap
+;ap
+
+ ****************************************************************************
+
+Rhythm Patterns
+
+The words above require that rhythms be generated sequentially.  Sometimes it is
+easier to use a random access approach.  FORMULA provides the following
+mechanism for this.  A rhythm pattern represents a fixed number of pulses, some
+of which are "attack points" at which notes are played.  Pulses are numbered
+starting at 0.
+
+pattern   ( name ; n --- ; define an pattern "name" with n pulses )
++bt       ( pulse# pattern --- ; add an attack point )
+-bt       ( pulse# pattern --- ; remove an attack point )
+
+For example:
+
+6 pattern my-pattern
+1 my-pattern +bt
+4 my-pattern +bt
+5 my-pattern +bt
+
+defines a rhythm pattern named my-pattern of 6 pulses with attack points at 1,
+4, and 5.  Rhythm patterns are used by timing sequence generators:
+
+play-pattern    ( tactus pattern --- ; )
+
+generates the rhythmic sequence given by the pattern, where each pulse has
+length 1/tactus (e.g., tactus = 8 for 8th-note pattern).  For example,
+
+1|8 my-pattern play-pattern
+
+plays notes on 8th notes 1, 4 and 5 of a 6/8 measure.
+
+
+BASIC MIDI OUTPUT
+
+Sending MIDI Commands
+
+The following words send MIDI commands:
+
+	mku   ( velocity key-no channel --- ; key-up command )
+	mkd   ( velocity key-no channel --- ; key-down command )
+	mpp   ( pressure key-no channel --- ; polyphonic pressure )
+	mcc   ( value control-no channel --- ; controller change )
+	mpc   ( patch-no channel --- ; patch change )
+	mat   ( aftertouch channel --- ; aftertouch )
+	mpb   ( hi lo channel --- ; pitchbend )
+	mcl   ( channel --- ; send MIDI clock )
+	mstr  ( channel --- ; system start )
+	mstp  ( channel --- ; system stop )
+	mcnt  ( channel --- ; system continue )
+	mss   ( n channel --- ; song select )
+	mspp  ( hi lo channel --- ; song position pointer )
+
+For example,
+
+127 60 0 mkd
+
+plays a middle C (key number 60) with a velocity of 127 on MIDI channel zero.
+To release the key, type
+
+0 60 0 mkd
+
+
+For program change type:
+
+	15 0 0 mpc 127 60 0 mkd 500 time-advance  0 60 0 mkd
+
+you'll hear a middle C sound for a quarter note and the synthesizer voice 
+will change to number 15 (whatever name that might be). 
+
+ *****************************************************************************
+
+For MIDI controller change type:
+
+	127 60 0 mkd  500 time-advance 127 64 0 mcc 
+   	  0 60 0 mkd 4000 time-advance   0 64 0 mcc  
+
+you'll hear a middle C sound for a quarter note with sustain pedal presses
+down for a 8 quarter notes and then released.
+
+For control change numbers you have to look at your synthesizer manual 
+MIDI control chart. In this case, (Yamaha DX 7 II FD) uses contol # 64 for 
+the sustain pedal, 127 = on 0 = off.
+
+ *****************************************************************************
+
+Examples:
+
+ mkd and velocity
+
+:ap velocity1
+::ap
+3 0 do
+	100 30 do 
+		i 60 0 mkd 
+			100 time-advance 
+		0 60 0 mkd  
+	    2 +loop
+
+	30 100 do 
+		i 60 0 mkd 
+			100 time-advance 
+		0 60 0 mkd 
+	   -2 +loop
+     loop
+;;ap
+;ap
+
+:ap velocity2
+::ap
+100 0 do
+	80 irnd 40 + 60 0 mkd 
+				100 time-advance 
+	           0 60 0 mkd
+      loop
+;;ap
+;ap
+
+ mpc - changing patches	
+
+:ap patches
+::ap
+30 0 do 
+	i 0 10 time-advance mpc 
+				127 60 0 mkd 
+					500 time-advance  
+				  0 60 0 mkd
+     loop
+;;ap
+;ap
+
+ mcc - sustain pedal
+	
+:ap cont1
+::ap
+	127 60 0 mkd 
+			 500 time-advance 
+					127 64 0 mcc 
+	  0 60 0 mkd 
+			4000 time-advance 
+					  0 64 0 mcc  
+;;ap
+;ap
+	
+ portamento
+
+:ap cont2 		\ (for Yamaha synths)
+::ap
+127 60 0 mkd	 
+	127 5 0 mcc	\ porta time
+	127 65 0 mcc 	\ porta switch on 
+					   10 time-advance 
+  0 60 0 mkd
+
+127 90 0 mkd
+		5000 time-advance  
+  0 90 0 mkd
+	0 65 0 mcc	\ porta switch off
+;;ap
+;ap
+
+:ap conta2
+::ap
+5 0 do
+	127 60 0 mkd	 
+		80 irnd 40 + 5 0 mcc	\ porta time
+		        127 65 0 mcc 	\ porta switch on 
+							1000 time-advance 
+	  0 60 0 mkd
+
+	127 90 0 mkd
+							1000 time-advance  
+	  0 90 0 mkd
+    loop
+			  0 65 0 mcc	\ porta switch off
+;;ap
+;ap
+
+ modulation whell changes ( For Yamaha synths adjust the following:
+ PM and AM and PEG sensityvity at 7  LFO - PMD and AMD at 7 ) 
+
+:ap cont3
+::ap
+	127 60 0 mkd 
+			5000 time-advance 
+		127 1 0 mcc 
+	  0 60 0 mkd 
+			4000 time-advance 
+		 0 64 0 mcc  
+;;ap
+;ap
+
+ volume pedal (control 7)
+	
+:ap cont4 		\ use sustained voice e.g. STRINGS
+::ap
+127 60 0 mkd 	
+	5 0 do
+		120 20 do 
+			i 7 0 mcc 10 time-advance 
+		       loop	
+		20 120 do 
+			i 7 0 mcc 10 time-advance 
+		   -1 +loop	
+	    loop
+0 60 0 mkd
+;;ap	
+;ap
+
+:ap cont5
+::ap
+	127 60 0 mkd 	
+			100 0 do
+				 30 grnd 70 + 7 0 mcc 100 time-advance 
+			      loop
+	  0 60 0 mkd
+;;ap	
+;ap
+
+:ap pitchbnd		\ pitchbend changes
+::ap
+127 60 0 mkd
+	10 0 do
+		8192 irnd negate 0 0 mpb
+					1000 time-advance 
+		0 8191 irnd abs 0 mpb
+					1000 time-advance 
+             loop
+127 60 0 mku
+;;ap
+;ap
+
+:ap pitchbnda
+::ap
+127 60 0 mkd
+	10 0 do
+		-8192 8191 0 mpb
+				100 time-advance 
+		8191 -8192 0 mpb
+				100 time-advance 
+	     loop
+0 60 0 mkd
+;;ap
+;ap
+
+The bend argument to mpb is in the range -8192 to 8191; 0 represents no bend.
+
+	fmpp  ( pressure key-no channel delay --- ; future polyphonic pressure )
+	fmcc  ( value control-no channel delay --- ; future controller change )
+	fmat  ( aftertouch channel delay --- ; future aftertouch )
+	fmpb  ( bend channel delay --- ; future pitchbend )
+
+These take an additional "delay" argument, and send the command that much time
+(PPVT) in the future. They may be used in differential functions (see 
+Differential Functions and Continuous Controllers).
+
+The MIDI Output Driver
+
+FORMULA's MIDI output driver accommodates synthesizers, such as the Yamaha FB-
+01, with system-exclusive event states.  Each system-exclusive state is
+represented by an index into an array sysexcl-table, whose elements point to the
+MIDI string (starting with a 32-bit length field) used to enter the
+corresponding state.  MIDI channel states are encoded as follows: values from
+128 to 257 represent standard MIDI commands, and values from 1 to 127 represent
+system-exclusive states corresponding to the entries in sysexcl-table.
+
+At the lowest level, FORMULA's MIDI output driver is accessed using the
+following event routines (note: these cannot be called directly; they must be
+scheduled using event or future-event; see Event Scheduling):
+
+MIDI-command-event  ( command-byte B2 ... Bn n --- ; send MIDI command )
+MIDI-output-event   ( B1 ... Bn n --- ; send MIDI bytes )
+
+These take an argument count n and a sequence of n bytes (unpacked, 1 per 32-bit
+stack entry).  MIDI-command-event interprets the bottom byte as a MIDI command
+state, as described above, and avoids sending it if possible.  MIDI-output-event
+outputs the bytes without interpretation.
+
+For non-realtime operations like downloading patches, use
+
+MIDI-output-block   ( addr n --- ; send n bytes from memory )
+
+This outputs bytes from a packed memory array.  It is not an event routine, and
+can be called directly.
+
+MIDI File Capture
+
+You can capture FORMULA's MIDI output in a standard MIDI file using the
+following words:
+
+MF-init    ( n --- ; create an n-byte buffer for MIDI capture )
+MF-start   ( --- ; begin capturing MIDI output in the buffer )
+MF-stop    ( --- ; stop capturing MIDI output )
+MF-write filename   ( --- ; write buffer contents to file )
+
+The resulting MIDI file can be used by sequencers and other MIDI programs.
+
+Your MIDI capture buffer must be large enough for all the output between MF-
+start and MF-stop; each note uses about 22 bytes.  The word
+
+MF-memused  ( --- n )
+
+returns the number of bytes in the capture buffer that are currently used, and
+
+MF-reset    ( --- ; )
+
+deletes the current buffer contents.
+
+INPUT HANDLING
+
+MIDI Commands
+
+Regular MIDI commands (key up/down, etc.) are handled by a process that
+maintains a table of handler routines, one for each type of MIDI command.  When
+a MIDI command is received, the process executes the corresponding word, with
+the command's data bytes on the stack (the word must remove these bytes from the
+stack).  The table entries are as follows:
+
+index   meaning data bytes
+0       keyup   velocity, key-number
+1       keydown velocity, key-number
+2       polyphonic pressure     pressure, key-number
+3       control change  value, control-number
+4       patch change    patch-number
+5       mono pressure   pressure
+6       pitch bend      bend-lo, bend-hi
+
+You can write your own MIDI action words and store them in this table.  MIDI
+action words may create note-playing processes, but they should not time-advance
+themselves as this will interfere with response to subsequent MIDI commands.
+
+
+For example, this will take the velocity byte (0-127) and turn it into the 
+pitch value. Eevery time you press a key it will input the velocity number,
+followed by the key-nuber. For the key-down you may get somethng like this:
+101 60 and for the key-up something like this 0 60.
+
+First thing to do is to swap these numbers so that key-number comes in first
+and can be dropped, leaving the velocity number to be used. Since 0 velocity
+would not be useful in this case it can be easily dropped using the simple
+routine '0 = if drop then'.
+
+ :ap vel-pitch 		
+ ::ap [ 2 params ] 		\ expects two numbers (bytes)
+ drop swap 	    		\ swaps the numbers and drops the key-number
+ 127 to $volume
+ 0 = if drop then		\ get rid of the 0 velocity for the key-up
+ $				\ plays the velocity numbers as a pitch
+ ;;ap
+ ;ap
+
+ ' vel-pitch 1 MIDI-action !
+
+Respectfully, using the aftertouch will do this:
+
+ :ap after
+ ::ap [ 1 params ]
+ 127 to $volume 
+ $ 
+ ;;ap
+ ;ap
+
+ ' after 5 MIDI-action !
+
+Use the modulation wheel to play music
+
+ :ap mod-wheel
+ ::ap [ 2 params ]
+ 127 to $volume 
+ drop $ 
+ ;;ap
+ ;ap
+
+ ' mod-wheel 3 MIDI-action ! 
+
+How about the pitch band to play some random notes!?
+
+ :ap p-bend
+ ::ap [ 2 params ]
+ drop drop
+ 127 to $volume 
+ 15 grnd 60 + $
+ ;;ap
+ ;ap
+
+ ' p-bend 6 MIDI-action !
+
+As an example, the following program provides a MIDI "echo chamber" with user
+specifiable decay rate, repetition speed, and number of repetitions:
+
+quan repno 6 to repno         \ number of times to repeat each note
+quan reprate 400 to reprate   \ SVT delay between repetitions
+quan decrate .75 to decrate   \ decay rate
+
+:ap rnote       ( vel keynumber --- ; repeat note with decay )
+  ::ap
+    [ 2 params ]
+    repno 0 do
+      2dup 0 mkd              \ play the note
+      swap                    \ s: key-no vel
+      decrate * 8>>           \ decay velocity a little
+      swap                    \ s: vel key-no
+      reprate time-advance    \ wait for delay time
+    loop
+    2drop
+  ;;ap
+;ap
+
+MIDI Change-Patch Commands
+
+FORMULA provides routines that allow MIDI channel patch commands to
+automatically reconfigure the MIDI-action table.  For each of the non-system
+MIDI commands, a table of pointers, indexed by patch number, is maintained.
+When a command to change to channel-patch N is received, the default action
+examines the Nth entry in each of these arrays and, if non-zero, stores it in
+the corresponding entry of the MIDI-action table.  The syntax for assigning an
+action to a MIDI channel patch number is:
+
+n ku-action: <name>    ( key up action for patch n )
+n kd-action: <name>    ( key down action for patch n )
+n pp-action: <name>    ( polyphonic pressure action for patch n )
+n cc-action: <name>    ( continuous controller action for patch n )
+n cp-action: <name>    ( channel patch action for patch n )
+n at-action: <name>    ( aftertouch action for patch n )
+n pb-action: <name>    ( pitch bend action for patch n )
+
+To use this system, every patch-change action word must call default-cp.
+
+MIDI System Exclusive Commands
+
+System exclusive commands (e.g., patch dumps) can be read using
+
+get-sysex-command        ( buf len --- ; )
+
+This reads a system-exclusive message into the given buffer, and blocks the
+calling process until a complete message has been received.
+
+Mouse Input Handling
+
+The mouse position and button state are maintained in the following quans:
+
+mouse-x         \ mouse x coordinate
+mouse-y         \ mouse y coordinate
+left-button     \ left button down?
+right-button    \ right button down?
+
+mouse-x and mouse-y are initially zero, and are changed differentially as the
+mouse is moved.
+
+These quans can be polled by any process.  FORMULA also provides a mouse handler
+process that calls the deferred word mouse-routine whenever the mouse position
+or button state changes.  In the following example, a pair of notes is played on
+each mouse event, with pitches corresponding to the x and y positions of the
+mouse.
+
+:ap mouser
+  ::ap
+    mouse-x 8 / 50 + z$
+    mouse-y 8 / 50 + $
+  ;;ap
+;ap
+
+Also try this:
+
+ quan old-mouse-x
+ quan old-mouse-y
+ quan old-left-button
+ quan old-right-button
+
+ :ap cat
+ ::ap
+ mouse-x old-mouse-x <> if 0 to $channel 1 / 60 + $
+ mouse-x to old-mouse-x then
+
+ mouse-y old-mouse-y <> if 1 to $channel 1 / 50 + $
+ mouse-y to old-mouse-y then
+
+ left-button old-left-button <> if 20 0 do 
+ ::tsg 1|16 irnd 17 + & ;;sg
+ 2 to $channel 60 irnd 20 + $ loop 
+ left-button to old-left-button then
+
+ right-button old-right-button <> if 10 0 do 
+ ::tsg 1|8 irnd 1 + & ;;sg
+ 3 to $channel 20 irnd 80 + $ loop
+ right-button to old-right-button then 
+ ;;ap
+ ;ap
+
+ ' cat is mouse-routine
+
+Function Key Handling (Atari Only)
+
+The Atari's function keys and shifted function keys can be assigned words to be
+executed when the key is pressed.
+
+FK-table    ( name ; --- ; create a function key action table )
+FK-action:  ( name ; n --- ; insert entry in a function key action table )
+default-FK-table    ( predefined default function key action table )
+
+FK-table defines a function key action array (initially all entries are noop).
+Indices from 0 to 9 select function keys 1 to 10 while indices from 10 to 19
+select shifted function keys.  Invoking name activates the table.  FK-action:
+makes name the nth entry of the currently active table.
+
+For example:
+
+	:ap wordy 
+                  ." type " cr 
+        ;ap
+	
+	default-FK-table
+
+	11 FK-action: wordy
+
+will activate the default function key table and cause 'wordy' to be executed
+whenever you press the shift and the function key 2 simultaneously.
+
+	:ap musica
+	   ::ap
+		/16 c $ e $ g $
+	   ;;ap
+	;ap
+
+	0 FK-action: musica
+
+Now, if you press function key 1 you'll get some music as many times as you
+press the key.
+
+	9 FK-action: kill-all
+
+Pressing the function key number 10 will kill all the processes.
+
+Another example:
+
+quan trsp
+
+:ap playo
+220 beats-per-minute
+ /16
+ ::ap
+  begin
+    trsp 60 + $ 
+    trsp 64 + $ 
+    trsp 67 + $ 
+    0 $
+  again
+ ;;ap
+;ap
+
+:ap go-up
+ trsp 1 + to trsp
+ trsp . cr
+;ap
+
+:ap go-down
+ trsp 1 - to trsp
+ trsp . cr
+;ap
+
+0 FK-action: playo
+1 FK-action: go-up
+2 FK-action: go-down
+
+MISCELLANEA
+
+Random Number Generators
+
+FORMULA provides the following random number generators:
+
+	rnd         ( --- n )
+	irnd        ( m --- n )
+	brnd        ( --- flag )
+	grnd        ( m --- n )
+	trnd       ( table-addr --- n )
+	xtrnd      ( table-addr x --- n )
+	rndinit     ( n --- )
+	frnd2       ( m --- n )
+	frnd2-init  ( --- )
+	frnd3       ( old m --- new )
+
+ rnd   = returns a 32-bit random integer from the uniform distribution
+
+ irnd  = returnd a random integer from the uniform distribution on [0 ... m-1]
+
+ brnd  = returns a random 0 or 1 ( it's faster than '2 irnd' )
+
+ grnd  = returns a random number from the Gaussian distriburtion with mean zero
+         and standar deviation m, rounded to the nearest integer.
+
+ trnd  = returns a random number from a distribution on [0 ... m-1] described 
+         by a table whose first entry is the sum of weigths, and whose 
+         remaining m entries are weights on each integer in [0 ... m-1].
+
+ xtrnd = uses a table of the same form as 'trnd'. Its argument m must be less
+         than the sum of probabilities in the table. It returns the smallest n
+         for which the sum of the first n table entries is less then m (trnd
+	  is computed as x irnd xtrnd, where x is the total probability). xtrnd
+	  can be used with frnd2, for example, to generate weighted fractal 
+	  sequences.
+
+ rndinit = initializes, based on the seed n, the state used by rnd, irnd, brnd,
+	    grnd and trnd
+
+ frnd2 = returnd an element from an integer sequence on [0 ... m-1] with 
+	  (roughly) 1/f frequency content. The underlying distribution is 
+	  uniform. The sequence's state is per-process; frnd2-init must be 
+         called to initialize this state by each process using frnd2.
+
+ frnd3 = is another 1/f random number generator; its state consists simply of
+	  its previous value, which is passed as old argument.
+
+ TO MAKE A WEIGHT TABLE:
+ 
+	 create weight_table 
+	 total_weight , weight_of_0 , weight_of_1 , .... weight_of_n ,
+	 ( n is the hightest value that weight_table will generate )
+
+ **************************** RANDOM EXAMPLES ********************************
+
+ ****** irnd *****************************************************************
+
+:ap demo.irnd
+ ::ap /16
+   begin 
+    128 irnd $ 		\ just play uniformly random notes 
+			\ between MIDI# 0 and MIDI# 127
+   again 
+ ;;ap
+;ap
+
+ ****** frnd2 ****************************************************************
+
+:ap demo.frnd2
+ ::ap /16
+   frnd2-init		\ initialize per-process 1/f random table
+   begin
+   128 frnd2 $ 		\ play 1/f random notes
+   again 
+ ;;ap
+;ap
+
+ ****** frnd3 ****************************************************************
+
+:ap demo.frnd3
+ ::ap /16 
+  60
+  begin 
+   128 frnd3 dup $ 	\ frnd3 requires its previous value on the stack
+  again			\ to generate '1/f' values
+ ;;ap
+;ap
+
+ ***** grnd ******************************************************************
+
+:ap demo.1grnd	        \ GRND stands for 'gaussian random' distribution 
+::ap 
+  /16			\ this generates random notes that display the
+  begin 		\ 'bell shaped curve' distribution 
+   12 grnd 
+   60 + $ 		\ +-12 notes around the MIDI# 60
+  again 
+ ;;ap
+;ap
+
+:ap demo.2grnd	        \ GRND stands for 'gaussian random' distribution 
+::ap [ 1 params ]       \ ( range --- ; )		
+  /16			\ this generates random notes that display the
+  begin 		\ 'bell shaped curve' distribution 
+   dup grnd 
+   60 + $ 		\ around the MIDI# 60
+  again 
+ ;;ap
+;ap
+
+ ***** trnd *****************************************************************
+
+create timetable
+
+ 100 ,			\ total 'weight' of the table
+ 0 , 			\ 0 entry has 'no weight', so it will never happen
+ 50 ,			\ 1 entry will happen 50% of the time (50/100)
+ 25 ,			\ 2 entry will happen 25% of the time (25/100)
+ 24 ,			\ 3 entry will happen 24% of the time (24/100)
+ 1 ,			\ 4 entry will happen 1% of the time (1/100)
+
+ -----------------------------------------------------------------------------
+
+:ap demo.trnd
+ ::ap 
+  ::tsg 
+    begin 
+     timetable trnd  	\ pick random 1 2 3 or 4
+     16 r>i & 		\ make a rhythmic value of that many 16th notes
+    again
+  ;;sg
+
+  frnd2-init
+  begin
+	  128 frnd2 $
+  again
+ ;;ap
+;ap
+
+\ *****************************************************************************
+
+:ap rand1
+::ap
+ /16	
+ 10 0 do
+         c $
+             1.0 grnd to $transpose \ 1 grnd = play random notes around C
+			          \ in the area of 1 note up and 1 note down
+      loop
+ 
+ /2 r $                           \ pause one half note
+ 
+
+ /16
+ 10 0 do 
+	 4 irnd 59 + $	        \ 4 irnd = play random numbers between 0 and 3,
+			        \ 59 + $ = ( makes appropriate MIDI-number )
+      loop
+ 
+ /2 r $                           \ pause one half note
+
+\ ----------------------------------------------------------------------------
+
+ /16
+ 10 0 do
+         c $ 
+             2.0 grnd to $transpose \ 2 grnd = play random notes around C
+      loop                        \ in the area of 2 notes up and 2 notes down
+			          
+ /2 r $                           \ pause one half note
+
+
+ /16
+ 10 0 do 
+	 5 irnd 58 + $       \ 5 irnd = play random numbers between 0 and 4,
+			     \ 58 + $ = ( makes appropriate MIDI-number )
+      loop
+
+ /2 r $                           \ pause one half note
+
+\ ----------------------------------------------------------------------------
+
+ /16
+ 10 0 do 
+	 c $
+             5.0 grnd to $transpose \ 5 grnd = play random notes around C
+      loop      	          \ in the area of 5 notes up and 5 notes down
+
+ /2 r $                           \ pause one half note
+
+
+ /16
+ 10 0 do 
+	 11 irnd 55 + $      \ 11 irnd = play random numbers between 0 and 10,
+			     \ 55 + $ = ( makes appropriate MIDI-number )
+      loop
+
+ /2 r $                           \ pause one half note
+
+\ ----------------------------------------------------------------------------
+
+ /16
+ 10 0 do  
+	 c $
+             9.0 grnd to $transpose \ 2 grnd = play random notes around
+      loop   			  \ in the area of 9 notes up and 9 notes down
+                      
+ /2 r $
+
+ /16
+ 10 0 do 
+	 19 irnd 51 + $	    \ 19 irnd = play random numbers between 0 and 18,
+			    \ 51 + $ = ( makes appropriate MIDI-number )
+ loop
+
+;;ap
+;ap
+
+\ ****************************************************************************
+
+:ap randomes
+ ::ap /16
+ 100 0 do 5 oct c $  2.0 irnd to $transpose loop
+ 100 0 do 5 oct c $ 10.0 irnd to $transpose loop
+ 100 0 do 5 oct c $ 15.0 irnd to $transpose loop
+ ;;ap
+;ap
+
+\ ****************************************************************************
+
+Memory Allocation
+
+The following words allocate and free memory:
+
+malloc     ( n --- addr ; allocate a block of n bytes )
+free       ( addr --- ; free an allocated block )
+
+Mutual Exclusion
+
+Processes may be interrupted by I/O and clock interrupts, and a process may
+preempt another process.  Hence any data structures that are shared between a
+process and an interrupt handler, or between two processes, need a mutual
+exclusion mechanism.  FORMULA provides several such mechanisms.
+
+Mutual exclusion between processes can be achieved by masking software
+interrupts:
+
+mask-softint       ( --- ; raise software interrupt mask level )
+unmask-softint     ( --- ; lower software interrupt mask level )
+
+These must always occur in matched pairs, which can be nested.  Event
+performance is deferred, so this method should be used only for moderately short
+critical sections.
+
+For potentially time-consuming critical sections, FORMULA provides real-time
+semaphores.  A process holding a semaphore can be preempted (in contrast with
+software interrupt masking, which disables preemption).  If a process A tries to
+acquire a semaphore held by a preempted process B, B is temporarily "promoted"
+to the deadline of A, allowing it to run until it releases the semaphore.  The
+operations are:
+
+semaphore:   ( name ; --- ; declare a semaphore )
+init-sema    ( semaphore-addr --- ; initialize a semaphore )
+P            ( semaphore-addr --- ; acquire the lock )
+V            ( semaphore-addr --- ; release the lock )
+
+semaphore: creates a named semaphore.  The resulting word, when invoked, returns
+the semaphore address.  The semaphore must be initialized (at runtime) before it
+is used.
+
+The above mechanisms do not exclude interrupt handlers.  The following words
+provide a mutual exclusion mechanism for interrupt-driven I/O with a single
+handler process (these are used in the FORMULA implementation of keyboard and
+MIDI input, and can be used for other I/O devices):
+
+input-handler         ( name ; --- ; declare an input handler structure )
+wait-for-input        ( handler-structure --- ; )
+(wake-input-handler   ( call by jsr  )
+
+input-handler allocates a structure containing a pointer to the handler process
+and a counter for the amount of data available.  wait-for-input is called from
+the handler process; if no input is available, the process sleeps.  (wake-
+input-handler is called by the input interrupt handler when new input has been
+received.  It wakes up the handler process if necessary.
+
+The synchronization mechanism of last resort is to mask hardware interrupts:
+
+set-mask       ( --- old-mask ; mask interrupts )
+restore-mask   ( old-mask --- ; restore old mask )
+
+Interrupts (and therefore preemptions) are suppressed between set-mask and
+restore-mask.  Interrupt-masking should be used only for short critical sections
+(100 instructions or less) because of the possibility of lost interrupts,
+especially from MIDI input.
+
+EVENT AND PROCESS SCHEDULING
+
+Event Scheduling
+
+FORMULA increases timing accuracy using a technique called event buffering.  An
+event is an output action whose computation can be separated from its
+performance.  Processes are allowed to compute events ahead of time.  Event
+descriptors are kept in an event buffer, and performed when their time arrives.
+Each descriptor contains the address of a performance routine and a set of
+parameters to pass to that routine.
+
+The use of event buffering requires that a process wanting to generate an output
+(e.g., to start a note) does not do it directly, but rather schedules an event
+to do it.  For example, the word mkd does not directly generate MIDI output; it
+schedules an event that will generate the output.  Most FORMULA programmers will
+never have to schedule events directly, since it is handled by higher-level
+words like mkd and $.
+
+Event performance routines may be either high-level Forth, or (for efficiency)
+machine-code routines, and are executed at interrupt level.  The following
+constructs are used to schedule Forth events:
+
+::ev
+  ( event )
+;;ev
+
+n ::fev
+  ( event )
+;;ev
+
+The first construct schedules an event for the current time position of the
+process; the second schedules an event for n units later.  In both cases, [ n
+params ] can be used to pass parameters to the event routine, and the routines
+may not call operating system routines.
+
+The following words are used to schedule machine-code events:
+
+event             ( args nargs CFA --- ; schedule an event )
+event-rec         ( args nargs CFA --- rec ; schedule an event )
+future-event      ( args nargs CFA delay --- ; schedule event after delay )
+
+CFA is the address of a machine-code event performance routine.  args is a set
+of parameters to be passed to that routine.  The routine is called with a
+pointer to an event record in the A1 register; it may modify A0-A2 and D0-D3.
+An event descriptor has several fields; the ones relevant to event performance
+routines are the number of arguments and the argument block.  The offsets of
+these fields are stored in the constants nargs-offset and args-offset
+respectively.  The order of arguments is the same as their stack order.  The
+word must return with an rts instruction.  In addition, it normally must free
+the event record using the (free) macro, which expects the record pointer to
+still be in A1.  event-rec is like event but returns a pointer to the event
+record.  future-event is like event, but causes the event to be scheduled delay
+units in the future.
+
+As an example, mkd is defined as
+
+:ap mkd
+  th 90 or 3 ' MIDI-command event
+;ap
+
+Process Scheduling Parameters
+
+Each top-level object has the following pquans (all times are in SVT units):
+
+-  time-position is the time for which the process is currently computing
+events.
+-  deadline is the process's "priority": the executing process is that with the
+earliest deadline.
+
+A top-level object has the following tuneable parameters:
+
+-  maxdel determines how far ahead of the current SVT the process is allowed to
+compute.  If the process advances to a time position such that
+
+time-position > (current SVT) + maxdel
+
+then the process is temporarily suspended.  maxdel must be nonnegative.  Its
+value is a tradeoff between timing accuracy and response latency.  If maxdel is
+small, the process will respond quickly to input but may experience event timing
+errors if system load is heavy or its own computations are long.  If maxdel is
+large, the process is more immune to timing errors, at the expense of increased
+input response time.
+
+-  mindel determines the process's deadline as a function of its time position:
+
+deadline = time-position - mindel
+
+A process's mindel must be strictly less than its maxdel, and can be negative.
+mindel can be used to prioritize input-handling processes (larger mindel gives
+higher priority).
+
+A quan system-mindel stores the maximum amount by which processes are allowed to
+fall behind schedule before the advance of system virtual time is stopped to
+allow them to catch up.  Specifically, SVT is not advanced if
+
+earliest deadline + system-mindel < current SVT
+
+system-mindel determines what happens when the system falls behind schedule.  If
+system-mindel is nonnegative, then SVT stops advancing whenever the system falls
+behind schedule (i.e., when SVT exceeds the earliest process deadline).  All
+subsequent events are uniformly shifted in time, but the system loses
+synchronization with external timing sources.  If you need such synchronization,
+system-mindel should be given a large negative value.  This may cause short-term
+compression of events if lateness occurs.
+
+Background Processes
+
+FORMULA's deadline scheduling mechanism is designed for processes that schedule
+output events for specific times, using relatively small amounts of CPU time to
+compute the events.  Not all processes conform to this model.  For example, the
+Forth interpreter process, while it is executing words (which prints the
+contents of a vocabulary) uses large amounts of CPU time and has no particular
+output timing requirements.
+
+Such processes can be accommodated by making them into background processes:
+
+background   ( --- ; make caller into a background process )
+foreground   ( --- ; make caller into a foreground process )
+
+The deadline of a background process is constant; the range 0x7fffff00 to
+0x7fffffff is reserved for background processes.  The time position of a
+background process is initially less than current SVT.  When a background
+process does something of a real-time nature (scheduling an event, calling
+time-advance, or creating a group) its time position is set to the maximum of
+its current value and the current SVT.  This arrangement allows background
+processes to generate real-time output; e.g., you can play music in the Forth
+interpreter.  The computation of the music, however, is done with an infinite
+deadline so it may be "starved" by other processes.
+
+If you run a large number of processes you may "starve" the Forth interpreter
+process; handling of keyboard and mouse input will slow down or stop.  If this
+occurs you can raise the priority of the interpreter process by setting its
+deadline to 0.
+
+APPENDIX A - FORTH AND FORTHMACS
+
+Forth's program unit is the word.  Words communicate using a data stack; most
+words take their arguments from the stack and leave their result on the stack.
+Return addresses are kept on a separate return stack.
+
+The documentation of a word often includes a 1-line summary:
+
+name   ( old --- new ; comments )
+
+Old and new represent the data stack contents before and after executing the
+word.  For example, the summary of the words + and over are:
+
++      ( n m --- sum ; replace top 2 stack elements by their sum )
+over   ( n m --- n m n ; duplicate 2nd-to-top stack element )
+
+Some words take a text argument (usually the name of a word or a file) that
+follows them in the command or source file.  For example, the word array is used
+as follows:
+
+10 array foo       ( declare an array of 10 words )
+
+The 1-line summary of array is:
+
+array   ( name ; nwords --- ; declare an array )
+
+For example:
+
+create rhythm-kids
+
+4 , 4 , 4 , 4 , 4 , 4 , 2 , 4 , 4 , 4 , 4 , 4 , 4 , 2 ,
+4 , 4 , 4 , 4 , 4 , 4 , 2 , 4 , 4 , 4 , 4 , 4 , 4 , 2 ,
+4 , 4 , 4 , 4 , 4 , 4 , 2 , 4 , 4 , 4 , 4 , 4 , 4 , 2 ,
+
+create pitch-kids
+
+60 , 60 , 67 , 67 , 69 , 69 , 67 , 65 , 65 , 64 , 64 , 62 , 62 , 60 ,
+67 , 67 , 65 , 65 , 64 , 64 , 62 , 67 , 67 , 65 , 65 , 64 , 64 , 62 ,
+60 , 60 , 67 , 67 , 69 , 69 , 67 , 65 , 65 , 64 , 64 , 62 , 62 , 60 ,
+
+quan rit
+
+:ap twinkle
+::ap
+ 120 beats-per-minute
+ 127 to $volume
+
+ 168 0 do 		\ 42 notes in the array * 4 bytes per note = 168
+ 
+ rhythm-kids i + @ to rit 	
+
+ ::tsg 1 rit r>i & ;;sg
+
+ pitch-kids i + @ $ 
+
+ 4 +loop		\ go thru the loop in steps of 4 ( 4 bytes )
+;;ap
+;ap
+
+Forth systems are interactive, and include an "interpreter" that processes your
+keyboard input.  The interpreter lets you invoke a word simply by typing its
+name.  It also lets you enter word definitions via the keyboard.  Most Forth
+systems also include words that let you create, edit, and execute disk files.
+
+Forthmacs is the Forth system on which FORMULA is based.  This section is to
+help you get started with Forthmacs; you should buy the complete documentation
+if you plan on using FORMULA a lot.
+
+Forthmacs has many features that set it apart from other Forth implementations:
+
+-  File system interface
+
+Forthmacs provides a UNIX-like interface to the underlying file system:
+
+fload   ( file-name ; --- ; load (interpret) a file )
+more    ( file-name ; --- ; view a file w/ pagination )
+cd      ( directory-name ; --- ; enter a subdirectory )
+rm      ( file-name ; --- ; delete a file )
+mv      ( oldname newname ; --- ; rename a file )
+ls      ( list directory contents )
+
+The Atari version of Forthmacs provides an integrated Emacs-style editor and the
+Macintosh version provides multi-window mouse-based text editing.
+
+-  Decompilation and On-Line Documentation
+
+The following words facilitate on-line source code browsing:
+
+see        ( name ; --- ; decompile a word )
+.calls     ( CFA --- )
+whatis     ( name ; --- ; print 1-line summary )
+
+see can, in most cases, completely reconstruct a word's definition from its
+compiled form.  This allows you to conveniently peruse the source code of
+Forthmacs and FORMULA.  .calls lists all words that call a given word.  whatis
+prints a 1-line summary of a word (this uses the files whatis.doc and whatis.ind
+on the release disk; it does not work for FORMULA words).
+
+-  Deferred Words
+
+Forthmacs allows a form of forward reference using deferred words.  Such a word
+is declared by
+
+defer foo
+
+It may then be used in other word definitions.  It must later be bound to an
+actual definition (say blah) using
+
+
+-  Structured 68000 Assembler
+
+Forthmacs provides a 68000 assembler that uses Forth-like control structures for
+generating conditional branches.  The assembler uses 8-bit branch offsets;
+FORMULA provides a set of structures using 16-bit offsets; see the file lbranch.
+
+APPENDIX B - THE MIDI STANDARD
+
+MIDI (Musical Instrument Digital Interface) is an industry standard for
+connecting devices such as synthesizers, keyboards and computers.  Connecting
+the MIDI out socket of one device to the MIDI in socket of another establishes a
+MIDI connection.  Additional instruments can be daisy-chained by connecting the
+MIDI thru socket of one to the MIDI in socket of the next.
+
+Information is transmitted between devices in the form of MIDI commands.  Each
+command is a sequence of 8-bit bytes.  MIDI provides 16 distinct channels that
+allow commands to be directed to specific synthesizers in a chain.  Commands
+consist of an ID for the type of command being delivered, a MIDI channel number,
+and whatever parameters are required to describe the command.  For example, a
+MIDI key down command contains the command ID, the MIDI channel number, the
+pitch to be played, and the velocity with which it should be played (this
+typically determines the volume of the note).
+
+Each MIDI command is encoded by a command byte (always with the high-order bit
+set, and therefore in the range 128-255) followed by some data bytes (always in
+the range 0-127).  The following table shows the format of standard MIDI
+commands.  The low-order 4 bits of a command byte are the channel to which the
+command applies.
+
+command byte    meaning data bytes
+(x = channel number)
+8x      keyup   velocity, key-number
+9x      keydown velocity, key-number
+ax      polyphonic pressure     pressure, key-number
+bx      control change  value, control-number
+cx      patch change    patch-number
+dx      mono pressure   pressure
+ex      pitch bend      bend-lo, bend-hi
+fx      system command  varies
+
+In the MIDI numbering scheme, 60 is middle C.
+
+APPENDIX C - DEBUGGING FORMULA PROGRAMS
+
+Debugging FORMULA programs can be difficult because of multiple processes,
+asynchrony, and preemption.  With experience, it's not much harder than
+debugging single-process programs.  It's helpful to know the internals of
+Forthmacs (i.e., the structure of its dictionary and its register usage).  This
+information is in the Forthmacs manual.
+
+Many bugs result in hardware exceptions (bus error, illegal instruction).
+Forthmacs handles these exceptions and saves the machine state, allowing it to
+be examined later (even after a reboot) using
+
+showcrash   ( print hex dump of 68000 state at last exception )
+rstrace     ( show stack trace )
+
+The registers of greatest interest are the program counter (PC) and Forth's
+virtual PC (the A5 register).  These PC points into the code word being executed
+at time of the crash, and A5 points into the high-level Forth word from which it
+was called.  The easiest way to figure out the word involved is to use
+
+dump     ( start-addr nbytes --- ; print hex/ASCII memory dump )
+
+to survey the relevant areas of memory, looking for dictionary headers (which
+contain the ASCII word names).  Use hex to switch to hexadecimal mode.  Once
+you've found out exactly where your program was when it crashed, and you've
+examined the contents of the registers and stacks at that point, it's usually
+easy to figure out what went wrong.
+
+Here are some other random suggestions:
+
+-  Some bugs result in stack overflow or underflow.  This can often be detected
+using .cb , or by printing the stack pointer values (returned by sp@ and rp@)
+within a process.
+
+-  The quan who points to the currently executing process, and the quan
+execution-queue-head points to the top-level object containing this process
+(perhaps the process itself).  It is often helpful to examine these context
+blocks after an exception.
+
+Compiling FORMULA
+
+To compile FORMULA, run Forthmacs.  Edit the file flags in the FORMULA source
+directory to define exactly one of the symbols MAC and ATARI (you can also
+generate stripped-down versions of FORMULA by commenting out other symbols in
+this file).  Then type
+
+fload load
+
+
+
+
+
+System Setup
+
+Connect your synthesizer(s) to the Atari's MIDI out port.
+
+Saving the Dictionary
+
+You can save the dictionary to disk by typing
+
+"" formula.tos splice-relocation
+"" my-form.tos save-rel
+
+The first command must be issued in the directory from which FORMULA was
+executed, and the second in the directory where you want to save your version;
+you may need to change disks and/or do cd commands in between.  The resulting
+file (my-form.tos) can be executed by double-clicking.
+
+You can make an auto-booting version of FORMULA as follows: 1) create a
+directory named auto; 2) copy forth.tos into auto, renaming it auto.prg; 3)
+reboot from this disk; 4) load FORMULA and save it as auto\auto.prg.
+
+Panic Button
+
+If things go wrong and you lose control of the computer, press the undo key to
+abort FORMULA, and type formula again to continue.  If this fails, press the
+Atari's reset button and start over.
+
+Split-Screen Output
+
+Sometimes it's handy to have processes other than the Forth interpreter (e.g.,
+note-playing processes or the MIDI input-handling process) print output on the
+screen.  To keep the output of different processes separate, Atari FORMULA lets
+a process reserve  a number of consecutive rows on the screen (an airshaft).
+All characters output by the process appear within the airshaft; output wraps
+around from the bottom row back to the top.  This features is enabled by calling
+
++shaft
+
+A process can reserve an airshaft using
+
+set-shaft  ( bottom-row top-row --- ; )
+
+Rows are numbered from 0 (top) to 24 (bottom) in 25-line mode.
+
+Memory
+
+FORMULA uses several fixed-size memory regions.  The sizes of these regions can
+be changed as follows:
+
+-  The maximum dictionary size is set using
+
+new-dict-size   ( nbytes --- ; set maximum dictionary size )
+
+This takes effect only after saving the dictionary (with save-rel) and executing
+again.  The default is 300K bytes.
+
+-  The size of FORMULA's dynamic-allocation heap (from which context blocks,
+file buffers etc. are allocated) is set using
+
+new-heap-size   ( nbytes --- ; set heap size )
+
+This also takes effect only after saving and rerunning the application.  The
+default is 300K bytes.  Each process uses about 1600 bytes.

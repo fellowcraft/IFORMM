@@ -1,0 +1,100 @@
+============================= Abstract =======================================
+
+
+----------------------------- I F O R M M ------------------------------------
+
+IFORMM is a black box data-processing system for electronic music designed by 
+Frank H. Rothkamm.
+
+IFORMM's software functions as a scriptable real-time generative transformer, 
+random process generator and bitgraphics visualizer. It has it's own OS. 
+
+IFORMM's hardware inputs are messages from Oxygen8, UC-33 and MS20 Controllers and
+it's output are system-exclusive messages to the FB01, TX7, TX81Z, K5m modules
+and the Atari YM2149 sound chip.
+ 
+IFORMM's software runs on specifically configured Atari STE EMulator, with 
+MIDITHRUWAY and MIDIYOKE for multiple midi input. 
+
+IFORMM incorporates the legacy of great men and their code: 
+Moore's FORTH computer language, Bradley's FORTHMACS implementation for ATARI
+computers, Anderson/Kuivila's FORMULA multi-processing, scheduling and midi
+handling system and the Hayward Brother's realization of STEEM, an ATARI STE
+emulator.
+
+IFORMM is applied retro-computing.
+
+========================== history ===========================================
+
+========= W H E R E  I T  C A M E  F R O M ===================================
+
+==============================================================================
+1986: In Vancouver, British Columbia, I learned from Kenneth Newby to program
+MIDI in the very esoteric but fascinating language called Forth.
+
+1988: In Berlin Rupert Nieberle & I founded a computer music research 
+group called CAMP at the Technical University and started working with an
+esoteric but fascinating superset on Forth called Formula.
+It was invented by Ron Kuivila & David Anderson and allowed the realtime 
+programming of multiple processes.
+
+1989: Back in Vancouver I was asked by Science World of British Columbia to 
+program an installation called "paintmusic": visitors should be able to draw a
+picture and the computer would transfer this in realtime into music, similar to
+Iannis Xenakis' UPIC system. 
+To do this I grabbed Jesse Taylor's line-a calls, took some hints from Dan 
+Scheidt and invented a superset on Forth, called G.O.D (Graphics On Drugs),
+because it  enabled interaction with algorithms under the influence of
+mind-altering substances.  
+
+1990: Over the years many additions were added in San Francisco & New York:
+Sys-X & Csound interface, random & rhythm fractions, sliders, etc. All these
+were grouped in a folder called FLUX and could be complied to a new system.
+
+1998: Peter Sansom was the first person beside myself to work with the
+system. I formalized all files and this lead to a scripting language called
+IFORM.
+
+2002: The input was extended with USB controllers and the mapping project 
+of CC to SysEx was implemented first for the FB01, utilizing code from 1988. 
+This became IFORM88, now a hardware/software hybrid system. The Atari 
+STE EMulator became very stable and all software was moved from a physical 
+to a virtual Atari. This became IFORMM.
+ 
+
+[Examples]
+
+I've used pre-IFORMM version of FORMULA with Flux Xtensions:
+
+-> "Death Rave 2000" (21st Circuitry Records) CD 
+    under the pseudonym of Speed Genius Overdose. 
+    [industrial cybertrash] 
+
+-> "Planet Genius" (Flux Records) CD
+    under the pseudonym of Frank Genius. 
+    [ethno-tech] 
+
+-> "Mystery of the Leaping Fish" (Flux Records) CD-EP 
+    under the pseudonym of Frank Rothkamm.
+    [computer sounds & whales communication]
+
+-> "Presto Chango" (Yamaha Disklavier Festival)
+    under the pseudonym of Frank Rothkamm
+    [processed Haydn]  
+
+All of my post-summer-2002 work is using exact IFORMM:
+
+-> "FB01" (Flux Records) CD
+    under the pseudonym of rothkamm
+    [sci-fi serialism]
+	
+-> "FB02" (Flux Records) CD	
+    under the pseudonym of ROTHKAMM
+    [sci-fi serialism]
+
+Frank H. Rothkamm, Los Angeles 5/11/2004, revised in New York, 11/21/2006
+
+
+ 
+ 
+

@@ -1,0 +1,33 @@
+
+ only forth also definitions
+
+create rhythm-kids
+
+4 , 4 , 4 , 4 , 4 , 4 , 2 , 4 , 4 , 4 , 4 , 4 , 4 , 2 ,
+4 , 4 , 4 , 4 , 4 , 4 , 2 , 4 , 4 , 4 , 4 , 4 , 4 , 2 ,
+4 , 4 , 4 , 4 , 4 , 4 , 2 , 4 , 4 , 4 , 4 , 4 , 4 , 2 ,
+
+create pitch-kids
+
+60 , 60 , 67 , 67 , 69 , 69 , 67 , 65 , 65 , 64 , 64 , 62 , 62 , 60 ,
+67 , 67 , 65 , 65 , 64 , 64 , 62 , 67 , 67 , 65 , 65 , 64 , 64 , 62 ,
+60 , 60 , 67 , 67 , 69 , 69 , 67 , 65 , 65 , 64 , 64 , 62 , 62 , 60 ,
+
+quan rit
+
+:ap twinkle
+::ap
+ 120 beats-per-minute
+ 127 to $volume
+
+ 168 0 do 		\ 42 notes in the array * 4 bytes per note = 168
+ 
+ rhythm-kids i + @ to rit 	
+
+ ::tsg 1 rit r>i & ;;sg
+
+ pitch-kids i + @ $ 
+
+ 4 +loop		\ go thru the loop in steps of 4 ( 4 bytes )
+;;ap
+;ap

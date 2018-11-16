@@ -1,0 +1,465 @@
+                                 THE MENUS
+
+                       Keyboard Controlled Sequencer
+
+TRACK MODE PLAY
+
+File
+----
+New                 Clears all data from memory
+Open                Load .ALL file - Omega's global filetype
+Save                Save .ALL File 
+Load TRK File       Loads data created in Track Mode only
+Save TRK File       Saves data in Track Mode only 
+Load MID File       Loads a MIDI Standard File
+Save MID File       Saves a MIDI Standard File 
+Load ENV File       Loads system settings - see Environment
+Save ENV File       Saves system settings
+Format              Formats a disk
+Quit                Exits program
+
+
+Options
+-------
+All Tracks To Seq   Merges all unmuted tracks to the next available 
+                    sequence
+Clear All Tracks    Erases all Track data and sets overall length of 
+                    Track 1
+Go To Measure       Jump to specified bar
+Seq To All Tracks   Demix a multi-channel sequence to tracks
+Set Cue Points      Set up the six programmable locators
+Text                Accesses the notebook
+Track Merge         Merge selected tracks
+Auto Loop           Sequencer loops at the end of Track 1 - otherwise 
+                    stops after playing once
+Auto Record         Record remains active on loop
+Expand Tempo Range  Expands the range of the tempo slider
+Filter              Filters all data on the specified channel (channel is 
+                    set in Full Environment)
+Mute New Tracks     As Tracks are recorded, they are placed into Mute 
+                    status on loopback
+Send To Fostex R8   Interlocks transport controls to the Fostex R8
+Silent Punch        When setting Punch Points, data is muted; otherwise 
+                    track continues to sound until both points are set
+System Exclusive    Enables recording of Sysex data - limited to 5K of 
+                    data
+Tempo Chg by Ratio  When using the "," and "." keys to change tempo      
+                    settings, tempo changes by about 2.5% rather than in 
+                    single steps
+
+
+Environment
+-----------
+Full Environment    Displays the main configuration page
+Internal Clock      KCS is the master clock source
+MIDI Clock          KCS responds to MIDI Clock 
+Song Pointer        KCS responds to MIDI Clock with Song Pointer
+Audible Metronome   Enables the audible metronome
+Visual Metronome    Enables the visual metronome
+Count-In            Enables predefined count-in - set from Full ENV
+Activity Display    Enables data activity icons in Track Play
+Step Display        Enables display of current position in steps
+Min Sec Display     Enables real-time clock counter
+SMPTE               Enables display of SMPTE timecode - requires The     
+                    Phantom timecode reader
+Output Map          Defines output port allocation when using Merge
+
+
+Track Functions
+---------------
+Name A Track        Change a track's name
+Swap Tracks         Swaps selected tracks
+Erase a Track       Erase selected track
+Set Mute Switch     Sets two tracks whose Mute status can be toggled via 
+                    the return key
+Set Punch           Set punch in/punch out on selected track(s)
+Clear/Reset Punch   Clear or reset punch points on selected track
+Erase Punch         Erases punched data on selected track
+Copy Punch          Copies punched data on selected track
+Shift +1   |
+Shift +3   |
+Shift +12  |        Moves selected track forwards or backwards by        
+Shift -1   |        specified number of clocksteps
+Shift -3   |
+Shift -12  |
+Edit Select         Select track for Live Edit features
+Mute                Mutes selected tracks
+Solo                Solos selected track
+
+
+TRACK MODE EDIT
+---------------
+
+Edit
+----
+Cut                 Cut highlighed range to paste buffer (range may be 
+                    selected by holding down the left button and dragging 
+                    in the Event List)
+Copy                Copy highlighted range to paste buffer
+Paste               Paste buffer to specified area
+
+Options
+-------
+Set Cue Points      Set start and end positions for the six Cue Points
+Track To Seq        Send the current track to the next sequence
+Seq To Track        Bring the specified sequence to the next free track
+Append Seq To Trk   As above but appends sequence to the current track
+Step-Time Track     Accesses the Step-Time data entry functions
+Step-Time Append    As above but appends to the current track
+Double              Doubles all data in Track Mode - 8 bars becomes 16  
+                    bars and so on
+Text                As above
+Map                 Displays all tracks and sequences together with 
+                    sequence comments
+Print               Prints the specified Event List data
+Output Port         Assigns one of the four available output ports
+
+
+Transform
+---------
+Erase Controllers   Erases all continuous controllers from track or 
+                    sequence
+Erase Deletes       Erases "DE" events from track or sequence
+Pitch       |       
+Velocity    |
+Durations   |       Modify data
+Controllers |
+Pitch Bends |
+Time Reverse        Reverses specified data
+Quantise            Quantise data - define note values in clocksteps
+Compress/Expand     Compress or Expand specified time values: 50% halves 
+                    the time; 200% doubles it and so on
+Channel Assign      Change the specified MIDI channel
+
+
+TRACK MODE EDIT - MENU PALETTE
+
+Backup              Creates a backup track - stored in Sequence Y
+Insert              Inserts a gap at the cursor location to add a new 
+                    event (do this by typing the values in).  Any time 
+                    values included are added to the track
+Adjust              As insert but time from the following event is 
+                    subtracted preserving the original length
+Cut                 As before
+Copy                As before
+Paste               As before
+Delete              Deletes current event under cursor or range, if one is 
+                    highlighted.  Delete removes the event(s) and pulls 
+                    subsequent events forwards in time
+Erase               As Delete but does not change the overall length
+Get Backup          Retrieve Backup track or sequence
+Find                Locate the specified bar number
+Calc                Either calculates the time difference between two time 
+                    values or attempts to correct the time of the event 
+                    under the cursor.
+Undo                Retrieves the original data after any edit process - 
+                    stored in Sequence Z
+Clone Track         Duplicates the current track
+All Tracks To Seq   As before
+Seq To All Tracks   As before
+Split               Splits the specified data type(s) to the next available 
+                    track
+Delete Track        Get rid of it!
+Clear Al Tracks     As before
+Play Screen         Go to Track Mode Play screen
+OPEN Mode           Go to Open Mode
+
+Open Mode menu items are essentially similar except for:
+
+
+Options
+-------
+Change Repeats      Changes number of times the sequences repeats when 
+                    activated from the console - 99 = play forever
+Merge               Merge the specified sequence with the current one
+Set Cue             Sets the cue sequence and bar to play from
+
+Other items function the same way as in Track Mode.
+
+
+                            THE ENVIRONMENT PAGE
+
+MIDI
+----
+MIDI Merge           Duplicates the Merge button
+START is 1st Clock   Responds to a MIDI Start command as the 1st clock 
+                     pulse
+No MIDI Start        Any MIDI data is regarded as the 1st clock pulse
+Song Ptr Send        Transmit Song Pointer messages
+Dly                  When cuing with S.P., adds a one second delay to 
+                     enable other devices to catch up
+Running Status       Removes redundant Status bytes from transmission
+MIDI Outputs         Sets the number of output ports for transmission - 
+                     requires additional hardware such as the MIDI Modem or 
+                     C-Lab's Export
+
+
+VELOCITY PEDAL
+--------------
+
+Full       |
+Mix        | Used for the Live Edit feature
+Scale      | 
+Channel    |
+
+
+RECORDING
+---------
+Controllers          Duplicates the CNTRL flag in Track Mode Play
+Pause                When KCS is paused, controllers wheels can be set to a 
+                     required value.  The last ones received are placed in 
+                     the record input buffer and get appended to th next 
+                     track recorded
+Aftertouch           Duplicates the AFTER flag in Track Mode
+Sysex                Duplicates the Sysex flag in Track Mode
+Note Off Velocity    Records separate Note Offs with velocity for 
+                     instruments that support N.O.V. - rarely used
+Align                When on, ending recording by pressing F10 causes 
+                     recording to continue until the first beat of the next 
+                     bar.  Also aligns sequences that are started from the 
+                     console to the first beat of the next bar
+Mute New Tracks      As each new track is recorded, it is automatically put 
+                     into mute status
+Quantize             Duplicates the Quantize flag is Track Mode.  Any 
+                     value can be entered in the data field allowing 
+                     quantising to irregular time values
+Rechannelise         Duplicates the RECH flag
+Filter               Filters out any data not on the specified channel
+Count-In             Sets the count-in value
+
+
+TIMING
+------
+Internal Clock       KCS is the master clock source
+MIDI Clock           KCS responds to external clock
+MIDI w Song Pointer  As above but with Song Pointer
+Steps/Measure        The time signature in clocksteps
+Steps/Beat           The current ppqn resolution
+Steps/MIDI clk       The number of internal clocks advanced for each MIDI 
+                     clock received
+
+
+OTHER
+-----
+Silent Punch         As before
+Activity             As before
+SMPTE                As before
+Step Disp            As before
+Min:sec              As before
+Rerecord Stop        If on, clicking on R-REC just above the tempo bar 
+                     erases the last recording and stops KCS, else erases 
+                     and continues play
+Track Mode Loop      When the end of Track 1 is reached, KCS loops back to 
+                     the start or to the current Cue start point
+Tempo Chg by Ratio   As before
+MIDI keys            Revectors sustain pedal and portamento messages 
+                     (controllers 64 and 65) to act as remote start and 
+                     stop
+Drum Channels        Activates the channels specified in the Set Drum 
+                     Channels dialog and prevents pitch and velocity 
+                     transposes - does not affect editing in Tiger
+Debounce             Sets the key repeat rate - 60 = about 0.3 seconds
+Cue Move Amount      The four arrow keys can be used to change the start 
+                     and end point of the current cue - up and down change 
+                     the start and left and right the end.  The Cue Move 
+                     Amount changes the number of bars that the arrow keys 
+                     switch over - once set you can toggle between one bar 
+                     and the Cue Move Amount by pressing the Insert key
+Pull Down            Turns the normal drop down menus into pull down menus. 
+                     You'll have to click in the menu bar before it wakes 
+                     up.  Useful for preventing unwanted menu accesses 
+                     during recording or playback
+
+
+METRONOME
+---------
+Audible Metronome    As before
+Visual Metronome     As before
+Play Metronome       Activates the metronome when KCS is playing, else the 
+                     metronome only functions during record
+Step/Metro           The number of clocksteps between metronome pulses - at 
+                     240 ppqn, 480 would be once every two beats 120 would 
+                     be every eight-note and so on
+
+
+                                   TIGER
+                                      
+
+File
+----
+Open                 Opens .ALL file
+Save                 Saves .ALL file - disabled
+Load .MID            Loads a MIDI Standard file - only available if Tiger 
+                     is run as a stand-alone application
+Save .MID            Saves a MIDI Standard file - only available if Tiger 
+                     is run as a stand-alone application
+Save Startup         Saves current TIGER layout 
+KCS Edit             Exit to KCS
+
+
+Edit
+----
+Undo                 Undoes last edit
+Copy                 Copy selected notes or controllers
+Cut                  Cuts selected notes or controllers
+Paste At Selected    Copies the paste buffer to notes which are currently 
+                     selected
+Duplicate            Duplicates selected data
+Pitch                Edit selected pitches
+Velocity             Edit selected velocities
+Durations            Edit selected durations
+Controllers          Edit selected controllers
+Pitch Bend           Edit pitch bends
+Time Reverse         Time reverses either pitches or note order
+Quantise Selected    Quantise functions - these are more comprehensive than 
+                     in KCS
+Move                 Move selected notes or a range, if one is selected
+Copy/Delete Range    Copies or deletes highlighted range
+Split Selected       Moves selected data to new track 
+PVG                  Accesses the Programmable Variations Generator - only 
+                     available with the Level 2 version
+Master Edit          Accesses the Master Editor - only available with the 
+                     Level 2 version
+
+
+Settings
+--------
+Draw Attributes      Sets attributes for drawing notes
+Controller Density   Sets separation value when drawing controllers
+Tempo Window Range   Sets upper and lower tempo limits for the the 
+                     conductor track
+Wait After Messages  Awaits user acknowledgement to messages before 
+                     continuing
+Quant With Offset    Quantises with reference to the current start value
+Quant Range Borders  Aligns range to beat boundaries
+Clean Erasures       Cleans up "damage" to note displays when moving data 
+                     around
+Limit Track Length   Limits all track displays to the current length of 
+                     Track 1
+Pull Down Menus      As before
+Paste Neg Velocity   If a paste operation would produce velocities below 1, 
+                     set the values to 1
+Paste Rechannelises  When pasting data to a different track on a different 
+                     channel, data is rechannelised
+Center Scale Edits   When using scaling functions, centres them around the 
+                     median value (64) rather than from 1
+
+
+Play
+----
+Play Loop            Playback loops when the end of the defined range or 
+                     partial play option is reached
+Play When Selecting  When notes are highlighted, they'll be played
+Instant Replay       When on, the right mouse button restarts play 
+                     immediately
+Auto Scroll          Display scrolls when playing
+Reset Prog on Loop   On looping, chases program changes such that the 
+                     correct voice is played in contecxt
+Ignore Tempo Events  Overrides the conductor track
+MIDI Draw            Draws notes played on the keyboard at the values 
+                     specified in the Draw Attributes menu
+MIDI Draw Velocity   As above but takes the velocity information from the 
+                     keyboard rather than from Draw Attributes
+Chase Controllers    Chases controllers during looping
+Sync To MIDI Clock   Sync to a master clock source
+Record New Track     Records new track "on the fly"
+Step Time Record     Initiates step-time recording - uses note value from 
+                     Repeats
+Step Time Paste      Pastes in step time
+Mutes/Groups         Sets mute and group status of all tracks
+
+
+Repeat
+------
+Repeat Time          Sets notes separation interval for Copy Right and Fill
+Double               Doubles Repeat Time
+Halve                Halves Repeat Time
+Copy Right           Copy selected notes to the right using the Repeat Time
+Fill                 Fill track with selected notes at the Repeat Time
+
+
+Display
+-------
+Add/Drop Tracks      Selects up to three tracks for display
+Add CC               Adds the specified controller to the display
+Get Display          Retrieve one of ten defined display configurations
+Store Display        Store current screen layout
+Restore Range        Restores the last used range
+Set Cue Points       As before
+Colors               Sets screen colours
+Thick Notes          Changes the size of the note flags
+Velocity Stems       Toggles the display of the vertical velocity stems
+Full Bar Lines       Toggles bar line display on and off
+Dense Grid           Adds more horizontal lines to the display
+Center Pitch Bends   When pitch bends are being edited, changes the way PB 
+                     data is shown
+Center Zooms         When zooming in or out, the centre of the screen is 
+                     takes as the reference point rather than the left-hand 
+                     edge of the screen
+Emile's Mouse...     Changes the normal mouse shapes for Draw and Paste to 
+                     more precise versions, so-called because Dr T likes 
+                     these better
+Overhang Long Notes  Notes that hang over several screens will be displayed
+Realtime Mouse Loc   Switches mouse to show current real-time position; if 
+                     SMPTE or MTC is in use, the time reflects the current 
+                     timecode offset
+
+
+Widgets
+-------
+Select by Pitch      Clicking at a particular pitch selects all notes at 
+                     that pitch
+Select Below Pitch   Selects all notes below the specified pitch
+Select Above Pitch   Guess what!...
+Select Pitch Class   Selects all occurrences of a pitch at all octaves
+Select Pitch Range   Drag vertically to select a range of pitches
+Select All           Select every note
+Insert Bar Line      Inserts a bar line at the selected point
+
+
+Utils
+-----
+Name                 Name a track
+Backup               Create Backup track
+Get Backup           Gets Backup
+Copy Track           Copy data to next available track
+Delete Track         Delete unwanted track
+New Track            Creates a new track
+Track To Seq         Copies the current track to the next available 
+                     sequence
+Text                 As before
+All Tracks To Seq    Copies all selected tracks to the next sequence
+Clear All Tracks     Clears out all track data
+Change Length        Alters the conductor track length or current sequence
+Environment          Controls various global settings - stored with Save 
+                     Setup and .ALL files
+Output Map           As in KCS
+
+              ==============================================
+
+HINTS
+-----
+
+When in Track Mode or Open Mode Edit, a range may be defined by placing 
+the cursor at the start or end of the required section and dragging in the 
+appropriate direction.  Clicking the right mouse button plays the current 
+track from the cursor position or from the start of the range if one is 
+up.  Clicking both buttons plays all unmuted tracks, again from the 
+current cursor position or range.  A left click anywhere over the menu 
+palette on the right-hand side clears the range.
+
+There are several ways of looping playback in Tiger:  Return loops the bar 
+under the cursor or the current range, if one is up; Enter loops an entire 
+screen-worth; the numerals on the numeric keypad play that number of bars 
+from the cursor position.  You can even loop asymmetric (uneven length) 
+sections - with the Play icon lit, the right button initiates play from 
+that exact location and continues until you hit the Backspace key - this 
+section now loops.  
+
+If you want to make a range out of any currently looping section, press 
+"/" on the numeric keypad.  To make a range from the beginning of the 
+piece to the current cursor location, press "(" on the keypad and to make 
+one from the cursor to the end, press ")".  You can use ranges to "snip 
+out" sections from the data.  Doing an All Tracks To Sequence with a range 
+up only copies that section to the next available sequence.
+

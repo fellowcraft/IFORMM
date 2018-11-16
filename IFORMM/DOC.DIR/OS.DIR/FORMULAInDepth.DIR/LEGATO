@@ -1,0 +1,216 @@
+
+\ ******************************* L E G A T O *********************************
+
+\ In general the "decay until release" of note ( denoted D(r) ) can differ from
+\ its "delay until next note" ( denoted D(n) ) may be longer (caousing note
+\ overlap or "legato" or shorter ("portamento" or "staccato") than D(n). This
+\ timing relationship will be called articulation. In FORMULA, the articulation
+\ for each note-playing process is controlled by an "articulation shape" that
+\ determines D(r) as a function of D(n).
+
+\ Articulation shapes define both a numeric value and a "mode": ABSOLUTE,
+\ RELATIVE or RATIO. The mode and the value X determine D(r) as a function of
+\ D(n), as follows:
+
+\		absolute:  D(r) = X
+\		relative:  D(r) = max(0,D(n) + X)
+\		ratio:     D(r) = (D(n) * X)/256
+
+\ In other words, the value of an articulation gives either the release time 
+\ notes, the release time relative to the start of the next note, or the 
+\ release time as a multiple (with 8-bit fractional part) of the time until 
+\ the next note, depending on the mode.
+
+\ Articulation shapes use the shape primitives to define their numeric value, 
+\ and the words absolute, relative and ratio to set their mode. Their 
+\ definitions are delimited (like the volume-controle shapes) with :sh and ;sh.
+\ Embedded definitions are delimited with ::ash and ;;sh.
+
+\ For the best listening example you should some "long-decayed" voices, 
+\ for example FLUTE.
+
+\ *****************************************************************************
+
+\ For example, the following articulation shape varies continuosely from 
+\ staccato to legato every 4 whole notes.
+
+	:sh art-shape
+	ratio
+	begin 32 256 4|1 oseg again
+	;sh
+
+	:ap articul
+         ::ap
+	   ::ash art-shape ;;sh
+	     begin /4 60 $ again
+	 ;;ap
+	;ap
+
+\ **************************** A B S O L U T E ********************************
+
+:ap vodka1 	      \ ( absolute )
+ ::ap
+ ::tsg begin /1 /2 /4 /8  /1 /2 /4 /8  again ;;sg 
+
+ 2 0 do
+
+ ::ash absolute
+  1 64 r>i 	      \ notes have 1/64 duration for a measure
+ 30  8 r>i ocon       \ that will be during a lenght of 30 eight notes
+		     	 
+  1  1 r>i            \ notes have whole note duration 
+ 30  8 r>i ocon       \ that will be during a lenght of 30 eight notes
+ ;;sh
+
+ 60 $ 62 $ 64 $ 65 $ 67 $ 69 $ 71 $ 72 $
+ 60 $ 62 $ 64 $ 65 $ 67 $ 69 $ 71 $ 72 $
+
+ loop
+	/1 0 $        \ pause (to be able to hear what's going on)
+ ;;ap
+;ap
+
+\ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+:ap vodka2
+ ::ap
+ ::ash absolute
+
+  1  8 r>i            \ notes have eight note duration 
+  8 16 r>i ocon       \ that will be during a lenght of 8 tones sequence in the
+		      \ sixteenth notes
+  1  1 r>i
+  2  1 r>i ocon       \ pause of 2 whole notes 
+
+  1  4 r>i            \ notes have quarter note duration 
+  8 16 r>i ocon       \ that will be during a lenght of 8 tones sequence in the
+		      \ sixteenth notes
+  1  1 r>i
+  2  1 r>i ocon       \ pause of 2 whole notes 
+
+  1  2 r>i            \ notes have half note duration 
+  8 16 r>i ocon       \ that will be during a lenght of 8 tones sequence in the
+		      \ sixteenth notes
+  1  1 r>i
+  2  1 r>i ocon       \ pause of 2 whole notes 
+
+  1  1 r>i            \ notes have whole note duration 
+  8 16 r>i ocon       \ that will be during a lenght of 8 tones sequence in the
+		      \ sixteenth notes
+  1  1 r>i
+  2  1 r>i ocon       \ pause of 2 whole notes 
+
+ ;;sh
+
+/16	   60 $ 62 $ 64 $ 65 $ 67 $ 69 $ 71 $ 72 $  /1 0 $  0 $
+/16	   60 $ 62 $ 64 $ 65 $ 67 $ 69 $ 71 $ 72 $  /1 0 $  0 $
+/16	   60 $ 62 $ 64 $ 65 $ 67 $ 69 $ 71 $ 72 $  /1 0 $  0 $
+/16	   60 $ 62 $ 64 $ 65 $ 67 $ 69 $ 71 $ 72 $  /1 0 $  0 $
+ ;;ap
+;ap
+
+\ **************************** R E L A T I V E *******************************
+
+:ap einstein
+ ::ap
+ 2 0 do
+
+ ::ash relative
+
+  1  3 r>i negate  \ notes end a 1/3 EARLY
+  8  4 r>i ocon    \ that will be during a lenght of 8 tones sequence in the
+		   \ quarter notes  *** NO SOUND IN THIS CASE ***
+
+  1  5 r>i negate  \ notes end a 1/5 EARLY
+  8  4 r>i ocon    \ that will be during a lenght of 8 tones sequence in the
+		   \ quarter notes 
+  	
+  1  4 r>i         \ notes end a 1/4th LATE
+  8  4 r>i ocon    \ that will be during a lenght of 8 tones sequence in the
+		   \ quarter notes 
+
+  0
+  1  1 r>i ocon    \ pause of whole note 
+
+  0          	   \ note ends at beginning of next note
+  2  1 r>i ocon    \ notes last their notated duration
+
+ ;;sh
+
+	/4     60 $ 62 $ 64 $ 65 $ 67 $ 69 $ 71 $ 72 $
+
+	/4     60 $ 62 $ 64 $ 65 $ 67 $ 69 $ 71 $ 72 $
+
+	/4     60 $ 62 $ 64 $ 65 $ 67 $ 69 $ 71 $ 72 $
+	
+	/1     0 $
+
+	/4     60 $ 62 $ 64 $ 65 $ 67 $ 69 $ 71 $ 72 $
+   
+    loop
+ ;;ap
+;ap
+
+\ ****************************** R A T I O ***********************************
+
+\ In ratio mode the shape's value determines the "ratio" between the notated
+\ and performed duration.  The value is the numerator of the ratio, the 
+\ denominator is 256.
+
+\ An example: ::ash ratio 128 2000 ocon ;;sh
+
+\ the 2000 is the duration of the segment (probably 1 measure); the 128
+\ indicates a ratio of 128/256, i.e. 1/2.  With this shape a note will last
+\ half its notated duration.
+
+:ap rat1
+ ::ap
+ 2 0 do 
+
+ ::ash ratio
+  128	             \ notes last HALF their duration
+  8  8 r>i ocon      \ that will be during a lenght of 8 tones sequence in the
+		     \ eight notes
+
+  512                \ notes last TWICE their duration
+  16  8 r>i ocon     \ that will be during a lenght of 8 tones sequence in the
+		     \ eight notes 
+ ;;sh
+ 
+	/8    60 $ 62 $ 64 $ 65 $ 67 $ 69 $ 71 $ 72 $
+	/8    60 $ 62 $ 64 $ 65 $ 67 $ 69 $ 71 $ 72 $
+ loop
+	/1 0 $
+ ;;ap
+;ap
+
+\ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+:ap rat2
+ ::ap
+ /4
+ 2 0 do 
+
+ ::ash ratio
+  
+  128	              \ notes last HALF their duration
+  16 4 r>i ocon       \ that will be during a lenght of 8 tones sequence in the
+		      \ quarter notes, in between each note
+		      \ is a pause for better listening of the examples
+
+  512                 \ notes last TWICE their duration
+  16 4 r>i ocon       \ that will be during a lenght of 8 tones sequence in the
+		      \ quarter notes, in between each note
+		      \ is a pause for better listening of the examples
+ ;;sh
+ 
+ 60 $ 0 $ 62 $ 0 $ 64 $ 0 $ 65 $ 0 $ 67 $ 0 $ 69 $ 0 $ 71 $ 0 $ 72 $ 0 $
+ 60 $ 0 $ 62 $ 0 $ 64 $ 0 $ 65 $ 0 $ 67 $ 0 $ 69 $ 0 $ 71 $ 0 $ 72 $ 0 $
+    loop
+	/1 0 $
+ ;;ap
+;ap
+
+\ *****************************************************************************
+
+

@@ -1,0 +1,1342 @@
+<!doctype html public "-//W3C//DTD HTML 3.2//EN">
+
+<!-- This  particular HTML Edition of the Csound Manual is maintained by David M. Boothe. Email: csound@lakewoodsound.com-->
+<!--This is Version 4.06.-->
+<html>
+<head>
+	<title>QuickRef: Signal Generators</title>
+</head>
+
+<body text="black" link="black" vlink="black" alink="black" bgcolor="white">
+<table align="right" cellpadding="1" cellspacing="1" border="0">
+	
+  <tr>
+		
+      <td width="45" align="right">
+			<a href="../manual2.htm#contents" target="_parent"><img src="../toc.gif" width="38" height="18" alt="Use Non-Frames Version" border="0"></a>
+		
+      </td>
+		
+      <td width="10">
+      </td>
+		
+      <td width="45" align="right">
+			<a href="midi.htm"><img src="../prev.gif" width="38" height="18" alt="Previous Page" border="0"></a>
+		
+      </td>
+		
+      <td width="45" align="right">
+			<a href="table.htm"><img src="../next.gif" width="38" height="18" alt="Next Page" border="0"></a>
+		
+      </td>
+	
+  </tr>
+</table>
+<font size="-2" color="black" face="Verdana, Arial, Helvetica, Century Gothic">
+The Csound Quick Reference</font>
+
+<hr size="1" color="#A9A9A9" noshade>
+
+<h1>Signal Generators</h1>
+
+<a name="linear"><hr size="2" color="#A9A9A9" noshade></a>
+<h2>Signal Generators: Linear and Exponential Generators</h2>
+<table cellspacing="0" border="0" cellpadding="7" width="638">
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">k/ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/line.htm"><font face="Courier New, Courier" size="-1"><strong>line</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ia, idur1, ib</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">k/ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/line.htm"><font face="Courier New, Courier" size="-1"><strong>expon</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ia, idur1, ib</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">k/ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/line.htm"><font face="Courier New, Courier" size="-1"><strong>linseg</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ia, idur1, ib[, idur2, ic[...]]</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">k/ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/line.htm"><font face="Courier New, Courier" size="-1"><strong>linsegr</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ia, idur1, ib[, idur2, ic[...]], irel, iz</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">k/ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/line.htm"><font face="Courier New, Courier" size="-1"><strong>expseg</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ia, idur1, ib[, idur2, ic[...]]</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">k/ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/line.htm"><font face="Courier New, Courier" size="-1"><strong>expsegr</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ia, idur1, ib[, idur2, ic[...]], irel, iz</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/line.htm"><font face="Courier New, Courier" size="-1"><strong>expsega</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ia, idur1, ib[, idur2, ic[...]]</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">k/ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/adsr.htm"><font face="Courier New, Courier" size="-1"><strong>adsr</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">iatt, idec, islev, irel[, idel]</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">k/ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/adsr.htm"><font face="Courier New, Courier" size="-1"><strong>madsr</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">iatt, idec, islev, irel[, idel]</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">k/ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/adsr.htm"><font face="Courier New, Courier" size="-1"><strong>xadsr</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">iatt, idec, islev, irel[, idel]</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">k/ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/adsr.htm"><font face="Courier New, Courier" size="-1"><strong>mxadsr</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">iatt, idec, islev, irel[, idel]</font>
+      </td>
+  </tr>
+</table>
+
+
+<a name="table"><hr size="2" color="#A9A9A9" noshade></a>
+<h2>Signal Generators: Table Access</h2>
+<table cellspacing="0" border="0" cellpadding="7" width="638">
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">i/k/ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/table.htm"><font face="Courier New, Courier" size="-1"><strong>table</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">i/k/andx, ifn[, ixmode[, ixoff[, iwrap]]]</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">i/k/ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/table.htm"><font face="Courier New, Courier" size="-1"><strong>tablei</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">i/k/andx, ifn[, ixmode[, ixoff[, iwrap]]]</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">i/k/ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/table.htm"><font face="Courier New, Courier" size="-1"><strong>table3</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">i/k/andx, ifn[, ixmode[, ixoff[, iwrap]]]</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">kr</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/table.htm"><font face="Courier New, Courier" size="-1"><strong>oscil1</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">idel, kamp, idur, ifn</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">kr</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/table.htm"><font face="Courier New, Courier" size="-1"><strong>oscil1i</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">idel, kamp, idur, ifn</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/table.htm"><font face="Courier New, Courier" size="-1"><strong>osciln</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">kamp, ifrq, ifn, itimes</font>
+      </td>
+  </tr>
+</table>
+
+<a name="phasors"><hr size="2" color="#A9A9A9" noshade></a>
+<h2> Signal Generators: Phasors</h2>
+<table cellspacing="0" border="0" cellpadding="7" width="638">
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">k/ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/phasor.htm"><font face="Courier New, Courier" size="-1"><strong>phasor</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">k/xcps[, iphs]</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">k/ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/phasrbnk.htm"><font face="Courier New, Courier" size="-1"><strong>phasorbnk</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">k/xcps, kindx, icnt [, iphs]</font>
+      </td>
+  </tr>
+</table>
+
+<a name="basicoscils"><hr size="2" color="#A9A9A9" noshade></a>
+<h2>Signal Generators: Basic Oscillators</h2>
+<table cellspacing="0" border="0" cellpadding="7" width="638">
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">k/ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/oscil.htm"><font face="Courier New, Courier" size="-1"><strong>oscil</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">k/xamp, k/xcps, ifn[, iphs]</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">k/ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/oscil.htm"><font face="Courier New, Courier" size="-1"><strong>oscili</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">k/xamp, k/xcps, ifn[, iphs]</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">k/ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/oscil.htm"><font face="Courier New, Courier" size="-1"><strong>oscil3</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">k/xamp, k/xcps, ifn[, iphs]</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">k/ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/poscil.htm"><font face="Courier New, Courier" size="-1"><strong>poscil</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">kamp, kcps, ifn[, iphs]</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">k/ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/poscil.htm"><font face="Courier New, Courier" size="-1"><strong>poscil3</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">kamp, kcps, ifn[, iphs]</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">k/ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/lfo.htm"><font face="Courier New, Courier" size="-1"><strong>lfo</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">kamp, kcps[, itype]</font>
+      </td>
+  </tr>
+</table>
+
+<a name="dynspecoscils"><hr size="2" color="#A9A9A9" noshade></a>
+<h2>Signal Generators: Dynamic Spectrum Oscillators</h2>
+<table cellspacing="0" border="0" cellpadding="7" width="638">
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/buzz.htm"><font face="Courier New, Courier" size="-1"><strong>buzz</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">xamp, xcps, knh, ifn[, iphs]</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/buzz.htm"><font face="Courier New, Courier" size="-1"><strong>gbuzz</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">xamp, xcps, knh, klh, kr, ifn[, iphs]</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/vco.htm"><font face="Courier New, Courier" size="-1"><strong>vco</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">kamp, kfqc, iwave, kpw, ifn, imaxd</font>
+      </td>
+  </tr>
+</table>
+
+<a name="additive"><hr size="2" color="#A9A9A9" noshade></a>
+<h2>Signal Generators: Additive Synthesis/Resynthesis</h2>
+<table cellspacing="0" border="0" cellpadding="7" width="638">
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/adsyn.htm"><font face="Courier New, Courier" size="-1"><strong>adsyn</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">kamod, kfmod, ksmod, ifilcod</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/adsynt.htm"><font face="Courier New, Courier" size="-1"><strong>adsynt</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">kamp, kcps, iwfn, ifreqfn, iampfn, icnt[, iphs]</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/hsboscil.htm"><font face="Courier New, Courier" size="-1"><strong>hsboscil</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">kamp, ktone, kbrite, ibasfreq, iwfn, ioctfn[, ioctcnt
+[, iphs]]</font>
+      </td>
+  </tr>
+</table>
+
+
+<a name="fm"><hr size="2" color="#A9A9A9" noshade></a>
+<h2>Signal Generators: FM Synthesis</h2>
+<table cellspacing="0" border="0" cellpadding="7" width="638">
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/foscil.htm"><font face="Courier New, Courier" size="-1"><strong>foscil</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">xamp, kcps, kcar, kmod, kndx, ifn[, iphs]</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/foscil.htm"><font face="Courier New, Courier" size="-1"><strong>foscili</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">xamp, kcps, kcar, kmod, kndx, ifn[, iphs]</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/fmvoice.htm"><font face="Courier New, Courier" size="-1"><strong>fmvoice</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">kamp, kfreq, kvowel, ktilt, kvibamt, kvibrate, ifn1, ifn2, ifn3, ifn4, ivibfn</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/fmbell.htm"><font face="Courier New, Courier" size="-1"><strong>fmbell</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">kamp, kfreq, kc1, kc2, kvdepth, kvrate, ifn1, ifn2, ifn3, ifn4, ivfn</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/fmbell.htm"><font face="Courier New, Courier" size="-1"><strong>fmrhode</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">kamp, kfreq, kc1, kc2, kvdepth, kvrate, ifn1, ifn2, ifn3, ifn4, ivfn</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/fmbell.htm"><font face="Courier New, Courier" size="-1"><strong>fmwurlie</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">kamp, kfreq, kc1, kc2, kvdepth, kvrate, ifn1, ifn2, ifn3, ifn4, ivfn</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/fmbell.htm"><font face="Courier New, Courier" size="-1"><strong>fmmetal</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">kamp, kfreq, kc1, kc2, kvdepth, kvrate, ifn1, ifn2, ifn3, ifn4, ivfn</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/fmbell.htm"><font face="Courier New, Courier" size="-1"><strong>fmb3</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">kamp, kfreq, kc1, kc2, kvdepth, kvrate, ifn1, ifn2, ifn3, ifn4, ivfn</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/fmbell.htm"><font face="Courier New, Courier" size="-1"><strong>fmpercfl</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">kamp, kfreq, kc1, kc2, kvdepth, kvrate, ifn1, ifn2, ifn3, ifn4, ivfn</font>
+      </td>
+  </tr>
+</table>
+
+<a name="sample"><hr size="2" color="#A9A9A9" noshade></a>
+<h2>Signal Generators: Sample Playback</h2>
+<table cellspacing="0" border="0" cellpadding="7" width="638">
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar[, ar2]</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/loscil.htm"><font face="Courier New, Courier" size="-1"><strong>loscil</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">xamp, kcps, ifn[, ibas[, imod1, ibeg1, iend1[, imod2, ibeg2, iend2]]]</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar[, ar2]</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/loscil.htm"><font face="Courier New, Courier" size="-1"><strong>loscil3</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">xamp, kcps, ifn[, ibas[, imod1, ibeg1, iend1[, imod2, ibeg2, iend2]]]</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/lposcil.htm"><font face="Courier New, Courier" size="-1"><strong>lposcil</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">kamp, kfreqratio, kloop, kend, ifn[, iphs]</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/lposcil.htm"><font face="Courier New, Courier" size="-1"><strong>lposcil3</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">kamp, kfreqratio, kloop, kend, ifn[, iphs]</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">&nbsp;</font>
+      </td>
+	</tr>
+<!-- start soundfont2 opcodes -->
+    <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ir</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/sf2.htm"><font face="Courier New, Courier" size="-1"><strong>sfload</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">&quot;filename&quot;</font>
+      </td>
+  </tr>
+    <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">&nbsp;</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/sf2.htm"><font face="Courier New, Courier" size="-1"><strong>sfpassign</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">istartndx, ifilhandle</font>
+      </td>
+  </tr>
+    <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ir</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/sf2.htm"><font face="Courier New, Courier" size="-1"><strong>sfpreset</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">iprog, ibank, ifilhandle, iprendx</font>
+      </td>
+  </tr>
+  
+    <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">&nbsp;</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/sf2.htm"><font face="Courier New, Courier" size="-1"><strong>sfplist</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ifilhandle</font>
+      </td>
+  </tr>
+    <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">&nbsp;</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/sf2.htm"><font face="Courier New, Courier" size="-1"><strong>sfilist</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ifilhandle</font>
+      </td>
+  </tr>
+    <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar1, ar2</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/sf2.htm"><font face="Courier New, Courier" size="-1"><strong>sfplay</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ivel, inotnum, xamp, xfreq, iprendx [, iflag]</font>
+      </td>
+  </tr>
+    <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/sf2.htm"><font face="Courier New, Courier" size="-1"><strong>sfplaym</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ivel, inotnum, xamp, xfreq, iprendx [, iflag]</font>
+      </td>
+  </tr>
+    <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar1, ar2</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/sf2.htm"><font face="Courier New, Courier" size="-1"><strong>sfinstr</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ivel, inotnum, xamp, xfreq, instrnum, ifilhandle [, iflag]</font>
+      </td>
+  </tr>
+    <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/sf2.htm"><font face="Courier New, Courier" size="-1"><strong>sfinstrm</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ivel, inotnum, xamp, xfreq, instrnum, ifilhandle [, iflag]</font>
+      </td>
+  </tr>
+</table>
+
+<a name="granular"><hr size="2" color="#A9A9A9" noshade></a>
+<h2>Signal Generators: Granular Synthesis</h2>
+<table cellspacing="0" border="0" cellpadding="7" width="638">
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/fof.htm"><font face="Courier New, Courier" size="-1"><strong>fof</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">xamp, xfund, xform, koct, kband, kris, kdur, kdec, iolaps, ifna, ifnb, itotdur[, iphs[, ifmode]]</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/fof.htm"><font face="Courier New, Courier" size="-1"><strong>fof2</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">xamp, xfund, xform, koct, kband, kris, kdur, kdec, iolaps, ifna, ifnb, itotdur, kphs, kgliss</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/fog.htm"><font face="Courier New, Courier" size="-1"><strong>fog</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">xamp, xdens, xtrans, xspd, koct, kband, kris, kdur, kdec, iolaps, ifna, ifnb, itotdur[, iphs[, itmode]]</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/grain.htm"><font face="Courier New, Courier" size="-1"><strong>grain</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">xamp, xpitch, xdens, kampoff, kpitchoff, kgdur, igfn, iwfn, imgdur[, igrnd]</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/granule.htm"><font face="Courier New, Courier" size="-1"><strong>granule</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">xamp, ivoice, iratio, imode, ithd, ifn, ipshift, igskip, igskip_os, ilength, kgap, igap_os, kgsize, igsize_os, iatt, idec[, iseed[, ipitch1[, ipitch2[, ipitch3[, ipitch4[, ifnenv]]]]]]]]</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar[, ac]</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/sndwarp.htm"><font face="Courier New, Courier" size="-1"><strong>sndwarp</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">xamp, xtimewarp, xresample, ifn1, ibeg, iwsize, irandw, ioverlap, ifn2, itimemode</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar1, ar2
+[,ac1, ac2]</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/sndwarp.htm"><font face="Courier New, Courier" size="-1"><strong>sndwarpst</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">xamp, xtimewarp, xresample, ifn1, ibeg, iwsize, irandw, ioverlap, ifn2, itimemode</font>
+      </td>
+  </tr>
+</table>
+
+<a name="scanned"><hr size="2" color="#A9A9A9" noshade></a>
+<h2>Signal Generators: <a href="../siggen/scantop.htm">Scanned Synthesis</a></h2>
+<table cellspacing="0" border="0" cellpadding="7" width="638">
+	<tr>
+		<td nowrap width="12%" valign="TOP"><font face="Courier New, Courier" size="-1">&nbsp;</font></td>
+		<td nowrap width="16%" valign="TOP">
+		<font face="Courier New, Courier" size="-1"><strong><a href="../siggen/scanu.htm">scanu</a>
+		</strong></font></td>
+		<td nowrap width="72%" valign="TOP">
+		<font face="Courier New, Courier" size="-1">init, irate, ifnvel, ifnmass, ifnstif, ifncentr, ifndamp, kmass, kstif, kcentr, kdamp, ileft, iright, kpos, kstrngth, ain, idisp, id
+		</font></td>
+	</tr>
+	<tr>
+		<td nowrap width="12%" valign="TOP"><font face="Courier New, Courier" size="-1">ar</font></td>
+		<td nowrap width="16%" valign="TOP">
+		<font face="Courier New, Courier" size="-1"><strong><a href="../siggen/scans.htm">scans</a>
+		</strong></font></td>
+		<td nowrap width="72%" valign="TOP">
+		<font face="Courier New, Courier" size="-1">kamp, kfreq, ifn, id[, iorder]
+		</font></td>
+	</tr>
+</table>
+
+<a name="waveguide"><hr size="2" color="#A9A9A9" noshade></a>
+<h2>Signal Generators: Waveguide Physical Modeling</h2>
+<table cellspacing="0" border="0" cellpadding="7" width="638">
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/pluck.htm"><font face="Courier New, Courier" size="-1"><strong>pluck</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">kamp, kcps, icps, ifn, imeth[, iparm1, iparm2]</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/wgpluck.htm"><font face="Courier New, Courier" size="-1"><strong>wgpluck</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">icps, iamp, kpick, iplk, idamp, ifilt, axcite</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/repluck.htm"><font face="Courier New, Courier" size="-1"><strong>repluck</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">iplk, xam, icps, kpick, krefl, axcite</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/repluck.htm"><font face="Courier New, Courier" size="-1"><strong>wgpluck2</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">iplk, xam, icps, kpick, krefl</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/wgbow.htm"><font face="Courier New, Courier" size="-1"><strong>wgbow</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">kamp, kfreq, kpres, krat, kvibf, kvamp, ifn[, iminfreq]</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/wgflute.htm"><font face="Courier New, Courier" size="-1"><strong>wgflute</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">kamp, kfreq, kjet, iatt, idetk, kngain, kvibf, kvamp, ifn[, iminfreq[, kjetrf[, kendrf]]]</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/wgbrass.htm"><font face="Courier New, Courier" size="-1"><strong>wgbrass</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">kamp, kfreq, iatt, kvibf, kvamp, ifn[, iminfreq]</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/wgclar.htm"><font face="Courier New, Courier" size="-1"><strong>wgclar</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">kamp, kfreq, kstiff, iatt, idetk, kngain, kvibf, kvamp, ifn[, iminfreq]</font>
+      </td>
+  </tr>
+</table>
+
+<a name="models"><hr size="2" color="#A9A9A9" noshade></a>
+<h2>Signal Generators: Models and Emulations</h2>
+<table cellspacing="0" border="0" cellpadding="7" width="638">
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/moog.htm"><font face="Courier New, Courier" size="-1"><strong>moog</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">kamp, kfreq, kfiltq, kfiltrate, kvibf, kvamp, iafn, iwfn, ivfn</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/shaker.htm"><font face="Courier New, Courier" size="-1"><strong>shaker</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">kamp, kfreq, kbeans, kdamp, ktimes[, idecay]</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/marimba.htm"><font face="Courier New, Courier" size="-1"><strong>marimba</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">kamp, kfreq, ihrd, ipos, imp, kvibf, kvamp, ivibfn, idec[, idoubles[, itriples]]</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/marimba.htm"><font face="Courier New, Courier" size="-1"><strong>vibes</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">kamp, kfreq, ihrd, ipos, imp, kvibf, kvamp, ivibfn, idec</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/mandol.htm"><font face="Courier New, Courier" size="-1"><strong>mandol</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">kamp, kfreq, kpluck, kdetune, kgain, ksize, ifn[, iminfreq]</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/gogobel.htm"><font face="Courier New, Courier" size="-1"><strong>gogobel</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">kamp, kfreq, ihrd, ipos, imp, kvibf, kvamp, ivibfn</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/voice.htm"><font face="Courier New, Courier" size="-1"><strong>voice</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">kamp, kfreq, kphoneme, kform, kvibf, kvamp, ifn, ivfn</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ax, ay, az</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/lorenz.htm"><font face="Courier New, Courier" size="-1"><strong>lorenz</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ks, kr, kb, kh, ix, iy, iz, iskip</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ax, ay, az</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/planet.htm"><font face="Courier New, Courier" size="-1"><strong>planet</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">kmass1, kmass2, ksep, ix, iy, iz, ivx, ivy, ivz, idelta, ifriction</font>
+      </td>
+  </tr>
+</table>
+
+<a name="vocoding"><hr size="2" color="#A9A9A9" noshade></a>
+<h2>Signal Generators: STFT Resynthesis (Vocoding)</h2>
+<table cellspacing="0" border="0" cellpadding="7" width="643">
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/pvoc.htm"><font face="Courier New, Courier" size="-1"><strong>pvoc</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ktimpnt, kfmod, ifilcod, ifn, ibins[, ibinoffset,  ibinincr, iextractmode, ifreqlim, igatefn]</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">kfr, kap</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/pvread.htm"><font face="Courier New, Courier" size="-1"><strong>pvread</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ktimpnt, ifile, ibin</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">&nbsp;
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/pvread.htm"><font face="Courier New, Courier" size="-1"><strong>pvbufread</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ktimpnt, ifile</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/pvread.htm"><font face="Courier New, Courier" size="-1"><strong>pvinterp</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ktimpnt, kfmod, ifile, kfreqscale1, kfreqscale2,<strong> </strong>kampscale1, kampscale2, kfreqinterp, kampinterp</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/pvread.htm"><font face="Courier New, Courier" size="-1"><strong>pvcross</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ktimpnt, kfmod, ifile, kamp1, kamp2[, ispecwp]</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">&nbsp;
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/pvread.htm"><font face="Courier New, Courier" size="-1"><strong>tableseg</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ifn1, idur1, ifn2[, idur2, ifn3[...]]</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">&nbsp;
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/pvread.htm"><font face="Courier New, Courier" size="-1"><strong>tablexseg</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ifn1, idur1, ifn2[, idur2, ifn3[...]]</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/pvoc.htm"><font face="Courier New, Courier" size="-1"><strong>vpvoc</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ktimpnt, kfmod, ifile[, ispecwp]</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap valign="TOP" colspan="3">&nbsp;
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/pvadd.htm"><font face="Courier New, Courier" size="-1"><strong>pvadd</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ktimpnt, kfmod, ifilcod, ifn, ibins[, ibinoffset,  ibinincr, iextractmode, ifreqlim, igatefn]</font>
+      </td>
+  </tr>
+</table>
+
+
+<a name="lpc"><hr size="2" color="#A9A9A9" noshade></a>
+<h2>Signal Generators: LPC Resynthesis</h2>
+<table cellspacing="0" border="0" cellpadding="7" width="643">
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">krmsr, krmso, kerr, kcps</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../sigmod/lpread.htm"><font face="Courier New, Courier" size="-1"><strong>lpread</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ktimpnt, ifilcod[, inpoles[, ifrmrate]]</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../sigmod/lpread.htm"><font face="Courier New, Courier" size="-1"><strong>lpreson</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">asig</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../sigmod/lpread.htm"><font face="Courier New, Courier" size="-1"><strong>lpfreson</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">asig, kfrqratio</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">&nbsp;
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../sigmod/lpslot.htm"><font face="Courier New, Courier" size="-1"><strong>lpslot</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">islot</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">&nbsp;
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../sigmod/lpslot.htm"><font face="Courier New, Courier" size="-1"><strong>lpinterp</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">islot1, islot2, kmix</font>
+      </td>
+  </tr>
+</table>
+
+<a name="noise"><hr size="2" color="#A9A9A9" noshade></a>
+<h2>Signal Generators: Random (Noise) Generators</h2>
+<table cellspacing="0" border="0" cellpadding="7" width="638">
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">k/ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/rand.htm"><font face="Courier New, Courier" size="-1"><strong>rand</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">k/xamp[, iseed[, isize[, koffset]]]</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">k/ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/rand.htm"><font face="Courier New, Courier" size="-1"><strong>randh</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">k/xamp, k/xcps[, iseed[, isize[, koffset]]]</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">k/ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/rand.htm"><font face="Courier New, Courier" size="-1"><strong>randi</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">k/xamp, k/xcps[, iseed[, isize[, koffset]]]</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">i/k/ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/x.htm"><font face="Courier New, Courier" size="-1"><strong>linrand</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">krange</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">i/k/ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/x.htm"><font face="Courier New, Courier" size="-1"><strong>trirand</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">krange</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">i/k/ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/x.htm"><font face="Courier New, Courier" size="-1"><strong>exprand</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">krange</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">i/k/ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/x.htm"><font face="Courier New, Courier" size="-1"><strong>bexprnd</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">krange</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">i/k/ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/x.htm"><font face="Courier New, Courier" size="-1"><strong>cauchy</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">kalpha</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">i/k/ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/x.htm"><font face="Courier New, Courier" size="-1"><strong>pcauchy</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">kalpha</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">i/k/ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/x.htm"><font face="Courier New, Courier" size="-1"><strong>poisson</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<a href="../siggen/x.htm"><font face="Courier New, Courier" size="-1">klambda</font></a>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">i/k/ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/x.htm"><font face="Courier New, Courier" size="-1"><strong>gauss</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">krange</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">i/k/ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/x.htm"><font face="Courier New, Courier" size="-1"><strong>weibull</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ksigma, ktau</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">i/k/ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/x.htm"><font face="Courier New, Courier" size="-1"><strong>betarand</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">krange, kalpha, kbeta</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">i/k/ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/x.htm"><font face="Courier New, Courier" size="-1"><strong>unirand</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">krange</font>
+      </td>
+  </tr>
+  <tr>
+      <td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar</font>
+      </td>
+      <td nowrap width="16%" valign="TOP">
+<a href="../siggen/pinkish.htm"><font face="Courier New, Courier" size="-1"><strong>pinkish</strong></font></a>
+      </td>
+      <td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">xin[, imethod, inumbands, iseed, iskip]</font>
+      </td>
+  </tr>
+</table>
+
+
+<hr size="2" color="#A9A9A9" noshade>
+<table align="right" cellpadding="1" cellspacing="1" border="0">
+	
+  <tr>
+		
+      <td width="45" align="right">
+			<a href="../manual2.htm#contents" target="_parent"><img src="../toc.gif" width="38" height="18" alt="Use Non-Frames Version" border="0"></a>
+		
+      </td>
+		
+      <td width="10">
+      </td>
+		
+      <td width="45" align="right">
+			<a href="midi.htm"><img src="../prev.gif" width="38" height="18" alt="Previous Page" border="0"></a>
+		
+      </td>
+		
+      <td width="45" align="right">
+			<a href="table.htm"><img src="../next.gif" width="38" height="18" alt="Next Page" border="0"></a>
+		
+      </td>
+	
+  </tr>
+</table>
+<font size="-2" color="black" face="Verdana, Arial, Helvetica, Century Gothic">
+The Csound Quick Reference</font>
+
+</body>
+</html>

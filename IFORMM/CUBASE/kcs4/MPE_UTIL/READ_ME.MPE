@@ -1,0 +1,126 @@
+                        about MPE utilities :
+ CTRL_CHG 
+ UNSPLIT  
+ ZERODUR  
+
+These little MPE modules perform simple edits on data in a single
+track or sequence in KCS.   They will not affect other tracks/seqs.
+ 
+To use them, you must load them from disk like any other MPE module :
+select Load from the MPE menu of the Track Mode Play Screen, or click
+on NEW in the MPE section of the Edit Screen.   When the Item Selector
+box appears, choose an .INF file. They will remain available in the MPE
+menu (unless you remove them.)
+ 
+The edits will apply only to the track/sequence that is currently
+visible on the KCS Edit screen.  If you enter a module from the Play
+Screen, the edits will apply to the track that was most recently on
+the edit screen.  (It's safer to go from the Edit screen.)
+ 
+Unlike most KCS editing functions, the effects of these modules cannot
+be undone with KCS's "Undo" function, so if you are not sure that the
+edit is a good idea, use Backup on the sequence or track first.  That
+way you can always use Get Backup to "undo." 
+ 
+Also, if you have highlighted a range on the KCS edit screen, these
+modules will not notice; they will act on the entire track or
+sequence.  If you want to use these modules on just a part of a track
+or sequence, use KCS's Split function to move those events that you
+want to edit (or don't want to edit) to another track/sequence.
+The Split function is quite comprehensive, and should allow you to
+edit by just about any criteria you need.
+
+
+
+
+***********    CTRL_CHG    CCx in KCS's MPE menu    ***********
+
+CTRL_CHG.INF and CTRL_CHG.MPE are an MPE module which changes
+continuous controllers from one type to another: either from one CC to
+another, or from CC to AT, or AT to CC.  It acts on all controllers of
+the source type you select, regardless of channel.
+
+All options can be chosen either with the mouse or the keyboard.
+
+To edit the source/destination, hold the right mouse button and drag.
+
+ -----   OR  -----
+
+ Arrow up/down       = select source/destination.
+ Arrow right/left    = raise/lower the contoller type by 1.
+ ( AT events are treated as tho they were controller #-1. )
+
+ Insert              = set source/destination to 0.
+ ClrHome             = raise source/destination by 8.
+
+ S,R,C play the current seq/range/cue (left mouse button to stop)
+
+ Return exits to KCS, changes all controllers.
+ Undo   exits to KCS, without changing anything.
+
+ Midi thru is always active, but there is no rechannelizing. 
+
+Anytime you change the source controller type (or enter CTRL_CHG from
+KCS), it counts all the events of that type in the current seq/track.
+This can take a while, so if dragging-right or arrow-left/right don't
+seem to be working, that's because it's busy counting.
+
+
+
+
+
+
+************   UNSPLIT   UnS in MPE menu      ************
+
+UNSPLIT.INF and UNSPLIT.MPE are an MPE module which changes the way in
+which KCS stores long notes.
+ 
+Every note in the seq/track will be affected 
+ IF   it is stored as 2 events, the first with DUR=0, and the
+        second with BOTH VEL=0 and DUR=0
+ AND  the second occurs less than 999 steps after the first.  
+
+This is how KCS stores notes with duration above 999, and it happens
+"transparently" as you record.  It's not really a problem except that
+Tiger (and KCS) can't do some things with these "split" notes.   The
+problem is more acute when you use high steps/beat settings. If you
+have some work done at a high steps/beat setting, with lots of "split"
+notes, and you want to use Tiger, then :
+
+      1. Go to the KCS environment page.
+      2. Change steps/beat to a lower value (such as 48
+            instead of 240.)
+      3. Answer "y" when kcs asks whether you want to "adjust all
+            event times?" (Note : this option affects all tracks/
+            seqs, as it should.)
+ 
+After you make these changes on the Environment screen, your music
+will sound the same, but it will be played with a lower resolution. 
+This does not necessarily mean that the timing will be worse.  In fact,
+a lower steps/beat setting can result in better timing. (Read the
+manual.)  Your track/seq will still contain the same "split" notes,
+but many of them will (probably) have less than 999 steps between ON
+and OFF.  Next :
+      4. Use the UNSPLIT module to find the "split" notes and convert
+            them to single events with duration where possible. 
+
+
+
+
+
+*********      ZERODUR      Du0 in MPE menu      **********
+
+ZERODUR.INF and ZERODUR.MPE are an MPE module which (guess what)
+changes the duration of all notes in a sequence or track to zero.
+When you do this, KCS will not send note-off events for these notes.
+The idea here is that drum machines ignore note-off commands anyway, so
+why should we bother to send them? Theoretically, this can reduce the
+amount of information that must be sent thru the midi cable, and might
+result in better timing.  However, it violates the midi spec, and I
+recommend that you don't use it. It could confuse your synths.
+
+
+
+
+These utilities are copyright 1990 by Doug Livingston.
+

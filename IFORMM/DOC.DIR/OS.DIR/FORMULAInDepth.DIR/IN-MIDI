@@ -1,0 +1,8 @@
+  :ap mouser1
+  ::ap
+  63 to $volume 
+  mouse-x 1 to $channel 8 / 60 + z$ 		\ 60 = initial value
+  mouse-y 2 to $channel 8 / 60 + $ 		\ 60 = initial value
+  ;;ap
+  ;ap
+ 

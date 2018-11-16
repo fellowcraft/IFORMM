@@ -1,0 +1,107 @@
+
+\ ********************* P R O C E S S   N A M I N G ***************************
+
+\ Each process has a corresponding data stracture called a CONTEXT BLOCK (CB),
+\ which contains its stacks and other private data. Internal to FORMULA, a 
+\ process is identified by the address of its CB. However, since CB addresses
+\ are typically 6-digit numbers, this is not convenient at the user-interface
+\ level. Instead, a process can have a SMALL INTEGER IDENTIFIER (ID). These 
+\ ID's are used by words that are INTERACTIVE (i.e., intended to be typed by
+\ the user) to refer to processes. By default, a process has no ID; it can 
+\ request one using:
+
+\	assign-proc-ID	( --- ; assign an ID to this process )
+
+\ In addition, processes can be given symbolic names:
+
+\	proc-name" <string>"	( --- ; assign a name to the calling process )
+
+\ These symbolic names are not used directly to refer to processes, but are 
+\ printed by .all (see below) to let you associate ID's and processes.
+
+	:ap c-major 
+	   ::ap 		       \ make a new process
+		assign-proc-ID         \ give it an ID
+		proc-name" c-major"    \ and a name
+	       ::gp		       \ make it into a group
+		10 0 do
+	        60 62 64 65 67 69 71 72  8 m$	\ create more processes,
+		loop 				\ play music, etc.
+	       ;;gp
+	    ;;ap
+	;ap
+
+
+	:ap c-minor
+	   ::ap 		       \ make a new process	  
+		assign-proc-ID         \ give it an ID
+		proc-name" c-minor"    \ and a name
+		::gp		       \ make it into a group
+		10 0 do
+	        60 62 63 65 67 68 71 72  8 m$	\ create more processes,
+		loop				\ play music, etc.
+	       ;;gp
+	    ;;ap
+	;ap
+
+\ By making itself into a separete group, the program is "insulated" from other
+\ concurent activities.
+
+
+\ Or you can use this shorthand naming procedure:
+
+	:ap new-name
+		::ap" NEW-NAME "
+			72 60 do i $ loop
+		;;ap
+	;ap
+
+\ ********* P R O C E S S   D I S P L A Y   A N D   C O N T R O L *************
+
+\ The word
+
+\		.all ( --- ; list all processes that have names and ID's )
+
+\ For example:
+
+\		.all
+\		ID: 1 name: main-process type: process
+\		ID: 2 name: mouse handelr type: group
+\		ID: 3 name: MIDI input handler type: process
+
+\ shows a summary of existing processes that have been assigned ID's, other
+\ processes are not shown. 
+
+\ The following words can then be used to obtain more information about 
+\ particular process:
+
+\ .gp	  ( ID --- ; list all descendants of a process group )
+\ .cb	  ( ID --- ; print the contents of a process's context block )
+\ .aux	  ( ID --- ; list a process' auxiliary processes )
+
+\ The following words manipulate note-playing processes and groups. They can be
+\ applied only to "top-level" objects, not to elements of groups.
+
+\ suspend   ( ID --- ; suspend a process or group )
+\ resume    ( ID --- ; resume a suspended process or group )
+\ kill-all  ( --- ; kill all processes and groups )
+\ kill	    ( ID --- ; kill a process or group )
+\ immortal  ( --- ; make the calling process immune to kill-all )
+
+\ *****************************************************************************
+
+\ For example:
+	
+	:ap god
+	   	::ap" FOREVER "	       \ make a new process and give it a name
+		     immortal 	       \ this will make god immune to kill-all 
+	     	      5 0 do 
+			     60 62 63 65 67 68 71 72  8 m$ 
+			  loop 
+		;;ap
+	;ap
+
+\ *****************************************************************************
+
+
+

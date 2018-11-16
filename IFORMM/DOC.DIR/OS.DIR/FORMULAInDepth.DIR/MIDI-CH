@@ -1,0 +1,46 @@
+
+\ MIDI channels
+
+\ The $-words use several quans and pquans to obtain note parameters. In some
+\ cases, their meanings depend on which output paradigm is used. The pquans
+\ are all inherited on process creation.
+
+\ $channel (pquan) is used to decide which synthesizer channel(s) are used
+\ for notes played by this process.
+
+
+:ap mi-chan1
+::gp
+0 to $channel	\ use MIDI-channel # 1
+/16
+10 0 do 60 $ loop
+;;gp
+;ap
+
+:ap mi-chan2
+::gp
+5 to $channel	\ use MIDI-channel # 6
+/16
+10 0 do 80 $ loop
+;;gp
+;ap
+
+:ap chans)
+::ap mi-chan1 ;;ap
+mi-chan2
+;ap
+
+:ap chans
+::ap chans) ;;ap
+;ap
+
+
+:ap rand-chan
+::ap
+20 0 do
+	15 irnd to $channel
+				/16 
+				    60 $
+     loop
+;;ap
+;ap

@@ -1,0 +1,187 @@
+
+\ *********************** T I M E   -   A D V A N C E ************************
+
+\ FORMULA processes create rhythms by performing some actions (i.e., playing a
+\ few notes) and then pausing until it is time for the next action (perhaps 
+\ releasing a note).
+
+\ We say that the process 'advances' from one 'time-position' to the next when 
+\ it pauses between actions.
+
+\ Generally, a process changes its time-position implicitly through calls to $.
+\ A process can change its time-position explicitly with a call to time-advance.
+
+:ap 3notes1
+ c z$ 500 time-advance
+ d z$ 500 time-advance
+ c z$ 500 time-advance
+;ap
+
+\ TIME-ADVANCE advances the program time position in 1/500ths of a second.
+\ So, 3notes plays c followed by d followed by c at (500 miliseconds) 
+\ 1/2 second intervals.
+
+\ The same thing can be represented as a 1/4 of a whole note.
+
+:ap 3notes2
+ c z$ 1|4 time-advance
+ d z$ 1|4 time-advance
+ c z$ 1|4 time-advance
+;ap
+
+\ **************************************************************************
+ 
+\ time-advance 2000 = /1   ( whole note )
+\ time-advance 1000 = /2   ( half note )
+\ time-advance  500 = /4   ( quarter note )
+\ time-advance  250 = /8   ( eight note )
+\ time-advance  125 = /16  ( sixteenth note )
+\ time-advance 62.5 = /32  ( thirtysecond note )
+
+\ ***************************************************************************
+
+:ap t-a
+  c z$ 250 time-advance
+  d z$ 250 time-advance
+  c z$ 250 time-advance
+;ap
+
+:ap beat
+  /8  +c $ +d $ +c $
+;ap
+
+:ap compared
+ ::ap t-a ;;ap
+ beat
+;ap
+
+\ *****************************************************************************
+
+\ Usually, notes are played at the process's current time-position. 
+\ It is possible to schedule a note for performance at a later time
+\ with fe$ and fa$.
+
+\ fe$	( pitch delay --- ; play a note in the future )
+\ fa$	( pitch delay --- ; play a note in the future )
+
+\ These might look the same, but they are not; fe$ arranges for a note to be
+\ played delay time in the future, using the parametars (volume, transposition,
+\ etc.) in effect NOW. fa$ arranges for a note to be played delay time in the
+\ furure, using the parameters in effect THEN.
+
+:ap late1
+     /4
+     12.0 to $transpose  \ parametars happen before fe$ will be ignored  
+     60 4000 fe$
+    -12.0 to $transpose  \ parametars happen after fe$ will be accepted
+     67 $              \ fe$ happenes actually here  
+     5000 time-advance
+;ap
+
+:ap late2
+     /4
+     12.0 to $transpose  \ parametars happen before fa$ will be accepted
+     60 4000 fa$
+     67 $  	       \ fa$ happenes actually here 
+     5000 time-advance
+;ap
+
+:ap late3
+     /4
+     12.0 to $transpose  \ parametars happen before fa$ will be accepted
+     60 4000 fa$
+    -12.0 to $transpose  \ but parametars happen after fa$ will also be accepted
+     67 $              \ fa$ happenes actually here  
+     5000 time-advance
+;ap
+
+\ *****************************************************************************
+
+\ So, any parametar, word or process can be controlled by time-advance.
+
+:ap first
+8 0 do 60 $ loop
+;ap
+
+:ap second
+12 0 do 72 $ loop
+;ap
+
+:ap pair1
+first 1789 time-advance second
+;ap
+
+:ap doubler1
+::ap pair1 ;;ap
+;ap
+
+\ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+:ap third
+13 0 do 52 $ loop
+;ap
+
+:ap fourth
+6 0 do 90 $ loop
+;ap
+
+:ap pair2
+1049 time-advance third 2312 time-advance fourth 
+;ap
+
+:ap double
+::ap pair1 ;;ap
+     pair2
+;ap
+
+:ap doubler2
+::ap double ;;ap
+;ap
+
+\ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\ You can even use it to achieve some kind of chorusing efects:
+
+:ap song1
+/16
+5 0 do 60 64 67 72 76 79 84 79 76 72 67 64 12 m$ loop
+60 $
+;ap
+
+:ap multi-song1
+::ap song1 ;;ap
+::ap  5 time-advance song1 ;;ap
+::ap 10 time-advance song1 ;;ap
+::ap 15 time-advance song1 ;;ap
+::ap 20 time-advance song1 ;;ap
+     25 time-advance song1
+;ap
+
+:ap chorus
+::ap multi-song1 ;;ap
+;ap
+
+\ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\ Or perhaps a digital delay effect:
+
+:ap song2
+/16	
+5 0 do 60 64 67 72 76 79 84 79 76 72 67 64  12 m$ loop
+60 $
+;ap
+
+:ap multi-song2
+::ap song2 ;;ap
+::ap 278 time-advance song2 ;;ap
+     612 time-advance song2
+;ap
+
+:ap d-delay
+::ap multi-song2 ;;ap
+;ap
+
+\ *****************************************************************************
+
+
+

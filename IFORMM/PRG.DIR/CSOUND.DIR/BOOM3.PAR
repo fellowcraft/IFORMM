@@ -1,0 +1,18 @@
+ifdef #events forget #events ifend
+
+variable #events 	 1000  #events ! 
+variable total 	    10000   total  !	   \  100 = 1 sec
+
+variable maxfreq 	   333 maxfreq ! 	\ in Hz.  Gaussian distribution      
+variable minfreq 	    33 minfreq !	    \ 
+
+variable maxdur 	   1000   maxdur ! 	\ 100 = 1 sec
+variable mindur 	    100   mindur ! 
+
+variable attack%         2 attack% ! 	\  % attack to decay ratio  
+
+variable maxdb        9000 maxdb !      \ in centidb (1/10 of a db)
+variable mindb        6000 mindb !
+
+variable panStart     100 panStart !
+variable panEnd       100 panEnd ! 

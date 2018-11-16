@@ -1,0 +1,56 @@
+
+\ This will load files needed for FORMULA TUTORIAL
+
+only forth also definitions
+
+.( begin ) ?cr needs _begin begin
+.( play ) ?cr needs _play play
+.( notes ) ?cr needs _notes notes
+.( note-seq ) ?cr needs _note-seq note-seq
+.( octaves ) ?cr needs _octaves octaves
+.( act-proc ) ?cr needs _act-proc act-proc
+.( proc-nam ) ?cr needs _proc-nam proc-nam
+.( f-keys ) ?cr needs _f-keys f-keys
+.( qua-pqua ) ?cr needs _qua-pqua qua-pqua
+.( tr-spose ) ?cr needs _tr-spose tr-spose
+.( loudness ) ?cr needs _loudness loudness
+.( chords ) ?cr needs _chords chords
+.( midi-ch ) ?cr needs _midi-ch midi-ch
+.( rhythm ) ?cr needs _rhythm rhythm
+.( tadvance ) ?cr needs _tadvance tadvance
+.( sus-ped ) ?cr needs _sus-ped sus-ped
+.( tempoctr ) ?cr needs _tempoctr tempoctr
+.( roller ) ?cr needs _roller roller
+.( aux-proc ) ?cr needs _aux-proc aux-proc
+.( define-t ) ?cr needs _define-t define-t
+.( t-s-g ) ?cr needs _t-s-g t-s-g
+.( roff-acc ) ?cr needs _roff-acc roff-acc
+.( rubato ) ?cr needs _rubato rubato
+.( dynamics ) ?cr needs _dynamics dynamics
+.( legato ) ?cr needs _legato legato
+.( overall ) ?cr needs _overall overall
+.( attach ) ?cr needs _attach attach
+.( vocabula ) ?cr needs _vocabula vocabula
+.( scales ) ?cr needs _scales scales
+.( random ) ?cr needs _random random
+.( in-midi ) ?cr needs _in-midi in-midi
+.( pitchset ) ?cr needs _pitchset pitchset
+.( array ) ?cr needs _array array
+.( rands ) ?cr needs _rands rands
+.( patterns ) ?cr needs _patterns patterns
+.( clocking ) ?cr needs _clocking clocking
+.( capture ) ?cr needs _capture capture
+
+cr cr
+ 
+.(				 Function Key # 10 - kills all processes!!! ) 
+
+cr cr
+
+.(			         UNDO key acts as PANIC key and will exit FORMULA. )
+
+cr cr
+
+.(				 Type FORMULA to return back. )
+
+quit

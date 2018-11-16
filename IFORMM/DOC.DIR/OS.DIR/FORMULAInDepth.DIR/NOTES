@@ -1,0 +1,98 @@
+
+\ ***************************** N O T E S ************************************
+ 
+\ Use MARIMBA-like voice for best listening example.
+
+\ FORMULA words used in this file: $, a through g+, oct, +oct, -oct, r
+
+\ NOTE-NAMING words:
+
+\ The basic words are (symbolic names for the pitches): a b c d e f g
+\ These words can have + or - as suffixes to indicate sharp or flat.
+\ a- is A flat
+\ a+ is A sharp
+\ As prefixes, + and - raise and lower the pitch by an octave.
+\ -a is A an octave down 
+\ +a is A an octave up
+\ -a-, a-, +a- are the words for A flat in three different octaves.
+
+\ r is a special note-naming word that produces a rest.
+
+\ Note naming words leave note numbers on the data stack to be used by
+\ NOTE-PLAYING words. So they have the following FORTH documentation:
+\ a	( --- note# ; )
+\ b	( --- note# ; ) , etc. (these note#'s correspond to MIDI key numbers)
+
+\ MIDI key numbers: 60 correspondes to middle C, 61 = C+, 62 = D etc.
+
+\ NOTE-PLAYING words:
+
+\ $ 	( note# --- ; ) plays a pitch specified by a note# on the data stack
+\ m$	( note1 note2 ....n --- ; ) play a sequence of n notes, starting with
+\         note1. 
+
+\ ****************************************************************************
+
+:ap notes
+               c       $         e-     $        g+      $
+
+        (    note      $     flat note  $    sharp note  $ )
+;ap
+
+:ap numbers1  \ notes in MIDI key numbers
+
+              60       $        63      $        68      $
+
+	( MIDI number  $   MIDI number  $   MIDI number  $ )
+;ap
+
+\ ****************************************************************************
+
+:ap octaves
+              -c       $      +e-     $        g+      $
+
+	(    note      $   flat note  $    sharp note  $   )
+;ap
+
+:ap numbers2  \ octaves in MIDI key numbers
+
+              48       $      75      $        68      $
+
+	( MIDI number  $   MIDI number  $   MIDI number  $ )
+;ap
+
+\ ****************************************************************************
+
+:ap notes&rests              \ r = rest
+
+      c $       d $       e $
+
+ r $  c $  r $  d $  r $  e $
+
+;ap
+
+:ap numbers&zeros            \ notes&rests in MIDI key numbers,  0 = rest
+
+      60 $       62 $       64 $
+
+ 0 $  60 $  0 $  62 $  0 $  64 $
+
+;ap
+
+\ ****************************************************************************
+
+:ap notescale
+
+ c d e f g a b +c  8 m$      \ sequence of notes
+
+;ap	
+	
+:ap note-numberscale	     \ notescale in MIDI key numbers
+
+ 60 62 64 65 67 69 71 72  8 m$
+
+;ap
+
+	
+\ ****************************************************************************
+

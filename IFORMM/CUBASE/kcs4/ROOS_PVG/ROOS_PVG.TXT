@@ -1,0 +1,435 @@
+DR. T'S APPLICATION NOTE #1
+USING THE PROGRAMMABLE VARIATION GENERATOR
+
+The Programmable Variation Generator (PVG) is a tool for processing 
+sequences and tracks in Dr. T's Level II Keyboard Controlled 
+Sequencer. Because of the generalized approach of its design and 
+implementation, the PVG is suited to a wide range of applications, 
+from "humanizing" existing sequences to generating entire songs 
+from a single note. Its Spartan interface can be a bit daunting to many 
+first time users.
+
+In this Applications Note, we'll be exploring some PVG applications 
+developed by guitarist Randy Roos, an avid user of the KCS Level II. 
+Randy uses the PVG primarily as a compositional tool, for creating 
+parts that he otherwise would not have thought of. This note will 
+center around a demo .VRY file that he has provided for us, along 
+with some simple percussion tracks that can be used as "raw 
+material" for the variations. 
+
+
+PVG BASICS
+
+Before we get into the details of Randy's variation presets, let's talk 
+a little about the basics of the PVG. In case you aren't familiar with it, 
+the PVG is a tool for introducing random and/or deterministic changes 
+in an existing sequence or track. Its operations can be broken down, 
+very roughly, into three parts: specifying what notes or controller 
+events will be varied, selecting the operations to be performed, and 
+setting the number of variations.
+
+Most of these operations are handled within PVG presets, which are 
+essentially snapshots of many of the settings on the PVG's screens. 
+Presets specify which operations will be performed, their probability 
+or number of executions, and which notes will be considered fair 
+game for variation. On a higher level, macros can be used to link 
+several presets together, and to specify the beats or events on which 
+the preset(s) will or will not be used.
+
+
+GUIDELINES FOR CREATING PRESETS
+
+One confusing aspect of the PVG can be the distinction between 
+random and deterministic (non-random) operations.
+
+Notes are selected at random:
+
+* When the CHANGES, SWAP/COPY, or SET VALUES screens are 
+used.
+* When PROTECTION is set to anything other than 10.
+
+Operations are selected at random:
+
+* When Changes per Vary is set to any value other than 0.
+* In macros, if Ops is set to any value other than 0.
+* In macros, if Lines is set to any value other than 0.
+
+If you keep these rules in mind, you'll be able to control the kinds of 
+randomness you introduce into the PVG's editing operations. For 
+instance, if you want to transpose, erase, or otherwise affect all of the 
+notes that meet certain criteria, use the GLOBAL1 or GLOBAL2 
+screens. On the other hand, if you want to affect notes at random in 
+the sequence, use the CHANGES, SET VALUES, or SWAP/COPY 
+screens. Similarly, if you want to particular operation to be used each 
+time you run a preset, set Changes per Vary to 0.
+
+The notes that are affected by the variation operations are 
+determined by the settings in the PROTECTION portion of the screen. 
+(Even though this does not appear on the CHANGES screen, it still 
+affect operations there.) Without going into detail on how protection 
+works (it's all explained in the manual), it helps to think of each type 
+of protection as a stencil that is placed over your sequence before it 
+is spray-painted by the PVG. If some stencils have very few holes, or 
+if the stencils are all aligned so that the "picture" is completely 
+masked off, it's possible that none of the notes in the sequence will 
+be available for variation (or unprotected), but if you adjust the 
+stencils properly, you'll be able to superimpose patterns of changes 
+on the existing notes.
+
+The number of new copies, or variations, of the affected sequence, 
+and their locations, are handled in the GENERAL OPTIONS section. 
+The Variations setting determines how many modified copies of the 
+sequence will be made, and the three buttons immediately below that 
+determine where the variation(s) will be placed. If Overwrite Original 
+is on, then the existing sequence will be replaced by the first new 
+variation. The Consecutive Mults and Evolving Mults buttons deal 
+with the way Multiple variations are handled. If Consecutive Mults is 
+turned on, all of the variations will be strung end-to-end in the same 
+sequence. This is intended primarily to see where a long evolving 
+variation process takes the music, so if you want to make multiple 
+"copies" of the sequence, turn this off. Similarly, the Evolving Mults 
+button tells the PVG to use the last variation as the input for the next, 
+which results in a continuous evolution (or devolution) of the 
+sequence, rather than multiple "first generation" variations. This is 
+primarily intended for composing with recursive structures (which is 
+something most users won't want to dive into right away), so this 
+should also be turned off for most applications. Reverse simply 
+reverses the order of the multiple variations when Consecutive Mults 
+is turned on, and is irrelevant otherwise, and Edit Mode is a 
+convenience for use with simple editing presets, which is equivalent 
+to setting Overwrite Original on and Variations to one. Setting the 
+value beside PROTECTION to anything other than 10 is analogous to 
+punching holes at random in the stencil, and is not useful in most 
+situations.
+
+
+A SIMPLE FIX
+
+"Bass Fix" is an example of a variation preset that is easy to create 
+(and understand), yet extremely useful. "Bass Fix" is a preset that 
+randomly transposes notes in a part down by an octave. This is 
+handy for improving a bass part that is not providing enough bottom, 
+perhaps because it was transposed up in the process of building the 
+song. The actual transposition operation is handled by the AMT of -
+12, with a WGT of 1, in the Signed portion of the CHANGES screen. 
+The PROTECTION settings are set wide open--that is, there are no 
+protected notes. On the output side of things, however, the Pitch 
+Limits in the RESTRICTIONS box prevent the preset from producing 
+any notes that are too low.
+
+An important part of making use of a random editing preset such as 
+this one lies in setting the parameters in the GENERAL OPTIONS 
+section properly. The Changes per Vary setting (which determines 
+how many notes the PVG will vary) will be dependent on the number 
+of notes in the sequence--if your sequence is twelve notes long, you 
+might want to try varying six of them, or one, or all twelve. 
+Consecutive Mults and Evolving Mults should probably both be 
+turned off. Variations should be set to some number other than 1, 
+perhaps 4 to 8, so that you can choose from several different 
+versions of the edited sequence.
+
+Many simple editing presets can be created and applied to a 
+sequence in the course of an editing session, without bothering to 
+store them. The first step when doing this should always be to click 
+on CLEAR to clear the WGT settings on every screen; otherwise, you 
+may end up with some unintended changes occurring.
+
+
+PROCESSING PERCUSSION
+
+The preset "Perc Var 1" is an example of a more complex preset that 
+was designed for turning a repetitive percussion part into a more 
+varied part that retains the same basic patterns and feeling as the 
+original. (The file ROOS_PVG.ALL, on the demo disk, contains several 
+percussion tracks that are useful as source material for this and the 
+following percussion-oriented presets. Your drum machine or 
+sampler should be set up with five hand percussion instruments on 
+C4, D4, E4, F4, and G4 to work with these tracks. All of these tracks, 
+other than track 2, were created by passing track 2 through the 
+presets discussed here.) This preset makes use of both the 
+CHANGES and SWAP/COPY screens. The Shift settings on the 
+CHANGES screen introduce a little bit of looseness in the timing of 
+the part, without throwing everything out of whack (as a simple Time 
+change would do). The settings on SWAP/COPY screen "mix up" the 
+order of the drums in three different ways, without changing the 
+number of times that each drum is hit. Note that this preset makes no 
+use of any pitch transposition operations, and that velocities are 
+unaffected. This assures that no new notes are added to the 
+sequence, and that the accents remain more or less intact.
+
+Another way to spice up a repetitive drum part is to use the 
+ORNAMENTS page to attach simple phrases to particular notes. "Perc 
+Fills 1A" and "Perc Fills 1B" in the file ROOS_PVG.VRY are presets 
+that add a three note lick to notes selected at random in the part.
+
+
+Two things are worth pointing out here. The Pitch switch is set to Fix, 
+which means that the values in the Pitch line near the top of the 
+screen will be interpreted as absolute (fixed) values, rather than 
+transpositions of the existing notes--an important consideration when 
+working with drum parts. Another important point is the Tim setting in 
+the PROTECTION section. Because the upper and lower limits are 
+both 48 (an eighth note, in this case) and because the R (reverse) 
+button is highlighted, all notes that are not preceded by an eighth 
+note will be protected. (Preceded, of course, because the TIME value 
+of a note determines the amount of time that passes before it occurs.) 
+In order to make the ornament fall only on notes that are 48 steps 
+long, the NTim (next time) fields would have to be used. In order to 
+make ornaments fall only on specific beats, a macro would have to 
+be used. (We'll talk about macros later.)
+
+Stick Bounce is a variation of a simple echo ornament, that repeats 
+the selected notes at decreasing velocities. In this preset, a slight 
+irregularity in the timing of the echoes simulates the chaotic 
+interaction of the motion of a stick and the surface it is striking. When 
+applied to a cymbal sample (preferably on an instrument that allows 
+multiple samples to overlap on the same note), or a vibe sound, this 
+creates a stick bounce effect that is, in Randy's words, "frighteningly 
+real".
+
+
+CH-CH-CH-CHANGES
+
+One of the most interesting techniques Randy has developed 
+involves some simple "scale crunching" presets. These presets are 
+used to force the notes in the processed sequence to fit into a 
+particular key, simply by transposing any notes that don't fit the key 
+up by a half-step. The "B Maj" preset  forces the selected material to 
+fit with a B Maj chord. Several other scale crunching presets are 
+included in the file ROOS_PVG.VRY.
+
+This variation preset uses the GLOBAL1 screen. The variation 
+parameters themselves are about as simple as they can be: a pitch 
+transposition of one half-step up is given a weight of 1. The real key 
+to this operation is found in the PROTECTION section, where the 
+notes that will be transposed are specified. As you can see in the 
+screen shot, the notes B, C#, D#, E, F#, G#, and A# (which make up 
+the B major scale) are all protected from variation. The remaining 
+notes will all be transposed up a half-step, which puts them in the 
+scale. (Note that if your scale has gaps of more than a half-step--a 
+very rare occurrence--transposing by a half-step would not work. In 
+such instances, running the sequence through the same preset two 
+or more times would do the trick.)
+
+By applying different presets to different parts of a song, it's possible 
+to "impress" a completely different set of chord changes on an 
+existing song. (Just try doing that with a human band!) You could do 
+this manually, by selecting ranges and then processing them with 
+separate presets, or with the PVG's MACRO screen. We'll talk about 
+this technique a little later, after we go over few more GLOBAL1 
+editing applications.
+
+
+OPEN MODE EDITING
+
+If you prefer the use of OPEN mode to TRACK mode, you may miss 
+the ability to edit channels independently. The GLOBAL1 screen is 
+great for this type of thing, thanks to the availability of protection by 
+MIDI channel. To turn GLOBAL1 into a deterministic editing tool, all 
+you need to do is highlight the Edit Mode button, which is equivalent 
+to turning on Overwrite Original and setting Variations to one. In this 
+mode, the WGT settings on this screen set the number of times that 
+each operation will be applied to all unprotected notes. As always, 
+PROTECTION is used to determine which notes will be edited.
+
+For instance, suppose you have a single OPEN mode sequence with 
+drums on channel 10, bass on channel 1, and piano on channel 9, 
+and you want to erase the snare drum part, which is assigned to note 
+E3. The preset for this "stencil" is "Erase Snare".
+
+The only criteria you're using to select notes for editing are channel 
+and pitch, so these are the only fields in the PROTECTION section 
+that are used--all others are left "open". Both the channel and note 
+that are being selected for editing are specified by turning on the R 
+(reverse) buttons, and then specifying the range to unprotect. In this 
+case, the range is only one note or channel, so the top and bottom 
+values are the same. Setting Erase to one tells the PVG to erase the 
+unprotected notes. If you had wanted to accent the snare, rather than 
+erasing it, then setting the WGT for Velocity transposition to one, 
+along with an AMT of 12 or so, would do the trick. Similarly, you could 
+select a single channel and transpose its pitch, or select two 
+contiguous channels and erase all notes that fall below a minimum 
+velocity, or perform other editing operations on selected notes, just 
+by fiddling with the WGTs and PROTECTION settings.
+
+
+HUMANIZING SEQUENCES
+
+The process of humanizing sequenced music, by putting small 
+random changes in a part, has been a hot topic in recent months, and 
+one that the PVG is ideally suited to. If you find that a part that has 
+been entered in step-time, or a part that has been auto-corrected, is 
+too "stiff", then try applying the following preset to the sequence or 
+track.
+
+The "Humanize" preset simply induces small, random changes in the 
+timing of the randomly selected notes. Because Shift is used (rather 
+than Time), only the timing of the affected notes is changed. (For 
+most PVG operations that involve any type of time manipulations, 
+you should use Shift rather than Time.) When Gaussian changes are 
+used, the actual amount of the change is chosen at random, with 
+most changes being less than the amount specified in the SD 
+column. This particular preset is intended for use at the 
+recommended clock resolution of 240 steps/beat. If you use 96 
+steps/beat, then the SD value should be set to 1. Lower clock 
+resolutions will result in sloppy parts, rather than subtle 
+humanization. Changes per Vary should be set to about half the 
+number of notes in the target sequence.
+
+
+MACRO OPERATIONS
+
+The purpose of the MACRO screen is to provide an easy way to apply 
+multiple variation presets to a single sequence. Presets can be 
+applied to the entire sequence, or to certain segments of a sequence, 
+or at random, though in the interests of simplifying this explanation, 
+we'll be ignoring the random aspect. You can also specify the order 
+in which presets are executed, which can be very important in certain 
+instances.
+
+The heart of the MACRO screen is the preset list, which specifies 
+which variation presets will be used, and what sections of the 
+sequence they will affect. Selecting presets is easy to do--simply 
+click on an entry in the table on the left side of the screen to add it to 
+the end of the list, or type a new number in the two digit field on the 
+left side of the list to change or delete an existing entry. (Note that 
+these changes won't be displayed immediately--click on the Macro 
+button in the MENU to redraw the screen.)
+
+The complex part of a macro operation involves the four fields 
+labeled From, To, Cyc, and Ops. These parameters specify the 
+ranges over which the presets will be applied, and how many times it 
+will occur. Ops determines how many variation operations from that 
+preset will be executed. For deterministic (non-random) editing, this 
+should usually be set to 0, so that the number of changes is 
+determined by the WGT settings in the presets themselves. From, 
+To, and Cyc, work in combination with the Range Unit setting at the 
+bottom of the screen to set the range over which the preset will be 
+applied. Normally, for any type of rhythmic editing, Range Unit 
+should be set to Step, Beat, or Meas, since the Event setting won't 
+usually have any one-to-one correspondence with musical time 
+values. From and To set up the start and stop points of the range to 
+be processed by the preset, in terms of the Range Unit, and Cyc sets 
+the spacing between successive occurrences of the range. Use Step 
+to process a small part of each cycle, and use Beat, or Meas to 
+process longer chunks.
+
+Another control on the MACRO screen that could complicate life for 
+the beginning PVG user is the Lines setting. For deterministic editing, 
+Lines should be set to 0. If it is set to a higher number, the PVG will 
+choose that number of macro lines at random, and execute only 
+those lines.
+
+
+USING THE MACROS
+
+Now that we know a little about how macros work, let's look at how 
+they might be used. First we'll go back to the scale crunching 
+example mentioned earlier. One possible application of this 
+technique is shown in the macro "Minor Blues".
+
+This macro forces the target sequence to fit a blues chord 
+progression. The first thing that you should notice is that the Range 
+Unit is set to Beat. A little basic division reveals that this pattern, 
+which is 48 beats long, is equivalent to 12 bars in 4/4 time. Several 
+different scale crunching presets have been specified for different 
+sections of the progression, none of which overlap. One limitation of 
+this particular macro, as it is currently programmed, is that it will only 
+process the first 48 beats of a sequence; if you have a longer 
+sequence that you wish to process, then setting the Cyc value for 
+each line to 48 would cause each preset to be repeated at regular 
+intervals throughout the entire track.
+
+The potential applications of this technique are truly mind-boggling. 
+How about forcing a Bach invention to fit the chord changes of "Louie, 
+Louie"? On a more practical level, here are some ideas you can use 
+in creating your own music (or creatively deconstructing someone 
+else's):
+
+* Harmonizing a melody: Copy the melody to two or three tracks, then 
+transpose them up or down by some fixed interval. Perhaps you 
+could invert one track to create contrary motion, or time reverse a 
+track. Now run each track through the macro, and presto! Diatonic 
+harmonies!
+
+* Modulating a melody: If one part of a tune uses a different chord 
+progression than another part, yet you want to use the same melody 
+in both (to maintain a sense of thematic coherence), just run the 
+melody through a macro that follows the chord changes in the second 
+part. Experiment with moving the melody forward or backward in time 
+before processing it--this will affect which notes are changed, and 
+could result in some interesting variations.
+
+* Converting percussion parts to comping: Start with a good drum or 
+percussion part, then layer it with itself, transpose some of the 
+layers, or process it with the CHANGES screen, using the Interval 
+option to increase the variety of notes in the sequence. Then run it 
+through the macro. Randy has come up with an impressive 
+demonstration of the PVG's capabilities where he uses this technique 
+to turn a conga part into a very busy piano part, and then uses the 
+sequencer's Live Edit function to erase some sections of the piano 
+track.
+
+* Play at random on your keyboard or guitar controller, then quantize 
+(if necessary) and use a macro to give a sense of tonality to your 
+playing. Who says "garbage in/garbage out"?
+
+
+USING THE MASTER EDITOR
+
+The Master Editor module is a sort of step-brother to the PVG--it was 
+conceived at the same time that we were giving birth to the PVG (no 
+small trick, that), but its features didn't quite fit the metaphor of the 
+PVG. Hence, it got its own button on the Edit screen, but always gets 
+second billing, as in "PVG and Master Editor". Still, the Master Editor 
+has a lot of good music hidden away in it, even though it's not quite 
+as outrageous as the PVG.
+
+For example, the Chords page is great if you decide you want to 
+experiment with different chord inversions. Say you want to fatten a 
+series of chords by transposing the second highest note in each 
+down an octave. First, set SORT to Descending, then enter a different 
+channel number under position 2, then click on OK. What this does is 
+sort the chords in descending order, and put the second note in each 
+(which is the second highest) on its own MIDI channel. Now go to the 
+GLOBAL1 page in the PVG, and transpose the notes on the new 
+channel down an octave. (Unprotect all notes except those on the 
+original channel, then set a transpose amount of -12, a weight of 1, 
+then highlight Edit Mode and click on OK.) Finally, go to the  
+Transform menu, and put everything in the sequence or track back on 
+the original channel.
+
+Jeff Baker has come up with a way to use the Master Editor to enter 
+the pitches and rhythm of a part to entered separately, with the Match 
+Pitches function on the BLEND page. This is especially useful if a 
+part involves tricky fingering, and has a consistent "density" 
+throughout (four note chords in the left hand, for example). Here's 
+how it's done.
+
+First, record the part's rhythm on your keyboard. There is no need to 
+play the proper pitches at this point, since they will be added later, 
+but it is critical to get the proper number of notes in each chord. Now 
+go into step-time recording, and enter the notes in the part one at a 
+time, using a separate track or sequence. In this step, of course, the 
+rhythm doesn't matter. Next, select the rhythm sequence for editing, 
+go to the Master Editor's BLEND page, and enter the number of the 
+pitch sequence (or track) as the reference sequence. All of the options 
+on the BLEND screen should be turned off except for the Match 
+Pitches switch. After you click on OK, the notes in the rhythm 
+sequence will be replaced by the notes from the pitch sequence, and 
+the part will be complete.
+
+
+REFERENCES
+
+A few articles on the PVG have been published in some of the major 
+trade magazines, which we suggest you seek out if you want more 
+information. The June 1989 issue of Keyboard contained a clinic on 
+the KCS, which described many innovative KCS and PVG techniques. 
+Also, the August 1989 issue of Electronic Musician has an article on 
+the PVG which covers both beginning and advanced applications.
+
+
+
+
+

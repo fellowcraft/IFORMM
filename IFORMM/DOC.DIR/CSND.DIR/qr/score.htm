@@ -1,0 +1,405 @@
+<!doctype html public "-//W3C//DTD HTML 3.2//EN">
+
+<!-- This  particular HTML Edition of the Csound Manual is maintained by David M. Boothe. Email: csound@lakewoodsound.com-->
+<!--This is Version 4.06.-->
+<html>
+<head>
+	<title>QuickRef: Score Syntax</title>
+</head>
+
+<body text="black" link="black" vlink="black" alink="black" bgcolor="white">
+<table align="right" cellpadding="1" cellspacing="1" border="0">
+  <tr>
+    <td width="45" align="right">
+      <a href="../manual2.htm#contents" target="_parent"><img src="../toc.gif" width="38" height="18" alt="Use Non-Frames Version" border="0"></a>
+    </td>
+    <td width="10">
+    </td>
+    <td width="45" align="right">
+      <a href="sigio.htm"><img src="../prev.gif" width="38" height="18" alt="Previous Page" border="0"></a>
+    </td>
+    <td width="45" align="right">
+      <a href="gen.htm"><img src="../next.gif" width="38" height="18" alt="Next Page" border="0"></a>
+    </td>
+  </tr>
+</table>
+<font size="-2" color="black" face="Verdana, Arial, Helvetica, Century Gothic">
+The Csound Quick Reference</font>
+
+<hr size="1" color="#A9A9A9" noshade>
+
+<a href="../score/top.htm"><h1>Score Syntax</h1></a>
+
+<a name="statements"><hr size="2" color="#A9A9A9" noshade></a>
+<h2>Score Syntax: Statements</h2>
+<table cellspacing="0" border="0" cellpadding="7" width="637">
+  <tr>
+    <td nowrap width="10%" valign="TOP">
+      <a href="../score/f.htm">
+      <font face="Courier New, Courier" size="-1"><strong>f</strong></font></a>
+    </td>
+    <td nowrap width="90%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">&quot;table number&quot; &quot;action time&quot; &quot;size&quot; &quot;GEN routine&quot; arg1[ arg2...arg...]</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="10%" valign="TOP">
+      <a href="../score/f.htm">
+      <font face="Courier New, Courier" size="-1"><strong>f0</strong></font></a>
+    </td>
+    <td nowrap width="90%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">&quot;action time&quot; (Dummy f-table for padding score sections with silence and reporting on progress of long running jobs).</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="10%" valign="TOP">
+      <a href="../score/b.htm">
+      <font face="Courier New, Courier" size="-1"><strong> b </strong></font></a>
+    </td>
+    <td nowrap width="90%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">&quot;base clock time&quot; (Effective prior to score sorting. This time base is pre-warped.)</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="10%" valign="TOP">
+      <a href="../score/v.htm">
+      <font face="Courier New, Courier" size="-1"><strong> v </strong></font></a>
+    </td>
+    <td nowrap width="90%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">&quot;time warp factor&quot; (Locally variable time warping of score events.)</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="10%" valign="TOP">
+      <a href="../score/t.htm">
+      <font face="Courier New, Courier" size="-1"><strong>t</strong></font></a>
+    </td>
+    <td nowrap width="90%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">0 &quot;initial tempo&quot; &quot;time in beats&quot; &quot;tempo2&quot;[&quot;time in beats&quot; &quot;tempo3&quot; &quot;time in...]</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="10%" valign="TOP">
+      <a href="../score/a.htm">
+      <font face="Courier New, Courier" size="-1"><strong>a</strong></font></a>
+    </td>
+    <td nowrap width="90%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">0 &quot;begin time advance in beats&quot; &quot;duration of time advance in beats&quot;</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="10%" valign="TOP">
+      <a href="../score/i.htm">
+      <font face="Courier New, Courier" size="-1"><strong>i</strong></font></a>
+    </td>
+    <td nowrap width="90%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">&quot;instrument number&quot; &quot;start&quot; &quot;duration&quot; [p4 p5 p...]</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="10%" valign="TOP">
+      <a href="../score/s.htm">
+      <font face="Courier New, Courier" size="-1"><strong>s</strong></font></a>
+    </td>
+    <td nowrap width="90%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">(marks end of section and restarts score counting from time 0)</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="10%" valign="TOP">
+      <a href="../score/m.htm">
+      <font face="Courier New, Courier" size="-1"><strong>m</strong></font></a>
+    </td>
+    <td nowrap width="90%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">&quot;score location name&quot; (marks a score section with a name)</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="10%" valign="TOP">
+      <a href="../score/n.htm">
+      <font face="Courier New, Courier" size="-1"><strong>n</strong></font></a>
+    </td>
+    <td nowrap width="90%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">&quot;score location name&quot; (named score section is re-read into the score file at this location)</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="10%" valign="TOP">
+      <a href="../score/r.htm">
+      <font face="Courier New, Courier" size="-1"><strong>r</strong></font></a>
+    </td>
+    <td nowrap width="90%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">&quot;integer repeat count&quot; &quot;a macro name&quot; (begins a new repeating sections)</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="10%" valign="TOP">
+      <a href="../score/e.htm">
+      <font face="Courier New, Courier" size="-1"><strong>e</strong></font></a>
+    </td>
+    <td nowrap width="90%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">(marks end of score - optional)</font>
+    </td>
+  </tr>
+</table>
+
+<a name="pfield"><hr size="2" color="#A9A9A9" noshade></a>
+<h2>Score Syntax: P-Field Substitution</h2>
+<table cellspacing="0" border="0" cellpadding="7" width="637">
+  <tr>
+    <td nowrap width="10%" valign="TOP">
+      <a href="../score/top.htm">
+      <font face="Courier New, Courier" size="-1"><strong> . </strong></font></a>
+    </td>
+    <td nowrap width="90%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">(carries same p-field value from preceding &quot;<strong>i</strong>&quot; statement with like instrument #)</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="10%" valign="TOP">
+      <a href="../score/top.htm">
+      <font face="Courier New, Courier" size="-1"><strong> + </strong></font></a>
+    </td>
+    <td nowrap width="90%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">(determines current start from sum of preceeding durations by adding p2 + p3 from previous &quot;<strong>i</strong>&quot; statement. legal in p2 only.)</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="10%" valign="TOP">
+      <a href="../score/top.htm">
+      <font face="Courier New, Courier" size="-1"><strong>^+</strong><em>x</em></font></a>
+    </td>
+    <td nowrap width="90%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">(determines current start of instrument from sum of preceeding written event by adding last p2 to <em>x. </em>legal in p2 only.)</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="10%" valign="TOP">
+      <a href="../score/top.htm">
+      <font face="Courier New, Courier" size="-1"><strong>^-</strong><em>x</em></font></a>
+    </td>
+    <td nowrap width="90%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">(determines current start of instrument from sum of preceeding written event by subtracting <em>x </em>from last p2<em>. </em>legal in p2 only.)</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="10%" valign="TOP">
+      <a href="../score/nextp.htm">
+      <font face="Courier New, Courier" size="-1"><strong>np</strong><em>x</em></font></a>
+    </td>
+    <td nowrap width="90%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">(replace with p-field(x) value from next note statement illegal in p1 p2 p3.)</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="10%" valign="TOP">
+      <a href="../score/nextp.htm">
+      <font face="Courier New, Courier" size="-1"><strong>pp</strong><em>x</em></font></a>
+    </td>
+    <td nowrap width="90%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">(replace with p-field(x) value from previous note statement illegal in p1 p2 p3.)</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="10%" valign="TOP">
+      <a href="../score/ramp.htm">
+      <font face="Courier New, Courier" size="-1"><strong> &lt; </strong></font></a>
+    </td>
+    <td nowrap width="90%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">(p-field replaced by value derived from linear interpolation between previous and subsequent &quot;anchor&quot; values in same p-field. illegal in p1 p2 p3)</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="10%" valign="TOP">
+      <a href="../score/ramp.htm">
+      <font face="Courier New, Courier" size="-1"><strong> &gt; </strong></font></a>
+    </td>
+    <td nowrap width="90%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">(p-field replaced by value derived from linear interpolation between previous and subsequent &quot;anchor&quot; values in same p-field. illegal in p1 p2 p3)</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="10%" valign="TOP">
+      <a href="../score/ramp.htm">
+      <font face="Courier New, Courier" size="-1"><strong> ) </strong></font></a>
+    </td>
+    <td nowrap width="90%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">(p-field replaced by value derived from exponential interpolation between previous and subsequent &quot;anchor&quot; values in same p-field. illegal in p1 p2 p3)</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="10%" valign="TOP">
+      <a href="../score/ramp.htm">
+      <font face="Courier New, Courier" size="-1"><strong> ( </strong></font></a>
+    </td>
+    <td nowrap width="90%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">(p-field replaced by value derived from exponential interpolation between previous and subsequent &quot;anchor&quot; values in same p-field. illegal in p1 p2 p3)</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="10%" valign="TOP">
+      <a href="../score/ramp.htm">
+      <font face="Courier New, Courier" size="-1"><strong> ~ </strong></font></a>
+    </td>
+    <td nowrap width="90%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">(p-field replaced by value derived from random value in the range between previous and subsequent &quot;anchor&quot; values in same p-field. illegal in p1 p2 p3)</font>
+    </td>
+  </tr>
+</table>
+
+
+<a name="expressions"><hr size="2" color="#A9A9A9" noshade></a>
+<h2>Score Syntax: Expressions</h2>
+<table cellspacing="0" border="0" cellpadding="7" width="637">
+  <tr>
+    <td nowrap width="10%" valign="TOP">
+      <a href="../score/eval.htm">
+      <font face="Courier New, Courier" size="-1"><strong>[</strong><em>x<strong>+</strong>y</em><strong>]</strong></font></a>
+    </td>
+    <td nowrap width="90%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">(add value <em>x</em> to value<em> y </em>within a p-field. Note expressions must be in <strong>[</strong>brackets<strong>]</strong>)</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="10%" valign="TOP">
+      <a href="../score/eval.htm">
+      <font face="Courier New, Courier" size="-1"><strong>[</strong><em>x<strong>-</strong>y</em><strong>]</strong></font></a>
+    </td>
+    <td nowrap width="90%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">(subtract value <em>y</em> from value<em> x </em>within a p-field. Note expressions must be in <strong>[</strong>brackets<strong>]</strong>)</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="10%" valign="TOP">
+      <a href="../score/eval.htm">
+      <font face="Courier New, Courier" size="-1"><strong>[</strong><em>x<strong>*</strong>y</em><strong>]</strong></font></a>
+    </td>
+    <td nowrap width="90%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">(multiply value <em>x</em> by value<em> y </em>within a p-field. Note expressions must be in <strong>[</strong>brackets<strong>]</strong>)</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="10%" valign="TOP">
+      <a href="../score/eval.htm">
+      <font face="Courier New, Courier" size="-1"><strong>[</strong><em>x<strong>/</strong>y</em><strong>]</strong></font></a>
+    </td>
+    <td nowrap width="90%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">(divide value <em>x</em> by value<em> y </em>within a p-field. Note expressions must be in <strong>[</strong>brackets<strong>]</strong>)</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="10%" valign="TOP">
+      <a href="../score/eval.htm">
+      <font face="Courier New, Courier" size="-1"><strong>[</strong><em>x<strong>%</strong>y</em><strong>]</strong></font></a>
+    </td>
+    <td nowrap width="90%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">(value <em>x</em> remainder value<em> y </em>within a p-field. Note expressions must be in <strong>[</strong>brackets<strong>]</strong>)</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="10%" valign="TOP">
+      <a href="../score/eval.htm">
+      <font face="Courier New, Courier" size="-1"><strong>[</strong><em>x<strong>^</strong>y</em><strong>]</strong></font></a>
+    </td>
+    <td nowrap width="90%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">(power of value <em>x</em> to value<em> y </em>within a p-field. Note expressions must be in <strong>[</strong>brackets<strong>]</strong>)</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="10%" valign="TOP">
+      <a href="../score/eval.htm">
+      <font face="Courier New, Courier" size="-1"><strong> [</strong>@<em>x</em><strong>]</strong></font></a>
+    </td>
+    <td nowrap width="90%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">(next power-of-two greater than or equal to <em>x</em>. Note expressions must be in <strong>[</strong>brackets<strong>]</strong>)</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="10%" valign="TOP">
+      <a href="../score/eval.htm">
+      <font face="Courier New, Courier" size="-1"><strong>[@@</strong><em>x</em><strong>]</strong></font></a>
+    </td>
+    <td nowrap width="90%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">(next power-of-two-plus-one greater than or equal to <em>x</em>. Note expressions must be in <strong>[</strong>brackets<strong>]</strong>)</font>
+    </td>
+  </tr>
+</table>
+
+<a name="macros"><hr size="2" color="#A9A9A9" noshade></a>
+<h2>Score Syntax:  Macros</h2>
+<table cellspacing="0" border="0" cellpadding="7" width="637">
+  <tr>
+    <td nowrap width="11%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../score/macros.htm">
+      <font face="Courier New, Courier" size="-1"><strong>#define</strong></font></a>
+    </td>
+    <td nowrap width="73%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">NAME # replacement text #</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="11%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../score/macros.htm">
+      <font face="Courier New, Courier" size="-1"><strong>#define</strong></font></a>
+    </td>
+    <td nowrap width="73%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">NAME(a'b'c) # replacement text # </font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="11%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="89%" valign="TOP" colspan="2">
+      <a href="../score/macros.htm">
+      <font face="Courier New, Courier" size="-1"><strong>$NAME.</strong></font></a>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="11%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../score/macros.htm">
+      <font face="Courier New, Courier" size="-1"><strong>#undef</strong></font></a>
+    </td>
+    <td nowrap width="73%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">NAME</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="11%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../score/mult.htm">
+      <font face="Courier New, Courier" size="-1"><strong>#include</strong></font></a>
+    </td>
+    <td nowrap width="73%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">&quot;filename&quot;</font>
+    </td>
+  </tr>
+</table>
+
+<hr size="2" color="#A9A9A9" noshade>
+<table align="right" cellpadding="1" cellspacing="1" border="0">
+  <tr>
+    <td width="45" align="right">
+      <a href="../manual2.htm#contents" target="_parent"><img src="../toc.gif" width="38" height="18" alt="Use Non-Frames Version" border="0"></a>
+    </td>
+    <td width="10">
+    </td>
+    <td width="45" align="right">
+      <a href="sigio.htm"><img src="../prev.gif" width="38" height="18" alt="Previous Page" border="0"></a>
+    </td>
+    <td width="45" align="right">
+      <a href="gen.htm"><img src="../next.gif" width="38" height="18" alt="Next Page" border="0"></a>
+    </td>
+  </tr>
+</table>
+<font size="-2" color="black" face="Verdana, Arial, Helvetica, Century Gothic">
+The Csound Quick Reference</font>
+
+</body>
+</html>

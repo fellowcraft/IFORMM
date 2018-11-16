@@ -1,0 +1,42 @@
+
+\ *********************** S U S T A I N   P E D A L ***************************
+
+\ Notes can be controlled by a sustain pedal. If a note is released while its
+\ sustain pedal is down, it continues to sound until the pedal is released. The
+\ following words manipulate sustain pedals:
+
+\	pedon	  ( --- ; lower sustain pedal )
+\ 	pedoff	  ( --- ; raise sustain pedal )
+\	ped	  ( --- ; instantaneously raise and lower sustain pedal )
+\	pedon$	  ( --- ; lower sustain pedal and time-advance )
+\	pedoff$	  ( --- ; raise sustain pedal and time-advance )
+\	ped$	  ( --- ; raise and lower sustain pedal, then time-advance )
+
+\ *****************************************************************************
+
+	:ap sustain1
+	/8
+	10 0 do 60 $ pedon loop
+	0 $ 0 $ 0 $ 0 $ pedoff
+	;ap
+
+
+	:ap sustain2
+	/4
+	3 0 do pedon 60 $ 62 $ 64 $ 65 $ ped 67 $ 69 $ 71 $ 72 $ pedoff loop
+	;ap
+
+
+	:ap sustain3
+	/8	
+	pedon$ 					\ waits a quarter note
+	60 $ 62 $ 64 $ 65 $ 67 $ 69 $ 71 $ 72 $ 
+	ped$					\ waits a quarter note
+	60 $ 62 $ 64 $ 65 $ 67 $ 69 $ 71 $ 72 $ 
+	pedoff$ 				\ waits a quarter note
+	;ap
+
+	
+\ *****************************************************************************
+
+

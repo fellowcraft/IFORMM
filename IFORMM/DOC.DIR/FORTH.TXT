@@ -1,0 +1,692 @@
+Forth Tutorial
+
+
+Forth is a complete programming language with some unique features. 
+
+Forth is often described as an assembler, compiler, operating system,
+editor, and command language all rolled into one. In addition, most of
+the Forth system is written in Forth.
+
+
+Getting Started
+
+If you sit down to a computer running Forth, you'll probably see the
+word ok right before the cursor. ok is the "prompt". It means that Forth
+is ready for you to type something. Suppose you type
+
+1 2 + .
+
+Always type the Enter or equivalent key your terminal has, at the end of
+the line. Forth will respond with
+
+3
+
+You have just added 1 and 2, and printed the result.
+
+Typing "1" caused the number 1 to be pushed onto Forth's main stack,
+which is called the data stack. Typing "2" caused the number 2 to be
+pushed onto the same stack, on top of the 1. The "+" caused the two
+numbers to be popped off the stack, added together and the result was
+put back on the stack. The "." caused a number 3 to be popped off the
+stack and printed on the terminal.
+
+Other arithmetic operators that Forth knows about are - (minus), *
+(times), and / (divide). In Forth all of your operations are with
+integers - simple numbers like 1, 32, 10000, but there are no numbers
+like 1.4 or 0.0001. 
+
+Defining your own words
+
+A Forth system understands a number of "words", each of which causes
+something to happen, usually to the stack. In our example, "+" and "."
+were both words. You can define your own words in terms of words the
+system already knows. Once defined, your words may be used just as
+though they they were system words. Another example:
+
+: addprint   + .   ;
+
+Here, the ":", which is a system word, causes a new word to be defined,
+in this case addprint. The definition of addprint is (B + . ), which
+means that when you execute addprint, two numbers will be taken from the
+stack and the sum printed. The ";" terminates the definition. If you
+were to later type
+
+23 45 addprint
+
+Forth would respond with
+
+68
+
+A definition of this sort is called a "colon definition". A
+distinguishing characteristic is that the new word is defined in terms
+of other Forth words. It is also possible to define a word in terms of
+the assembly language of the machine you are actually running on. This
+kind of definition is called a "code definition", and is not used nearly
+as often as colon definitions.
+
+If you wished to later use addprint in the definition of another word,
+you could do so just as though addprint were a system-supplied word.
+
+: addprint2 addprint addprint ;
+1 2 3 4  addprint2
+
+would result in
+
+7 3
+
+Note the order in which the numbers were added. The reason is that, when
+addprint2 is executed, 4 is on top of the stack, with 3 underneath it.
+The first addition will thus be 3+4.
+
+It is important to keep track of what is on the stack when you are
+writing Forth programs. An essential part of the documentation of a
+Forth word is a stack diagram. A stack diagram shows what the word
+expects to be on the stack when it starts executing, and what it leaves
+on the stack after it is finished. The stack diagram for addprint would
+be
+
+( n1 n2 -- sum )
+
+showing that two numbers ( n1 and n2 ) are expected to be on the stack
+at the start, and that addprint leaves one number on the stack ( sum )
+when it is finished. The "--" shows where the word executes, or, in
+other words, it separates the input parameters from the output
+parameters.
+
+Stack diagrams are enclosed in parentheses, because parentheses are used
+in Forth to enclose comments. The Forth system will ignore everything
+between "(" and the next ")". The space between "(" and "n1" is
+necessary. The space between "sum" and ")" is optional in most Forth's,
+but it is a good idea to include it anyway.
+
+By convention, the rightmost number (n2) is the one that is on top of
+the stack. Thus ( a b c -- d e f ) would signify a word which expected c
+on top of the stack, b under c, and a under b. After execution, f would
+be on top, with e under f, and d under e.
+
+Variables, @, !
+
+variable  john ( -- adr )
+
+defines a variable called john and allocates one 32-bit machines word
+for it. The stack diagram shows that when john is executed, an address
+will be left on the stack. The address is the address of the word that
+was allocated for john. Right now we don't know what value is contained
+in the variable, so let's put something in it.
+
+123 john !
+
+will put the number 123 in the variable. ! , pronounced store , is the
+store operator. Its stack diagram looks like ( value adr -- ), meaning
+that it expects an address on the top of the stack and a value
+underneath the address. The value will be put in the machine word at the
+indicated address, and both arguments will be removed from the stack.
+
+Note in this example that the address was left by the word john. It is
+an important point that variables leave their addresses, rather than
+their values. If the value of a variable is needed, the @ (fetch)
+operator is used.
+
+john @
+
+will leave the value contained in the variable, in this case 123, on the
+stack. The stack diagram for @ is ( adr -- value ).
+
+It is reasonable to ask why it works this way, rather than having a
+variable return its value. In fact, a scheme to do this was discussed in
+the Forth community for awhile, and the final consensus was that the
+consistency and regularity of the @ and ! operators was too powerful to
+give up. Forth is not the only language to do it is this way. BLISS is
+another language which requires an explicit operator to return the value
+of a variable.
+
+Similar operators, c! and c@, are provided for storing and fetching
+bytes instead of 32-bit quantities. The stack only holds 32-bit
+quantities, so the bytes are stored in the least-significant part of the
+32-bit number on the stack.
+
+w!  ( w adr -- )        stores the least-significant 16 bits of the
+number
+                        on the stack into the 16-bit memory location at
+addr
+w@  ( adr -- w )        fetches the 16-bit word at addr, leaving it on
+the
+                        stack.  The high-order bits of the stack item
+are
+                        zeroed.
+c!  ( byte adr -- )     stores the least-significant byte of the stack
+                        item into the 8-bit memory location at adr 
+c@  ( adr -- byte )     fetches the byte at addr
++!  ( n adr -- )        adds n to the contents of the 32-bit word at
+addr
+
+Constants
+
+32 constant buflen
+
+defines a constant whose value is 32. When buflen is executed, it leaves
+its value, in contrast to a variable, which leaves its address. There is
+no explicit mechanism provided for changing the value of a constant.
+Many Forth systems may be tricked into telling you the address where the
+value of a constant is actually stored, so it may be possible to change
+the value. However, this is non-standard and implementation dependent.
+Use a variable if you want to change the value.
+
+buflen buflen + .
+
+results in
+
+64
+
+buflen john @ + .
+
+results in
+
+155
+
+assuming that john was defined and initialised as before to 123. you
+should make sure you understand why the @ is needed after john but not
+after buflen.
+
+The stack diagram for a constant is ( -- value ). Remember that this is
+what happens to the stack when the constant is executed, not when it is
+defined.
+
+More generally, the word constant need not be explicitly preceded by a
+number. constant takes the initial value off of the stack. The stack
+diagram is
+
+constant  \ name  ( initial_value -- )
+
+"\ name" means that when the defining word constant executes, it takes a
+name ( a sequence of non-blank characters ) out of the input stream and
+uses that name for something. In this case, the name is used as the name
+of the new constant. Notice that distinction between arguments that are
+taken from the stack and names that are taken from the input stream (
+the input stream is what you type at the terminal ).
+
+Since typing a number puts that number on the stack, our example works
+fine. It is also possible to use Forth to calculate the value of the
+constant, as in
+
+buflen 10 * constant bigbufsize
+
+which defines a constant whose value is 10 times buflen, or 320. This is
+completely general; if you can get a number on the stack by any means
+whatsoever, you can define a constant which returns that value.
+
+Stack Manipulation
+
+The following words rearrange numbers on the stack.
+
+dup  ( n -- n n )   duplicates the number on top of the stack.  This is
+a
+                    real workhorse - dup is used a lot when you want to
+                    make a copy because you want to remember a number
+but
+                    the word you want to use next will "eat" it.
+drop  ( n -- )      discards the number on top of the stack.
+swap  ( n1 n2 -- n2 n1 )    exchanges the positions of the number on top
+                            of the stack and the number underneath it.  
+                            Suppose you had 3 4 on the stack and you
+                            wanted to compute 4-3.  You could do SWAP -
+                            and you would get what you wanted.
+over ( n1 n2 -- n1 n2 n1 )  copies the number which is directly
+                            underneath the top of the stack so that a
+copy
+                            of it on top.
+rot ( n1 n2 n3 -- n2 n3 n1 ) pulls the third stack element to the top
+                            and moves the two which were above it
+                            down to fill its vacancy.
+pick  (  np np-1 np-2 ... n0 p -- np np-1 np-2 np-2 ... n0 np )
+                      copies the p-th stack element to the top of the
+                      stack; 0 pick is equivalent to dup
+                             1 pick is equivalent to over
+roll  ( np np-1 np-2 ... n0 p -- np-1 np-2 ... n0 np )
+                      moves the p-th stack element to the top and moves
+                      the others down to fill the vacancy.  3 roll is
+                      equivalent to rot
+depth  ( -- n )       leaves the number of items that were on the stack
+                      before depth executed.  The number that depth
+leaves
+                      on the stack is not included in the count.
+
+Conditionals
+
+Of course Forth lets you make tests and do different things based on the
+results of those tests.
+
+Here are some words which are useful for comparisons.
+
+<     ( n1 n2 -- flag )   Flag is true if n1 < n2
+=     ( n1 n2 -- flag )   Flag is true if n1 = n2
+>     ( n1 n2 -- flag )   Flag is true if n1 > n2
+0<    ( n1 -- flag )      Flag is true if n1 < 0
+0=    ( n1 -- flag )      Flag is true if n1 = 0
+<>    ( n1 n2 --  flag )  Flag is true if n1 not equal to n2
+0>    ( n1 -- flag )      Flag is true if n1 > 0
+u<    ( un1 un2 -- flag)  "<" for unsigned integers, such as addresses
+?dup  (n-- [n] n )        duplicate the top of the stack only if it is
+not
+                          zero
+
+The brackets mean that the number in brackets is present only if the
+number on top of it is nonzero. This convention is useful because some
+words leave a flag on top of the stack to indicate whether or not a
+particular operation succeeded. If it did succeed, the flag is true and
+the word has left some results on the stack underneath the flag. If the
+operation failed, the flag is false (zero) and the results were not put
+on the stack.
+
+The basic conditional in Forth is if . It's stack diagram is ( n -- ),
+and it is used like:
+
+if  stuff_to_do_if_n_was_not_0  else  stuff_to_do_if_n_was_0  then
+
+The else part is optional. The use of the English word "then" to
+terminate the conditional is misleading, but that is the way it is.
+
+: absval  ( n -- absolute_value_of_n )  dup 0 < if 0 swap - then  ;
+
+Let's analyze this definition carefully. First of all, when this word
+executes, it expects a number to be on top of the stack. Call the number
+n. The first thing that happens is that dup is executed, putting another
+copy of n on top of the stack. The stack now looks like ( n n ). Next we
+have "0", which puts a zero on top of the stack, so that stack looks
+like ( n n 0 ). Then we execute "<", which compares to see whether or
+not n is less than 0. The two numbers that "<" compares are removed from
+the stack and a flag is left instead.
+
+Suppose that n was -5, so that n really was less than 0. "<" would then
+leave a -1 on top of the stack. Any nonzero number is considered to mean
+true, whereas zero means false. So the stack is ( n 1 ). if takes the
+number off the top of the stack, sees that it is -1, and proceeds to
+execute 0 swap - . This has the effect of negating n. The complete
+sequence of stack states is
+
+( n )  dup  ( n n )  0  ( n n 0 )  <  ( n 1 )  if  ( n )
+ 0  ( n 0 )  swap  ( 0 n )  -  ( -n )  then  ( -n )
+
+The then terminates the conditional.
+
+If n had been positive, "<" would have left a zero, because 0 is not
+greater than a positive number. if would have taken the zero off of the
+stack and then skipped the stuff between if and then. If there had been
+an else clause, it would have been executed.
+
+Instead of dup 0 < , we could have used dup 0< .
+
+As a matter of fact there is an easier way to negate a number than 0
+swap - . You can just use negate ( n -- n ). In fact, absval duplicates
+the function provided by system-supplied Forth word abs ( n -- |n| ).
+
+if ... else ... then may be nested to any depth, provided of course that
+there is a then for every if. if may only be used within colon
+definitions, which means that you can't just type in if blah-blah-blah
+then unless you are in the middle of defining some other word.
+
+Loops
+
+The basic looping construct is the do loop. The stack diagram is (end+1
+start -- ). Examples are necessary.
+
+: printlots ( n9 n8 ... n1 n0 -- ) 10 0 do . loop ;
+
+will print ten numbers from off of the stack. The loop will start at 0
+and end after 9.
+
+You can get at the loop index by using i . It leaves the loop index on
+the stack (where else?).
+
+: sumit010 ( -- sum ) 0 11 1 do i + loop ;
+
+will add up the numbers from 1 to 10 inclusive. The "0" is there because
+the current running sum is kept on the stack, and the sum needs to be
+initialised to 0.
+
+loop limits don't have to be positive. Try out various limits and see
+what happens.
+
+: bigjumps ( -- n ) 0   1000 0 do i +  10  +loop ;
+
+will sum the multiples of 10 less than 1000. +loop increments the loop
+index by a number that it takes from the stack, in this case 10. You can
+run loops backwards if you wish, by using +loop with a negative
+increment.
+
+You may prematurely exit from a do loop by executing leave within the
+loop. You probably want to enclose the leave in an if ... then
+structure, because it doesn't make sense to construct a loop which
+always exits after the first times through.
+
+More general loops may be constructed with
+
+begin ... until       or
+begin ... while ... repeat
+
+In the case of begin ... until, the stack is checked by until. If if is
+zero, looping continues at begin. If it is one, execution continues
+after until.
+
+For begin ... while ... repeat, while checks the stack. If it is 1,
+looping proceeds, first executing the stuff between while and repeat,
+then starting over at begin. If while found a zero on the stack, the
+stuff between while and repeat is skipped and execution continues after
+"repeat".
+
+Well, campers, it's example time again. This time we'll assume that
+there is a table somewhere in memory. This table consists of 8-word
+entries, and the end of the table is flagged by a -1 in the first word
+of the last entry. We would like to scan through the table and add a
+number to the third word in each entry. This third word represents the
+age of an employee, so we'll call it age . Our operation will make
+everybody older. Study this example carefully. It shows how Forth
+programs should be constructed with simple words.
+
+: age  ( entry_adr -- age_adr )  \ converts entry adr to age adr
+   12 +
+;
+: addin  ( n adr -- n adr )  \ adds n to the number at adr
+   over over                   \ copy both n and adr
+   age +!                      \ increase age by n
+;
+: more?  ( adr -- adr flag )  \ flag is false iff adr points to a -1
+   dup @ -1 <>
+;
+: +entry  ( adr1 -- adr2 )  \ advances to the next entry
+   32 +
+;
+: older  ( n adr -- )  \ adds n to each age in table at adr
+   begin  more?  while  addin +entry  repeat  drop drop
+;
+
+Supposing that there is a word employees which returns the address of
+such a table, we could make a everybody 100 years older by typing
+
+100 employees older
+
+Notice that I was careful to define each word before I used it inside
+another word. This is a requirement with typical Forth systems. There is
+no "forward referencing", so everything must be defined before it is
+used. This may seem archaic, but in fact it is seldom ever missed. The
+payoff is great, in terms of reduced compiler complexity and conceptual
+simplicity. There are Forth "cross-compiler" and "meta-compiler"
+programs which allow forward references to varying degree, but they are
+generally used to build entire Forth kernels from scratch.
+
+Now suppose we want to print out multiples of 2 until the user types a
+key on his keyboard, at which time we want to stop. There is a word key?
+which returns true if the user has typed something since the last time
+we checked, 0 otherwise.
+
+: mults-of-2  ( -- )  0  begin  dup . 2 +  key?  until  drop  ;
+
+Of course, this could have been done as
+
+: mults-of-2  ( -- )  32766 0  do  i .  key?  if leave then  2 +loop  ;
+
+but the real point here was to illustrate the begin ... until .
+
+key?  ( -- flag )      input and output
+                       flag is true if a key has been typed.
+key  ( -- char )       key waits until the user types a character, then
+                       returns the character
+emit  ( char -- )      emit displays the char on the terminal
+space  ( -- )          displays a space character.
+cr  ( -- )             displays a carriage return, line feed
+spaces  ( n -- )       displays n spaces
+type  ( adr n -- )     displays n characters, beginning at adr
+." string of characters to display"
+                       here you actually have to type the
+                       double-quote characters.  The string starts 
+                       after the space following the first quote, 
+                       and continues up to but not including the 
+                       last quote.
+expect  ( adr n -- )   accepts n characters from the terminal,
+                       storing them at addr.  If a carriage return is
+                       typed before n characters have been
+                       accumulated, expect fills out the rest of the
+                       n locations with nulls
+-trailing  ( adr nl -- adr n2 )
+                       reduces the character count n1 so that
+                       trailing blanks are omitted 
+count  ( adr -- adr+1 n )
+                       converts a packed string to an address and
+                       character count
+
+A word about count is in order. Forth stores strings as a length byte
+followed by a number of characters. The length byte contains the number
+of characters in the string, not including the length byte. count takes
+the address of a packed string, which is the address of its length byte,
+and returns the address of the actual characters in the string, which is
+1 more than the address of the length byte. On top of that, it returns
+the value of the length byte.
+
+Note that Forth addresses are byte addresses. If you add 1 to a Forth
+address, you get the next byte. To get the next word, you have to add 2.
+
+Normally, when you are typing Forth words for it to execute, they are
+being stored in a buffer called the "terminal input buffer". To execute
+the next word, it first has to be fetched from the terminal input
+buffer. To do this, a word called word is executed. word takes the next
+word from the terminal input buffer and stores it as a packed string,
+then returns the address of the packed string. The boundary between one
+word and the next is denoted by a space character. Actually, word
+accepts an argument which tells it what to use as the separator
+character. Normally, space is used, but if you want to use word
+yourself, you are free to chose your own delimiter.
+
+word  \ word  ( delimiter_char -- adr )
+                accepts the next word, or sequence of characters not
+                including the delimiter_char, from the input stream.
+                Stores it as a packed string and returns its address
+                (the address of the length byte).
+
+Numeric I/O
+
+We have already seen how to use "." Also, we have seen that numbers may
+be put on the stack simply by typing the number. More options are
+available, such as accepting or typing hexadecimal numbers.
+
+base  ( -- adr )     a variable which contains the value of the current
+                     numeric input and output base.
+hex  ( -- )          sets base to 16 ( default when running stand alone
+)
+decimal  ( -- )      sets base to 10 ( the default when running under
+unix )
+.  ( n -- )          displays n according to the current BASE
+u.  ( u -- )         displays u as an unsigned number
+.r  ( n r -- )       displays n right-justified in a field of width r
+u.r  ( u r -- )      like ".r", but unsigned
+?  ( adr -- )        displays the contents of the memory location at
+address
+                     adr. Equivalent to "@ ."
+.s  ( -- )           displays the entire stack contents without removing
+                     anything from the stack
+
+Note that executing base @ . is useless as a way to find out what the
+current value of base is. You will always get 10 as the answer because
+whatever base is, it will be typed as "10" according to its own base. If
+you want to find out what the base is according to the decimal numbering
+system, this will work:
+
+: decbase  ( -- )  base @ dup decimal .  base !  ;
+
+Can you figure out why this works?
+
+Arrays
+
+Forth doesn't have very many explicit data structures, but it provides
+good primitives for efficiently creating whatever kind of data
+structures you want. Let's build an array.
+
+We need to know a couple more words first.
+
+create  \ name ( -- adr )  defines a new word which will return its
+address
+                           when executed.  The name of the new word is
+taken
+                           from the input stream.
+allot  ( n -- )            allocates n bytes of storage for the most
+recently
+                           defined word.
+
+create is the like variable, except that variable automatically
+allocates /N bytes of storage. variable xxx is like the create xxx /cell
+allot). Okay, here we go.
+
+: arrayvar  \ name  ( size-in-words -- )
+   cells create allot
+;
+: a@  ( index adr -- value )  swap cells + @  ;
+: a!  ( value index adr -- )  swap cells + !  ;
+
+arrayvar will allow us to create an array to hold size words. a@ and a!
+will allow us to fetch and store elements of an array we have created.
+Let's make an array and initialise it to all zeroes.
+
+50 arrayvar ourarray
+: init  ( n adr -- )  swap   0 do  0 over i a!  loop  ;
+50 ourarray init
+
+Now let's put a 5 in the 23rd element.
+
+5 23 ourarray a!
+
+Is it there?
+
+23 ourarray a@  .
+
+Of course it is. Would I lie to you? Data structures in Forth can be as
+sophisticated as you can imagine. It's up to you; the primitives are all
+present.
+
+Vocabularies
+
+Note: This section is incomplete. The stuff that is here is correct, but
+there are some words that I don't list. Read the "Vocabularies and
+Search Order" chapter in the manual for more information.
+
+Forth words may be grouped together in sets called vocabularies . This
+is somewhat analogous to directories in other operating systems, whereby
+files are grouped together in different places.
+
+When Forth is looking for a word, it may search several vocabularies.
+The vocabulary where Forth looks first is called the "context"
+vocabulary, and there is a system variable called context which keeps
+track of which vocabulary is the "context". All Forth systems have a
+vocabulary whose name is forth. If the word that is sought is not found
+in "context", a list of other vocabularies is searched.
+
+The "context" vocabulary specifies where to look for words. It is also
+necessary to know where to put the new words created by the user. This
+vocabulary is called the "current" vocabulary (also known as the
+"compilation vocabulary), and again there is a system word current to
+keep track of which vocabulary is selected as the "current" one.
+
+Typical vocabularies present in most systems include forth, and
+assembler. Others may be present, and you can create your own if you
+wish. After you have created a vocabulary, you make make it the
+"context" vocabulary by typing the vocabulary's name. The only way to
+make a vocabulary "current" is to first make it "context" (by typing its
+name). Then you may use the word "definitions" which sets the "current"
+vocabulary to be the same as the "context" vocabulary.
+
+vocabulary  \ name ( -- )    creates a new vocabulary whose name is
+taken
+                             from the input stream.  Executing that
+                             name later will cause the new vocabulary
+definitions  ( -- )          makes the "CURRENT" vocabulary the same as
+                             "the "CONTEXT" one
+order  ( -- )                displays the list of vocabularies to be
+                             searched 
+
+So, if you want to make a new vocabulary named "myvoc", execute
+
+vocabulary myvoc
+
+If you want your new vocabulary to be the one that is searched first
+(i.e. the "context"), just type its name.
+
+myvoc
+
+If you wished new word definitions to go into your new vocabulary (i.e.
+make it "current"), all you have to do is type
+
+definitions
+
+assuming that you have already made "myvoc" the "context" by typing
+"myvoc". If not, just execute
+
+myvoc definitions
+
+It is possible to create vocabularies within vocabularies, but it is
+most of the time you should create new vocabularies only within the
+"forth" vocabulary. To insure that this is the case, type
+
+forth definitions
+
+before creating new vocabularies. This way, you always know how to find
+your vocabularies ( just type Forth then the vocabulary name).
+
+Forgetting
+
+forget  \ name  ( -- )  forgets the named word from the dictionary.
+                        All words which have been defined after the
+                        named word are forgotten too.  This is necessary
+                        because the subsequent words may depend on the
+                        word you are forgetting.
+words  ( -- )           tells you what words the system knows
+
+Arithmetic Summary
+
++  ( n1 n2 -- sum )           integer addition
+-  ( n1 n2 -- difference )    integer subtraction, n1-n2 
+1+  ( n -- n+1 )              add 1.  This is provided as an alternative
+                              to "1 +" because it is such a frequent
+                              operation and should be optimized
+1-  ( n -- n-1 )              subtract 1
+2+  ( n -- n+2 )              add 2.
+2-  ( n -- n-2 )              subtract 2
+*  ( n1 n2 -- product )       integer multiply
+2*  ( n -- n*2 )              times 2.  Usually implemented by shifting
+/  ( n1 n2 -- quotient )      integer portion of quotient
+2/  ( n -- n/2 )              halve.  Usually implemented by shifting
+mod  ( n1 n2 -- remainder )   integer remainder
+/mod  ( n1 n2 -- quotient remainder )
+                              quotient and remainder
+u*  ( un1 un2 -- ud )         like "*" but unsigned
+u/mod  ( u1 u2 -- uremainder uquotient )
+                              unsigned /mod
+ 
+max  ( n1 n2 -- max )         maximum
+min  ( n1 n2 -- min )         minimum
+abs  ( n -- |n| )             absolute value 
+negate  ( n -- -n )           arithmetic negation 
+and  ( n1 n2 -- and )         bitwise logical and
+or  ( n1 n2 -- or )           bitwise logical or
+xor  ( n1 n2 -- xor )         bitwise logical exclusive-or
+not  ( n1 -- complement )     bitwise logical complement
+
+Further Topics and books
+
+There is a lot more to Forth than I have described here. However, this
+should be sufficient to get you a long way. For a complete introduction
+to the complete Forth language, I recommend the following books:
+
+Mastering Forth
+Anita Anderson and Martin Tracy
+Mountain View Press,
+P.O. Box 4656,
+Mountain  View, CA 94040
+    
+Starting Forth
+Leo Brodie of Forth,Inc.
+Prentice-Hall,Inc.
+Englewood Cliffs, NJ 07632
+   
+Thinking Forth
+Leo Brodie
+Prentice-Hall,Inc.
+   
+Dr. Dobbs Toolbook of Forth, Parts I+II

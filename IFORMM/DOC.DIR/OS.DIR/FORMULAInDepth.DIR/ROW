@@ -1,0 +1,55 @@
+
+:ap row-tune
+c c c d e 5$
+e d e f g r 6$
++c g e c 4$
+g f e d c r 6$
+;ap
+
+:ap row
+  ::tsg 
+	2/4 /8.16 /4
+	/8.16 /8.16 2/4
+	4/4
+	/8.16 /8.16 2/4
+  ;;sg
+        row-tune
+;ap
+
+
+:ap row-round
+ /1
+ ::ap 0 to $channel -12 8<< to $transpose row ;;ap
+ rest
+ ::ap 1 to $channel 0 8<< to $transpose row ;;ap 
+ rest
+ ::ap 2 to $channel 12 8<< to $transpose row ;;ap
+ rest
+ ::ap 3 to $channel 24 8<< to $transpose row ;;ap
+;ap
+
+:ap async-row
+ ::ap" Row Your Boat "
+   ::gp
+	row-round
+   ;;gp
+ ;;ap
+;ap
+
+:ap shifted-row
+swap
+if
+ c -
+    ::ap
+	[ 1 params ]
+	8<< to $transpose
+        row
+    ;;ap
+else
+  drop
+then
+;ap
+
+' shifted-row 1 MIDI-action !
+
+quit

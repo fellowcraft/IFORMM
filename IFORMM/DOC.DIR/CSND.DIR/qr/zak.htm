@@ -1,0 +1,152 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+
+<!-- This  particular HTML Edition of the Csound Manual is maintained by David M. Boothe. Email: csound@lakewoodsound.com-->
+<!--This is Version 4.06.-->
+<html>
+<head>
+	<title>QuickRef: The Zak Patch System</title>
+</head>
+
+<body text="black" link="black" vlink="black" alink="black" bgcolor="white">
+<table  align="right" cellpadding="1" cellspacing="1" border="0">
+	<tr>
+		<td width="45" align="right">
+			<a href="../manual2.htm#contents" target="_parent"><img src="../toc.gif" width="38" height="18" alt="Use Non-Frames Version" border="0"></a>
+		</td>
+		<td width="10"></td>
+		<td width="45" align="right">
+			<a href="sigmod.htm"><img src="../prev.gif" width="38" height="18" alt="Previous Page" border="0"></a>
+		</td>
+		<td width="45" align="right">
+			<a href="spectral.htm"><img src="../next.gif" width="38" height="18" alt="Next Page" border="0"></a>
+		</td>
+	</tr>
+</table>
+<font size="-2" color="black" face="Verdana, Arial, Helvetica, Century Gothic">
+The Csound Quick Reference</font>
+
+<hr size="1" color="#A9A9A9" noshade>
+
+<a href="../zak/top.htm"><h1>The Zak Patch System</h1></a>
+
+<hr size="2" color="#A9A9A9" noshade>
+
+<table cellspacing="0" border="0" cellpadding="7" width="637">
+<tr><td nowrap width="12%" valign="TOP">&nbsp;</td>
+<td nowrap width="16%" valign="TOP">
+<a href="../zak/zakinit.htm"><font face="Courier New, Courier" size="-1"><strong>zakinit</strong></font></a></td>
+<td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">isizea, isizek</font></td>
+</tr>
+<tr><td nowrap width="12%" valign="TOP">&nbsp;</td>
+<td nowrap width="16%" valign="TOP">
+<a href="../zak/ziw.htm"><font face="Courier New, Courier" size="-1"><strong>ziw</strong></font></a></td>
+<td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">isig, indx</font></td>
+</tr>
+<tr><td nowrap width="12%" valign="TOP">&nbsp;</td>
+<td nowrap width="16%" valign="TOP">
+<a href="../zak/ziw.htm"><font face="Courier New, Courier" size="-1"><strong>zkw</strong></font></a></td>
+<td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ksig, kndx</font></td>
+</tr>
+<tr><td nowrap width="12%" valign="TOP">&nbsp;</td>
+<td nowrap width="16%" valign="TOP">
+<a href="../zak/ziw.htm"><font face="Courier New, Courier" size="-1"><strong>zaw</strong></font></a></td>
+<td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">asig, kndx</font></td>
+</tr>
+<tr><td nowrap width="12%" valign="TOP">&nbsp;</td>
+<td nowrap width="16%" valign="TOP">
+<a href="../zak/ziw.htm"><font face="Courier New, Courier" size="-1"><strong>ziwm</strong></font></a></td>
+<td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">isig, indx[, imix]</font></td>
+</tr>
+<tr><td nowrap width="12%" valign="TOP">&nbsp;</td>
+<td nowrap width="16%" valign="TOP">
+<a href="../zak/ziw.htm"><font face="Courier New, Courier" size="-1"><strong>zkwm</strong></font></a></td>
+<td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ksig, kndx[, kmix]</font></td>
+</tr>
+<tr><td nowrap width="12%" valign="TOP">&nbsp;</td>
+<td nowrap width="16%" valign="TOP">
+<a href="../zak/ziw.htm"><font face="Courier New, Courier" size="-1"><strong>zawm</strong></font></a></td>
+<td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">asig, kndx[, kmix]</font></td>
+</tr>
+<tr><td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ir</font></td>
+<td nowrap width="16%" valign="TOP">
+<a href="../zak/zir.htm"><font face="Courier New, Courier" size="-1"><strong>zir</strong></font></a></td>
+<td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">indx</font></td>
+</tr>
+<tr><td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">kr</font></td>
+<td nowrap width="16%" valign="TOP">
+<a href="../zak/zir.htm"><font face="Courier New, Courier" size="-1"><strong>zkr</strong></font></a></td>
+<td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">kndx</font></td>
+</tr>
+<tr><td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar</font></td>
+<td nowrap width="16%" valign="TOP">
+<a href="../zak/zir.htm"><font face="Courier New, Courier" size="-1"><strong>zar</strong></font></a></td>
+<td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">kndx</font></td>
+</tr>
+<tr><td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar</font></td>
+<td nowrap width="16%" valign="TOP">
+<a href="../zak/zir.htm"><font face="Courier New, Courier" size="-1"><strong>zarg</strong></font></a></td>
+<td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">kndx, kgain</font></td>
+</tr>
+<tr><td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">kr</font></td>
+<td nowrap width="16%" valign="TOP">
+<a href="../zak/zkmod.htm"><font face="Courier New, Courier" size="-1"><strong>zkmod</strong></font></a></td>
+<td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ksig, kzkmod</font></td>
+</tr>
+<tr><td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar</font></td>
+<td nowrap width="16%" valign="TOP">
+<a href="../zak/zkmod.htm"><font face="Courier New, Courier" size="-1"><strong>zamod</strong></font></a></td>
+<td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">asig, kzamod</font></td>
+</tr>
+<tr><td nowrap width="12%" valign="TOP">&nbsp;</td>
+<td nowrap width="16%" valign="TOP">
+<a href="../zak/zkmod.htm"><font face="Courier New, Courier" size="-1"><strong>zkcl</strong></font></a></td>
+<td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">kfirst, klast</font></td>
+</tr>
+<tr><td nowrap width="12%" valign="TOP">&nbsp;</td>
+<td nowrap width="16%" valign="TOP">
+<a href="../zak/zkmod.htm"><font face="Courier New, Courier" size="-1"><strong>zacl</strong></font></a></td>
+<td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">kfirst, klast</font></td>
+</tr>
+</table>
+
+<hr size="2" color="#A9A9A9" noshade>
+<table  align="right" cellpadding="1" cellspacing="1" border="0">
+	<tr>
+		<td width="45" align="right">
+			<a href="../manual2.htm#contents" target="_parent"><img src="../toc.gif" width="38" height="18" alt="Use Non-Frames Version" border="0"></a>
+		</td>
+		<td width="10"></td>
+		<td width="45" align="right">
+			<a href="sigmod.htm"><img src="../prev.gif" width="38" height="18" alt="Previous Page" border="0"></a>
+		</td>
+		<td width="45" align="right">
+			<a href="spectral.htm"><img src="../next.gif" width="38" height="18" alt="Next Page" border="0"></a>
+		</td>
+	</tr>
+</table>
+<font size="-2" color="black" face="Verdana, Arial, Helvetica, Century Gothic">
+The Csound Quick Reference</font>
+
+</body>
+</html>

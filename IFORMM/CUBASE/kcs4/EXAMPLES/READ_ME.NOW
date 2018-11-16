@@ -1,0 +1,65 @@
+                            THE EXAMPLE FILES
+
+These example files have been packed into a self-extracting archive.  To 
+extract the data, copy the file EXAMPLES.TOS to a fresh double-sided disk 
+and then double-click on the file.  After a few moments, the files will be 
+extracted and are now ready for use in KCS Omega.
+
+BRAND2.ALL
+
+This is an arrangement of the last movement of the Brandenburg Concerto  
+No 2 in F Major, BWV 1047.
+
+FATHOM_5.ALL
+
+A setting of Ariel's song from Act 1, Scene 2 of The Tempest by William 
+Shakespeare.
+
+IMPROV_1.ALL
+
+This piece was created entirely in KCS Omega without using a keyboard.  
+The rhythm track is derived from the author's own Indian Rhythm Toolbox, 
+which is itself a KCS .ALL file.  All track data is derived from Sequences 
+2 and 3 in Open Mode and was produced by extemporising with a number of 
+KCS Omega's compositional features in real-time as well as with some 
+judicious editing in TIGER.
+
+STRUT.ALL
+
+A more conventional example with drums, organ and brass.
+
+ORBIT.ALL
+
+Another short example.  Pay particular attention to the way the bass 
+sounds are changed to emulate the "pop" of a thumb-slapped bass and the 
+pitch bends which simulate vibrato.
+
+All these files are set up for the Roland Sound Canvas range of synths.  
+The main music data is held in Track Mode while over in Open Mode is a 
+single sequence containing a System Exclusive dump.  To set your Canvas 
+up, load up the file of your choice and go to the Track Mode Edit screen.  
+On the menu palette, there is an item marked OPEN Mode.  Click here and 
+you will be transported to Open Mode - press F1 to go to the Play screen, 
+or double-click the right mouse button.  You will see Sequence 1 
+containing the Sysex message - play this to your Sound Canvas by pressing 
+the "1" key on the main keyboard.  Although nothing appears to happen, the 
+data is actually being sent.  After a few seconds, the bar counter will 
+start to roll; at this point the data transmission has finished.  Press F1 
+or left-click once anywhere in the main section of the screen to go back 
+to the Edit page.  Select TRACK Play from the menu palette to go back to 
+Track Mode and play the piece.
+
+If you are not using a Sound Canvas or another GM instrument , you'll have 
+to delete all program changes or change the existing ones to suit - select 
+each track in turn using the Track Select boxes at the bottom right of the 
+Track Mode Edit screen and either place the cursor on the line containing 
+the PG event and click on Erase or place the cursor over the PG value 
+itself and type a new one.   You can also change the current program by 
+going to Tiger and clicking on the "<" or ">" icons surrounding the C 
+character in the Track Information Line just above the track display - try 
+this while Tiger is playing.
+
+Please note that all the music examples, with the sole exception of 
+BRAND2.ALL are copyright 1993 Chas Stoddard and may not be used, modified 
+or distributed in any way whatsoever without the express written 
+permission of the author.

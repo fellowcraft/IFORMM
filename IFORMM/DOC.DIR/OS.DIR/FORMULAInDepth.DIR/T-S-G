@@ -1,0 +1,132 @@
+		
+\ *************** T I M E    S E Q U E N C E   G E N E R A T O R **************
+
+\ For the best listening example use FLUTE-like or any other long sustained
+\ voice.
+
+\ Time specification is defined by usage of the TIMING SEQUENCE GENERATOR (tsg)
+\ That process generates a sequence of note durations for a note playing 
+\ process. The $-words get note duration from tsg's. Time Sequence Generator
+\ word definitions are delimited by :sg and ;sg.
+
+\ For example:
+
+	:sg rhythm		\ define word rhythm
+		/4 /8 /16 /32         
+	;sg
+
+
+	:sg rhythms		\ define word rhythms using rhythm in it
+	      rhythm /2. /4. /8. /16. rhythm 4/8
+	;sg
+
+\ Embadded definitions are delimited by ::tsg and ;;sg.
+
+	:ap player1
+	 ::tsg 2 0 do rhythms loop ;;sg   \ start playing rhythms two times
+	 4 0 do 60  62  64  65  67  69  71  72  8 m$ loop  \ play notes
+         /16				  \ switch to sixteenths
+	 8 0 do c+ $ loop 				   \ play more notes	
+	;ap
+
+\ This example can be rewriten as an embadded TSG definition:
+
+	:ap player2
+	 ::tsg 2 0 do	/4 /8 /16 /32 
+			/2. /4. /8. /16. 
+			/4 /8 /16 /32  
+			4/8  loop 
+	 ;;sg
+	 4 0 do 60  62  64  65  67  69  71  72  8 m$ loop
+         /16
+	 8 0 do c+ $ loop 
+	;ap
+
+\ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\ A TSG generates a single sequence element using:
+
+\ 	&     ( n --- ; return a sequence element )
+
+\ The value returned by & may be generated using any time specification 
+\ described in the TSG file.
+
+\ *****************************************************************************
+
+\ For example a quarter note can be created as:
+
+\ :sg quarter 1 4 r>i & ;sg   or   :sg quarter 1|4 & ;sg
+
+\ which is 1/4 (one quarter) of a whole note.
+
+\ So, we can get virtually any portion of a whole note.
+
+	:sg weird1
+	    1 7 r>i &        \ or  1|7 &
+	;sg
+
+	:sg weird2
+	    1 9 r>i &        \ or  1|9 &
+	;sg
+
+\ Do NOT try to play these SG definitions
+ 
+:ap play1
+    ::tsg 
+       20 0 do weird1 loop
+    ;;sg
+          20 0 do i 60 + $ loop
+;ap
+
+:ap play2
+    ::tsg 
+       20 0 do weird2 loop
+    ;;sg
+          20 0 do i 72 + $ loop
+;ap
+
+:ap playing
+	::ap play1 ;;ap
+	     play2
+;ap
+
+:ap plays
+   ::ap playing ;;ap
+;ap
+
+\ *****************************************************************************
+
+:ap a/b
+  ::tsg begin  
+       [ 2 params ]           \ sequence generator definition
+         2dup r>i & 
+	again
+  ;;sg
+;ap
+
+\ ---   ---   ---   ---   ---   ---   ---   ---   ---   ---   ---   ---   ---
+
+:ap reich1 
+ 21 199 a/b        \ during a 21 whole notes take 199 tones from the sequence
+           begin
+           e f+ b c+ d -f+ e +c+ b f+ +d c+ 12 m$
+	   again
+;ap
+
+
+:ap reich2 
+ 21 200 a/b       \ during a 21 whole notes take 200 tones from the sequence
+  	   begin
+           +oct e f+ b c+ d -f+ e +c+ b f+ +d c+ -oct 12 m$
+	   again
+;ap
+
+:ap piano-phase   \ piece by Steve Reich 
+::ap
+ ::ap reich1 ;;ap
+      reich2
+;;ap
+;ap
+
+
+\ *****************************************************************************

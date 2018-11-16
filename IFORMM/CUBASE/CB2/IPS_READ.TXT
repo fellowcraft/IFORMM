@@ -1,0 +1,51 @@
+
+ Description of IPS-Example-Files:
+ ---------------------------------
+ 
+ EXAMPLE.COM:
+ ============
+ This is used for Examples described in the manual. 
+
+ -----------------------------------------------------------
+ All following Examples are adjusted to the following Setup:
+ -----------------------------------------------------------
+
+ The Output to ATARI:     Midi-Channel 1 (acc.Piano-Sound)
+                          Midi-Channel 2 (Synth-Bass)
+                          Midi-Channel 3 (Vibe/Kalimba)
+ Thru-Channel:                         4 (Symphonic-Sound)
+                          Midi-Channel 5 (Brass-Sound)
+                          Midi-Channel 6 (Voices)
+                          Midi-Channel 7 (Fretless Bass)         
+                          Midi-Channel 10 (Stand. Drum-Set)   
+ Sequenzer-Tempo should be set to 120.
+ ----------------------------------------------------------  
+ ----------------------------------------------------------
+
+ DEF.COM:
+ ========
+ This contains some mixed Examples (30 Phrases).
+ 
+ 
+ ARPEG1.COM:
+ ===========
+ This is an example for more sophisticated Arpeggios.
+ Only three very simple phrases are the basic material.
+ These phrases are just played back by the first three Combis.
+ The other ones use different Modes of 'Sorted Play-Modes'.
+
+ ARPEG2.COM:
+ ===========
+ These Arpeggios use some phrases,copied from a modern piece of music.
+ 
+ VARIATN.COM:
+ ============
+ Here You can find very simple examples for Phrase-Generation.
+ The basic Phrase is just a 5-Note Up/Down-Scale.
+ The Variations are adjusted for a 'C' as Key-Note.
+
+
+ 
+  
+ 
+  

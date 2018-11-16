@@ -1,0 +1,65 @@
+
+
+     
+
+     Beschreibung der IPS-Example-Files: 
+
+     
+
+     EXAMPLE.COM:  
+
+     Dieses Beispiel wird im Handbuch beschrieben.
+
+     
+
+     FÅr die nachfolgenden Beispiele stellen Sie bitte folgendes Setup ein:  
+
+     ATARI Ausgang:     Midi-Channel 1 (acc.Piano-Sound)  
+                      Midi-Channel 2 (Synth-Bass)  
+                                    Midi-Channel 3 (Vibe/Kalimba)  
+     Thru-Channel:                               4 (Symphonic-Sound)  
+                                    Midi-Channel 5 (Brass-Sound)  
+                                    Midi-Channel 6 (Voices)  
+                                    Midi-Channel 7 (Fretless Bass)  
+                                      Midi-Channel 10 (Stand. Drum-Set) 
+     Sequenzer-Tempo auf 120 einstellen.  
+
+     
+
+     DEF.COM:  ========  enthÑlt verschiedene Phrasen (30 Phrases).
+
+     ARPEG1.COM:  =========== Dies ist ein Beispiel fÅr komplexe Arpeggien, 
+     wobei nur drei sehr einfache Phrasen das Ausgangsmaterial sind. 
+     Diese Phrasen werden mit den drei ersten Combis abgespielt. 
+     Probieren Sie die anderen mit verschiedenen 'Sorted Play-Modes'.
+
+     
+
+     ARPEG2.COM:  ===========  Diese Arpeggien bestehen aus Phrasen 
+     Moderner Musik.
+
+     VARIATN.COM:  ============ Einfache Beispiele fÅr Phrase-Generation. 
+     Die Grund- Phrase ist eine 5-Ton auf/ abwÑrts -Linie. Die Variationen 
+     sollten mit 'C' als Grundton abgespielt werden.
+
+     
+
+     
+
+     Steinberg 
+
+     Soft & Hardware GmbH 
+
+           
+
+           
+
+           
+
+           
+
+           
+
+     
+
+

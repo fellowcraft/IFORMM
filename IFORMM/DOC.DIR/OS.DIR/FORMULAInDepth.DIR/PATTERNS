@@ -1,0 +1,31 @@
+
+\ Rhythm Patterns
+
+\ The words above require that rhythms be generated sequentially.  Sometimes 
+\ it is easier to use a random access approach.  FORMULA provides the following
+\ mechanism for this.  A rhythm pattern represents a fixed number of pulses,
+\ some of which are "attack points" at which notes are played.  Pulses are 
+\ numbered starting at 0.
+
+\ pattern   ( name ; n --- ; define an pattern "name" with n pulses )
+\ +bt       ( pulse# pattern --- ; add an attack point )
+\ -bt       ( pulse# pattern --- ; remove an attack point )
+
+\ For example:
+
+6 pattern my-pattern
+1 my-pattern +bt
+4 my-pattern +bt
+5 my-pattern +bt
+
+\ defines a rhythm pattern named my-pattern of 6 pulses with attack points at 1,
+\ 4, and 5.  Rhythm patterns are used by timing sequence generators:
+
+\ play-pattern    ( tactus pattern --- ; )
+
+\ generates the rhythmic sequence given by the pattern, where each pulse has
+\ length 1/tactus (e.g., tactus = 8 for 8th-note pattern).  For example,
+
+\ 1|8 my-pattern play-pattern
+
+\ plays notes on 8th notes 1, 4 and 5 of a 6/8 measure.

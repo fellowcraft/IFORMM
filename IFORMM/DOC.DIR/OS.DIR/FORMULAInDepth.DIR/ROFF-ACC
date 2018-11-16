@@ -1,0 +1,84 @@
+
+\ **************** R O U N D - O F F   A C C U M U L A T I O N	***************
+
+\ r.i accumulates roun-off on a per-process basis. If roun-off were ignored, 
+\ timing errors coul occur after repeated rational-to-integer conversions. For
+\ example 1/3-note triplets would be converted to:
+
+\ 		(2000 * 1) / 3 = 666
+\ 		(2000 * 1) / 3 = 666
+\ 		(2000 * 1) / 3 = 666
+
+\ yielding a total time advance of 1998 instead of 2000. With round-off 
+\ accumulation, each division produces a fractional remainder of 2/3, yielding
+\ the sequence (666, 667, 667).
+
+\ Roun-off accumulation is appropriate when the rational numbers represent a
+\ sequence of concentrated time intervals (e.g., time advances). In some cases,
+\ however, a process may want to do conversions that do NOT represent time
+\ advances, and whose round-off should not be accumulated. In such cases, the
+\ following should be used:
+
+\	(r>i   ( n d --- i ; rational conversions with no error accumulation )
+\       A(B    ( --- ; equivalent to A B (r>i )
+
+\ *****************************************************************************
+
+\ FORMULA thinks of time as chopped up into little 1/500th second segments.
+\ Some durations you might want, such as 1/3 of a second, do not fit into
+\ this segmentation.  
+\ r>i keeps track of this error and prevents it from accumulating. 
+\ (r>i doesn't keep track.
+\ Both words are handy in different situations as we will see.
+
+\ The following two words will allow us to hear the difference between
+\ between r>i and (r>i.
+
+\ *************************** R>I versus (R>I *********************************
+
+\ The battle begins...
+
+:ap foo1
+/16
+ begin -c $ again
+;ap
+ 
+:ap foo2
+/16
+ begin +c $ 1(15 drop again
+;ap
+
+:ap foos1
+ ::ap foo1 ;;ap
+      foo2
+;ap
+
+:ap fifo
+ ::ap foos1 ;;ap
+;ap
+
+\ Use (r>i for articulation shapes and for determining the delay value needed
+\ for words like fe$ and fa$.
+
+:ap foo3
+ /16
+ begin -c $ again 
+;ap
+ 
+:ap foo4
+ /16
+ begin +c $ 1 15 r>i drop again 
+;ap
+
+:ap foos2
+::ap foo3 ;;ap
+     foo4
+;ap
+
+:ap fifa
+::ap foos2 ;;ap
+;ap
+
+\ *****************************************************************************
+
+

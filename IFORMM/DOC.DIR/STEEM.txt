@@ -1,0 +1,874 @@
+-------- THE STEEM ENGINE --------
+
+By Anthony and Russell Hayward
+
+http://steem.atari.org/
+http://www.blimey.strayduck.com/
+
+
+Thank you for downloading the STE Emulating Engine, which from now on I
+will call Steem to save my precious typing fingers. Our aim is to make
+Steem the most accurate and easy to use emulator possible.
+
+Steem is freeware, you don't have to pay anything or do anything to
+entitle you to use the program. However if you like it, or if you don't,
+you can e-mail us your thoughts.
+
+We've tried to make Steem as straight forward as possible, so I will not
+go into great detail about anything. :-)
+
+---- WHAT'S IT FOR? ----
+
+An ST Emulator attempts to recreate the Atari ST computer in software on
+a PC. This means you can play your favourite ST games and even run
+applications without needing an ST, in fact it is often more pleasant
+using an emulator (none of those horrible mouse ports to fight with)!
+With Steem running you will have a window on your desktop that works
+just like an ST display.
+
+---- TROUBLESHOOTING ----
+
+If you have problems running Steem look in the faq.txt file, that covers
+the most common difficulties and what you can do about them. If you
+can't find the answer in there then check the website FAQ: 
+
+http://www.blimey.strayduck.com/faq.htm
+
+If that is no good then send an e-mail to steem@gmx.net with a full
+description of your problem and we'll try to sort it out if we can.
+
+---- STARTING AND STOPPING ----
+
+The main window contains the ST display and a toolbar. Click on the
+green play button with the left mouse button to start emulation.
+Immediately your mouse cursor will disappear, so you can control the ST
+cursor. To get your PC mouse back again press the Pause/Break key.
+Emulation will still continue while your mouse is running free, you can
+click anywhere on the ST display or press Pause/Break again to regain
+control of the ST mouse. To stop emulation either click the run button
+again or press Shift + Pause/Break. If you right click on this button
+then you can run Steem in slow motion, this is useful if you want to
+take a screenshot or see something that disappears very quickly.
+
+If you are used to the first Win32 ST Emulator, WinSTon, you might want
+to use F12 to release the mouse - you can use one of Steem's features to
+allow this (see the shortcuts section below).
+
+---- FAST FORWARD ----
+
+Lots of ST games have tedious animated intro sequences that can last for
+minutes or even days. Press and hold the red fast-forward button and
+Steem will go full-steam ahead to get through it as soon as possible. If
+you right click on this button Steem will do a searchlight fast forward.
+Some programs can stop with a black screen, you have no idea whether
+they have crashed or are waiting for you to do something. Searchlight
+causes the ST screen to be displayed with different colours so you can
+see whatever is on it and work out what to do.
+
+---- RESET ST ----
+
+The button to the right of fast forward resets the ST, a left mouse
+click causes a cold reset (the same as turning the ST off, waiting 30
+seconds and then turning it on again) and a right click causes a warm
+reset (the same as pressing the reset button on the back of the ST). By
+the way, if anyone can come up with a better standard 20-colour, 16x16
+icon to represent reset then please send it to us!
+(mailto:steem@gmx.net)
+
+---- LOAD/SAVE MEMORY SNAPSHOT ----
+
+The camera button on the Steem toolbar brings up a menu from which you
+can load and save memory snapshots. Save snapshot will save out the
+current state of the ST to a file. This can be useful for games without
+save facilities. When you load a snapshot it will change your TOS
+version, monitor type, memory size and the current disks in the drives.
+The last 10 snapshots that have been used appear also on this menu so
+you can quickly reload them.
+
+---- PASTE TEXT INTO ST ----
+
+This button allows you to quickly and easily paste text from Windows
+into the ST. Just click on the button and Steem will type in the text at
+incredible speed. Some programs may struggle with the top speed, to slow
+it down right click on the button and choose a longer delay.
+
+---- FULLSCREEN ----
+
+The fullscreen mode is a bit tucked away on Steem. To go fullscreen you
+must click on the maximise box of the Steem Engine window. When in
+fullscreen mode the Pause/Break key stops emulation, you can't release
+the mouse and continue running. To go back to windowed mode, click on
+the far right button on the Steem toolbar. You need DirectX installed on
+your computer for fullscreen to be possible.
+
+
+---- CONFIGURATION ----
+
+The buttons on the right side of the window are for configuring the
+emulator.
+
+---- THE DISK MANAGER ----
+
+On the far right is the disk manager. Clicking on the button will make
+it appear, clicking again will make it disappear. This window controls
+all the disks on the ST, the 2 boxes up the top hold the disks currently
+in the drives. The large box at the bottom shows all the disk images in
+the current directory. The disk manager is like a little explorer
+window, you can go into a folder by double clicking on it or selecting
+it and pressing return. All disk image files, zip/rar archive files and
+any Windows shortcuts to those types of files are shown. 
+
+.Disk Images
+Disk images are floppy disks turned into files, this is how most
+programs are accessed on ST emulators. To put a disk in a drive, drag it
+to the box to the right of the big drive icon. To remove it from the
+drive just drag it back out to the directory view. If you right click in
+the directory view a menu will pop up allowing you to create a new
+standard size disk image, a custom size disk image or a folder. Custom
+disk images can be up to 2 megabytes in size, although larger ones are
+emulated correctly most TOS versions didn't support them, you may find
+they will only work with TOS 2.06 or maybe not at all.
+
+.Hard Drives
+The other important button on the disk manager is the Hard Drives button
+which brings up the hard disk manager when you click on it. You can have
+up to 10 virtual hard drives, to set one up select the folder on your PC
+and then select the letter that you want it to be on the ST. Hard drives
+aren't as reliable as disk images, most things will work but not
+everything. If a program isn't working properly copy it to a disk image
+(using the ST desktop) to see if that helps. Another option in this box
+is to choose which hard drive to boot from if floppy drive A is empty.
+This means that programs from the AUTO folder on that hard drive will be
+loaded (please note that GEM's configuration file DESKTOP.INF and ACC
+files are always loaded from drive C if there aren't any on the floppy).
+Another useful feature is that when you run Steem after it has been
+reset you can force booting from a hard drive even if there is a floppy
+in the drive by holding down the CONTROL key when you run.
+
+.Home Folder
+The disk manager allows you to select a home folder. This is where all
+your disks or links to disks should be stored. You can go to your home
+folder at any time by clicking the third button from the left in the
+disk manager window.  If you are away from your home folder you can
+quickly move/copy/create links to disks in your home folder by right
+mouse button dragging them to the home button. The button to the right
+of the home folder button sets the current folder as your home folder.
+Right-clicking on the home button and the set-home button brings up
+menus allowing you to go to/set 10 quick-folder links.
+
+The next button brings up a list with a few useful options:
+
+.Check Inside All Zips
+When checked this makes Steem investigate all compressed ZIP/RAR archive
+files in a directory to see if they contain a disk image before
+displaying them. If you have a lot of archives (or shortcuts to
+archives) in one directory this option being checked can cause it to be
+slow to display.
+
+.Hide Broken Shortcuts
+This option hides shortcuts which point to a file that doesn't exist. If
+you show these shortcuts then you can right click on them and select Fix
+Shortcut to allow Windows to search for the target file. You may want to
+check this if you have many broken shortcuts that are going to stay
+broken to speed up displaying of their folders.
+
+.Eject Disks When Quit
+This makes Steem eject all the disks from the drives when you quit.
+
+.Open Current Folder in Explorer
+Opens the folder the disk manager is looking at in Windows Explorer.
+
+.Folders Pane in Explorer
+When checked causes the folders pane to appear when you open a folder in
+Explorer.
+
+.Find in Current Folder
+Opens a Windows find dialog with the "Look in" directory set to the
+current folder, useful if you have a large number of disks in many
+folders and you want to find one quickly.
+
+.Import WinSTon Favourites
+Clicking on this option brings up a dialog box that allows you to create
+shortcuts from WinSTon's favourites system. First select the folder
+containing WinSTon which has the favourites you want to import. Next
+select the folder that contains WinSTon's disk images (usually called
+discs). Now select a folder to import the favourites to. The option Only
+Downloaded Disks when checked causes Steem to only create shortcuts to
+disks that already exist, when unchecked Steem could end up creating
+thousands of broken shortcuts which will become unbroken if you download
+their target disk using WinSTon. The last option tells Steem what to do
+if the shortcut already exists at the required location, if you set this
+to skip then it would be quite quick to import the favourites again if
+you download a new disk through WinSTon you want to use in Steem (thus
+avoiding creating loads of broken shortcuts).
+
+.Double Click On Disk...
+This allows you to configure what happens when you double click the left
+mouse button on a disk image (or a shortcut to a disk image). By default
+doing this will load the disk into drive A, reset the ST and then run.
+
+.Large/Small Icons
+Save space with small icons.
+
+
+---- JOYSTICKS ----
+
+The button to the left of the disk manager configures joysticks. Steem
+allows you to use any Windows compatible joystick in any way you want to
+control up to 8 ST Joysticks. 
+
+The first option is what method to use for reading joysticks, Windows
+Multimedia should work fine for most joysticks but if you have problems
+(or if you have more than 2 joysticks) try DirectInput. 
+
+The next option allows you to select one of 3 configurations for the ST
+joysticks, this is useful if you want to switch between different setups
+quickly.
+
+Now it is time to configure the ST joysticks themselves, the important
+joysticks are the ones that went into the main ST ports (under the
+keyboard), but you can also set up ones that went in the STE only ports
+(next to the cartridge slot) and the rare parallel port joysticks (the
+ones that went where the printer did). You will see that there are 2
+identical boxes, when "Standard Ports" are selected the left side
+configures the ST joystick that would have gone in the mouse port. The
+right side is for the joystick that would have gone in the joystick
+port. 
+
+.Input Pickers
+Steem uses a unique system for allowing a user to choose how they want
+to control the ST and the emulator. In the joystick dialog you will see
+light grey boxes that go white when you click on them, these are input
+pickers. When white you are able to press any key, move/press a control
+on any joystick (axis/POV/buttons) or press the middle mouse button (you
+must click on the input picker) to choose that as the input. There is
+one special key, Pause/Break that will make an input picker blank. Left
+and right shift (and left/right alt/control on Windows NT) will normally
+be treated as separate keys, if you want Steem to allow either key then
+press them both at the same time. If you want to use the tab key as
+input then you have to hold down control while pressing it (otherwise it
+switches the focus to the next control). For each joystick there is one
+input picker for left, right, up, down, fire and autofire. 
+
+.Autofire
+Autofire is turned on by selecting a speed, when it is on activating the
+selected input will act as if you were pressing and releasing the
+joystick's fire button very quickly again and again. This is handy for
+games that won't allow you to hold down the button to fire multiple
+shots or the like.
+
+.Deadzone
+Clicking with the left mouse button in the middle box sets the
+dead-zone, this is the distance an analog joystick axis has to move
+before it counts as being pressed. 
+There are 3 options for active joysticks, "Always" which will mean that
+the selected input will always control the joystick (and will not be
+passed on to the ST in the case of a key). "When Scroll Lock On" and
+"When Num Lock Off" mean that the joystick will be off unless the
+specified key is toggled the correct way. This is useful if you have got
+one of the joysticks using the keyboard, as the selected keys won't
+count as key presses while they are used by an active joystick.
+
+.Mouse Speed
+This is a useful option if you have a mouse that is designed to move
+around a 1600x1200 screen and it is moving on a 320x200 screen on Steem.
+I know this isn't technically a joystick configuration option, but it
+went in the same port!
+
+.Oddities
+It seems that some keyboards won't allow certain keys to be pressed at
+the same time. For example left cursor key, up cursor key and space. If
+you find the keyboard controlled joystick unresponsive try altering the
+key assignments, like making shift or control fire. There is also a
+problem with holding shift and pressing numpad 4,6,8 or 2 at the same
+time, Windows handles these combinations very poorly so it is best to
+avoid using them for anything.
+
+
+---- MACHINE CONFIG ----
+
+The button to the left of joysticks sets up the hardware of the ST. In
+this simple box you can set memory size, monitor type, cartridge,
+keyboard language and TOS version. 
+
+Monitor type can be "Colour" (for ST low and medium resolutions) or
+"Monochrome" (for ST high resolution). Also available are extended
+monitors, these are larger screens than a standard ST could manage but
+are achieved by some tinkering with the ST operating system. The only
+programs that have any chance of working with extended monitors are GEM
+applications (windows/menu bars), all other programs will crash or make
+a mess of the screen (there is nothing that can be done about that).
+Most GEM apps will fail too, but some will work and allow you to fit
+more on the screen than anyone could ever need! NOTE: Extended monitors
+only work with TOS versions above 1.02, also if you use a 4 plane
+resolution (e.g 800x600x4) the ST can get very confused if it tries to
+change to medium resolution, so try to avoid it.
+
+The TOS version box finds all valid TOS images in the directory that
+Steem.exe is in and also in your home folder. Warning: There are lots of
+corrupt versions of TOS 1.06 and 1.62 UK around, if one of those TOSs
+doesn't work for you then it is not Steem's fault! Also TOS 1.00 has
+many bugs in it, best to avoid using that unless a game insists on it.
+
+There is one more complex option that affects non-English keyboards. If
+keyboard language is set to certain languages then the "Shift and
+alternate correction" option will become available. When checked this
+makes Steem do its best to get round the differences between ST and PC
+keyboard layouts by fooling the ST into thinking you are pressing keys
+you aren't. This works well for GEM programs but it could cause problems
+for games and any other program that reads the keyboard directly. Note:
+When typing use the TOS version that matches your PC keyboard, if you
+have an AZERTY keyboard then don't expect a US TOS to recognise it
+properly, only a French TOS will work anywhere near correctly.
+
+
+---- OPTIONS ----
+
+The button to the left of machine config sets up loads of options.
+
+o GENERAL
+
+.ST CPU speed
+Here there's an option to boost the speed of the emulated ST, to improve
+those painfully slow games you could get for the ST. The ST's CPU ran at
+8 Megahertz (8,000,000 clock cycles per second) but here you can whack
+it up to get things going faster.  A couple of points: setting the CPU
+speed above 8MHz will cause the emulator to run _slower_, because it has
+more processing to do for each screen displayed.  It will also cause
+some ST programs to crash/not work properly, because they rely on the
+processor running at the correct speed.
+
+.Run speed
+Sometimes you will find a game/program that isn't significantly affected
+by changing CPU speed, it is still too slow. In that case you can use
+this option to change the speed Steem runs and make sure a program
+speeds up (or even slows down if you want). The disadvantage is that
+sound doesn't work above 105% or below 80%.
+
+.Slow motion speed
+This option determines how fast Steem will run when you have slow motion
+turned on (right-click on the green play button).
+
+.Maximum fast forward speed
+Using this option you can limit Steem's speed, fastest isn't always best
+(you can find you have zipped through the bit you wanted to see).
+
+.Pop-up hints
+This little option toggles those pop-up hints on and off, now you've
+read the readme you don't need them really.
+
+.Make Steem high priority
+When this option is ticked Steem will get first use of the CPU ahead of
+other applications, this means Steem will still run smoothly even if you
+start doing something in another window at the same time, but everything
+else will run slower.
+
+.Pause emulation when inactive
+When this option is checked Steem will pause emulation when you switch
+to another program. Steem uses a lot of PC CPU time when running which
+slows all other programs down, if you are switching between programs
+regularly you may want to use this option.
+
+.Disable system keys when running
+This option allows you to send certain key combinations that are used by
+Windows to the ST instead. When it is checked Alt+Tab, Ctrl+Esc and
+Ctrl+Alt+Delete will go to the ST instead of to the PC. Although Steem
+is very stable this option could cause a bit of a disaster is Steem
+stops responding for any reason, you won't be able to shut it down with
+Ctrl+Alt+Delete, for safety it is best to only use this option when you
+really need it. Unfortunately this option doesn't always work in
+fullscreen mode. Depending on your version of Windows, it may not be
+possible to capture certain key combinations - you can use shortcuts
+(see below) to trigger the keys you want from other keys. 
+
+.Automatic fast forward on disk access
+Sometimes disk access can be really slow, so this option makes Steem
+always fast forward when the ST is doing it. There are some programs
+that continue while accessing the disk, if you are going to use one of
+them then you should turn this off.
+
+o SOUND
+
+.Output type
+This can be "None" to make no sound at all or "Sound Chip Sound" to make
+sounds like the Yamaha 2149 sound chip that was in the ST coming through
+a standard speaker. "Emulator Sound" makes Steem emulate the sound chip
+in the way almost all other ST and Yamaha 2149 emulators do, this isn't
+how most STs would have sounded but some people might prefer it (it is
+also faster as it needs very little calculation). The last option is
+"Sharp STFM Samples", this makes Steem switch automatically to emulator
+style sound when a sample is being played (please note this doesn't work
+for all samples).
+
+.Configuration
+These options allow you to tweak the sound output, firstly volume, best
+to leave that around Max. Next is frequency, most sound cards can handle
+50066Hz but if sound is a bit dodgy then you can go down to 44100Hz, if
+that doesn't work try 25533Hz (it will be quite muffled). The next
+option is format, 8-bit mono should be adequate for most people and it
+is the least stressful on the CPU. Then there is Write to primary
+buffer, some sound cards seem to perform very badly with Steem's
+standard output, try checking this if it doesn't sound perfect. Next is
+timing and delay, these options were added in a desperate attempt to
+improve output on some sound cards, if you are having problems fiddle
+and see if they make any difference.
+
+.Record
+These options allow you to record Steem's output to a wav file. Clicking
+on the red button begins recording, clicking on it again (or stopping
+emulation) will end recording. You can choose the name and location of
+the wav file to output by clicking on choose.
+
+.Internal speaker sound
+This is a bit of fun really, if you haven't got a sound card you can
+make your internal PC speaker output Steem's sound, try it with a few
+tunes!
+
+o DISPLAY
+
+.Frameskip
+This is a very useful option for slower processors, drawing the screen
+takes quite a bit of PC CPU time so skipping frames is a very effective
+way to speed things up to the same speed as a real STE. Auto frameskip
+makes Steem skip up to 8 frames dependant on how fast it is running. 
+
+.Borders
+Here you can choose whether you want to see the ST borders. Some games
+use a technique called "overscan" to display graphics in the borders,
+that's one reason you 
+might want to see them.  The option "Auto Borders" will keep them turned
+off most of the time, only coming on when there's an overscan.  You can
+also choose to have borders always on or always off.  The border option
+affects fullscreen mode: with borders on, Steem displays fullscreen in
+the 800x600 screen resolution.  Auto-borders won't work so well in
+fullscreen because we don't want to keep changing the PC monitor's
+resolution; so if you are running a program in fullscreen that makes use
+of the borders, turn on "Always Show Borders".
+
+.On screen display
+The Steem OSD is there to look pretty and give information. The blue bar
+in the bottom-left corner indicates the current speed of the emulator
+compared to the refresh rate of the monitor on a real ST - if the bar is
+full it is drawing at the ST sync rate. The flashing yellow light in the
+top-right comes on when the floppy drive is accessed. There are also
+occasional scrolling messages that pop up to delight and inform you. 
+
+.Window size
+These options allow you to configure exactly the size of Steem's window
+in the various ST resolutions. First is the option of whether Steem
+should automatically resize its window when the ST resolution changes or
+when borders turn on or off. Below that you can set the sizes that Steem
+should use. WARNING: On some video cards making the size bigger than the
+real size (the first option) will slow down emulation considerably.
+
+When automatic resizing is off you may find it difficult to get the
+window to a precise size, making ugly lines appear; to help there are
+some options on the main window's system menu (accessed by clicking on
+Steem's icon in its title bar).  Normal size will resize the window to
+the size you have selected for the current ST screen resolution. Restore
+aspect ratio will maintain the current size of the window but will alter
+it so that its aspect ratio matches that of the selected size for the ST
+resolution. Also on this menu is Bigger and Smaller Window, they are a
+quick way to resize the window without going to the Options dialog, and
+border settings, which also affects the size of the window. As well as
+all that there's an always on top option that keeps the main Steem
+window above all others.
+
+.Screenshots
+These options configure where screenshots are saved, to take a
+screenshot set up a shortcut to perform the action "Take Screenshot". If
+you have the FreeImage library (http://www.6ixsoft.com/) then you will
+be able to choose the format that the screenshots will be saved in here.
+
+o BRIGHTNESS/CONTRAST
+
+Some PC monitors/video cards can be very dark, this can make the ST
+display unrealistic, or even make some things that should be visible
+black. Here are some simple options to fix this problem, just fiddle
+with the two values until in the colour bar display you can see colours
+above the number 2 and the colours above 15 and 16 are a different
+shade.
+
+o FULLSCREEN MODE
+
+.Drawing mode
+This is a bit of a confusing option, you really don't need to know what
+the possible settings mean, but which is best will be different
+depending on your computer's hardware, try them all to see which is
+quickest. Fullscreen drawing mode also affects windowed mode when the ST
+is in low res and the low res window is set up to be double size. Make
+sure you try all the modes, it can make a big speed difference.
+
+.Special effects
+When you are in "Straight Blt" or "Screen Flip" drawing mode you can
+apply some effects to Steem's display. "Scanline Grille" makes every
+other vertical line black, this can make the display a bit dark but it
+can also make Steem run quicker. "Blur" makes Steem's display look like
+a really bad ST monitor, I had one that looked like this, until I
+destroyed it while trying to make it work better.
+
+.Use 256 colour mode
+When checked this makes Steem use the 8-bit graphics mode - this is
+faster but will not look good with very colourful games (for 8-bit mode
+the maximum is 118 colours on screen at any time, most ST programs only
+need 16). This option is very useful for high-res, because there are
+only 2 colours to display and using 65536 or more seems excessive.  
+
+.Use 640x400
+This option makes the screen switch to 640x400 pixels when you run in
+fullscreen. This means the ST display will fill the entire screen
+instead of having small borders to the top and bottom. You can only use
+640x400 mode when borders are set to "Never Show Borders".
+
+.Synchronisation
+When the PC and ST are displaying a different number of frames per
+second you can get jerkiness and wobbling that didn't appear on a real
+ST. Using these options you can hopefully put that right, Vsync to PC
+display tells Steem to wait for the PC to be ready before it displays
+its next frame. To make this option work better you should try and make
+the PC refresh rate the same or double the ST one. The ST used 50Hz
+(PAL), 60Hz (NTSC) and 70Hz (Mono).
+
+o MIDI
+
+Here's some options that affect the PC side of Steem's MIDI emulation.
+
+.Volume
+Not that useful but here never the less, it won't work for all devices.
+
+.Allow running status for output/input
+Normal MIDI messages are made up of one status byte that describes the
+message and then 1 or 2 data bytes. If a program wants to send the same
+message again it can leave off the status byte and just send the data.
+By default Steem doesn't allow this and adds the status byte itself if
+it has been omitted, this could cause problems to programs that require
+a very high transfer rate. These options mean that running status will
+be passed on to Windows which has to decide what to do with it, so if
+you are having problems with MIDI tempo you can try this.
+
+.System Exclusive Buffers
+The number of system exclusive buffers affect MIDI when it is
+sending/receiving many small system exclusive messages quickly. If the
+number of buffers is too small it is possible for there to be so little
+time between messages that Steem is still busy with all the buffers when
+a new sysex message arrives (and therefore part of it gets lost). If you
+find some MIDI program having input or output problems that sound like
+this it's worth a try increasing the number of buffers, something like 6
+should do the job for almost anything. The size of the buffers allows
+you to choose the maximum length of message Steem can send or receive.
+This is important if you are transferring large memory banks from the
+device to the ST and vice-versa. 
+
+.Input speed
+This option allows you to slow down the speed Steem feeds any received
+data from the MIDI device to the ST. Due to restrictions of Windows
+Steem sends all data as fast as possible to the ST regardless of the
+speed it was actually sent by the device, some ST programs can't handle
+that. If you have problems with receiving bank dumps it might be an idea
+if you slow this down a bit. Also related to this is the shortcut action
+"Pause until next SysEx", this can get round time-outs on ST programs
+waiting for a bank dump to start. See the shortcuts section for details
+of how to assign this action to a key/combination of keys.
+
+o STARTUP
+
+.Restore Previous State
+You can choose to have Steem remember the state of the ST when it quits,
+so you can return to what you were doing next time you run it. Below the
+option is a box where you can type in the filename that will be used to
+save the state, this file will be saved in the directory Steem.exe is
+in.
+
+.Start in Fullscreen Mode
+If DirectDraw is enabled and is working okay then you can make Steem
+fill the whole screen when it first runs.
+
+.Never Use DirectDraw/DirectSound
+If you have DirectX errors when you boot up, or DirectX doesn't work
+properly, then you can tell Steem to not use it. Sound doesn't work
+without DirectSound and drawing is slower without DirectDraw.
+
+.Sound Driver
+This lets you configure which DirectSound driver Steem will use, Default
+is usually the best option.
+
+o AUTO UPDATE
+
+This configures Steem's auto update program, it checks for when new
+versions of Steem and new/updated patches are released. At the top are
+some statistics for how well auto update is working. Below are a few
+options to make it work better, or turn it off completely. When a new
+version of Steem is detected a button will appear on Steem's toolbar.
+When you click on it a box will appear with full details of the new
+version and the choice whether you want to download it now, later or not
+at all. Auto update will not work from behind a firewall, if you are
+behind one disable auto update and join the Steem update mailing list
+from the Steem website's download page.
+
+o FILE ASSOCIATIONS
+
+Windows programs love to associate and de-associate programs with file
+types. This dialog allows you to choose which files you want to
+associate with Steem. Just click the "Associate" button next to the
+desired files. Here you can also choose whether you want files to open
+in a new Steem window or the current Steem window when you double-click
+on them from Windows Explorer.
+
+
+---- EXTERNAL DEVICES ----
+
+This dialog configures the emulated ST's link to outside hardware.
+
+In this dialog there is a section for each port on the ST, MIDI,
+parallel and serial. To set one up select one of the options from the
+box next to "Connect To". When you do the section will fill up with
+options related to the connection you chose. 
+
+.MIDI Device
+When you select this you must then select the PC MIDI device you want
+the ST's messages to be sent to and the PC MIDI device you want to be
+able to send data to the ST. 
+
+.Parallel Port (LPT)
+This allows you to connect an ST port to one of your PC's parallel
+ports. The only option is to choose which one. Warning: This may not
+work on all versions of Windows.
+
+.COM Port
+By selecting this option you can connect an ST port to one of your PC's
+COM ports. Again, just select the required port.
+
+.File
+Using this option you can send all output from an ST port to a file.
+Click on the "Change File" button to open the file selector where you
+can select the output file (you can create a new one by typing in a new
+name and clicking "Open"). The "Reset Current File" button will delete
+everything that is currently in the file.
+
+.Loopback (Output->Input)
+Selecting this will cause anything that is sent to the port to be then
+received by the port, what use that is I really don't know!
+
+
+---- SHORTCUTS ----
+
+In this dialog you can set keys, joystick buttons/axes and the middle
+mouse button to do various actions.
+
+The first thing in the dialog is a large box which displays some
+instructions for people who haven't read the readme (this can be hidden
+allowing you to see more shortcuts). Below that is the permanent
+shortcuts box, these are shortcuts that you can't turn off, they will be
+active all the time you are using Steem. In the box you should see at
+least one default shortcut, for each shortcut there are 3 input pickers
+(see joysticks section for a description of how they work) separated by
++. Next there is an = followed by a large box, this contains a list of
+many actions that activating the selected combination of input will
+cause. 
+
+.Press ST Key
+If you select "Press ST Key" then a box will appear to the right of the
+action box and you can click on it to select the ST key that the
+selected combination of inputs will press. In this box F11 will count as
+the "(" key on the ST keypad, F12 will be keypad ")", Page Up is Help
+and Page Down is Undo. The "Del" button deletes the shortcut. 
+
+.Type ST Character
+This is similar to the Press ST Key action but it allows you to choose
+any character that the ST can produce with the current TOS, this is
+handy if you have a strange keyboard layout and you can't get all the
+symbols you need.
+
+.Add New/Copy
+Below the shortcuts are 2 buttons that allow you to create more
+shortcuts, "Add New" creates a blank one and "Add Copy" creates one that
+is the same as the shortcut above the buttons. If you create more
+shortcuts than can fit in the box then a scrollbar will appear allowing
+you to see them all, you are limited to a maximum of 30 shortcuts.
+
+.Temporary Shortcuts
+Below the permanent shortcuts are the temporary shortcuts. These work
+the same way as the permanent shortcuts except you can have an unlimited
+number of different sets of shortcuts. This can be useful for programs
+that relied heavily on having every ST key exactly where it was on the
+ST keyboard, you can use the shortcuts to remap the keys that are in the
+wrong place by using the "Press ST Key" action. Another use is for games
+that used a combination of joystick and keyboard control, you can remap
+the keys used to joystick buttons/axes and control the whole game from
+the joystick. Just select the shortcut set you want from the box, or add
+one using the button.
+
+
+---- PATCHES ----
+
+Steem runs a lot of ST software (we estimate over 95%) but some programs
+just won't work properly. Often when debugging them we find a way around
+the bug, without being able to solve it. Now you can run these programs
+by using Steem's patch system. Select the program you want to run on the
+left and follow the instructions.
+
+
+---- GENERAL INFO ----
+
+The button to the left of shortcuts tells you a few "interesting" facts
+about the emulator. Click on the tabs at the top to switch between
+pages.
+
+
+---- TIPS AND OTHER MISCELLANEOUS STUFF ----
+
+Here's a few hidden features/bits of information that you might not know
+about:
+
+o Steem can save screenshots but it can be a bit difficult to find out
+how. You have to open the Shortcuts dialog, choose what input will cause
+one to be taken and set the action to "Take Screenshot".
+
+o Right clicking on a file or folder in the disk manager can access some
+very useful features that can save lots of time.
+
+o Dragging things to the home button on the disk manager's toolbar is a
+very quick way to move things around.
+
+o The disk manager supports drag and drop of almost anything into it,
+you can move/copy/create shortcuts into the current directory or insert
+disks directly into the drives.
+
+o Steem is not related to WinSTon in any way, as some people think - it
+was written from scratch by us. It would have been difficult for even us
+(masters of making programs worse) to transform the quite stable WinSTon
+v0.5 to the unstable and buggy Steem v1.0!
+
+o It is very easy to transport Steem between different computers without
+losing all your settings. You need the files Steem.exe, steem.ini and
+shortcuts.dat to be able to run Steem with your configuration intact.
+All you need then is a TOS version that you will have to select the
+first time you run Steem on the new computer. You might find it handy to
+have unzipd32.dll too, then you can use zipped disk images.
+
+
+---- COMMAND-LINE OPTIONS ----
+
+Here are some useful command line options for Steem, the easiest way to
+run Steem with them is to make a shortcut to Steem.exe, right click on
+it and select Properties. In the text box labelled Target add the
+command line options on the end (after the " if there is one).
+
+NODD, GDI - don't use DirectDraw.
+
+NODS, NOSOUND - don't use DirectSound.
+
+.st, .msa, .stt, .dim, .zip, .rar, .stz file - load disk & go.
+
+.sts file - load snapshot & go.
+
+.stc file - insert specified cartridge.
+
+NONEW - means that if one of the above files is passed to Steem and a
+Steem window is already open it will be opened in the current Steem and
+the new one will be closed.
+
+OPENNEW - means the opposite of NONEW, the files will always be opened
+in a new Steem window.
+
+NOLPT - this removes the option to connect an ST port to your PC's LPT
+ports (that option can cause a crash on some versions of Windows).
+
+NOCOM - this removes the option to connect an ST port to your PC's COM
+ports.
+
+INI=[filename] - load [filename] instead of steem.ini.
+
+TRANS=[filename] - use [filename] as translation file.
+
+CUTS=[filename] - use [filename] instead of shortcuts.dat.
+
+SOF=[freq] - stands for Sound Output Frequency. Output will be forced to
+[freq]Hz and all other factors will be ignored (unless setting the sound
+card output to [freq]Hz fails, in that case Steem will ignore this
+option and use its usual method of determining output frequency).
+
+WINDOW - force Steem to boot in windowed mode.
+
+FULLSCREEN - force Steem to boot in fullscreen mode.
+
+DOUBLECHECKSHORTCUTS - this makes Steem's disk manager check shortcut
+files more thoroughly, some people have had problems when a shortcut's
+target file name is in a different case to the actual file. This option
+makes the disk manager slower to display folders with shortcuts in them.
+
+SCLICK - this option makes Steem output a click when you run and stop
+instead of a bump.
+
+NOPCJOYSTICKS - don't look for any PC joysticks, sometimes joystick
+drivers do some weird things!
+
+OLDPORTIO - we changed how I/O to LPT and COM ports worked in v2.4, if
+you are using Win9x/ME then you can use this switch if it doesn't work
+any more.
+
+ACCURATEFDC - this makes Steem attempt to emulate the STs Floppy Disk
+Controller as accurately as possible, that may seem a good idea but wait
+until you try it! It seems even slower than the real thing (it may be).
+Also there are a few programs that work worse when we emulate it in this
+tedious way, that is why it is a command-line option at the moment.
+There are a few programs that this option fixes (such as Automation's
+Jupiter's Masterdrive and Oxygene's STNICC demo) so it is worth a try if
+you have problems with a program. This won't be permanent, we hope to do
+some tests and emulate the FDC more accurately in future versions so it
+isn't necessary.
+
+
+That's it! You now know everything you need to know about The Steem
+Engine. We hope you have fun using it.
+
+---- CONTACT ----
+
+We are very interested in people's comments about Steem. If you have any
+or you have ideas for how we can improve it please e-mail us at
+steem@gmx.net.
+
+---- EMULATION BUG REPORTS ----
+
+If you find an emulation bug please send an e-mail to: 
+
+steembugs <at> gmx <dot> net
+
+Please include the name of the program with the bug and preferably where
+we can download it. Also the TOS image version number/country name, the
+memory size and your ST monitor settings when the problem occurs. Please
+don't send any big attachments (anything over 200Kb) without asking us
+first.
+
+---- STEEM CRASH REPORTS ----
+
+If Steem crashes or freezes up on you then we want to hear! It is very
+important to us that Steem is stable. Please send us an e-mail with as
+much info as you can, tell us what you were doing when it crashed/froze,
+if it was a one-off or a persistent error, and anything else you think
+might be appropriate:
+
+steem@gmx.net
+
+NOTE: You don't need to include all the technical information that
+appears in the Windows crash box, the name of the error might be useful
+but the rest doesn't help at all.
+
+
+Thanks for reading this file, or just scrolling to the bottom, I hope
+you enjoy using Steem. Remember to check http://steem.atari.org/
+regularly, updates are coming thick and fast! If you don't want to check
+too often then you can join the Steem update announcement list to get an
+e-mail whenever a new version is released, go to the Downloads page of
+the Steem web site for details of how to join.
+
+Readme written by Russell Hayward
+
+---- LEGAL STUFF ----
+
+THIS PROGRAM AND DOCUMENTATION ARE PROVIDED "AS IS", WITHOUT WARRANTY OF
+ANY KIND, NOT EVEN THE IMPLIED WARRANTY OF MECHANTABILITY OR FITNESS FOR
+A PARTICULAR PURPOSE. BY USING THE PROGRAM YOU AGREE TO BEAR ALL RISKS
+AND LIABILITIES ARISING FROM THE USE OF THE PROGRAM AND DOCUMENTATION
+AND THE INFORMATION PROVIDED BY THE PROGRAM AND THE DOCUMENTATION.
+

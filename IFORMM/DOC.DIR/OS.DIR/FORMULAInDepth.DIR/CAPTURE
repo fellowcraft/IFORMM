@@ -1,0 +1,23 @@
+
+\ MIDI File Capture
+
+\ You can capture FORMULA's MIDI output in a standard MIDI file using the
+\ following words:
+
+\ MF-init    ( n --- ; create an n-byte buffer for MIDI capture )
+\ MF-start   ( --- ; begin capturing MIDI output in the buffer )
+\ MF-stop    ( --- ; stop capturing MIDI output )
+\ MF-write filename   ( --- ; write buffer contents to file )
+
+\ The resulting MIDI file can be used by sequencers and other MIDI programs.
+
+\ Your MIDI capture buffer must be large enough for all the output between MF-
+\ start and MF-stop; each note uses about 22 bytes.  The word
+
+\ MF-memused  ( --- n )
+
+\ returns the number of bytes in the capture buffer that are currently used, and
+
+\ MF-reset    ( --- ; )
+
+\ deletes the current buffer contents.

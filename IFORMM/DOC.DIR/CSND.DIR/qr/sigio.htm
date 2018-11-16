@@ -1,0 +1,455 @@
+<!doctype html public "-//W3C//DTD HTML 3.2//EN">
+
+<!-- This  particular HTML Edition of the Csound Manual is maintained by David M. Boothe. Email: csound@lakewoodsound.com-->
+<!--This is Version 4.06.-->
+<html>
+<head>
+	<title>QuickRef: Signal Input and Output</title>
+</head>
+
+<body text="black" link="black" vlink="black" alink="black" bgcolor="white">
+<table align="right" cellpadding="1" cellspacing="1" border="0"><tr>
+		<td width="45" align="right">
+			<a href="../manual2.htm#contents" target="_parent"><img src="../toc.gif" width="38" height="18" alt="Use Non-Frames Version" border="0"></a>
+		</td>
+		<td width="10"></td>
+		<td width="45" align="right">
+			<a href="spectral.htm"><img src="../prev.gif" width="38" height="18" alt="Previous Page" border="0"></a>
+		</td>
+		<td width="45" align="right">
+			<a href="score.htm"><img src="../next.gif" width="38" height="18" alt="Next Page" border="0"></a>
+		</td>
+	</tr>
+</table>
+<font size="-2" color="black" face="Verdana, Arial, Helvetica, Century Gothic">
+The Csound Quick Reference</font>
+
+<hr size="1" color="#A9A9A9" noshade>
+
+<h1>Signal Input and Output</h1>
+
+<a name="input"><hr size="2" color="#A9A9A9" noshade></a>
+<h2>Signal Input and Output: Input</h2>
+<table cellspacing="0" border="0" cellpadding="7" width="637"><tr><td nowrap width="14%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar1</font></td>
+<td nowrap width="86%" valign="TOP" colspan="2">
+<a href="../sigio/in.htm"><font face="Courier New, Courier" size="-1"><strong>in</strong></font></a></td>
+</tr>
+<tr><td nowrap width="14%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar1, ar2</font></td>
+<td nowrap width="86%" valign="TOP" colspan="2">
+<a href="../sigio/in.htm"><font face="Courier New, Courier" size="-1"><strong>ins</strong></font></a></td>
+</tr>
+<tr><td nowrap width="14%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar1, ar2, ar3, ar4</font></td>
+<td nowrap width="86%" valign="TOP" colspan="2">
+<a href="../sigio/in.htm"><font face="Courier New, Courier" size="-1"><strong>inq</strong></font></a></td>
+</tr>
+<tr><td nowrap width="14%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar1, ar2, ar3, ar4, ar5, ar6</font></td>
+<td nowrap width="86%" valign="TOP" colspan="2">
+<a href="../sigio/in.htm"><font face="Courier New, Courier" size="-1"><strong>inh</strong></font></a></td>
+</tr>
+<tr><td nowrap width="14%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar1, ar2, ar3, ar4, ar5, ar6, ar7, ar8</font></td>
+<td nowrap width="86%" valign="TOP" colspan="2">
+<a href="../sigio/in.htm"><font face="Courier New, Courier" size="-1"><strong>ino</strong></font></a></td>
+</tr>
+<tr><td nowrap width="14%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar1</font></td>
+<td nowrap width="14%" valign="TOP">
+<a href="../sigio/in.htm"><font face="Courier New, Courier" size="-1"><strong>soundin</strong></font></a></td>
+<td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ifilcod[, iskptim[, iformat]]</font></td>
+</tr>
+<tr><td nowrap width="14%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar1, ar2</font></td>
+<td nowrap width="14%" valign="TOP">
+<a href="../sigio/in.htm"><font face="Courier New, Courier" size="-1"><strong>soundin</strong></font></a></td>
+<td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ifilcod[, iskptim[, iformat]]</font></td>
+</tr>
+<tr><td nowrap width="14%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar1, ar2, ar3, ar4</font></td>
+<td nowrap width="14%" valign="TOP">
+<a href="../sigio/in.htm"><font face="Courier New, Courier" size="-1"><strong>soundin</strong></font></a></td>
+<td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ifilcod[, iskptim[, iformat]]</font></td>
+</tr>
+<tr><td nowrap width="14%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar1[,ar2
+[,ar3,ar4]]</font></td>
+<td nowrap width="14%" valign="TOP">
+<a href="../sigio/in.htm"><font face="Courier New, Courier" size="-1"><strong>diskin</strong></font></a></td>
+<td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ifilcod, kpitch[, iskiptim[, iwraparound[, iformat]]]</font></td>
+</tr>
+
+<tr><td nowrap width="14%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar1, ar2, ar3, ar4, ar5, ar6, ar7, ar8,<br>         
+                                            ar9, ar10, ar11, ar12, ar13, ar14, ar15, ar16
+</font></td>
+<td nowrap width="14%" valign="TOP">
+<a href="../sigio/inx.htm"><font face="Courier New, Courier" size="-1"><strong>inx</strong></font></a></td>
+<td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">&nbsp;</font></td>
+</tr>
+
+<tr><td nowrap width="14%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar1, ar2, ar3, ar4, ar5, ar6, ar7, ar8,<br>         
+                                            ar9, ar10, ar11, ar12, ar13, ar14, ar15, ar16<br>
+                                            ar17, ar18, ar19, ar20, ar21, ar22, ar23, ar24,<br>
+                                            ar25, ar26, ar27, ar28, ar29, ar30, ar31, ar32
+</font></td>
+<td nowrap width="14%" valign="TOP">
+<a href="../sigio/inx.htm"><font face="Courier New, Courier" size="-1"><strong>in32</strong></font></a></td>
+<td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">&nbsp;</font></td>
+</tr>
+
+
+<tr><td nowrap width="14%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ar
+</font></td>
+<td nowrap width="14%" valign="TOP">
+<a href="../sigio/inx.htm"><font face="Courier New, Courier" size="-1"><strong>inch</strong></font></a></td>
+<td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ksig1</font></td>
+</tr>
+
+<tr><td nowrap width="14%" valign="TOP">
+<font face="Courier New, Courier" size="-1">&nbsp;
+</font></td>
+<td nowrap width="14%" valign="TOP">
+<a href="../sigio/inx.htm"><font face="Courier New, Courier" size="-1"><strong>inz</strong></font></a></td>
+<td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ksig1</font></td>
+</tr>
+
+</table>
+
+<a name="output"><hr size="2" color="#A9A9A9" noshade></a>
+<h2>Signal Input and Output: Output</h2>
+<table cellspacing="0" border="0" cellpadding="7" width="637"><tr><td nowrap width="12%" valign="TOP">&nbsp;</td>
+<td nowrap width="16%" valign="TOP">
+<a href="../sigio/out.htm"><font face="Courier New, Courier" size="-1"><strong>out</strong></font></a></td>
+<td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">asig</font></td>
+</tr>
+<tr><td nowrap width="12%" valign="TOP">&nbsp;</td>
+<td nowrap width="16%" valign="TOP">
+<a href="../sigio/out.htm"><font face="Courier New, Courier" size="-1"><strong>outs1</strong></font></a></td>
+<td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">asig</font></td>
+</tr>
+<tr><td nowrap width="12%" valign="TOP">&nbsp;</td>
+<td nowrap width="16%" valign="TOP">
+<a href="../sigio/out.htm"><font face="Courier New, Courier" size="-1"><strong>outs2</strong></font></a></td>
+<td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">asig</font></td>
+</tr>
+<tr><td nowrap width="12%" valign="TOP">&nbsp;</td>
+<td nowrap width="16%" valign="TOP">
+<a href="../sigio/out.htm"><font face="Courier New, Courier" size="-1"><strong>outs</strong></font></a></td>
+<td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">asig1, asig2</font></td>
+</tr>
+<tr><td nowrap width="12%" valign="TOP">&nbsp;</td>
+<td nowrap width="16%" valign="TOP">
+<a href="../sigio/out.htm"><font face="Courier New, Courier" size="-1"><strong>outq1</strong></font></a></td>
+<td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">asig</font></td>
+</tr>
+<tr><td nowrap width="12%" valign="TOP">&nbsp;</td>
+<td nowrap width="16%" valign="TOP">
+<a href="../sigio/out.htm"><font face="Courier New, Courier" size="-1"><strong>outq2</strong></font></a></td>
+<td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">asig</font></td>
+</tr>
+<tr><td nowrap width="12%" valign="TOP">&nbsp;</td>
+<td nowrap width="16%" valign="TOP">
+<a href="../sigio/out.htm"><font face="Courier New, Courier" size="-1"><strong>outq3</strong></font></a></td>
+<td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">asig</font></td>
+</tr>
+<tr><td nowrap width="12%" valign="TOP">&nbsp;</td>
+<td nowrap width="16%" valign="TOP">
+<a href="../sigio/out.htm"><font face="Courier New, Courier" size="-1"><strong>outq4</strong></font></a></td>
+<td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">asig</font></td>
+</tr>
+<tr><td nowrap width="12%" valign="TOP">&nbsp;</td>
+<td nowrap width="16%" valign="TOP">
+<a href="../sigio/out.htm"><font face="Courier New, Courier" size="-1"><strong>outq</strong></font></a></td>
+<td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">asig1, asig2, asig3, asig4</font></td>
+</tr>
+<tr><td nowrap width="12%" valign="TOP">&nbsp;</td>
+<td nowrap width="16%" valign="TOP">
+<a href="../sigio/out.htm"><font face="Courier New, Courier" size="-1"><strong>outh</strong></font></a></td>
+<td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">asig1, asig2, asig3, asig4, asig5, asig6</font></td>
+</tr>
+<tr><td nowrap width="12%" valign="TOP">&nbsp;</td>
+<td nowrap width="16%" valign="TOP">
+<a href="../sigio/out.htm"><font face="Courier New, Courier" size="-1"><strong>outo</strong></font></a></td>
+<td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">asig1, asig2, asig3, asig4, asig5, asig6, asig7, asig8</font></td>
+</tr>
+<tr><td nowrap width="12%" valign="TOP">&nbsp;</td>
+<td nowrap width="16%" valign="TOP">
+<a href="../sigio/out.htm"><font face="Courier New, Courier" size="-1"><strong>soundout</strong></font></a></td>
+<td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">asig1, ifilcod[, iformat]</font></td>
+</tr>
+<tr><td nowrap width="12%" valign="TOP">&nbsp;</td>
+<td nowrap width="16%" valign="TOP">
+<a href="../sigio/out.htm"><font face="Courier New, Courier" size="-1"><strong>soundouts</strong></font></a></td>
+<td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">asig1, asig2, ifilcod[, iformat] (**Not implemented***)</font></td>
+</tr>
+<tr><td nowrap width="12%" valign="TOP">&nbsp;</td>
+<td nowrap width="16%" valign="TOP">
+<a href="../sigio/outx.htm"><font face="Courier New, Courier" size="-1"><strong>outx</strong></font></a></td>
+<td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">asig1, asig2, asig3, asig4, asig5, asig6, asig7, asig8, asig10, asig11, asig12, asig13, asig14, asig15, asig16</font></td>
+</tr>
+<tr><td nowrap width="12%" valign="TOP">&nbsp;</td>
+<td nowrap width="16%" valign="TOP">
+<a href="../sigio/outx.htm"><font face="Courier New, Courier" size="-1"><strong>out32</strong></font></a></td>
+<td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">asig1, asig2, asig3, asig4, asig5, asig6, asig7, asig8, asig10, asig11, asig12, asig13, asig14, asig15, asig16, asig17, asig18, asig19, asig20, asig21, asig22, asig23, asig24, asig25, asig26, asig27, asig28, asig29, asig30, asig31, asig32</font></td>
+</tr>
+
+<tr><td nowrap width="12%" valign="TOP">&nbsp;</td>
+<td nowrap width="16%" valign="TOP">
+<a href="../sigio/outx.htm"><font face="Courier New, Courier" size="-1"><strong>outc</strong></font></a></td>
+<td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">asig1[, asig2,...]</font></td>
+</tr>
+
+<tr><td nowrap width="12%" valign="TOP">&nbsp;</td>
+<td nowrap width="16%" valign="TOP">
+<a href="../sigio/outx.htm"><font face="Courier New, Courier" size="-1"><strong>outch</strong></font></a></td>
+<td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ksig1, asig1, ksig2, asig2, ...</font></td>
+</tr>
+
+<tr><td nowrap width="12%" valign="TOP">&nbsp;</td>
+<td nowrap width="16%" valign="TOP">
+<a href="../sigio/outx.htm"><font face="Courier New, Courier" size="-1"><strong>outz</strong></font></a></td>
+<td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ksig1</font></td>
+</tr>
+</table>
+
+
+<a name="fileio"><hr size="2" color="#A9A9A9" noshade></a>
+<h2>Signal Input and Output: File I/O</h2>
+<table cellspacing="0" border="0" cellpadding="7" width="637"><tr><td nowrap width="12%" valign="TOP">&nbsp;</td>
+<td nowrap width="16%" valign="TOP">
+<a href="../sigio/dumpk.htm"><font face="Courier New, Courier" size="-1"><strong>dumpk</strong></font></a></td>
+<td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ksig, ifilname, iformat, iprd</font></td>
+</tr>
+<tr><td nowrap width="12%" valign="TOP">&nbsp;</td>
+<td nowrap width="16%" valign="TOP">
+<a href="../sigio/dumpk.htm"><font face="Courier New, Courier" size="-1"><strong>dumpk2</strong></font></a></td>
+<td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ksig1, ksig2, ifilname, iformat, iprd</font></td>
+</tr>
+<tr><td nowrap width="12%" valign="TOP">&nbsp;</td>
+<td nowrap width="16%" valign="TOP">
+<a href="../sigio/dumpk.htm"><font face="Courier New, Courier" size="-1"><strong>dumpk3</strong></font></a></td>
+<td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ksig1, ksig2, ksig3, ifilname, iformat, iprd</font></td>
+</tr>
+<tr><td nowrap width="12%" valign="TOP">&nbsp;</td>
+<td nowrap width="16%" valign="TOP">
+<a href="../sigio/dumpk.htm"><font face="Courier New, Courier" size="-1"><strong>dumpk4</strong></font></a></td>
+<td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ksig1, ksig2, ksig3, ksig4, ifilname, iformat, iprd</font></td>
+</tr>
+<tr><td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">kr</font></td>
+<td nowrap width="16%" valign="TOP">
+<a href="../sigio/dumpk.htm"><font face="Courier New, Courier" size="-1"><strong>readk</strong></font></a></td>
+<td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ifilname, iformat[, ipol]</font></td>
+</tr>
+<tr><td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">kr1, kr2</font></td>
+<td nowrap width="16%" valign="TOP">
+<a href="../sigio/dumpk.htm"><font face="Courier New, Courier" size="-1"><strong>readk2</strong></font></a></td>
+<td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ifilname, iformat[, ipol]</font></td>
+</tr>
+<tr><td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">kr1, kr2, kr3</font></td>
+<td nowrap width="16%" valign="TOP">
+<a href="../sigio/dumpk.htm"><font face="Courier New, Courier" size="-1"><strong>readk3</strong></font></a></td>
+<td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ifilname, iformat[, ipol]</font></td>
+</tr>
+<tr><td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">kr1, kr2,
+kr3, kr4</font></td>
+<td nowrap width="16%" valign="TOP">
+<a href="../sigio/dumpk.htm"><font face="Courier New, Courier" size="-1"><strong>readk4</strong></font></a></td>
+<td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ifilname, iformat[, ipol]</font></td>
+</tr>
+<tr><td nowrap width="12%" valign="TOP">&nbsp;</td>
+<td nowrap width="16%" valign="TOP">
+<a href="../sigio/fout.htm"><font face="Courier New, Courier" size="-1"><strong>fout</strong></font></a></td>
+<td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">&quot;ifilename&quot;, iformat, aout1[, aout2, aout3,...,aoutN]</font></td>
+</tr>
+<tr><td nowrap width="12%" valign="TOP">&nbsp;</td>
+<td nowrap width="16%" valign="TOP">
+<a href="../sigio/fout.htm"><font face="Courier New, Courier" size="-1"><strong>foutk</strong></font></a></td>
+<td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">&quot;ifilename&quot;, iformat, aout1[, aout2, aout3,...,aoutN]</font></td>
+</tr>
+<tr><td nowrap width="12%" valign="TOP">&nbsp;</td>
+<td nowrap width="16%" valign="TOP">
+<a href="../sigio/fout.htm"><font face="Courier New, Courier" size="-1"><strong>fouti</strong></font></a></td>
+<td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ihandle, iformat, iflag, iout1[, iout2, iout3,....,ioutN]</font></td>
+</tr>
+<tr><td nowrap width="12%" valign="TOP">&nbsp;</td>
+<td nowrap width="16%" valign="TOP">
+<a href="../sigio/fout.htm"><font face="Courier New, Courier" size="-1"><strong>foutir</strong></font></a></td>
+<td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ihandle, iformat, iflag, iout1[, iout2, out3,....,ioutN]</font></td>
+</tr>
+<tr><td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ihandle</font></td>
+<td nowrap width="16%" valign="TOP">
+<a href="../sigio/fout.htm"><font face="Courier New, Courier" size="-1"><strong>fiopen</strong></font></a></td>
+<td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">&quot;ifilename&quot;,imode</font></td>
+</tr>
+<tr><td nowrap width="12%" valign="TOP">&nbsp;</td>
+<td nowrap width="16%" valign="TOP">
+<a href="../sigio/fin.htm"><font face="Courier New, Courier" size="-1"><strong>fin</strong></font></a></td>
+<td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">&quot;ifilename&quot;, iskipframes, iformat, ain1[, ain2, ain3,...,ainN]</font></td>
+</tr>
+<tr><td nowrap width="12%" valign="TOP">&nbsp;</td>
+<td nowrap width="16%" valign="TOP">
+<a href="../sigio/fin.htm"><font face="Courier New, Courier" size="-1"><strong>fink</strong></font></a></td>
+<td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">&quot;ifilename&quot;, iskipframes, iformat, kin1[, kin2, kin3,...,kinN]</font></td>
+</tr>
+<tr><td nowrap width="12%" valign="TOP">&nbsp;</td>
+<td nowrap width="16%" valign="TOP">
+<a href="../sigio/fin.htm"><font face="Courier New, Courier" size="-1"><strong>fini</strong></font></a></td>
+<td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">&quot;ifilename&quot;, iskipframes, iformat, in1[, in2, in3,...,inN]</font></td>
+</tr>
+<tr><td nowrap width="12%" valign="TOP">&nbsp;</td>
+<td nowrap width="16%" valign="TOP">
+<a href="../sigmod/vincr.htm"><font face="Courier New, Courier" size="-1"><strong>vincr</strong></font></a></td>
+<td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">asig, aincr</font></td>
+</tr>
+<tr><td nowrap width="12%" valign="TOP">&nbsp;</td>
+<td nowrap width="16%" valign="TOP">
+<a href="../sigmod/vincr.htm"><font face="Courier New, Courier" size="-1"><strong>clear</strong></font></a></td>
+<td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">avar1[,avar2, avar3,...,avarN]</font></td>
+</tr>
+</table>
+
+<a name="fileinfo"><hr size="2" color="#A9A9A9" noshade></a>
+<h2>Signal Input and Output: Sound File Queries</h2>
+<table cellspacing="0" border="0" cellpadding="7" width="642"><tr><td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ir</font></td>
+<td nowrap width="17%" valign="TOP">
+<a href="../valcnv/filefax.htm"><font face="Courier New, Courier" size="-1"><strong>filelen</strong></font></a></td>
+<td nowrap width="71%" valign="TOP">
+<font face="Courier New, Courier" size="-1">&quot;ifilcod&quot;</font></td>
+</tr>
+<tr><td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ir</font></td>
+<td nowrap width="17%" valign="TOP">
+<a href="../valcnv/filefax.htm"><font face="Courier New, Courier" size="-1"><strong>filesr</strong></font></a></td>
+<td nowrap width="71%" valign="TOP">
+<font face="Courier New, Courier" size="-1">&quot;ifilcod&quot;</font></td>
+</tr>
+<tr><td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ir</font></td>
+<td nowrap width="17%" valign="TOP">
+<a href="../valcnv/filefax.htm"><font face="Courier New, Courier" size="-1"><strong>filenchnls</strong></font></a></td>
+<td nowrap width="71%" valign="TOP">
+<font face="Courier New, Courier" size="-1">&quot;ifilcod&quot;</font></td>
+</tr>
+<tr><td nowrap width="12%" valign="TOP">
+<font face="Courier New, Courier" size="-1">ir</font></td>
+<td nowrap width="17%" valign="TOP">
+<a href="../valcnv/filefax.htm"><font face="Courier New, Courier" size="-1"><strong>filepeak</strong></font></a></td>
+<td nowrap width="71%" valign="TOP">
+<font face="Courier New, Courier" size="-1">&quot;ifilcod&quot;[, ichnl]</font></td>
+</tr>
+</table>
+
+<a name="printing"><hr size="2" color="#A9A9A9" noshade></a>
+<h2>Signal Input and Output: Printing and Display</h2>
+<table cellspacing="0" border="0" cellpadding="7" width="637"><tr><td nowrap width="12%" valign="TOP">&nbsp;</td>
+<td nowrap width="16%" valign="TOP">
+<a href="../sigio/print.htm"><font face="Courier New, Courier" size="-1"><strong>print</strong></font></a></td>
+<td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">iarg[, iarg, ...]</font></td>
+</tr>
+<tr><td nowrap width="12%" valign="TOP">&nbsp;</td>
+<td nowrap width="16%" valign="TOP">
+<a href="../sigio/print.htm"><font face="Courier New, Courier" size="-1"><strong>display</strong></font></a></td>
+<td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">xsig, iprd[, inprds[, iwtflg]]</font></td>
+</tr>
+<tr><td nowrap width="12%" valign="TOP">&nbsp;</td>
+<td nowrap width="16%" valign="TOP">
+<a href="../sigio/print.htm"><font face="Courier New, Courier" size="-1"><strong>dispfft</strong></font></a></td>
+<td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">xsig, iprd, iwsiz[, iwtyp[, idbouti[, iwtflg]]]</font></td>
+</tr>
+<tr><td nowrap width="12%" valign="TOP">&nbsp;</td>
+<td nowrap width="16%" valign="TOP">
+<a href="../sigio/printk.htm"><font face="Courier New, Courier" size="-1"><strong>printk</strong></font></a></td>
+<td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">kval, ispace[, itime]</font></td>
+</tr>
+<tr><td nowrap width="12%" valign="TOP">&nbsp;</td>
+<td nowrap width="16%" valign="TOP">
+<a href="../sigio/printk.htm"><font face="Courier New, Courier" size="-1"><strong>printks</strong></font></a></td>
+<td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">&quot;txtstring&quot;, itime, kval1, kval2, kval3, kval4</font></td>
+</tr>
+<tr><td nowrap width="12%" valign="TOP">&nbsp;</td>
+<td nowrap width="16%" valign="TOP">
+<a href="../sigio/printk2.htm"><font face="Courier New, Courier" size="-1"><strong>printk2</strong></font></a></td>
+<td nowrap width="72%" valign="TOP">
+<font face="Courier New, Courier" size="-1">kvar[, numspaces]</font></td>
+</tr>
+</table>
+
+<hr size="2" color="#A9A9A9" noshade>
+<table align="right" cellpadding="1" cellspacing="1" border="0"><tr>
+		<td width="45" align="right">
+			<a href="../manual2.htm#contents" target="_parent"><img src="../toc.gif" width="38" height="18" alt="Use Non-Frames Version" border="0"></a>
+		</td>
+		<td width="10"></td>
+		<td width="45" align="right">
+			<a href="spectral.htm"><img src="../prev.gif" width="38" height="18" alt="Previous Page" border="0"></a>
+		</td>
+		<td width="45" align="right">
+			<a href="score.htm"><img src="../next.gif" width="38" height="18" alt="Next Page" border="0"></a>
+		</td>
+	</tr>
+</table>
+<font size="-2" color="black" face="Verdana, Arial, Helvetica, Century Gothic">
+The Csound Quick Reference</font>
+
+</body>
+</html>

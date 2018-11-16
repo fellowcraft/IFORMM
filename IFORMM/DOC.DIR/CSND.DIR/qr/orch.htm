@@ -1,0 +1,335 @@
+<!doctype html public "-//W3C//DTD HTML 3.2//EN">
+
+<!-- This  particular HTML Edition of the Csound Manual is maintained by David M. Boothe. Email: csound@lakewoodsound.com-->
+<!--This is Version 4.06.-->
+<html>
+<head>
+	<title>QuickRef: Orchestra Syntax</title>
+</head>
+
+<body text="black" link="black" vlink="black" alink="black" bgcolor="white">
+<table align="right" cellpadding="1" cellspacing="1" border="0">
+  <tr>
+    <td nowrap width="45" align="right">
+      <a href="../manual2.htm#contents" target="_parent">
+      <img src="../toc.gif" width="38" height="18" alt="Use Non-Frames Version" border="0"></a>
+    </td>
+    <td nowrap width="10">
+    </td>
+    <td nowrap width="45" align="right">
+      <img src="../noprev.gif" width="38" height="18" alt="Previous Page" border="0">
+    </td>
+    <td nowrap width="45" align="right">
+      <a href="instrctl.htm">
+      <img src="../next.gif" width="38" height="18" alt="Next Page" border="0"></a>
+    </td>
+  </tr>
+</table>
+<font size="-2" color="black" face="Verdana, Arial, Helvetica, Century Gothic">
+The Csound Quick Reference</font>
+
+<hr size="1" color="#A9A9A9" noshade>
+<h1>Orchestra Syntax</h1>
+
+<a name="header"><hr size="2" color="#A9A9A9" noshade></a>
+<h2>Orchestra Syntax: Orchestra Header Statements</h2>
+<table cellspacing="0" border="0" cellpadding="7" width="638">
+  <tr>
+    <td nowrap width="11%" valign="TOP">
+      <a href="../syntax/header.htm">
+      <font face="Courier New, Courier" size="-1"><strong>sr</strong></font></a>
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <font face="Courier New, Courier" size="-1"><strong>=</strong></font>
+    </td>
+    <td nowrap width="73%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">iarg</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="11%" valign="TOP">
+      <a href="../syntax/header.htm">
+      <font face="Courier New, Courier" size="-1"><strong>kr</strong></font></a>
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <font face="Courier New, Courier" size="-1"><strong>=</strong></font>
+    </td>
+    <td nowrap width="73%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">iarg</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="11%" valign="TOP">
+      <a href="../syntax/header.htm">
+      <font face="Courier New, Courier" size="-1"><strong>ksmps</strong></font></a>
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <font face="Courier New, Courier" size="-1"><strong>=</strong></font>
+    </td>
+    <td nowrap width="73%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">iarg</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="11%" valign="TOP" height="9">
+      <a href="../syntax/header.htm">
+      <font face="Courier New, Courier" size="-1"><strong>nchnls</strong></font></a>
+    </td>
+    <td nowrap width="16%" valign="TOP" height="9">
+      <font face="Courier New, Courier" size="-1"><strong>=</strong></font>
+    </td>
+    <td nowrap width="73%" valign="TOP" height="9">
+      <font face="Courier New, Courier" size="-1">iarg</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="11%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../syntax/strset.htm">
+      <font face="Courier New, Courier" size="-1"><strong>strset</strong></font></a>
+    </td>
+    <td nowrap width="73%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">iarg, &quot;stringtext&quot;</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="11%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../syntax/strset.htm">
+      <font face="Courier New, Courier" size="-1"><h5>pset</h5></font></a>
+    </td>
+    <td nowrap width="73%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">con1, con2, ...</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="11%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../syntax/seed.htm">
+      <font face="Courier New, Courier" size="-1"><strong>seed</strong></font></a>
+    </td>
+    <td nowrap width="73%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">ival</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="11%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">gir</font>
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../siggen/ftgen.htm">
+      <font face="Courier New, Courier" size="-1"><strong>ftgen</strong></font></a>
+    </td>
+    <td nowrap width="73%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">ifn, itime, isize, igen, iarga[, iargb, ...iargz]</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="11%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../midi/massign.htm">
+      <font face="Courier New, Courier" size="-1"><strong>massign</strong></font></a>
+    </td>
+    <td nowrap width="73%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">ichnl, insnum</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="11%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../midi/massign.htm">
+      <font face="Courier New, Courier" size="-1"><strong>ctrlinit</strong></font></a>
+    </td>
+    <td nowrap width="73%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">ichnkm, ictlno1, ival1[, ictlno2, ival2[, ictlno3, ival3[, ...ival32]]</font>
+    </td>
+  </tr>
+</table>
+
+<a name="datatypes"><hr size="2" color="#A9A9A9" noshade></a>
+<h2>Orchestra Syntax: Variable Data Types</h2>
+<table cellspacing="0" border="0" cellpadding="7" width="637">
+  <tr>
+    <td nowrap width="11%" valign="TOP" height="9">
+    </td>
+    <td nowrap width="16%" valign="TOP" height="9">
+      <a href="../syntax/top.htm">
+      <font face="Courier New, Courier" size="-1"><strong>i</strong>name</font></a>
+    </td>
+    <td nowrap width="73%" valign="TOP" height="9">
+      <font face="Courier New, Courier" size="-1">(init variable - initialization only)</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="11%" valign="TOP" height="9">
+    </td>
+    <td nowrap width="16%" valign="TOP" height="9">
+      <a href="../syntax/top.htm">
+      <font face="Courier New, Courier" size="-1"><strong>k</strong>name</font></a>
+    </td>
+    <td nowrap width="73%" valign="TOP" height="9">
+      <font face="Courier New, Courier" size="-1">(control signal - performance time, control rate)</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="11%" valign="TOP" height="9">
+    </td>
+    <td nowrap width="16%" valign="TOP" height="9">
+      <a href="../syntax/top.htm">
+      <font face="Courier New, Courier" size="-1"><strong>a</strong>name</font></a>
+    </td>
+    <td nowrap width="73%" valign="TOP" height="9">
+      <font face="Courier New, Courier" size="-1">(audio signal - performance time, audio rate)</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="11%" valign="TOP" height="9">
+    </td>
+    <td nowrap width="16%" valign="TOP" height="9">
+      <a href="../syntax/kvar.htm">
+      <font face="Courier New, Courier" size="-1"><strong>gi</strong>name</font></a>
+    </td>
+    <td nowrap width="73%" valign="TOP" height="9">
+      <font face="Courier New, Courier" size="-1">(global init variable - initialization only)</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="11%" valign="TOP" height="9">
+    </td>
+    <td nowrap width="16%" valign="TOP" height="9">
+      <a href="../syntax/kvar.htm">
+      <font face="Courier New, Courier" size="-1"><strong>gk</strong>name</font></a>
+    </td>
+    <td nowrap width="73%" valign="TOP" height="9">
+      <font face="Courier New, Courier" size="-1">(global control signal - performance time, control rate)</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="11%" valign="TOP" height="9">
+    </td>
+    <td nowrap width="16%" valign="TOP" height="9">
+      <a href="../syntax/kvar.htm">
+      <font face="Courier New, Courier" size="-1"><strong>ga</strong>name</font></a>
+    </td>
+    <td nowrap width="73%" valign="TOP" height="9">
+      <font face="Courier New, Courier" size="-1">(global audio signal - performance time, audio rate)</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="11%" valign="TOP" height="9">
+    </td>
+    <td nowrap width="16%" valign="TOP" height="9">
+      <a href="../syntax/kvar.htm">
+      <font face="Courier New, Courier" size="-1"><strong>w</strong>name</font></a>
+    </td>
+    <td nowrap width="73%" valign="TOP" height="9">
+      <font face="Courier New, Courier" size="-1">(spectral data - performance time, control rate)</font>
+    </td>
+  </tr>
+</table>
+
+<a name="iblock"><hr size="2" color="#A9A9A9" noshade></a>
+<h2>Orchestra Syntax: Instrument Block Statements</h2>
+<table cellspacing="0" border="0" cellpadding="7" width="637">
+  <tr>
+    <td nowrap width="11%" valign="TOP" height="9">
+    </td>
+    <td nowrap width="16%" valign="TOP" height="9">
+      <a href="../syntax/iblock.htm">
+      <font face="Courier New, Courier" size="-1"><strong>instr</strong></font></a>
+    </td>
+    <td nowrap width="73%" valign="TOP" height="9">
+      <font face="Courier New, Courier" size="-1"><em>NN</em></font>
+    </td>
+  </tr>
+  <tr>
+    <td width="11%" valign="TOP" height="9">
+    </td>
+    <td width="16%" valign="TOP" height="9">
+      <a href="../syntax/iblock.htm">
+      <font face="Courier New, Courier" size="-1"><strong>endin</strong></font></a>
+    </td>
+    <td width="73%" valign="TOP" height="9">
+    </td>
+  </tr>
+</table>
+
+<a name="varinit"><hr size="2" color="#A9A9A9" noshade></a>
+<h2>Orchestra Syntax: Variable Initialization</h2>
+<table cellspacing="0" border="0" cellpadding="7" width="637">
+  <tr>
+    <td nowrap width="11%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">i/k/ar</font>
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../syntax/assign.htm">
+      <font face="Courier New, Courier" size="-1"><strong>=</strong></font></a>
+    </td>
+    <td nowrap width="73%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">iarg</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="11%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">i/k/ar</font>
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../syntax/assign.htm">
+      <font face="Courier New, Courier" size="-1"><strong>init</strong></font></a>
+    </td>
+    <td nowrap width="73%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">iarg</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="11%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">ir</font>
+    </td>
+    <td nowrap width="89%" valign="TOP" colspan="2">
+      <a href="../syntax/assign.htm">
+      <font face="Courier New, Courier" size="-1"><strong>tival</strong></font></a>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="11%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">i/k/ar</font>
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../syntax/assign.htm">
+      <font face="Courier New, Courier" size="-1"><strong>divz</strong></font></a>
+    </td>
+    <td nowrap width="73%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">ia, ib, isubst</font>
+    </td>
+  </tr>
+</table>
+
+
+<hr size="2" color="#A9A9A9" noshade>
+<table align="right" cellpadding="1" cellspacing="1" border="0">
+  <tr>
+    <td nowrap width="45" align="right">
+      <a href="../manual2.htm#contents" target="_parent">
+      <img src="../toc.gif" width="38" height="18" alt="Use Non-Frames Version" border="0"></a>
+    </td>
+    <td nowrap width="10">
+    </td>
+    <td nowrap width="45" align="right">
+      <img src="../noprev.gif" width="38" height="18" alt="Previous Page" border="0">
+    </td>
+    <td nowrap width="45" align="right">
+      <a href="instrctl.htm">
+      <img src="../next.gif" width="38" height="18" alt="Next Page" border="0"></a>
+    </td>
+  </tr>
+</table>
+<font size="-2" color="black" face="Verdana, Arial, Helvetica, Century Gothic">
+The Csound Quick Reference</font>
+</body>
+
+</html>

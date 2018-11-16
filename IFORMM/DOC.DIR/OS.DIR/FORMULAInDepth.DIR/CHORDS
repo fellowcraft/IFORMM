@@ -1,0 +1,201 @@
+
+\ ***************************** C H O R D S **********************************
+
+\ Use MARIMBA-like voice for the best listening example.
+
+\ The word $$ is like $, but plays the lower octave as well.
+
+\ Here are FORMULA words for the chords and chordsequences.
+
+\ #       $n   = play a  x # note chord 
+\ # #     $n*k = play    y # times a  x # note chord
+\ # #    m$n   = play a  y # notes sequence of  x # note chords
+\ # # #  m$n*k = play    z # times a  y # notes sequence of  z # note chords
+\ x y z
+
+\ ****************************************************************************
+
+\ It is a z$ word which is like $, but doesn't advance in time. Thus a process
+\ can play a chord by calling z$ several times, followed by $.
+
+\ ****************************************************************************
+
+\ The volume of the chord notes can be attenuated or boosted using c$ words 
+\ which are like z$, but volume is controlled by the pquan $cvolume. 
+\ Examine the chord-loudness for better understanding.
+
+\ ****************************************************************************
+
+\ Rolled chords get played using $nroll word. 
+
+\ # #|# $nroll 
+\ a b|c  
+
+\ a = number of notes in the chord; 
+\ b = how many of c = rhythmical values should last the roll 
+
+
+\ ************************** E X A M P L E S *********************************
+
+:ap doubler
+	::ap
+		c $  d $  e $  f $  g $  a $  b $  +c $
+		c $$ d $$ e $$ f $$ g $$ a $$ b $$ +c $$
+	;;ap
+;ap
+
+\ ****************************************************************************
+
+:ap chord1  \ ---------------------- play a 4-note chord
+
+	60   64   67   72             4        $n
+  
+     ( note note note note    number of notes  $n )
+;ap
+
+\ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ OR ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+:ap chord2  \ ---------------------- play a 4-note chord
+
+        60  64  67  72    $4
+;ap
+
+\ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ OR ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+:ap chord3  \ ---------------------- play a 4-note chord
+
+	60 z$  64 z$  67 z$  72 $
+;ap
+
+\ ----------------------------------------------------------------------------
+
+:ap chords ::ap chord1 chord2 chord3 ;;ap ;ap
+
+\ ****************************************************************************
+
+:ap chordseq1    \ play a sequence of 4 3-note chords, column-major order
+
+	60 64 67       65 69 72      67 71 74       60 64 67     4 3 m$n
+     ( first chord   second chord  thirdth chord  fourth chord )
+
+  (         4                           3                        m$n          )
+  ( number of chords   number of notes in the each chord   column-major order )
+						
+;ap
+
+\ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ OR ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+:ap chordseq2    \ play a sequence of 4 3-note chords, column-major order
+
+	60 z$  64 z$  67 $	( first chord )      
+
+	65 z$  69 z$  72 $      ( second chord )
+
+	67 z$  71 z$  74 $      ( third chord )
+
+	60 z$  64 z$  67 $      ( fourth chord )
+
+;ap
+
+\ ----------------------------------------------------------------------------
+
+:ap chordseqx ::ap chordseq1  chordseq2 ;;ap ;ap
+
+\ ****************************************************************************
+
+:ap chordseq3    \ play a sequence of 4 3-note chords - 2 times
+                      \ column-major order     
+         60  64  67
+         65  69  72
+         67  71  74
+         60  64  67     4 3 2 m$n*k
+
+(           4                3          2                    m$n*k             )
+( number of chords   number of notes   --- times    column-major order * times )
+
+;ap
+
+\ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ OR ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+:ap chordseq4    \ play a sequence of 4 3-note chords - 2 times
+                      \ column-major order
+	2 0 do 
+
+	60 z$  64 z$  67 $ 	( first chord )
+
+        65 z$  69 z$  72 $	( second chord )
+
+        67 z$  71 z$  74 $	( third chord )
+
+        60 z$  64 z$  67 $	( fourth chord )
+
+           loop
+;ap
+
+\ ----------------------------------------------------------------------------
+
+:ap chordseqy ::ap chordseq3  chordseq4 ;;ap ;ap
+
+\ ****************************************************************************
+
+:ap chord-loudness1      \ play a sequence of 8 3-note chords
+   ::ap
+	-70 to $cvolume
+
+60 z$  64 z$  67 $ 	( first chord )
+0 $			( pause )
+60 c$  64 z$  67 $ 	( first chord but first note attenuated )
+0 $			( pause )
+60 c$  64 c$  67 $ 	( first chord but first and second notes attenuated )
+0 $			( pause )
+60 c$  64 c$  67 c$ 0 $	( first chord attenuated )
+
+0 $ 0 $			( pause )
+
+65 z$  69 z$  72 $	( second chord )
+0 $			( pause )
+65 c$  69 c$  72 c$ 0 $	( second chord attenuated )
+0 $			( pause )
+67 z$  71 z$  74 $	( third chord )
+0 $			( pause )
+67 c$  71 c$  74 c$ 0 $	( third chord attenuated )
+0 $			( pause )
+60 z$  64 z$  67 $	( fourth chord )
+0 $			( pause )
+60 c$  64 c$  67 c$ 0 $	( fourth chord attenuated )
+
+	;;ap
+;ap
+
+
+:ap chord-loudness2      \ play a sequence of 8 3-note chords
+   ::ap
+	100 to $cvolume
+
+60 z$  64 z$  67 $ 	( first chord )
+0 $			( pause )
+60 c$  64 z$  67 $ 	( first chord but first note attenuated )
+0 $			( pause )
+60 c$  64 c$  67 $ 	( first chord but first and second notes attenuated )
+0 $			( pause )
+60 c$  64 c$  67 c$ 0 $	( first chord attenuated )
+
+0 $ 0 $			( pause )
+
+65 z$  69 z$  72 $	( second chord )
+0 $			( pause )
+65 c$  69 c$  72 c$ 0 $	( second chord attenuated )
+0 $			( pause )
+67 z$  71 z$  74 $	( third chord )
+0 $			( pause )
+67 c$  71 c$  74 c$ 0 $	( third chord attenuated )
+0 $			( pause )
+60 z$  64 z$  67 $	( fourth chord )
+0 $			( pause )
+60 c$  64 c$  67 c$ 0 $	( fourth chord attenuated )
+
+	;;ap
+;ap
+
+\ **************************************************************************** 
+

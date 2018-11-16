@@ -1,0 +1,98 @@
+
+\ **************************** O C T A V E S *********************************
+
+\ Use MARIMBA-like voice for best listening example.
+
+\ Changing the octave register.
+
+\ +oct	( --- ; ) raise pitches one octave.
+\ -oct 	( --- ; ) lower pitches one octave.
+
+\ oct 	( octave# --- ; ) sets the octave of the note-naming words on a 
+\ 'per-process' basis.
+
+\ Play and analize oct-trans1 trough oct-trans6 for the octave transposition.
+
+\ Play and analize exam1 trough exam4 for the transposition while playing 
+\ note sequences.
+
+\ ****************************************************************************
+
+:ap oct-trans1
+
+            c   $          +oct d-        $           -oct -oct g+        $
+ 
+	( note  $   octave up flat note  $   two octaves down sharp note  $ )
+;ap
+
+\ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ OR ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+:ap oct-trans2       \ trans1 in the other way
+
+       3 oct        c   $        4 oct        d-  $        2 oct        g+  $
+
+ ( octave number  note  $    octave number  note  $    octave number  note  $ )
+
+       3 oct 	     \ to return everythig which will be played later in 3 oct
+;ap
+
+\ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ OR ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+:ap oct-trans3      \ trans2 in MIDI numbers
+
+             60       $        73       $        56       $
+
+       ( MIDI number  $    MIDI number  $    MIDI number  $  ) 
+
+;ap
+
+\ ****************************************************************************
+
+:ap oct-trans4
+
+  c $   +oct +oct c $   -oct -oct c $
+
+;ap
+
+\ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ OR ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+:ap oct-trans5
+
+ 3 oct c $   5 oct c $  3 oct c $
+
+;ap
+
+\ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ OR ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+:ap oct-trans6
+
+ 60 $  84 $  60 $
+
+;ap
+	
+\ ****************************************************************************
+
+\ ******************* ASCENDING SCALE
+
+:ap exam1
+             c d e f g a b +c  		8 2 m$*k
+;ap
+
+:ap exam2
+             c d e f g a b +oct c       8 2 m$*k
+;ap
+
+\ ******************* DESCENDING SCALE
+
+:ap exam3
+             c -b -a -g -f -e -d -c     8 2 m$*k
+;ap
+
+:ap exam4
+            c -oct  b a g f e d c       8 2 m$*k
+;ap
+
+\ ****************************************************************************
+
+
+

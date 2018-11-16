@@ -1,0 +1,526 @@
+<!doctype html public "-//W3C//DTD HTML 3.2//EN">
+
+<!-- This  particular HTML Edition of the Csound Manual is maintained by David M. Boothe. Email: csound@lakewoodsound.com-->
+<!--This is Version 4.06.-->
+<html>
+<head>
+	<title>QuickRef: Mathematical Operations</title>
+</head>
+
+<body text="black" link="black" vlink="black" alink="black" bgcolor="white">
+<table align="right" cellpadding="1" cellspacing="1" border="0">
+  <tr>
+    <td width="45" align="right">
+      <a href="../manual2.htm#contents" target="_parent">
+      <img src="../toc.gif" width="38" height="18" alt="Use Non-Frames Version" border="0"></a>
+    </td>
+    <td width="10">
+    </td>
+    <td width="45" align="right">
+      <a href="instrctl.htm">
+      <img src="../prev.gif" width="38" height="18" alt="Previous Page" border="0"></a>
+    </td>
+    <td width="45" align="right">
+      <a href="pitch.htm">
+      <img src="../next.gif" width="38" height="18" alt="Next Page" border="0"></a>
+    </td>
+  </tr>
+</table>
+<font size="-2" color="black" face="Verdana, Arial, Helvetica, Century Gothic">
+The Csound Quick Reference</font>
+
+<hr size="1" color="#A9A9A9" noshade>
+
+<h1>Mathematical Operations</h1>
+
+<hr size="2" color="#A9A9A9" noshade>
+<a name="logic"><h2>Mathematical Operations: Arithmetic and Logic Operations</h2></a>
+<table cellspacing="0" border="0" cellpadding="7" width="642">
+  <tr>
+    <td nowrap width="12%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../syntax/math.htm">
+      <font face="Courier New, Courier" size="-1"><strong>- </strong>a</font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">(no rate restriction)</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../syntax/math.htm">
+      <font face="Courier New, Courier" size="-1"><strong>+ a</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">(no rate restriction)</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../syntax/math.htm">
+      <font face="Courier New, Courier" size="-1">a<strong> &amp;&amp; </strong>b</font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">(logical AND; not audio-rate)</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../syntax/math.htm">
+      <font face="Courier New, Courier" size="-1">a<strong> || </strong>b</font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">(logical OR; not audio-rate)</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../syntax/math.htm">
+      <font face="Courier New, Courier" size="-1">a<strong> + </strong>b</font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">(no rate restriction)</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../syntax/math.htm">
+      <font face="Courier New, Courier" size="-1">a<strong> - </strong>b</font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">(no rate restriction)</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../syntax/math.htm">
+      <font face="Courier New, Courier" size="-1">a<strong> * </strong>b</font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">(no rate restriction)</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../syntax/math.htm">
+      <font face="Courier New, Courier" size="-1">a<strong> / </strong>b</font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">(no rate restriction)</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../syntax/math.htm">
+      <font face="Courier New, Courier" size="-1">a<strong> ^ </strong>b</font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">(b not audio-rate)</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../syntax/math.htm">
+      <font face="Courier New, Courier" size="-1">a<strong> % </strong>b</font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">(no rate restriction)</font>
+    </td>
+  </tr>
+</table>
+
+
+<hr size="2" color="#A9A9A9" noshade>
+<a name="math"><h2>Mathematical Operations: Mathematical Functions</h2></a>
+<table cellspacing="0" border="0" cellpadding="7" width="642">
+  <tr>
+    <td nowrap width="12%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="17%" valign="TOP">
+      <a href="../valcnv/int.htm">
+      <font face="Courier New, Courier" size="-1"><strong>int</strong>(x)</font></a>
+    </td>
+    <td nowrap width="71%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">(init-rate or control-rate args only)</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="17%" valign="TOP">
+      <a href="../valcnv/int.htm">
+      <font face="Courier New, Courier" size="-1"><strong>frac</strong>(x)</font></a>
+    </td>
+    <td nowrap width="71%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">(init-rate or control-rate args only)</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="17%" valign="TOP">
+      <a href="../valcnv/int.htm">
+      <font face="Courier New, Courier" size="-1"><strong>i</strong>(x)</font></a>
+    </td>
+    <td nowrap width="71%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">(control-rate args only)</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="17%" valign="TOP">
+      <a href="../valcnv/int.htm">
+      <font face="Courier New, Courier" size="-1"><strong>abs</strong>(x)</font></a>
+    </td>
+    <td nowrap width="71%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">(no rate restriction)</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="17%" valign="TOP">
+      <a href="../valcnv/int.htm">
+      <font face="Courier New, Courier" size="-1"><strong>exp</strong>(x)</font></a>
+    </td>
+    <td nowrap width="71%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">(no rate restriction)</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="17%" valign="TOP">
+      <a href="../valcnv/int.htm">
+      <font face="Courier New, Courier" size="-1"><strong>log</strong>(x)</font></a>
+    </td>
+    <td nowrap width="71%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">(no rate restriction)</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="17%" valign="TOP">
+      <a href="../valcnv/int.htm">
+      <font face="Courier New, Courier" size="-1"><strong>log10</strong>(x)</font></a>
+    </td>
+    <td nowrap width="71%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">(no rate restriction)</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="17%" valign="TOP">
+      <a href="../valcnv/int.htm">
+      <font face="Courier New, Courier" size="-1"><strong>sqrt</strong>(x)</font></a>
+    </td>
+    <td nowrap width="71%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">(no rate restriction)</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="17%" valign="TOP">
+      <a href="../valcnv/powoftwo.htm">
+      <font face="Courier New, Courier" size="-1"><strong>powoftwo(x)</strong></font></a>
+    </td>
+    <td nowrap width="71%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">(init-rate or control-rate args only)</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="17%" valign="TOP">
+      <a href="../valcnv/powoftwo.htm">
+      <font face="Courier New, Courier" size="-1"><strong>logbtwo(x)</strong></font></a>
+    </td>
+    <td nowrap width="71%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">(init-rate or control-rate args only)</font>
+    </td>
+  </tr>
+</table>
+
+<hr size="2" color="#A9A9A9" noshade>
+<a name="trig"><h2>Mathematical Operations: Trigonometric Functions</h2></a>
+<table cellspacing="0" border="0" cellpadding="7" width="642">
+  <tr>
+    <td nowrap width="12%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="17%" valign="TOP">
+      <a href="../valcnv/sin.htm">
+      <font face="Courier New, Courier" size="-1"><strong>sin</strong>(x)</font></a>
+    </td>
+    <td nowrap width="71%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">(no rate restriction)</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="17%" valign="TOP">
+      <a href="../valcnv/sin.htm">
+      <font face="Courier New, Courier" size="-1"><strong>cos</strong>(x)</font></a>
+    </td>
+    <td nowrap width="71%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">(no rate restriction)</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="17%" valign="TOP">
+      <a href="../valcnv/sin.htm">
+      <font face="Courier New, Courier" size="-1"><strong>tan</strong>(x)</font></a>
+    </td>
+    <td nowrap width="71%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">(no rate restriction)</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="17%" valign="TOP">
+      <a href="../valcnv/sin.htm">
+      <font face="Courier New, Courier" size="-1"><strong>sininv</strong>(x)</font></a>
+    </td>
+    <td nowrap width="71%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">(no rate restriction)</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="17%" valign="TOP">
+      <a href="../valcnv/sin.htm">
+      <font face="Courier New, Courier" size="-1"><strong>cosinv</strong>(x)</font></a>
+    </td>
+    <td nowrap width="71%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">(no rate restriction)</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="17%" valign="TOP">
+      <a href="../valcnv/sin.htm">
+      <font face="Courier New, Courier" size="-1"><strong>taninv</strong>(x)</font></a>
+    </td>
+    <td nowrap width="71%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">(no rate restriction)</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="17%" valign="TOP">
+      <a href="../valcnv/sin.htm">
+      <font face="Courier New, Courier" size="-1"><strong>sinh</strong>(x)</font></a>
+    </td>
+    <td nowrap width="71%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">(no rate restriction)</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="17%" valign="TOP">
+      <a href="../valcnv/sin.htm">
+      <font face="Courier New, Courier" size="-1"><strong>cosh</strong>(x)</font></a>
+    </td>
+    <td nowrap width="71%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">(no rate restriction)</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="17%" valign="TOP">
+      <a href="../valcnv/sin.htm">
+      <font face="Courier New, Courier" size="-1"><strong>tanh</strong>(x)</font></a>
+    </td>
+    <td nowrap width="71%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">(no rate restriction)</font>
+    </td>
+  </tr>
+</table>
+
+<hr size="2" color="#A9A9A9" noshade>
+<a name="amp"><h2>Mathematical Operations: Amplitude Functions</h2></a>
+<table cellspacing="0" border="0" cellpadding="7" width="642">
+  <tr>
+    <td nowrap width="12%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="17%" valign="TOP">
+      <a href="../valcnv/dbamp.htm">
+      <font face="Courier New, Courier" size="-1"><strong>dbamp</strong>(x)</font></a>
+    </td>
+    <td nowrap width="71%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">(init-rate or control-rate args only)</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="17%" valign="TOP">
+      <a href="../valcnv/dbamp.htm">
+      <font face="Courier New, Courier" size="-1"><strong>ampdb</strong>(x)</font></a>
+    </td>
+    <td nowrap width="71%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">(no rate restriction)</font>
+    </td>
+  </tr>
+</table>
+
+<hr size="2" color="#A9A9A9" noshade>
+<a name="rand"><h2>Mathematical Operations: Random Functions</h2></a>
+<table cellspacing="0" border="0" cellpadding="7" width="642">
+  <tr>
+    <td nowrap width="12%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../valcnv/rnd.htm">
+      <font face="Courier New, Courier" size="-1"><strong>rnd</strong>(x)</font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">(init- or control-rate only)</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../valcnv/rnd.htm">
+      <font face="Courier New, Courier" size="-1"><strong>birnd</strong>(x)</font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">(init- or control-rate only)</font>
+    </td>
+  </tr>
+</table>
+
+<hr size="2" color="#A9A9A9" noshade>
+<a name="opcode"><h2>Mathematical Operations: Opcode Equivalents of Functions</h2></a>
+<table cellspacing="0" border="0" cellpadding="7" width="642">
+  <tr>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">ar</font>
+    </td>
+    <td nowrap width="17%" valign="TOP">
+      <a href="../valcnv/sum.htm">
+      <font face="Courier New, Courier" size="-1"><strong>sum</strong></font></a>
+    </td>
+    <td nowrap width="71%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">asig1, asig2[,asig3...asigN]</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">ar</font>
+    </td>
+    <td nowrap width="17%" valign="TOP">
+      <a href="../valcnv/product.htm">
+      <font face="Courier New, Courier" size="-1"><strong>product</strong></font></a>
+    </td>
+    <td nowrap width="71%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">asig1, asig2[,asig3...asigN]</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">i/k/ar</font>
+    </td>
+    <td nowrap width="17%" valign="TOP">
+      <a href="../valcnv/pow.htm">
+      <font face="Courier New, Courier" size="-1"><strong>pow</strong></font></a>
+    </td>
+    <td nowrap width="71%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">i/k/aarg, i/k/pow</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">i/k/ar</font>
+    </td>
+    <td nowrap width="17%" valign="TOP">
+      <a href="../valcnv/taninv2.htm">
+      <font face="Courier New, Courier" size="-1"><strong>taninv2</strong></font></a>
+    </td>
+    <td nowrap width="71%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">i/k/ax, i/k/ay</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">ar</font>
+    </td>
+    <td nowrap width="17%" valign="TOP">
+      <a href="../valcnv/mac.htm">
+      <font face="Courier New, Courier" size="-1"><strong>mac</strong></font></a>
+    </td>
+    <td nowrap width="71%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">asig1, ksig1, asig2, ksig2, asig3, ...</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">ar</font>
+    </td>
+    <td nowrap width="17%" valign="TOP">
+      <a href="../valcnv/mac.htm">
+      <font face="Courier New, Courier" size="-1"><strong>maca</strong></font></a>
+    </td>
+    <td nowrap width="71%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">asig1, ksig1, asig2, ksig2, asig3, ...</font>
+    </td>
+  </tr>
+</table>
+
+
+<hr size="2" color="#A9A9A9" noshade>
+<table align="right" cellpadding="1" cellspacing="1" border="0">
+  <tr>
+    <td width="45" align="right">
+      <a href="../manual2.htm#contents" target="_parent">
+      <img src="../toc.gif" width="38" height="18" alt="Use Non-Frames Version" border="0"></a>
+    </td>
+    <td width="10">
+    </td>
+    <td width="45" align="right">
+      <a href="instrctl.htm">
+      <img src="../prev.gif" width="38" height="18" alt="Previous Page" border="0"></a>
+    </td>
+    <td width="45" align="right">
+      <a href="pitch.htm">
+      <img src="../next.gif" width="38" height="18" alt="Next Page" border="0"></a>
+    </td>
+  </tr>
+</table>
+<font size="-2" color="black" face="Verdana, Arial, Helvetica, Century Gothic">
+The Csound Quick Reference</font>
+</body>
+
+</html>

@@ -1,0 +1,685 @@
+\ ==============================================================================
+\ ========= Introduction to the Outer Layer  ===================================
+\ ==============================================================================
+
+\ ------------------------------------------------------------------------------
+\ IFORMM          ->  Turing Machine & Physical 3D Machine                     |
+\ ------------------------------------------------------------------------------
+\ IFORMM OS       ->  Atari/Forth/Formula based Operating System,              |
+\                     running inside the Steem emulator, a virtual machine.    |
+\ ------------------------------------------------------------------------------
+\ FLUX            ->  command lanugage, extends Forth/Formula.                 |
+\ ------------------------------------------------------------------------------
+\ FLUX Xtensions  ->  library of interfaces.                                   |
+\ ------------------------------------------------------------------------------
+
+\ FLUX is a command language. It extends the Forth/Formula foundation by
+\ simplification. It adheres to a minimal instruction set aesthetic.
+
+\ FLUX Xensions form the outer reaches of the IFORMM OS and provides the
+\ words you need to code in real-time with bit-map graphics (eye) and MIDI 
+\ controller (ear|hand) input/output. 
+
+\ Real-time interaction with your algorithms in a graphical way via GUI's or
+\ by using external MIDI controllers can turn IFORMM into a (pre|post)-keyboard
+\ instrument.
+
+\ FLUX further supplies an extensive word set for random scripts, 
+\ an interface to synthesizers on a system-exclusive level and to Csound. 
+
+
+\ =========================== INTRO ===========================================
+
+\ After you started (double-clicked) on IFORMM.TOS type:
+
+\ iformm ( -- )
+
+\ this will initialze the system. You will see fast moving boxes and will hear
+\ a stream of random notes. This will go on forever. Now hit any key. 
+
+\ init will always reset & initialize IFORMM.
+
+\ By default:
+\ when you move the mouse the coordinates will be displayed in the upper
+\ right corner on the screen.
+
+
+\ mouse-off ( -- )  
+
+\ will clear this routine so it won't interfere with your current programm.
+\ (the mouse handler is installed in it's own interrupt routine).
+
+\ to turn the mouse handler back on: 
+
+\ mouse-on  ( -- )
+
+\ will do exactly that.
+
+
+
+
+\ ====================== PART ONE ==============================================
+
+\ ====================== E Y E  ================================================
+
+\ Any file in PRG.DIR is a program, in each file is a word defined that 
+\ matches that of the file name without the .4TH extension and this is the top
+\ level call for whatever the code does.
+
+\ 1) Start them by typing their name.
+\ 2) Stop them by pressing a key.
+
+
+\ ==============================================================================
+\ logo ( -- )     
+\ ---> visual music
+
+\ ==============================================================================
+\ fish ( -- )     
+\ ---> a Hexagon moves. random style
+
+
+\ ==============================================================================
+\ paint ( -- )
+\ ---> paint a picture with the mouse, 
+\     draws memory background when you move to the far right. 
+
+
+\ ==============================================================================
+\ buterfly ( -- )   
+\ ---> a splash forms a cloud. random style
+
+
+\ ==============================================================================
+\ mirrors
+\ -->  draws some random walk mirror
+
+\ ==============================================================================
+\ lines
+\ -->  draws some random walk warp liness
+
+\ ==============================================================================
+\ stock ( -- )
+\ ---> endless loop, draws 2 panels: 
+\      new stock market line on lower, previous new one on the upper. 
+
+\ ==============================================================================
+\ grid ( -- )
+\ ---> a numerical interface that operates via the keypad. 
+\ 4=left 6=right 8=up 2=down 
+\ + = value up
+\ - = value down  
+  
+
+\ ====================== E Y E / E A R / H A N D ===============================
+
+
+\ ==============================================================================
+\ paintmus ( -- )
+\ ---> paint a "picture", it scans and sends out the picture
+\     as MIDI music on channel 1 & 2. 
+\     Vertical=Pitch
+\     Horizontal=Time
+
+
+\ ==============================================================================
+\ iboard ( -- ) 
+\ -->  move the sliders of this mixing board to the the midi note output. 
+
+\      A complex formula generates algorithmic or generative note streams.
+\      This is the super formula and surface for all my IFORMM generated music. 
+\      The interface to this is also implemented via the MS20, which allows the
+\      modification of a mathematical formula over time (steering or cybernetic
+\      control) which is essentially a (pre|post)-keyboard implementation of 
+\      algorithmic control.
+
+
+\ There are 16 sliders that make up this virtual mixing desk. 
+\ Use the value of a slider in your own programm:
+
+\ Slider ( #Slider -- n )
+
+\ ***example:  
+: gimme-slider
+     0 Slider .   
+;
+
+\ will give you the value of the leftmost slider. 
+\ Here is how to use the slider to change the value of a Formula algorithm:
+
+\ ***example:
+	:ap slidermusic ::ap begin /16  0 Slider $  again ;;ap ;ap
+
+\ So you can type now:  slidermusic slider
+\ or you can create this:
+
+: slidermusic+          
+   slidermusic
+   iboard
+;
+
+\ and move the leftmost slider to change the pitch. 
+
+\ After you'll hit any key, slider will disappear.
+\ To turn off all musical processes, type:   kl
+
+
+\ ------------------------------------------------------------------------------
+\ Anything can be send out via the sliders. if you want to use continous
+\ controller messages to build a virtual & algorithmic synth, here's how:
+
+\ ***example
+\ ---define action:
+: send-out-mod-wheel   
+\ # slider Mod Ch          
+\ ---------------
+  0 Slider 1   0   mcc   
+;
+
+\ ---install action:
+' send-out-mod-wheel 0 slideractions !  
+
+
+\ ---use action:
+\ type: slider      and move leftmost slider 
+
+\ ---see action:
+\ .slideractions ( -- nlist )
+
+          
+\ ========== PART TWO =========================================================
+
+\ ========== ELEMENTS =========================================================
+
+\ ========== B U I L D I N G  I N T E R A C T I V E  P R O G R A M M S ========
+
+
+\ ----------------------- screen ----------------------------------------------
+
+\ ==============================================================================
+\ To start with something easy, try these:
+
+\ erase-screen   --> will erase the screen, it will be cleared of any content 
+\ normal-screen  --> will give white background and back characters
+\ reverse-screen --> will give black background and white characters (default)
+\ split-screen   --> this will give you two areas. 
+\ whole-sceen    --> one area (default)
+\ ------------------------------------------------------------------------------
+
+
+
+\ ------------------------ basics----------------------------------------------
+
+\ ==============================================================================
+\ The most basic graphic primitive is the pixel.
+
+\ !pix  ( x y value -- )  
+
+\ this will let you paint a pixel to screen.
+
+\ ***example:
+: make-3-pixels
+
+\   x   y  c
+\ -----------  
+   150 150 1 !pix
+   200 100 1 !pix
+   200 200 1 !pix
+;
+
+
+
+\ ==============================================================================
+\ In order to read what your screen currently looks like:
+
+\ @pix ( x y -- value )
+
+\ this will let you obtain the state of the current screen position
+
+
+\ ***example
+: read-3-pixels
+  
+   make-3-pixels
+   
+   150 150  @pix .   \ yes
+   200 100  @pix .   \ yes
+   201 200  @pix .   \ no 
+   
+;
+
+
+
+
+\ ------------ lines, boxes & areas --------------------------------------------
+
+\ ==============================================================================
+\ The outcome of a  
+
+\ line          (  -- ) 
+\ box(filled)   (  -- )
+\ box(unfilled) (  -- )
+
+\ command is determined by 4 global variables:
+\ these are:  x1 x2 y1 y2 
+\ [ rather than passing the arguments via the stack, they are taken from the
+\ current value in the 4 variables. ]
+
+\ ***example
+: long-line
+ 
+   50 x1 !    
+   50 y1 !
+  600 x2 ! 
+  100 y2 !
+           line
+;
+
+: long-box
+     
+   50 x1 !                    \ x y coordinates
+   50 y1 !
+  300 x2 !                    \ size of the box !
+  100 y2 !
+           box(unfilled)
+;
+
+\ -----------------------------------------------------------------------------
+\ In order to change the nature of the line
+\ you may use: ( see line3.fth how to create your own )
+
+\ white-line      
+\ black-line       
+\ dot-line        
+\ grey-line       
+\ dash-line       
+
+\ ***comment 
+\ Notice: since we are by default in reverse-screen mode
+\ (black background, white characters) the colors are reversed as well. 
+\ Black-line is really white-line in this mode.
+
+\ ***example
+: long-dot-box
+  dot-line
+  long-box
+;
+
+
+
+\ -----------------------------------------------------------------------------
+\ Here is how to change the nature of a filled box 
+\ you may use:  ( see line3.fth how to create your own )
+
+\ white-fill 
+\ black-fill 
+\ dot-fill  
+\ grey-fill 
+\ dash-fill 
+\ mason-fill
+
+\ ***example 
+: long-filled-box
+
+   50 x1 !                    \ x y coordinates
+   50 y1 !
+  400 x2 !                    \ size of the box !
+  200 y2 !
+           grey-fill         \ type of fill   
+           box(filled)  
+;
+
+
+\ ==============================================================================
+\ in most cases the box(filled) command will take care of drawing and mapping
+\ areas, in case you want to draw a mulitple point area:
+
+\ polygon(unfilled)  ( address  #_of_points  -- ) 
+
+\ will do the job, as long as the number points is even.
+
+\ ***example     |----1point--|   
+create polypoints 100 w, 100 w, 150 w, 150 w, 
+                  100 w, 300 w, 20  w, 20  w,
+                    
+: polytest
+   polypoints 4 polygon(unfilled) 
+
+;
+
+
+
+
+
+\ ---------------------------- text --------------------------------------------
+
+\ ==============================================================================
+\ It is very easy to put text to a specific location on the screen
+ 
+\  say." ...text... "  ( x y -- )  
+
+\ this acts the same way than the Forth:   ." ...text...   " 
+\ with the addition of the x/y position in front
+
+\ ***examples
+: in-text
+  50 30 say." YES mouse is the in box   "
+;
+: out-text
+  50 30 say." NO mouse is not the in box "
+;
+
+
+\ ==============================================================================
+\ It is also very easy to put numbers to a specific location on the screen
+
+\ say.  ( n x y -- )
+
+\ this acts the same way than the Forth:  . 
+\ with the addition of the x/y position in front
+
+\ ***example
+: gimme-a-number
+\  rndnumber  x   y 
+\ ------------------
+   100 irnd  100 100 say.  
+; 
+
+
+
+
+
+\ ----------------------- mouse basics -----------------------------------------
+
+\ ==============================================================================
+\ To get the current coordinates of the mouse, you may move the mouse
+\ and look at the upper corner of your screen. 
+
+\ To get the current coordinates of the mouse for use in your own program:
+
+\ mouse-x  ( -- x )
+\ mouse-y  ( -- y )
+
+\ ***example
+: get-mouse
+   ." current mouse-x is:"  mouse-x . 
+   cr
+   ." current mouse-x is:"  mouse-y .  
+   cr
+;
+  
+
+\ you may also want to check if on of the mouse buttons are pressed down:
+
+\ right-button  ( -- x )
+\ left-button   ( -- x )
+
+
+\ ***example
+: get-mouse-buttons
+   ." left mouse button is pressed down: "   left-button . 
+   cr
+   ." right mouse button is pressed down: " right-button .  
+   cr
+;
+
+
+\ ==============================================================================
+\ here's a way to check if the mouse is in the box: 
+
+\ check.box ( -- x )
+
+\ will return true if indeed the mouse is in the box
+
+
+
+
+\ =================== template of interactive programm =========================
+\ ==============================================================================
+\ ----------------------
+\ g       u    i
+\ General User Interface
+\ -----------------------
+
+\ gui ( -- )
+
+\ Highest level call to invoke the Graphic User Interface.
+\ You exit it and return to Forth by ressing a key.
+
+\ .guiactions ( -- nlist ) 
+
+\ see what's currently installed
+
+\ you must supply:
+
+\ 1.  gui-setups   
+\ word(s) that initializes all your variables, arrays etc. 
+\ and draws the screen before any action (mouse-movement) takes place.  
+\ This can be anything, but should not be an infinite loop.
+
+\ 2. gui-actions
+\ word(s) that does the action.  In most cases it'll be:  mouse-button is
+\ pressed, do this, etc. This can be anything, but should be an 
+\ infinite loop.
+
+
+\ There are currently 16 slots (0-15). You can define 16 different actions and
+\ have them running at the same time. (You may change #slots and recompile
+\ the system to get as many as you like, the more you have the slower
+\ everything will be.)  
+
+\ here is how to install your words into the arrays:
+   
+\ ' my-setup  0 gui-setups  !   \ store your setup  in  slot number 0 
+\ ' my-action 0 gui-actions !   \ store your action in  slot number 0 
+
+\ you can then call gui and have fun watching everything work at once.
+
+
+\ With what you have defined so far, you can build your own interactive programm
+\ which can interact with the mouse, change variables in Formula, etc..
+
+\ ***example
+quan mouse-in-box?                     \ flag
+
+: checkgame-set                        \ setup of the screen before start   
+     long-box                           
+;
+
+: checkgame-act                        \ action
+
+    long-box check.box if    in-text   \  print "YES,... "
+                             true to mouse-in-box?   
+                       else  out-text  \  print "NO..." 
+                             false to mouse-in-box? 
+                       then   
+;
+
+: checkgame 
+
+  clear-gui               \ clear the scheduler
+
+\  what to install |slot#|scheduler                       
+\  ------------------------------------
+  ['] checkgame-set 0     gui-setups  !
+  ['] checkgame-act 0     gui-actions ! 
+
+        gui               \ run the scheduler
+; 
+
+\ Now it's time to tie this in with Formula. 
+
+\ ***example
+:ap box-music                \  will play if mouse is in box 
+  ::ap" box-music"
+             begin /16 
+             mouse-in-box? if 60 12 irnd + $  \ some random music
+                           else          r $  \ nothing
+                           then  
+       again                  
+  ;;ap
+;ap
+
+\ You will in most cases execute your Formula word first and then your
+\ graphic programm word.
+
+\ So you can type now:  box-music  checkgame 
+\ or you can create this:
+
+\ ***example
+: checkgame+                   \ the one with music
+  box-music
+  box-music                    \ yes, you may call it many times
+  checkgame
+;
+
+
+
+
+
+\ ---------------------------- advanced ----------------------------------------
+\ ---------------------------- mouse handler -----------------------------------
+\ ==============================================================================
+ 
+\ In your own programms you want to draw the mouse on the screen, use:
+
+\  draw-mouse ( -- )
+
+\  this will save the current area where the mouse is located and 
+\  draws the mouse   
+ 
+
+\  restore-screen ( -- )
+
+\  this will restore the screen where the mouse was.
+ 
+
+
+
+
+
+\ =============== PART THREE ===================================================
+
+\ =============== SYNTHESIS ====================================================
+
+\ =============== S Y N T H E S I S  & S T O C H A S T I C S ===================
+
+
+
+\ ==============================================================================
+\ to change the sound of a FB01 synthesizer, you may use these:
+\ ( type:  hi   and you will also see this)
+  
+\                               FB01 
+\ ------------------------------------------------------------------------- 
+\                         Operatoren : 0-3 
+\  fout     fre-dt      su-re       at-rsd     d2-if      d1-v-      
+\ (0-127) (0-15|0-7) (0-15|0-15) (0-31|0-3) (0-31|0-3) (0-31|0-3|0-1) 
+\  vs       a-lsd 
+\ 0-7)   0-15|0-15) 
+\ ------------------------------------------------------------------------- 
+\ alg-f     tra     wf      oof     ps-as    lfos       ad-l        pd-s 
+\ (0-7|0-7) (0-255) (0-3) (0-1 4x) (0-7|0-3) (0-255) (0-127|0-1) (0-127|0-1) 
+
+\ ***example
+: new-fb 
+      
+   2 127    fout       \ set the output of operator 2 to the max.  
+   3 12  7  fre-dt     \ set the frequency of operator 3 (the carrier)
+      1  0  alg-f      \ set the algorithm
+;
+
+\ ==============================================================================
+\ to change the sound of a TX81Z synthesizer, you may use these:
+\ ( type:  thi   and you will also see this)
+
+\                             TX81Z 
+\                     OPERATOREN  0 - 3  : 
+\ tar(0-31) td1r(0-31) td2r(0-31) trr(1-15) td1l(0-15) tlesc(0-99) 
+\ trs(0-3)  tebs(0-7)  tame(0-1)  tkvs(0-7) tout(0-99) tcrs(0-63)  
+\ tfix(0-1) trfixr(0-7)tfin(0-15) tosw(0-7) tshft(0-3) tdet(0-7) 
+\ ------------------------------------------------------------------------- 
+\ talg(0-7) tfb(0-7) tlfos(0-99) tlfod(0-99) tpmd(0-99) tamd(0-99) tsync(0-1) 
+\ twave(0-3)tpms(0-7)tams(0-3)   tsus(0-1)   tcho(0-1)  trev(0-7)  
+
+\ ***example
+: new-tx 
+      
+   2 99   tout       \ set the output of operator 2 to the max.  
+   3 12   tcrs       \ set the frequency of operator 3 (the carrier)
+      1   talg       \ set the algorithm
+;
+
+
+
+\ ==============================================================================
+\ cscore 
+\ produces .sco files for Csound  cscore.orc file, which is included.
+\ synthesis: stochastic massiv parallel additive
+
+\ variables and their defaults are:
+
+\  #events       25 #events ! 
+\   total        600 total  !     \ in centiseconds (in 1/10 of a sec)
+\   maxfreq    19000 maxfreq !    \ in Hz.  Gaussian distribution      
+\   minfreq       20 minfreq !    \ 
+\   devfreq     1000 devfreq !    \ deviation of mean (~1/3 of range)
+\   maxdb       9000 maxdb !      \ in centidb (1/10 of a db)
+\   mindb        100 mindb !     
+
+\   panStart     100 panStart !
+\   panEnd       100 panEnd !                    
+
+
+\ ***example 
+: 5-events
+     5 #events !   \ generate 5 events
+     200 total !   \ in 2.00 seconds
+     cscore
+;
+
+\ to turn this into a Csound .sco file, you need to type: 
+
+\ append-to-file cscore.sco cscore
+
+\ this will generate a cscore.sco file & put the output of cscore to the file
+\ instead to the screen.
+
+\ With the .sco and .orc files now present, you can give them to the Csound 
+\ engine.
+
+
+
+
+\ ----------------------- More Random Numbers ----------------------------------
+
+\ ==============================================================================
+\ rndwithin ( lbound ubound -- rndnum )
+\ --->Return a random number lbound <= rndnum < ubound.
+
+
+\ ==============================================================================
+\ rndbetween ( lbound uboudn -- rndnum )
+\ --->Return a random number lbound < rndnum < ubound.
+
+
+\ ==============================================================================
+\ rnd-shuffle ( addr_y x -- )
+\ ---> rnd-shuffle take x numbers stored from addr_y on and randomly switches 
+\ their order    
+
+\ ****example 
+create whatever 60 , 61 , 62 , 63 ,  
+: shuffle-whatever
+  ." before: "  4 0 do i /n* whatever + @ . loop cr 
+
+     whatever 4 rnd-shuffle 
+ 
+  ." after:  "  4 0 do i /n* whatever + @ . loop cr 
+;
+
+
+
+ 
+ 
+

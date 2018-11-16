@@ -1,0 +1,777 @@
+<!doctype html public "-//W3C//DTD HTML 3.2//EN">
+
+<!-- This  particular HTML Edition of the Csound Manual is maintained by David M. Boothe. Email: csound@lakewoodsound.com-->
+<!--This is Version 4.06.-->
+<html>
+<head>
+	<title>QuickRef: MIDI Support</title>
+</head>
+
+<body text="black" link="black" vlink="black" alink="black" bgcolor="white">
+<table align="right" cellpadding="1" cellspacing="1" border="0">
+  <tr>
+    <td width="45" align="right">
+      <a href="../manual2.htm#contents" target="_parent">
+      <img src="../toc.gif" width="38" height="18" alt="Use Non-Frames Version" border="0"></a>
+    </td>
+    <td width="10">
+    </td>
+    <td width="45" align="right">
+      <a href="pitch.htm">
+      <img src="../prev.gif" width="38" height="18" alt="Previous Page" border="0"></a>
+    </td>
+    <td width="45" align="right">
+      <a href="siggen.htm">
+      <img src="../next.gif" width="38" height="18" alt="Next Page" border="0"></a>
+    </td>
+  </tr>
+</table>
+<font size="-2" color="black" face="Verdana, Arial, Helvetica, Century Gothic">
+The Csound Quick Reference</font>
+
+<hr size="1" color="#A9A9A9" noshade>
+
+<h1>MIDI Support</h1>
+
+
+<hr size="2" color="#A9A9A9" noshade>
+<a name="converters"><h2>MIDI Support: Converters</h2></a>
+<table cellspacing="0" border="0" cellpadding="7" width="637">
+  <tr>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">ival</font>
+    </td>
+    <td nowrap width="88%" valign="TOP" colspan="2">
+      <a href="../midi/notnum.htm">
+      <font face="Courier New, Courier" size="-1"><strong>notnum</strong></font></a>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">ival</font>
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../midi/notnum.htm">
+      <font face="Courier New, Courier" size="-1"><strong>veloc</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">[ilow, ihigh]</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">icps</font>
+    </td>
+    <td nowrap width="88%" valign="TOP" colspan="2">
+      <a href="../midi/notnum.htm">
+      <font face="Courier New, Courier" size="-1"><strong>cpsmidi</strong></font></a>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">i/kcps</font>
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../midi/notnum.htm">
+      <font face="Courier New, Courier" size="-1"><strong>cpsmidib</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">[irange]</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">ioct</font>
+    </td>
+    <td nowrap width="88%" valign="TOP" colspan="2">
+      <a href="../midi/notnum.htm">
+      <font face="Courier New, Courier" size="-1"><strong>octmidi</strong></font></a>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">i/koct</font>
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../midi/notnum.htm">
+      <font face="Courier New, Courier" size="-1"><strong>octmidib</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">[irange]</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">ipch</font>
+    </td>
+    <td nowrap width="88%" valign="TOP" colspan="2">
+      <a href="../midi/notnum.htm">
+      <font face="Courier New, Courier" size="-1"><strong>pchmidi</strong></font></a>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">i/kpch</font>
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../midi/notnum.htm">
+      <font face="Courier New, Courier" size="-1"><strong>pchmidib</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">[irange]</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">iamp</font>
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../midi/notnum.htm">
+      <font face="Courier New, Courier" size="-1"><strong>ampmidi</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">iscal[, ifn]</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">kaft</font>
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../midi/notnum.htm">
+      <font face="Courier New, Courier" size="-1"><strong>aftouch</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">[imin[, imax]]</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">i/kbend</font>
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../midi/notnum.htm">
+      <font face="Courier New, Courier" size="-1"><strong>pchbend</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">[imin[, imax]]</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">i/kval</font>
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../midi/notnum.htm">
+      <font face="Courier New, Courier" size="-1"><strong>midictrl</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">inum[, imin[, imax]]</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">icps</font>
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../midi/cpstmid.htm">
+      <font face="Courier New, Courier" size="-1"><strong>cpstmid</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">ifn</font>
+    </td>
+  </tr>
+</table>
+
+<hr size="2" color="#A9A9A9" noshade>
+<a name="input"><h2>MIDI Support: Controller Input</h2></a>
+<table cellspacing="0" border="0" cellpadding="7" width="637">
+  <tr>
+    <td nowrap width="12%" valign="TOP">
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../midi/initc7.htm">
+      <font face="Courier New, Courier" size="-1"><strong>initc7</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">ichan, ictlno, ivalue</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../midi/initc7.htm">
+      <font face="Courier New, Courier" size="-1"><strong>initc14</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">ichan, ictlno1, ictlno2, ivalue</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../midi/initc7.htm">
+      <font face="Courier New, Courier" size="-1"><strong>initc21</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">ichan, ictlno1, ictlno2, ictlno3, ivalue</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">i/kdest</font>
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../midi/midic7.htm">
+      <font face="Courier New, Courier" size="-1"><strong>midic7</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">ictlno, i/kmin, i/kmax[, ifn]</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">i/kdest</font>
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../midi/midic7.htm">
+      <font face="Courier New, Courier" size="-1"><strong>midic14</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">ictlno1, ictlno2, i/kmin, i/kmax[, ifn]</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">i/kdest</font>
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../midi/midic7.htm">
+      <font face="Courier New, Courier" size="-1"><strong>midic21</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">ictlno1, ictlno2, ictlno3, i/kmin, i/kmax[, ifn]</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">i/kdest</font>
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../midi/midic7.htm">
+      <font face="Courier New, Courier" size="-1"><strong>ctrl7</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">ichan, ictlno, i/kmin, i/kmax[, ifn]</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">i/kdest</font>
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../midi/midic7.htm">
+      <font face="Courier New, Courier" size="-1"><strong>ctrl14</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">ichan, ictlno1, ictlno2, i/kmin, i/kmax[, ifn]</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">i/kdest</font>
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../midi/midic7.htm">
+      <font face="Courier New, Courier" size="-1"><strong>ctrl21</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">ichan, ictlno1, ictlno2, ictlno3, i/kmin, i/kmax[, ifn]</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">i/kval</font>
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../midi/chanctrl.htm">
+      <font face="Courier New, Courier" size="-1"><strong>chanctrl</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">ichnl, ictlno[, ilow, ihigh]</font>
+    </td>
+  </tr>
+</table>
+
+
+<hr size="2" color="#A9A9A9" noshade>
+<a name="sliders"><h2>MIDI Support: Slider Banks</h2></a>
+<table cellspacing="0" border="0" cellpadding="7" width="637">
+  <tr>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">i/k1, ..., i/k8</font>
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../midi/slider8.htm">
+      <font face="Courier New, Courier" size="-1"><strong>slider8</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">ichan, ictlnum1, imin1, imax1, init1, ifn1, ..., ictlnum8, imin8, imax8, init8, ifn8</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">i/k1, ..., i/k16</font>
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../midi/slider8.htm">
+      <font face="Courier New, Courier" size="-1"><strong>slider16</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">ichan, ictlnum1, imin1, imax1, init1, ifn1, ..., ictlnum16, imin16, imax16, init16, ifn16</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">i/k1, ..., i/k32</font>
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../midi/slider8.htm">
+      <font face="Courier New, Courier" size="-1"><strong>slider32</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">ichan, ictlnum1, imin1, imax1, init1, ifn1, ..., ictlnum32, imin32, imax32, init32, ifn32</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">i/k1, ..., i/k64</font>
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../midi/slider8.htm">
+      <font face="Courier New, Courier" size="-1"><strong>slider64</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">ichan, ictlnum1, imin1, imax1, init1, ifn1, ..., ictlnum64, imin64, imax64, init64, ifn64</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">k1, ..., k8</font>
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../midi/slider8.htm">
+      <font face="Courier New, Courier" size="-1"><strong>slider8f</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">ichan, ictlnum1, imin1, imax1, init1, ifn1, icutoff1, ..., ictlnum8, imin8, imax8, init8, ifn8, icutoff8</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">k1, ..., k16</font>
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../midi/slider8.htm">
+      <font face="Courier New, Courier" size="-1"><strong>slider16f</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">ichan, ictlnum1, imin1, imax1, init1, ifn1, icutoff1, ..., ictlnum16, imin16, imax16, init16, ifn16, icutoff16</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">k1, ..., k32</font>
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../midi/slider8.htm">
+      <font face="Courier New, Courier" size="-1"><strong>slider32f</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">ichan, ictlnum1, imin1, imax1, init1, ifn1, icutoff1, ..., ictlnum32, imin32, imax32, init32, ifn32, icutoff32</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">k1, ..., k64</font>
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../midi/slider8.htm">
+      <font face="Courier New, Courier" size="-1"><strong>slider64f</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">ichan, ictlnum1, imin1, imax1, init1, ifn1, icutoff1, ..., ictlnum64, imin64, imax64, init64, ifn64, icutoff64</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">i/k1, ..., i/k16</font>
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../midi/slider8.htm">
+      <font face="Courier New, Courier" size="-1"><strong>s16b14</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">ichan, ictlno_msb1, ictlno_lsb1, imin1, imax1, initvalue1, ifn1, ..., ictlno_msb16, ictlno_lsb16, imin16, imax16, initvalue16, ifn16</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">i/k1, ..., i/k32</font>
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../midi/slider8.htm">
+      <font face="Courier New, Courier" size="-1"><strong>s32b14</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">ichan, ictlno_msb1, ictlno_lsb1, imin1, imax1, initvalue1, ifn1, ..., ictlno_msb32, ictlno_lsb32, imin32, imax32, initvalue32, ifn32</font>
+    </td>
+  </tr>
+</table>
+
+<hr size="2" color="#A9A9A9" noshade>
+<a name="generic"><h2>MIDI Support: Generic I/O</h2></a>
+<table cellspacing="0" border="0" cellpadding="7" width="637">
+  <tr>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">kstatus,<br>kchan,<br>kdata1,<br>kdata2</font>
+    </td>
+    <td nowrap width="88%" valign="TOP" colspan="2">
+      <a href="../midi/midiin.htm">
+      <font face="Courier New, Courier" size="-1"><strong>midiin</strong></font></a>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../midi/midiout.htm">
+      <font face="Courier New, Courier" size="-1"><strong>midiout</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">kstatus, kchan, kdata1, kdata2</font>
+    </td>
+  </tr>
+</table>
+
+<hr size="2" color="#A9A9A9" noshade>
+<a name="note"><h2>MIDI Support: Note-on/Note-off</h2></a>
+<table cellspacing="0" border="0" cellpadding="7" width="637">
+  <tr>
+    <td nowrap width="12%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../midi/noteon.htm">
+      <font face="Courier New, Courier" size="-1"><strong>noteon</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">ichn, inum, ivel</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../midi/noteon.htm">
+      <font face="Courier New, Courier" size="-1"><strong>noteoff</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">ichn, inum, ivel</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../midi/noteon.htm">
+      <font face="Courier New, Courier" size="-1"><strong>noteondur</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">ichn, inum, ivel, idur</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../midi/noteon.htm">
+      <font face="Courier New, Courier" size="-1"><strong>noteondur2</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">ichn, inum, ivel, idur</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../midi/moscil.htm">
+      <font face="Courier New, Courier" size="-1"><strong>moscil</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">kchn, knum, kvel, kdur, kpause</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../midi/moscil.htm">
+      <font face="Courier New, Courier" size="-1"><strong>midion</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">kchn, knum, kvel</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../midi/midion2.htm">
+      <font face="Courier New, Courier" size="-1"><strong>midion2</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">kchn, knum, kvel, ktrig</font>
+    </td>
+  </tr>
+</table>
+
+
+<hr size="2" color="#A9A9A9" noshade>
+<a name="message"><h2>MIDI Support: MIDI Message Output</h2></a>
+<table cellspacing="0" border="0" cellpadding="7" width="637">
+  <tr>
+    <td nowrap width="12%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../midi/outic.htm">
+      <font face="Courier New, Courier" size="-1"><strong>outic</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">ichn, inum, ivalue, imin, imax</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../midi/outic.htm">
+      <font face="Courier New, Courier" size="-1"><strong>outkc</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">kchn, knum, kvalue, kmin, kmax</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../midi/outic.htm">
+      <font face="Courier New, Courier" size="-1"><strong>outic14</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">ichn, imsb, ilsb, ivalue, imin, imax</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../midi/outic.htm">
+      <font face="Courier New, Courier" size="-1"><strong>outkc14</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">kchn, kmsb, klsb, kvalue, kmin, kmax</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../midi/outic.htm">
+      <font face="Courier New, Courier" size="-1"><strong>outipb</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">ichn, ivalue, imin, imax</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../midi/outic.htm">
+      <font face="Courier New, Courier" size="-1"><strong>outkpb</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">kchn, kvalue, kmin, kmax</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../midi/outic.htm">
+      <font face="Courier New, Courier" size="-1"><strong>outiat</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">ichn, ivalue, imin, imax</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../midi/outic.htm">
+      <font face="Courier New, Courier" size="-1"><strong>outkat</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">kchn, kvalue, kmin, kmax</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../midi/outic.htm">
+      <font face="Courier New, Courier" size="-1"><strong>outipc</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">ichn, iprog, imin, imax</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../midi/outic.htm">
+      <font face="Courier New, Courier" size="-1"><strong>outkpc</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">kchn, kprog, kmin, kmax</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../midi/outic.htm">
+      <font face="Courier New, Courier" size="-1"><strong>outipat</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">ichn, inotenum, ivalue, imin, imax</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../midi/outic.htm">
+      <font face="Courier New, Courier" size="-1"><strong>outkpat</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">kchn, knotenum, kvalue, kmin, kmax</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../midi/nrpn.htm">
+      <font face="Courier New, Courier" size="-1"><strong>nrpn</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">kchan, kparmnum, kparmvalue</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../midi/mdelay.htm">
+      <font face="Courier New, Courier" size="-1"><strong>mdelay</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">kstatus, kchan, kd1, kd2, kdelay</font>
+    </td>
+  </tr>
+</table>
+
+<hr size="2" color="#A9A9A9" noshade>
+<a name="realtime"><h2>MIDI Support: Realtime Messages</h2></a>
+<table cellspacing="0" border="0" cellpadding="7" width="637">
+  <tr>
+    <td nowrap width="12%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../midi/mclock.htm">
+      <font face="Courier New, Courier" size="-1"><strong>mclock</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">ifreq</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../midi/mclock.htm">
+      <font face="Courier New, Courier" size="-1"><strong>mrtmsg</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">imsgtype</font>
+    </td>
+  </tr>
+</table>
+
+<hr size="2" color="#A9A9A9" noshade>
+<a name="event"><h2>MIDI Support: MIDI Event Extenders</h2></a>
+<table cellspacing="0" border="0" cellpadding="7" width="637">
+  <tr>
+    <td nowrap width="12%" valign="TOP">&nbsp;
+    </td>
+    <td nowrap width="16%" valign="TOP">
+      <a href="../midi/xtratim.htm">
+      <font face="Courier New, Courier" size="-1"><strong>xtratim</strong></font></a>
+    </td>
+    <td nowrap width="72%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">iextradur</font>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap width="12%" valign="TOP">
+      <font face="Courier New, Courier" size="-1">kflag</font>
+    </td>
+    <td nowrap width="88%" valign="TOP" colspan="2">
+      <a href="../midi/xtratim.htm">
+      <font face="Courier New, Courier" size="-1"><strong>release</strong></font></a>
+    </td>
+  </tr>
+</table>
+
+
+<hr size="2" color="#A9A9A9" noshade>
+<table align="right" cellpadding="1" cellspacing="1" border="0">
+  <tr>
+    <td width="45" align="right">
+      <a href="../manual2.htm#contents" target="_parent">
+      <img src="../toc.gif" width="38" height="18" alt="Use Non-Frames Version" border="0"></a>
+    </td>
+    <td width="10">
+    </td>
+    <td width="45" align="right">
+      <a href="pitch.htm">
+      <img src="../prev.gif" width="38" height="18" alt="Previous Page" border="0"></a>
+    </td>
+    <td width="45" align="right">
+      <a href="siggen.htm">
+      <img src="../next.gif" width="38" height="18" alt="Next Page" border="0"></a>
+    </td>
+  </tr>
+</table>
+<font size="-2" color="black" face="Verdana, Arial, Helvetica, Century Gothic">
+The Csound Quick Reference</font>
+
+</body>
+</html>

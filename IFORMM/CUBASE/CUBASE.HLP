@@ -1,0 +1,451 @@
+TOPIC ~E16KEYBOARD COMMANDS~N
+~E16KEYBOARD Commands:~N
+
+~S09Transport Functions~N
+~S09All Windows~N
+~S09Arrange Window~N
+~S09All Editor Windows~N
+~S09Key Edit Only~N
+~S09Grid Edit Only~N
+~S09Drum Edit Only~N
+~S09Score Edit Only~N
+~S09MIDI Manager Only~N
+~S09Interactive Phrase Synthesizer~N
+
+
+TOPIC ~S09Transport Functions~N
+~E16TRANSPORT Functions~N  (Numeric Keypad):
+
+                *    Activate Recording
+   Enter / Return    Start/Continue
+    0 or Spacebar    1st time: STOP
+                     2nd time: Goto LEFT Locator
+                     3rd time: Goto 1.0.0
+                (    Rewind
+                )    Fast Forward
+                1    Goto LEFT  Locator
+                2    Goto RIGHT locator
+        Shift + 1    Store Song Position as LEFT  Locator
+        Shift + 2    Store Song Position as RIGHT Locator 
+           3 to 8    Goto Cue Point 3-8
+   Shift + 3 to 8    Store Song Position as Cue Point 3-8
+
+TOPIC ~S09All Windows~N
+~E16ALL Windows~N (Typewriter Keyboard):
+
+        Control O    Open File (1-7)
+        Control S    Save File (1-7)
+        Control W    Close Window
+        Control Q    Quit
+
+             Undo    Undo
+        Control X    Cut
+        Control C    Copy
+        Control V    Paste
+           Delete    Delete selection
+        Backspace    Delete selection
+        Control A    Select All
+        Control G    Grid  Edit
+        Control D    Drum  Edit
+        Control E    Key   Edit
+        Control R    Score Edit
+        Control L    Logical Edit
+        Control B    Notepad
+
+                Q    Over-Quantize
+                U    Undo Quantize
+                W    Note-On Quantize
+                E    Iterative Quantize
+        Control F    Delete Controller Data
+                     (NOT P.Bend, A.Touch, Notes, or P.Changes)
+        Control H    Delete Doubles
+
+                F    Follow Song On/Off
+                Y    Remote      On/Off
+
+        F1 to F10    Recall Locator settings
+  Shift F1 to F10    Store  Locator settings
+   Alt. F1 to F10    Recall Mute settings
+Alt+Sht F1 to F10    Store  Mute settings
+
+                P    Set Position
+                L    Set LEFT  Locator
+                R    Set RIGHT Locator
+      Alternate P    Set L & R Locator to PARTS' Start & End
+
+                D    Overdub/Alternative Record Mode
+                I    Punch In    On/Off
+                O    Punch Out   On/Off    
+                C    Click       On/Off
+                M    Mastertrack On/Off
+                S    Solo        On/Off
+                A    Edit Solo   On/Off
+                X    Sync        On/Off
+
+              1-7    Quantize Value
+                T    Set Quantize value to Triplets
+                .    Set Quantize value to Dotted
+      Alternate J    Change Instrument name
+
+                
+                CYCLE Recording Mode:
+
+                V    Delete Last version
+                B    Delete Sub Track
+                N    Quantize Last version
+                K    Key Erase
+                #    Sub Track in Multi Record mode
+
+
+                DIALOG Boxes:
+
+           Return    Exit
+              Esc    Cancel
+
+
+TOPIC ~S09Arrange Window~N
+~E16ARRANGE Window~N
+
+        Control N    New Arrange window
+        Control I    Part Info
+        Control M    Display Mastertrack
+
+        Control T    New Track
+        Control P    Create Part
+        Control K    Repeat
+        Control J    Show/Hide Groups
+        Control Y    Create Group Track
+        Control U    Parts to Group
+
+                    Go one Track up
+                    Go one Track down
+                    Select Next Part
+                    Select Previous Part
+        The 4 arrows can be used in combination with the [Shift] 
+        key to select several Parts on a Track.
+
+TOPIC ~S09All Editor Windows~N
+~E16ALL Editor Windows~N
+
+           Return    Keep
+              Esc    Cancel
+
+           Insert    Insert Event
+              Tab    Move one Snap in Step Edit
+      Alternate O    Loop On/Off
+      Alternate L    Input LEFT  Loop boundary
+      Alternate R    Input RIGHT Loop boundary
+      Alternate I    Info On/Off (Note Info)
+      Alternate C    Ctrl On/Off (Controller Display)
+
+TOPIC ~S09Key Edit Only~N
+~E16KEY Edit Only~N
+
+                    Next Note
+                    Previous Note
+        The 2 arrows can be used in combination with the [Shift] 
+        key to select several Notes.
+
+TOPIC ~S09Grid Edit Only~N
+~E16GRID Edit Only~N
+
+                    Previous Event
+                    Next Event
+        The 2 arrows can be used in combination with the [Shift] 
+        key to select several Notes or Events.
+
+TOPIC ~S09Drum Edit Only~N
+~E16DRUM Edit Only~N
+
+                    Previous Sound
+                    Next Sound
+
+      Alternate N    Rename Sound
+
+                    Next Note
+                    Previous Note
+        The arrows can be used in combination with the [Shift] 
+        key to select several notes.
+
+TOPIC ~S09Score Edit Only~N
+~E16SCORE Edit Only~N
+
+                    Previous Staff
+                    Next Staff
+
+                    Next Note
+                    Previous Note
+        The 2 arrows can be used in combination with the [Shift] 
+        key to select several notes.
+
+TOPIC ~S09MIDI Manager Only~N
+~E16MIDI MANAGER Only~N
+
+                    Increase Object Value
+                    Decrease Object Value
+        Control I    Open Object Dialog Box
+
+NOTE: The maximum number of Objects is 128!
+
+TOPIC ~S09Interactive Phrase Synthesizer
+~E16The Interactive Phrase Synthesizer~N
+
+        Control H    Display IPS Window
+      Alternate H    Turn IPS On/Off (works from other windows)
+      Alternate A    Switch between IPS A and B
+
+
+TOPIC ~E16SYNTHESIZER INFO~N
+~E16SYNTHESIZER Info~N
+
+FZ-1
+WAVESTATION
+CZ-1
+FZ-20M
+XD-5
+
+
+TOPIC ~E02OTHER DEVICES AND INFO~N
+~E16Other Devices and Info~N
+
+TASCAM
+Synapse
+Decimal/Hex Conversion
+
+
+TOPIC FZ-1
+~E16FZ-1 Sampler~N  16-bit / 36KHz *  2 Megabytes RAM
+
+POLYPHONY: 8 voice (dynamic allocation).
+
+To SET POLY allocation per EACH voice, assign
+the voice certain OUTPUTS from the CREATE BANK menu.
+The TOTAL outputs allocated limits the polyphony to that number.
+
+MIDI:
+RECEIVE= BASIC: ALL Areas in a Bank controlled by one channel.
+         AREA : EACH Area in a Bank controlled by many channels.
+
+* (EFFECTS also control separate Areas, but share "values".)
+
+PROGRAM CHANGE messages only sent/received on the BASIC channel.
+Use this to select BANKS during multi-track sequencing.
+            (You MUST be in PLAY mode)
+
+Now you can select ANY track to record on.
+
+BANKS:
+*EFFECT DATA is NOT saved/loaded with BANKS.
+ These must be saved/loaded separately.
+
+SAMPLING @ 36,000 Hz: 
+*4 Bars @ 120 Tempo=  Loop Length:   --START--     ----END----
+                                     0000 Coarse   0281 Coarse
+                                     0000 Fine     0095 Fine
+
+TOPIC WAVESTATION
+~E16KORG Wavestation~N 
+
+MIDI Clock Chart for Wave Sequences:
+        Duration       NOTE
+        *  24            4          *~E04preferred~N
+           16            4T
+        *  12            8
+            8            8T
+        *   6            16
+            4            16T
+        *   3            32
+            2            32T
+
+Set Cubase to equivalent NOTE value.
+(Use COMPAND function to change wave sequence durations.)
+
+MIDI Timing Delays:
+
+Use the following -(neg) ms delays on Tracks to compensate for
+timing delays.
+
+        --OMNI MODE---  MULTI
+        1-note  8-note  8-note
+
+1 Osc.     4      4       15
+2 Osc.     4      4       23
+4 Osc.     4      5       39
+
+
+MIDI-clocking Tip:
+
+Use Cubase to record temporary Wavestation editing of the 
+wave sequence "durations". When you play the song, the edits 
+will allow for correct MIDI-clocking.
+    
+TOPIC CZ-1
+~E16CASIO CZ-1~N
+POLYPHONY: 16 (1 DCO), 8 (2 DCO), 4 (TONE MIX), 1 (SOLO)
+
+MIDI: KBCH = Send Channel
+      CH   = Receive Channel
+      SYSEX= ON to transmit actual Voice Data while recording!
+
+MULTI CHANNEL:
+* AFTER TOUCH is invalid in Multi Channel mode.
+* PITCH BENDER and MODULATION only valid on the BASIC Channel.
+* CARTRIDGE Tones CANNOT be accessed in Multi Channel mode.
+
+
+TOPIC FZ-20M
+~E16FZ-20M Sampler~N   16-bit / 36KHz * 2 Megabytes RAM * SCSI HD
+
+NOTE: Boot SCSI Hard Drive before turning on FZ-20M.
+
+(See FZ-1 for all redundant operation notes)
+
+TOPIC XD-5
+~E16Kawai XD-5~N 16-bit Percussion Synthesizer
+
+SYSTEM EXCLUSIVE:
+
+TYPE           HEX  COMMENT
+
+Status         F0   System Exclusive
+Kawai ID No.   40      
+Channel No.    0n   n=0-F
+Function No.   ??
+Group No.      00   Synthesizer Group
+Model ID No.   06   XD-5 ID No.
+Subcommand 1   ??
+Subcommand 2   ??
+Data           ...
+Data           ...
+EOX            F7   End of Exclusive
+
+  Dump Request Type   Function No.   Subcommand 1    Subcommand 2
+------------------------------------------------------------------
+ONE     Single   INT      00             00             00-3F
+DUMP    Kit      INT      00             00             40-4F
+        Output   INT      00             01             00-0F
+        Single   EXT      00             02             00-3F
+        Kit      EXT      00             02             40-4F
+        Output   EXT      00             03             00-0F
+------------------------------------------------------------------
+ALL              INT      02             00             00
+DUMP             EXT      02             02             00
+
+
+  Dump Request Type   Function No.   Subcommand 1    Subcommand 2
+------------------------------------------------------------------
+ALL              INT      01             00             00
+SINGLE           EXT      01             02             00
+------------------------------------------------------------------
+ALL              INT      01             00             40
+KIT              EXT      01             02             40
+------------------------------------------------------------------
+ALL              INT      01             01             00
+OUTPUT           EXT      01             03             00
+
+
+     
+TOPIC CZ-1 MIDI Program Change
+~E16CZ-1 MIDI Program Change~N
+
+CZ-1 SYNTHESIZER:
+
+    1   2   3   4   5   6   7   8 
+
+A   0   1   2   3   4   5   6   7
+B   8   9  10  11  12  13  14  15
+C  16  17  18  19  20  21  22  23
+D  24  25  26  27  28  29  30  31
+E  32  33  34  35  36  37  38  39
+F  40  41  42  43  44  45  46  47
+G  48  49  50  51  52  53  54  55
+H  56  57  58  59  60  61  62  63
+
+
+
+TOPIC Synapse
+~E16SYNAPSE~N  16in x 20out MIDI Routing System
+
+PRG Comments:                     
+
+01  STANDARD recording & playback mode. 
+    [FZ-1 is Master and merged with WAVE "Vector"]
+
+02  MULTI recording mode. 
+    [FZ-1 / WAVE / CZ-1] 
+
+03  MULTI recording mode. 
+    [FZ-1-->XD-5 / WAVE / CZ-1]
+
+06  Computer <> FZ-1
+07  Computer <> WAVE
+08  Computer <> CZ-1
+09  Computer <> FZ-20M
+10  Computer <> XD-5
+11  Computer <> Quadverb
+
+19  FZ-1 > Midiverb
+20  Computer > MIXER 7
+
+26  FZ-1 > FZ-1  (Use when in Local OFF)
+27  FZ-1 > WAVE
+28  FZ-1 > CZ-1
+29  FZ-1 > FZ-20M
+30  FZ-1 > XD-5
+
+TOPIC TASCAM
+~E16TASCAM PortaStudio~N 424 4-Track
+          
+1. TAPE OUT:    Signal DIRECT from Tape (No mixer)
+
+        6        7
+     stereo    mono
+   +---------------+             NOTE: This is the
+   | +- O -+     O | MIXER 7s    only way to get 2
+   +---------------+             sounds panned
+     |L   R|     |L or R         independantly with
+     |only |     |               MIXER 7s. (1 & 3)
+     |     |     |
+   +---------------------+
+   | 1     2     3     4 |
+   |                     | TASCAM
+   +---------------------+
+           
+1. LINE OUT:    Stereo 1 & 2. (thru Mixer)
+
+        6        
+     stereo    
+   +---------------+
+   |    O          | MIXER 7s
+   +---------------+
+     |L   R|-----+    Stereo Output
+     |     |     |
+     |-----|-----|                   NOTE: Most
+   +---------------------+ TASCAM    common usage.
+   | 1     2     3     4 | 
+   | +     +     +       |  Select "TAPE".
+   | O     O     O       |  Panning works. 
+   +---------------------+
+
+TOPIC Decimal/Hex Conversion
+~E16Decimal/Hex Conversion~N
+
+Dec Hex|Dec Hex|Dec Hex|Dec Hex|Dec Hex|Dec Hex|Dec Hex|Dec Hex 
+       |       |       |       |       |       |       |
+ 0   0 | 16  10| 32  20| 48  30| 64  40| 80  50| 96 60 |112 70 
+ 1   1 | 17  11| 33  21| 49  31| 65  41| 81  51| 97 61 |113 71
+ 2   2 | 18  12| 34  22| 50  32| 66  42| 82  52| 98 62 |114 72
+ 3   3 | 19  13| 35  23| 51  33| 67  43| 83  53| 99 63 |115 73
+ 4   4 | 20  14| 36  24| 52  34| 68  44| 84  54|100 64 |115 74
+ 5   5 | 21  15| 37  25| 53  35| 69  45| 85  55|101 65 |117 75
+ 6   6 | 22  16| 38  26| 54  36| 70  46| 86  56|102 66 |118 76
+ 7   7 | 23  17| 39  27| 55  37| 71  47| 87  57|103 67 |119 77
+ 8   8 | 24  18| 40  28| 56  38| 72  48| 88  58|104 68 |120 78
+ 9   9 | 25  19| 41  29| 57  39| 73  49| 89  59|105 69 |121 79
+10   A | 26  1A| 42  2A| 58  3A| 74  4A| 90  5A|106 6A |122 7A
+11   B | 27  1B| 43  2B| 59  3B| 75  4B| 91  5B|107 6B |123 7B
+12   C | 28  1C| 44  2C| 60  3C| 76  4C| 92  5C|108 6C |124 7C
+13   D | 29  1D| 45  2D| 61  3D| 77  4D| 93  5D|109 6D |125 7D
+14   E | 30  1E| 46  2E| 62  3E| 78  4E| 94  5E|110 6E |126 7E
+15   F | 31  1F| 47  2F| 63  3F| 79  4F| 95  5F|111 6F |127 7F
+

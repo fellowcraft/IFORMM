@@ -1,0 +1,26 @@
+H.1                              +  Version nr.
+    HP Laserjet, ,150 * 150 dpi,300 * 300 dpi,12 * 12 npi
+    max. 59 letters                                         (59)
+
+1001, 4                          +  MASTER SCORE size index
+1002, 300                        +  columns / inch
+1003, 300                        +  lines / inch
+
+1010                             +  pre reset               (29)
+1021, 12                         +  post page (FF)          (9)
+1022                             +  post reset              (19)
+
+               +  GRAPHIC PARAMETERS
+
+1025, 1                          +  pins
+
+1026, 1                          +  pin multiplier
+
+1028, 14                         + Left-Margin
+1029, 14                         + Top-Margin
+1030, 14                         + Right-Margin
+1031, 14                         + Bottom-Margin
+
+2001, 2
+2002, 150
+2003, 150

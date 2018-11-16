@@ -1,0 +1,11 @@
+
+ 99		#events ! 
+360 100 * total  !     \ in centiseconds (in 1/10 of a sec)
+2000	maxfreq !    \ in Hz.  Gaussian distribution      
+70		minfreq !    \ 
+1000	devfreq !    \ deviation of mean (~1/3 of range)
+9000	maxdb !      \ in centidb (1/10 of a db)
+3000	mindb !     
+
+100		panStart !
+100		panEnd ! 
