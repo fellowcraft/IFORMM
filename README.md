@@ -1,10 +1,14 @@
 # IFORMM
 Intelligent FORMula Music
 
-Forthmacs [Bradley] 
-Forth Musical Language (ForMUaLA) [Anderson/Kuivila] <br>
-Intelligent FORMula Music (IFORMM) [Rothkamm] <br>
-atari STE EMulator (STEEM) <br>
+Forthmacs (c) Bradley
+<br>
+Forth Musical Language (ForMUaLA) (c) Anderson/Kuivila 
+<br>
+Intelligent FORMula Music (IFORMM) (c) Rothkamm
+<br>
+atari STE EMulator (STEEM) 
+<br>
 
 Setup
 -----
