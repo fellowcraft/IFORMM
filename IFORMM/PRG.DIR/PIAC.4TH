@@ -408,9 +408,9 @@ quan Rdur   0 to Rdur
  begin
  
 
-100 irnd 97 > if 
- 16 Slider 8 tel 0 $            \ pause
- 36 30 irnd  + 0 SliderInit  \ change key  
+127 irnd 16 Slider > if 
+ \ 1 8 tel 0 $            \ pause
+ 30 30 irnd  + 0 SliderInit  \ change key  
  24 irnd       1 SliderInit  \ change range
 then
 
@@ -432,10 +432,10 @@ then
          46 80 40 irnd + 80 MIDI-do-note  			\ timpani        
        endif
        
-       sad 
+       scalePenta 
        1 Slider irnd dup rot swap
-       6 mod 4* + @                \ freq from scale           
-       swap 6 / 12 * +               \ error (3 instead of 6) leads to new distribution. 
+       5 mod 4* + @                \ freq from scale           
+       swap 5 / 12 * +               \ error (3 instead of 6) leads to new distribution. 
        0 Slider +
        to Rpitch
 
@@ -482,7 +482,6 @@ then
 
     pure-random
 ['] default-slider-setup  is gui-setup
-    piac-setup
 ['] default-slider-action is gui-action
     gui
 ;
