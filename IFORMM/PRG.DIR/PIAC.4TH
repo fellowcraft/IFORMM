@@ -373,12 +373,13 @@ quan cur-S#
 
 
 
-create scale1      0 , 2 , 4 , 5 , 7 , 9 , 11 ,
-create scale       0 , 2 , 4 , 6 , 7 , 9 , 11 ,
-create scalePenta  0 , 2 , 5 , 7 , 9 ,
+create scale1      0 , 2 , 4 ,  5 , 7 ,  9 , 11 ,
+create scale       0 , 2 , 4 ,  6 , 7 ,  9 , 11 ,
+create scalePenta  0 , 2 , 5 ,  7 , 9 ,
 create dur7        0 , 4 , 7 , 11 ,
 create moll7       0 , 3 , 7 , 10 ,
-create sad         0 , 3 , 4 , 7 , 8 , 11 ,
+create scaleSB     0 , 3 , 7 ,  8 ,
+create sad         0 , 3 , 4 ,  7 , 8 , 11 ,
 
 quan rndT
 : Cirnd  100 irnd to rndT
@@ -432,10 +433,13 @@ then
          46 80 40 irnd + 80 MIDI-do-note  			\ timpani        
        endif
        
-       scalePenta 
-       1 Slider irnd dup rot swap
-       5 mod 4* + @                \ freq from scale           
-       swap 5 / 12 * +               \ error (3 instead of 6) leads to new distribution. 
+       scaleSB
+       1 Slider irnd dup rot swap    \ 1 Slider  irnd  1 Slider  irnd
+       4                             \ number of entries in scale         
+       mod 4* + @                    \ freq from scale           
+       swap 
+       4                             \ number of entries in scale  
+       / 12 * +                      \ error (3 instead of 6) leads to new distribution. 
        0 Slider +
        to Rpitch
 

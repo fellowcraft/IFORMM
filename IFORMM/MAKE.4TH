@@ -6,7 +6,7 @@
 \ Mitch Bradley 
 \ David Anderson
 \ Ron Kuivila
-\ Frank H. Rothkamm
+\ Frank Rothkamm
 \ Marcus Verwiebe
 \ Daniel Scheidt
 \ Jesse Taylor
@@ -107,7 +107,7 @@ decimal
 
 \ ==============================================================================
 \  F L U X  extension for F O R M U L A  4 . 0
-\ (c) rothkamm 88/12
+\ (c) rothkamm 88/18
 \ ==============================================================================
 
 
@@ -151,7 +151,7 @@ xload lines.4TH
 xload buterfly.4TH
 xload grid.4TH                \  grid
 xload paintmus.4TH            \  paintmusic
-xload iboard.4TH              \  sliders iboard
+xload iboard.4TH              \  sliders iboard IFORMM
 xload acid2.4TH               \  pattern generator
 xload digits.4TH              \  1 Million Random Digits (RAND corporation book)
 xload logo.4TH                \  midi picture line-graphics-animation
@@ -169,7 +169,7 @@ only forth also internals also modem also forth definitions
 
 : copyright-notice
 ." IFORMM --------------------" cr
-." rothkamm [1987-2012] iformm" cr
+." rothkamm [1988-2018] iformm" cr
 ." IFORMM --------------------" cr
 ;
 
