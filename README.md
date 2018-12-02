@@ -1,14 +1,16 @@
 # IFORMM
-Intelligent FORMula Music
+Intelligent FORMula Music + = if
 
-Forthmacs (c) Bradley
-<br>
-Forth Musical Language (ForMUaLA) (c) Anderson/Kuivila 
-<br>
-Intelligent FORMula Music (IFORMM) (c) Rothkamm
-<br>
-atari STE EMulator (STEEM) 
-<br>
+<pre>
+Atari STE EMulator (STEEM) 
+|
+Forthmacs
+|
+Forth Musical Language (ForMUaLA)
+|
+Intelligent FORMula Music (IFORMM)
+</pre>
+then
 
 Setup
 -----
