@@ -68,6 +68,17 @@ create Ypos            0 w,  20 w,  40 w,  60 w,  80 w,
 
 ;
 
+
+: V!  ( n y x  -- )
+  >r >r 
+  Vpos r> 22 * + 
+       r>    
+   /c*
+   + 
+   c! 
+
+;
+
 : +Key 
 
   Vpos 
