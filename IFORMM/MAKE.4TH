@@ -148,10 +148,12 @@ xload fish.4TH
 xload mirrors.4TH
 xload lines.4TH
 xload buterfly.4TH
-xload grid.4TH                \  grid
 xload paintmus.4TH            \  paintmusic
 xload iboard.4TH              \  sliders iboard IFORMM
-xload iboard2.4TH              \  sliders iboard IFORMM (update)
+xload iboard2.4TH             \  sliders iboard IFORMM (update)
+\ xload grid.4TH               \  grid
+xload grid2.4TH               \  grid (update)
+xload ifor01.4TH              \  IFORMM (based on grid2)
 xload acid2.4TH               \  pattern generator
 xload digits.4TH              \  1 Million Random Digits (RAND corporation book)
 xload logo.4TH                \  midi picture line-graphics-animation

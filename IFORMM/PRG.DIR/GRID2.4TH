@@ -20,9 +20,18 @@
               
 \ example: 0 0 V@
 
+\ writing to the matrix:
+\ V! ( n y x -- )
+
+\ writing and printing matrix value :
+\ V!P ( n y x -- )
 
 
 only forth also ap-defs also internals also forth definitions
+
+quan n
+quan x
+quan y
 
 quan xat
 quan yat 
@@ -77,6 +86,25 @@ create Ypos            0 w,  20 w,  40 w,  60 w,  80 w,
    + 
    c! 
 
+;
+
+: V!P  ( n y x  -- )
+
+\ --store
+  dup to x >r
+  dup to y >r 
+  dup to n
+  Vpos r> 22 * + 
+       r>    
+   /c*
+   + 
+   c! 
+
+\ --print 
+  n
+  Xpos x /w* + w@ 2+ 
+  Ypos y /w* + w@ 2+ say.
+ 
 ;
 
 : +Key 
@@ -147,8 +175,9 @@ create Ypos            0 w,  20 w,  40 w,  60 w,  80 w,
 ;
 
 
-: grid
-   erase-screen
+
+: grid2
+\  erase-screen
    0 to xat 0 to yat
    init-das
 

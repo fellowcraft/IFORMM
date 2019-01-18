@@ -1,0 +1,21 @@
+	    "Online" Atari Cubase Help Desk Accessory!
+
+Hello Atari Cubase Users!
+
+Included in this *.LZH:
+
+READ_ME.DOC	This doc.
+CUBASE.HLP	Editable Cubase Help file
+IGOR.ACC	The DA that loads and reads CUBASE.HLP
+IGOR.DAT	Defines what Drive CUBASE.HLP is on, and
+		how much space to allocate.
+                (Defaults are "Drive C", and "30" K)
+IGOR.RSC	Resource file.
+
+Every CUBASE Keyboard command has been entered, along with
+special useful notes regarding my equiptment. Simply use an
+editor like EMACS to change or add your very own info!
+
+You now have "online" Cubase help, along with your own system
+notes (i.e. special SYSEX set-up info, etc.)
+
