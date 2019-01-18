@@ -1,5 +1,5 @@
 # IFORMM
-Intelligent FORMula Music + = if
+Intelligent FORMula Music + + = if
 
 <pre>
 Atari STE EMulator (STEEM) 
@@ -16,7 +16,7 @@ Setup
 -----
 Linux (ARCH):
 <br>
-install: wine lib32-alsa-plugins lib32-libpulse lib32-openal
+install: wine lib32-alsa-plugins lib32-libpulse lib32-openal lib32-mpg123
 <br>
 run: wine Steem.exe
 <br>
