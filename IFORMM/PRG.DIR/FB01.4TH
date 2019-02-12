@@ -175,8 +175,8 @@ quan alg  0 to alg
 : fb01-thru  ( v p -- )
  
 
-  MS20 to cc_val1       			\ get the current parameters
-  to cc_val2
+      to cc_val1       			\ get the current parameters
+      to cc_val2
 
   
 
@@ -198,23 +198,27 @@ quan alg  0 to alg
 \  if cc_val2 10 / 10 * to cc_index exit then
 
 \ catch Volume control and make index ----------------------------------------
-  cc_val1 7 = 
-  if
+\ cc_val1 7 = 
+\ if
  \ cc_val2   0 = if -10 to cc_index exit then
  \ cc_val2 127 = if -20 to cc_index exit then
-  cc_val2     1 = if   0 to cc_index exit then
-  cc_val2    41 = if  40 to cc_index exit then
-  cc_val2    81 = if  80 to cc_index exit then
-  cc_val2   121 = if 120 to cc_index exit then
-  then
+  cc_val1   119 = if -10 to cc_index exit then
+  cc_val1   120 = if  0 to cc_index exit then
+  cc_val1   121 = if  20 to cc_index exit then
+  cc_val1   122 = if  40 to cc_index exit then
+  cc_val1   123 = if  60 to cc_index exit then
+  cc_val1   124 = if  80 to cc_index exit then
+  cc_val1   125 = if 100 to cc_index exit then
+\ then
   
   
 \ general ======================================================================  
   cc_val1   
+  cc_index +
   case 
 
 \ ------- hidden modulator index -----------------------------------------------
- 109 of    08  cc_val2 
+   9 of    08  cc_val2 
                2/ 64 +   \ scale: 0-127 to 64->127 (better resolution)
                setconf  exit endof 
 
@@ -224,15 +228,15 @@ quan alg  0 to alg
 \ ---------- base freq ---------------------------------------------------------
   23 of     cc_val2 8 /  to base_freq endof
 \ ---------- random freq -------------------------------------------------------
-  59 of   3 base_freq Crnd 8 / grnd +  7 irnd  fre-dt
-          2 base_freq Crnd 8 / grnd +  7 irnd  fre-dt
-          1 base_freq Crnd 8 / grnd +  7 irnd  fre-dt
-		  0 base_freq Crnd 8 / grnd +  7 irnd  fre-dt
-		  3 d21 Crnd 42 / irnd  dup to if1 d2-if
-          2 d22 Crnd 42 / irnd  dup to if2 d2-if
-		  1 d23 Crnd 42 / irnd  dup to if3 d2-if
-          0 d24 Crnd 42 / irnd  dup to if4 d2-if
-				  endof
+\ 59 of   3 base_freq Crnd 8 / grnd +  7 irnd  fre-dt
+\         2 base_freq Crnd 8 / grnd +  7 irnd  fre-dt
+\         1 base_freq Crnd 8 / grnd +  7 irnd  fre-dt
+\	  0 base_freq Crnd 8 / grnd +  7 irnd  fre-dt
+\	  3 d21 Crnd 42 / irnd  dup to if1 d2-if
+\         2 d22 Crnd 42 / irnd  dup to if2 d2-if
+\	  1 d23 Crnd 42 / irnd  dup to if3 d2-if
+\         0 d24 Crnd 42 / irnd  dup to if4 d2-if
+\			  endof
 
 \ ---------- Op 4 (3) feedback -------------------------------------------------
    24 of  alg  cc_val2 16 / dup to fb  alg-f exit endof
@@ -248,20 +252,20 @@ quan alg  0 to alg
  
 
  \ ==============================================================================    
-  midi-in-channel 0 = if          \ absolute assignment for MS20
-  cc_val1   
+  cc_val1
+  cc_index +
   case
   
   \ experimental-algorithm-control
-	77 of cc_val2 0 ccSlider endof 
-	78 of cc_val2 1 ccSlider endof
-	
-	97 of cc_val2 1 max 2  ccSlider endof    \ x/ 
-	98 of cc_val2 1 max 4  ccSlider endof    \ /y
-	95 of cc_val2 1 max 3  ccSlider endof    \ x/
-	96 of cc_val2 1 max 5  ccSlider endof    \ /y
+\	77 of cc_val2 0 ccSlider endof 
+\	78 of cc_val2 1 ccSlider endof
+\	
+\	97 of cc_val2 1 max 2  ccSlider endof    \ x/ 
+\	98 of cc_val2 1 max 4  ccSlider endof    \ /y
+\	95 of cc_val2 1 max 3  ccSlider endof    \ x/
+\	96 of cc_val2 1 max 5  ccSlider endof    \ /y
 			
-    94 of cc_val2 7 1 max ccSlider endof 	\ vel r
+\    94 of cc_val2 7 1 max ccSlider endof 	\ vel r
 
   \ irnd - frnd - nrnd : switches ------------------------------------------------
  
@@ -285,14 +289,12 @@ quan alg  0 to alg
   endof
 
   endcase 
-  then
 \ ============================================================================== 
  
 
 
 \ - indexed --------------------------------------------------------------------
 \ ==============================================================================
-\ midi-in-channel 2 = if          \ absolute assignment for UC-33
   cc_val1
   cc_index +
   case 
@@ -391,7 +393,6 @@ quan alg  0 to alg
 
  
   endcase
-\ then
  
 
 \ - NOT USED -------------------------------------------------------------------
